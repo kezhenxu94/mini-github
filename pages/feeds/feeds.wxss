@@ -1,20 +1,15 @@
 .container {
   height: 200rpx;
-  background-color: grey;
+  background-color: #000;
+  color: #eee;
+  width: 100vw;
 }
 
-.events {
-  white-space: nowrap;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0 10rpx;
-}
 swiper-item {
   box-sizing: border-box;
   padding: 20rpx 10rpx;
 }
 .events .item {
-  background: #fff;
   border-radius: 4rpx;
   width: 100%;
   display: inline-block;

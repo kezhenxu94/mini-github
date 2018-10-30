@@ -1,0 +1,52 @@
+var format = function (item) {
+  var type = item.type
+  var repo = item.repo
+  var actor = item.actor
+  var payload = item.payload
+
+  var msg = ''
+  switch (type) {
+    case 'PushEvent': {
+      msg = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
+      break
+    }
+    case 'IssuesEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' issue ' + repo.name + '#'
+      break
+    }
+    case 'PullRequestEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' pull request ' + repo.name + '#'
+      break
+    }
+    case 'IssueCommentEvent': {
+      msg = actor.display_login + ' commentted on issue ' + repo.name + '#'
+      break
+    }
+    case 'WatchEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' watch ' + repo.name
+      break
+    }
+    case 'PublicEvent': {
+      msg = actor.display_login + ' open sourced ' + repo.name
+      break
+    }
+    case 'ForkEvent': {
+      msg = actor.display_login + ' forked ' + payload.forkee.full_name + ' from ' + repo.name
+      break
+    }
+    case 'CreateEvent': {
+      msg = actor.display_login + ' created ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
+      break
+    }
+    default: {
+      msg = JSON.stringify(item)
+      break
+    }
+  }
+
+  return msg
+};
+
+module.exports = {
+  format: format
+};

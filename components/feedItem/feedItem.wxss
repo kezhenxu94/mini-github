@@ -1,9 +1,26 @@
 /* components/feedItem/feedItem.wxss */
 .feed {
+  display: flex;
+  padding: 10rpx;
+  overflow: hidden;
+  background-color: #000;
+  color: #eee;
 }
 
 .avatar {
   width: 100rpx;
   height: 100rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
   border-radius: 50%;
+}
+
+.summary {
+  font-size: 28rpx;
+  font-family: monospace;
+  padding: 10rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
 }
