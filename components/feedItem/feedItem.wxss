@@ -1,4 +1,9 @@
 /* components/feedItem/feedItem.wxss */
 .feed {
-  height: 50rpx;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
 }
