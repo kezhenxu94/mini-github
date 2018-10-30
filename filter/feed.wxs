@@ -19,7 +19,7 @@ var format = function (item) {
       break
     }
     case 'IssueCommentEvent': {
-      msg = actor.display_login + ' commentted on issue ' + repo.name + '#'
+      msg = actor.display_login + ' commented on issue ' + repo.name + '#'
       break
     }
     case 'WatchEvent': {
@@ -35,7 +35,32 @@ var format = function (item) {
       break
     }
     case 'CreateEvent': {
-      msg = actor.display_login + ' created ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
+      msg = actor.display_login + ' created ' + payload.ref_type + ' ' + (payload.ref || '') + ' at ' + repo.name
+      break
+    }
+    case 'DeleteEvent': {
+      msg = actor.display_login + ' deleted ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
+      console.log(msg)
+      break
+    }
+    case 'MemberEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' permissions of ' + payload.member.login + ' to ' + payload.repository.full_name
+      break
+    }
+    case 'PullRequestReviewCommentEvent': {
+      msg = actor.display_login + payload.action + ' comment on ' + repo.name
+      break
+    }
+    case 'GollumEvent': {
+      msg = actor.display_login + ' editted the wiki of ' + repository.name
+      break
+    }
+    case 'ReleaseEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' ' + payload.release.name + ' ' + repository.full_name
+      break
+    }
+    case 'CommitCommentEvent': {
+      msg = actor.display_login + ' ' + payload.action + ' comment ' + payload.repository.full_name 
       break
     }
     default: {

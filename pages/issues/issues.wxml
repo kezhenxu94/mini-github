@@ -1,2 +1,8 @@
-<!--pages/issues/issues.wxml-->
-<text>pages/issues/issues.wxml</text>
+<view class='issues'>
+  <tabs>
+    <tab title='已创建'>tab</tab>
+    <tab title='被分配'>tab</tab>
+    <tab title='提及我'>tab</tab>
+    <tab title='已参与'>tab</tab>
+  </tabs>
+</view>

@@ -1,1 +1,3 @@
-/* pages/issues/issues.wxss */
+.issues {
+  background-color: #000;
+}
