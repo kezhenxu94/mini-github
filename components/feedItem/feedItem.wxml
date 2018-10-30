@@ -1,0 +1,9 @@
+<view class='event card' hover-class='hover-class' data-item='{{item}}' catchtap=''>
+  <view class='header'>
+    <view class='name' data-item='{{event}}' catchtap='toPersonal'>
+      <image mode='aspectFill' src='{{event.actor.avatar_url || "/img/default_avatar.png"}}'></image>
+      <view>{{event.actor.login}}</view>
+    </view>
+    <view class='type'>{{filters.join(item.tags, 'title', ' / ')}}</view>
+  </view>
+</view>

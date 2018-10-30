@@ -1,0 +1,59 @@
+.container {
+  height: 200rpx;
+  background-color: grey;
+}
+
+.events {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0 10rpx;
+}
+swiper-item {
+  box-sizing: border-box;
+  padding: 20rpx 10rpx;
+}
+.events .item {
+  background: #fff;
+  border-radius: 4rpx;
+  width: 100%;
+  display: inline-block;
+  padding: 30rpx 20rpx;
+  box-sizing: border-box;
+}
+.events .title {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+}
+.events .title .icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.events .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 120rpx;
+  color: #666;
+}
+.events .content .text {
+  flex: 1;
+  white-space: normal;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.events .content .img {
+  width: 100rpx;
+  height: 100rpx;
+  margin-left: 20rpx;
+}
+.events .content image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 4rpx;
+}

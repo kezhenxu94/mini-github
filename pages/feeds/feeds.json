@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "feed-item": "../../components/feedItem/feedItem"
+  }
+}

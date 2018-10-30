@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/feeds/feeds",
+    "pages/issues/issues",
+    "pages/prs/prs"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "Mini GitHub",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#eee",
+    "selectedColor": "#fff",
+    "borderStyle": "#000",
+    "backgroundColor": "#000",
+    "list": [
+      {
+        "pagePath": "pages/feeds/feeds",
+        "text": "Feeds",
+        "iconPath": "octicons/mark-github.png",
+        "selectedIconPath": "octicons/mark-github.png"
+      },
+      {
+        "pagePath": "pages/issues/issues",
+        "text": "Issues",
+        "iconPath": "octicons/issue-opened.png",
+        "selectedIconPath": "octicons/issue-opened.png"
+      },
+      {
+        "pagePath": "pages/prs/prs",
+        "text": "Pull Requests",
+        "iconPath": "octicons/git-pull-request.png",
+        "selectedIconPath": "octicons/git-pull-request.png"
+      }
+    ]
+  }
+}

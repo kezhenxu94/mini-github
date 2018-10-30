@@ -1,0 +1,4 @@
+/* components/feedItem/feedItem.wxss */
+.feed {
+  height: 50rpx;
+}
