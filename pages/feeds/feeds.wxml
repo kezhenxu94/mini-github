@@ -1,4 +1,3 @@
 <view class='events'>
-  <feed-item wx:for="{{events}}" wx:key="{{index}}" item="{{item}}">
-  </feed-item>
+  <feed wx:for="{{events}}" wx:key="{{index}}" item="{{item}}"></feed>
 </view>

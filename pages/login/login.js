@@ -12,13 +12,14 @@ Page({
     let url = 'https://api.github.com/user'
     let username = params.username
     let password = params.password
+    let token = this.getToken(username, password)
     wx.request({
       url,
       header: {
-        'Authorization': 'Basic ' + this.basicAuthorization(username, password)
+        'Authorization': token
       },
       success: function (res) {
-        console.log('login success res: ' ,res)
+        console.log('login success res: ', res)
         let statusCode = res.statusCode
         if (statusCode !== 200) {
           wx.showToast({
@@ -31,6 +32,10 @@ Page({
         wx.showToast({
           title: '已登录',
           icon: 'none',
+        })
+        wx.setStorage({
+          key: 'token',
+          data: token,
         })
         wx.setStorage({
           key: 'user',
@@ -46,7 +51,7 @@ Page({
       },
     })
   },
-  commit(e) {
+  commit (e) {
     let values = e.detail.value
     let username = values.username || ''
     let password = values.password || ''
@@ -66,8 +71,8 @@ Page({
     }
     this.login(values)
   },
-  basicAuthorization (username, password) {
+  getToken (username, password) {
     let str = username + ':' + password
-    return wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
+    return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
   }
 })

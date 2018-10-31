@@ -1,6 +1,10 @@
 <view class='issues'>
-  <tabs border='{{false}}'>
-    <tab title='已创建'>tab</tab>
+  <tabs border='{{false}}' bind:change='changeFilter'>
+    <tab title='已创建'>
+      <view>
+        <issue wx:for="{{issues}}" wx:key="{{index}}" item="{{item}}"></issue>
+      </view>
+    </tab>
     <tab title='被分配'>tab</tab>
     <tab title='提及我'>tab</tab>
     <tab title='已参与'>tab</tab>

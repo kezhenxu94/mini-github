@@ -1,2 +1,3 @@
-<!--components/issueItem/issueItem.wxml-->
-<text>components/issueItem/issueItem.wxml</text>
+<view class='issue' hover-class='hover-class' data-item='{{item}}' catchtap=''>
+  <view class='title'>{{item.title}}</view>
+</view>
