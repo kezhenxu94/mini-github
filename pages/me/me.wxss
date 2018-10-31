@@ -1,0 +1,38 @@
+/* pages/me/me.wxss */
+.user {
+  display: flex;
+  padding: 20rpx;
+  overflow: hidden;
+  background-color: #000;
+  color: #eee;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
+  border-radius: 50%;
+}
+
+.name {
+  margin-left: 30rpx;
+  font-size: 40rpx;
+  color: #eee
+}
+
+.bio {
+  margin-left: 30rpx;
+  font-size: 20rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.login-button {
+  color: #fff;
+  background-color: #000;
+  border-radius: 0;
+  border: none;
+}

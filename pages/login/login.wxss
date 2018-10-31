@@ -1,0 +1,49 @@
+.wrapper {
+  min-height: 100vh;
+  background: #000;
+  padding: 0 30rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.logo {
+  text-align: center;
+  padding: 40rpx 0;
+}
+.logo image {
+  width: 94rpx;
+  height: 94rpx;
+}
+.form view {
+  border-radius: 4rpx;
+  background: #fff;
+}
+.form input {
+  width: 100%;
+  padding-left: 30rpx;
+  box-sizing: border-box;
+  height: 100rpx;
+  border-radius: 4rpx;
+  border-bottom: 1rpx solid #efefef;
+}
+.form input:last-child {
+  border-bottom: none;
+}
+.login {
+  width: 100%;
+  margin-top: 20rpx;
+  color: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 4rpx;
+  background: rgba(0, 0, 0, .5);
+}
+.footer {
+  height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  color: #fff;
+}

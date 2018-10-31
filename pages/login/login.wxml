@@ -1,0 +1,15 @@
+<view class='wrapper'>
+  <view class='top'>
+    <view class='logo'>
+      <image src='/octicons/mark-github.png'></image>
+    </view>
+    <form class='form' bindsubmit='commit'>
+      <view>
+        <input name='username' placeholder='输入用户名' focus></input>
+        <input name='password' placeholder='输入密码' password='true' value='{{password}}'></input>
+      </view>
+      <button class='login' formType='submit'>登陆</button>
+    </form>
+  </view>
+  <view class='footer'>GitHub</view>
+</view>

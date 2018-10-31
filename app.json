@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/feeds/feeds",
+    "pages/me/me",
     "pages/issues/issues",
-    "pages/prs/prs"
+    "pages/feeds/feeds",
+    "pages/prs/prs",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -33,6 +35,12 @@
         "text": "Pull Requests",
         "iconPath": "octicons/git-pull-request.png",
         "selectedIconPath": "octicons/git-pull-request.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "Me",
+        "iconPath": "octicons/person.png",
+        "selectedIconPath": "octicons/person.png"
       }
     ]
   }

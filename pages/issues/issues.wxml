@@ -1,5 +1,5 @@
 <view class='issues'>
-  <tabs>
+  <tabs border='{{false}}'>
     <tab title='已创建'>tab</tab>
     <tab title='被分配'>tab</tab>
     <tab title='提及我'>tab</tab>

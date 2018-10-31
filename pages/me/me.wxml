@@ -1,0 +1,12 @@
+<view>
+  <view class='user' data-item='{{user}}' catchtap=''>
+    <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/img/default_avatar.png"}}'></image>
+    <view>
+      <view class='name'>{{user.name || '未登陆'}}</view>
+      <view class='bio'>{{user.bio}}</view>
+    </view>
+  </view>
+  <navigator url='/pages/login/login' wx:if='{{!signedIn}}'>
+    <button class='login-button'>马上登陆</button>
+  </navigator>
+</view>
