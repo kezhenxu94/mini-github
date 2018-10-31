@@ -1,6 +1,10 @@
+page {
+  background-color: #000;
+  color: #fff;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 .wrapper {
   min-height: 100vh;
-  background: #000;
   padding: 0 30rpx;
   display: flex;
   flex-direction: column;
@@ -26,9 +30,11 @@
   border-radius: 4rpx;
   border-bottom: 1rpx solid #efefef;
 }
+
 .form input:last-child {
   border-bottom: none;
 }
+
 .login {
   width: 100%;
   margin-top: 20rpx;
@@ -39,6 +45,13 @@
   border-radius: 4rpx;
   background: rgba(0, 0, 0, .5);
 }
+
+.security-hint {
+  margin-top: 20rpx;
+  font-size: 22rpx;
+  color: #eee;
+}
+
 .footer {
   height: 120rpx;
   display: flex;

@@ -68,14 +68,14 @@ Page({
 
   },
 
-  onPageScroll (e) {
+  onPageScroll(e) {
     this.setData({
       scrollTop: e.scrollTop,
     })
   },
 
   reloadData: function () {
-    github.getIssues(this.data.filter, data => {
+    github.getPulls(this.data.filter, data => {
       console.log(data)
       this.setData({
         issues: data

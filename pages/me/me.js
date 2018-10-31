@@ -80,5 +80,29 @@ Page({
       })
     }
     wx.stopPullDownRefresh()
+  },
+
+  onTapEmail: function () {
+    this.copyToClipBoard(this.data.user.email)
+  },
+
+  onTapBlog: function () {
+    this.copyToClipBoard(this.data.user.blog)
+  },
+
+  copyToClipBoard: function (content) {
+    wx.setClipboardData({
+      data: content,
+      success (res) {
+        wx.getClipboardData({
+          success (res) {
+            wx.showToast({
+              title: '已复制到剪切板',
+              icon: 'none',
+            })
+          }
+        })
+      }
+    })
   }
 })

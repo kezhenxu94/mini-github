@@ -52,7 +52,38 @@ let getIssues = (filter, onSuccess) => {
         })
         return []
       }
-      let data = res.data
+      let data = res.data.map(it => {
+        it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+        return it
+      })
+      onSuccess(data)
+    },
+    fail: () => errorHandler()
+  })
+}
+
+let getPulls = (filter, onSuccess) => {
+  const url = 'https://api.github.com/user/pulls?filter=' + (filter || 'all')
+  const token = wx.getStorageSync('token') || ''
+  wx.request({
+    url,
+    header: {
+      'Authorization': token
+    },
+    success: function (res) {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        wx.showToast({
+          title: res.data.message,
+          icon: 'none',
+          duration: 10000
+        })
+        return []
+      }
+      let data = res.data.map(it => {
+        it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+        return it
+      })
       onSuccess(data)
     },
     fail: () => errorHandler()
@@ -61,5 +92,6 @@ let getIssues = (filter, onSuccess) => {
 
 module.exports = {
   getGlobalEvents: getGlobalEvents,
-  getIssues: getIssues
+  getIssues: getIssues,
+  getPulls: getPulls
 }

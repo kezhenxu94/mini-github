@@ -1,5 +1,6 @@
 const config = getApp().globalData.config
 const utils = require('../../utils/util.js')
+const moment = require('../../utils/moment.js')
 Page({
   data: {
     mobile: '',
@@ -19,7 +20,6 @@ Page({
         'Authorization': token
       },
       success: function (res) {
-        console.log('login success res: ', res)
         let statusCode = res.statusCode
         if (statusCode !== 200) {
           wx.showToast({
@@ -29,6 +29,7 @@ Page({
           return
         }
         let data = res.data
+        data.created_at = moment(data.created_at).format('YYYY/MM/DD HH:mm:SS')
         wx.showToast({
           title: '已登录',
           icon: 'none',
@@ -45,7 +46,7 @@ Page({
       },
       fail: function () {
         wx.showToast({
-          title: '网路开小差，请稍后再试',
+          title: '网络错误, 请稍后再试',
           icon: 'none',
         })
       },

@@ -1,4 +1,4 @@
-// components/issueItem/issueItem.js
+// components/prItem/prItem.js
 Component({
   /**
    * Component properties

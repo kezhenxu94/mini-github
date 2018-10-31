@@ -6,6 +6,32 @@
       <view class='bio'>{{user.bio}}</view>
     </view>
   </view>
+  <view wx:if='{{signedIn}}'>
+    <view class='follow'>
+      <view class='followers'>关注我({{user.followers}})</view>
+      <view class='following'>我关注({{user.following}})</view>
+    </view>
+    <view class='org'>
+      <image mode='aspectFit' src='/md/group.png' class='org-img'></image>
+      <view class='org-text'>{{user.company}}</view>
+    </view>
+    <view class='loc'>
+      <image mode='aspectFit' src='/md/location.png' class='loc-img'></image>
+      <view class='loc-text'>{{user.location}}</view>
+    </view>
+    <view class='email' bind:tap="onTapEmail">
+      <image mode='aspectFit' src='/md/email.png' class='email-img'></image>
+      <view class='email-text'>{{user.email}}</view>
+    </view>
+    <view class='blog' bind:tap="onTapBlog">
+      <image mode='aspectFit' src='/md/link.png' class='blog-img'></image>
+      <view class='blog-text'>{{user.blog}}</view>
+    </view>
+    <view class='create'>
+      <image mode='aspectFit' src='/md/clock.png' class='create-img'></image>
+      <view class='create-text'>{{user.created_at}}</view>
+    </view>
+  </view>
   <navigator url='/pages/login/login' wx:if='{{!signedIn}}'>
     <button class='login-button'>马上登陆</button>
   </navigator>

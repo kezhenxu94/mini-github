@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    events: []
+    events: [],
+    scrollTop: 0
   },
 
   /**
@@ -25,7 +26,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.startPullDownRefresh({})
+    if (this.data.scrollTop === 0) {
+      wx.startPullDownRefresh({})
+    }
   },
 
   /**
@@ -53,6 +56,12 @@ Page({
    */
   onReachBottom: function () {
 
+  },
+
+  onPageScroll(e) {
+    this.setData({
+      scrollTop: e.scrollTop,
+    })
   },
 
   /**

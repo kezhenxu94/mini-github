@@ -1,9 +1,14 @@
-/* pages/me/me.wxss */
+page {
+  background-color: #000;
+  color: #fff;
+  font-size: 30rpx;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 .user {
   display: flex;
-  padding: 20rpx;
+  padding: 30rpx 40rpx 10rpx 40rpx;
   overflow: hidden;
-  background-color: #000;
   color: #eee;
 }
 
@@ -32,7 +37,45 @@
 
 .login-button {
   color: #fff;
-  background-color: #000;
   border-radius: 0;
   border: none;
+  background-color: transparent;
+}
+
+.follow {
+  display: flex;
+  padding: 20rpx;
+  margin: 40rpx 0;
+}
+
+.followers, .following {
+  width: 100%;
+  height: 100%;
+  display: flex -webkit-flex;
+  justify-content: space-evenly;
+  text-align: center;
+}
+
+.followers {
+  border-right: 0.5rpx solid rgba(255, 255, 255, 0.5)
+}
+
+.org, .loc, .email, .blog, .create {
+  display: flex;
+  padding: 30rpx 40rpx;
+  overflow: hidden;
+}
+
+.org-img, .loc-img, .email-img, .blog-img, .create-img {
+  width: 50rpx;
+  height: 50rpx;
+  min-width: 50rpx;
+  min-height: 50rpx;
+}
+
+.org-text, .loc-text, .email-text, .blog-text, .create-text {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }

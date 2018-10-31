@@ -3,7 +3,6 @@
   display: flex;
   padding: 20rpx;
   overflow: hidden;
-  background-color: #000;
   color: #eee;
 }
 
@@ -18,7 +17,6 @@
 .summary {
   margin-left: 10rpx;
   font-size: 28rpx;
-  font-family: monospace;
   padding: 0 10rpx;
   word-break: break-all;
   display: flex;

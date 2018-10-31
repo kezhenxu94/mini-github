@@ -1,0 +1,5 @@
+<wxs module='filters' src='../../filter/pr.wxs'></wxs>
+<view class='pr' hover-class='hover-class' data-item='{{item}}' catchtap=''>
+  <view class='title'>{{item.title}}</view>
+  <view class='desc'>{{filters.format(item)}}</view>
+</view>
