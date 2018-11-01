@@ -110,6 +110,7 @@ let getPulls = (filter, onSuccess, onError) => {
     const data = JSON.parse(res.body)
     const pulls = data.items.map(it => {
       it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+      it.updated_at = moment(it.updated_at).format('YYYY/MM/DD HH:mm:SS')
       return it
     })
     return onSuccess(pulls)

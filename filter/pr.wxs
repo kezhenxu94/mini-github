@@ -1,9 +1,0 @@
-var format = function (item) {
-  var repo = item.repository || {}
-  var msg = repo.full_name + '#' + item.number + ' opened at ' + item.created_at
-  return msg
-};
-
-module.exports = {
-  format: format
-};
