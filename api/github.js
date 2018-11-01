@@ -91,12 +91,14 @@ let getIssues = (filter, onSuccess, onError) => {
 }
 
 let getPulls = (filter, onSuccess, onError) => {
-  const url = 'https://api.github.com/search/issues'
   const user = wx.getStorageSync('user') || {}
   const token = user.token || ''
+  const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login}`
+  if (!token) {
+    return onError(new Error('使用此功能, 请先登录'))
+  }
   const params = {
     url: url,
-    q: `+type:pr+author:${user.login}`,
     _: new Date(),
     token: token
   }
@@ -105,11 +107,12 @@ let getPulls = (filter, onSuccess, onError) => {
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
     }
-    let data = JSON.parse(res.body).map(it => {
+    const data = JSON.parse(res.body)
+    const pulls = data.items.map(it => {
       it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
       return it
     })
-    return onSuccess(data)
+    return onSuccess(pulls)
   }).catch(function (error) {
     console.log(error);
     errorHandler()

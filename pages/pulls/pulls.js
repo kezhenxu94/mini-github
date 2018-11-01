@@ -1,5 +1,4 @@
 const github = require('../../api/github.js')
-// pages/issues/issues.js
 Page({
 
   /**
@@ -79,7 +78,7 @@ Page({
       console.log(data)
       wx.stopPullDownRefresh()
       this.setData({
-        issues: data
+        pulls: data
       })
     }, error => {
       wx.stopPullDownRefresh()
@@ -102,7 +101,7 @@ Page({
         this.setData({ filter: 'mentioned' })
         break
       case 3:
-        this.setData({ filter: 'subscribed' })
+        this.setData({ filter: 'review' })
         break
       default:
         this.setData({ filter: 'all' })

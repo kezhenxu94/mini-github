@@ -1,2 +1,16 @@
-<!--pages/pulls/pulls.wxml-->
-<text>pages/pulls/pulls.wxml</text>
+<view class='pulls'>
+  <tabs border='{{false}}' bind:change='changeFilter'>
+    <tab title='已创建'>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+    </tab>
+    <tab title='被分配'>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+    </tab>
+    <tab title='提及我'>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+    </tab>
+    <tab title='待审核'>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+    </tab>
+  </tabs>
+</view>

@@ -1,1 +1,5 @@
-/* pages/pulls/pulls.wxss */
+page {
+  background-color: #000;
+  color: #eee;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
