@@ -9,7 +9,9 @@ Page({
   data: {
     events: [],
     scrollTop: 0,
-    isSignedIn: utils.isSignedIn()
+    isSignedIn: utils.isSignedIn(),
+    links: {},
+    loadingMore: false
   },
 
   /**
@@ -57,7 +59,8 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log(this.data.links)
+    this.loadMore()
   },
 
   onPageScroll(e) {
@@ -77,14 +80,35 @@ Page({
     this.setData({
       isSignedIn: utils.isSignedIn()
     })
-    github.getGlobalEvents(data => {
-      console.log(data)
-      this.setData({
-        events: data
-      })
+    github.getGlobalEvents(undefined, res => {
+      console.log(res)
       wx.stopPullDownRefresh()
+      this.setData({
+        events: res.data,
+        links: res.links
+      })
     }, error => {
       wx.stopPullDownRefresh()
+      wx.showToast({
+        title: error.message,
+        icon: 'none'
+      })
+    })
+  },
+
+  loadMore: function () {
+    this.setData({ loadingMore: true })
+    github.getGlobalEvents(this.data.links['rel="next"'], res => {
+      console.log(res)
+      wx.stopPullDownRefresh()
+      this.setData({
+        events: [...this.data.events, ...res.data],
+        links: res.links,
+        loadingMore: false
+      })
+    }, error => {
+      wx.stopPullDownRefresh()
+      this.setData({ loadingMore: false })
       wx.showToast({
         title: error.message,
         icon: 'none'

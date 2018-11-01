@@ -3,3 +3,11 @@ page {
   color: #eee;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+
+.empty {
+  height: 100vh;
+  display: -webkit-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}

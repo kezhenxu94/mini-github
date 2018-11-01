@@ -11,3 +11,7 @@ page {
   text-align: center;
   padding: 20rpx;
 }
+
+.loading {
+  text-align: center;
+}

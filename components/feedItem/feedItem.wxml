@@ -2,7 +2,8 @@
 <view class='feed' hover-class='hover-class' data-item='{{item}}' catchtap=''>
   <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "/img/default_avatar.png"}}'></image>
   <view>
-    <view class='summary'>{{filters.format(item)}}</view>
+    <view class='summary'>{{filters.format(item)[0]}}</view>
+    <view class='detail'>{{filters.format(item)[1]}}</view>
     <view class='time'>{{item.created_at}}</view>
   </view>
 </view>

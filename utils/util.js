@@ -16,8 +16,30 @@ const getCurrentUser = () => {
 
 const isSignedIn = () => wx.getStorageSync('user') != undefined && wx.getStorageSync('user').token != undefined
 
+const parseLinks = (header) => {
+  if (header.length == 0) {
+    throw new Error("input must not be of zero length")
+  }
+  const links = {}
+
+  const parts = header.split(',')
+  parts.map(p => {
+    const section = p.split(';')
+    if (section.length != 2) {
+      throw new Error("section could not be split on ';'")
+    }
+    const url = section[0].replace(/<(.*)>/, '$1').trim()
+    const name = section[1].replace(/<(.*)>/, '$1').trim()
+    
+    links[name] = url
+  })
+
+  return links;
+}
+
 module.exports = {
   formatTime: formatTime,
   getCurrentUser: getCurrentUser,
-  isSignedIn: isSignedIn
+  isSignedIn: isSignedIn,
+  parseLinks: parseLinks
 }

@@ -1,4 +1,5 @@
 const moment = require('../utils/moment.js')
+const utils = require('../utils/util.js')
 const Bmob = require('../lib/bmob.js')
 Bmob.initialize('a6ca02364643e5214d51a84ac10e2ff6', '3cee74cb07ef58620c4cc04909edd3d3')
 
@@ -38,14 +39,19 @@ let login = ({username, password}, onSuccess) => {
   })
 }
 
-let getGlobalEvents = (onSuccess, onError) => {
+let getGlobalEvents = (link, onSuccess, onError) => {
   const user = wx.getStorageSync('user')
+  const token = (wx.getStorageSync('user') || {}).token || ''
   let url = 'https://api.github.com/events'
   if (user) {
     url = `https://api.github.com/users/${user.login}/received_events`
   }
+  if (link) {
+    url = link
+  }
   Bmob.functions('proxy', {
     url: url,
+    token: token,
     _: new Date()
   }).then(function (res) {
     console.log(res)
@@ -57,7 +63,11 @@ let getGlobalEvents = (onSuccess, onError) => {
       it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
       return it
     })
-    return onSuccess(data)
+    const headers = res.headers
+    return onSuccess({
+      data: data,
+      links: utils.parseLinks(headers.link || "")
+    })
   }).catch(function (error) {
     console.log(error);
     onError(error)
@@ -93,7 +103,7 @@ let getIssues = (filter, onSuccess, onError) => {
 let getPulls = (filter, onSuccess, onError) => {
   const user = wx.getStorageSync('user') || {}
   const token = user.token || ''
-  const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login}`
+  const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login || ''}+is:${filter}`
   if (!token) {
     return onError(new Error('使用此功能, 请先登录'))
   }

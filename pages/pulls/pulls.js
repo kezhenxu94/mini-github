@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    filter: 'created',
+    filter: 'CREATED',
     pulls: [],
     scrollTop: 0
   },
@@ -92,21 +92,21 @@ Page({
   changeFilter: function (event) {
     switch (event.detail.index) {
       case 0:
-        this.setData({ filter: 'created' })
+        this.setData({ filter: 'CREATED' })
         break
       case 1:
-        this.setData({ filter: 'assigned' })
+        this.setData({ filter: 'ASSIGNED' })
         break
       case 2:
-        this.setData({ filter: 'mentioned' })
+        this.setData({ filter: 'MENTIONED' })
         break
       case 3:
-        this.setData({ filter: 'review' })
+        this.setData({ filter: 'REVIEW' })
         break
-      default:
-        this.setData({ filter: 'all' })
+      case 4:
+        this.setData({ filter: 'CLOSED' })
         break
     }
-    this.reloadData()
+    wx.startPullDownRefresh({})
   }
 })

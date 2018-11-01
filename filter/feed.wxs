@@ -4,72 +4,82 @@ var format = function (item) {
   var actor = item.actor
   var payload = item.payload
 
-  var msg = ''
+  var summary = ''
+  var detail = ''
   switch (type) {
     case 'PushEvent': {
-      msg = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
+      summary = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
       break
     }
     case 'IssuesEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' issue ' + repo.name + '#'
+      var issue = payload.issue || {}
+      summary = actor.display_login + ' ' + payload.action + ' issue ' + repo.name + '#' + issue.number
+      detail = issue.title
       break
     }
     case 'PullRequestEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' pull request ' + repo.name + '#'
+      var pr = payload.pull_request || {}
+      summary = actor.display_login + ' ' + payload.action + ' pull request ' + repo.name + '#' + payload.number
+      detail = pr.title
       break
     }
     case 'IssueCommentEvent': {
-      msg = actor.display_login + ' commented on issue ' + repo.name + '#'
+      var issue = payload.issue || {}
+      summary = actor.display_login + ' commented on issue ' + repo.name + '#' + issue.number
+      detail = issue.title
       break
     }
     case 'WatchEvent': {
-      msg = actor.display_login + ' ' + ' starred ' + repo.name
+      summary = actor.display_login + ' ' + ' starred ' + repo.name
       break
     }
     case 'PublicEvent': {
-      msg = actor.display_login + ' open sourced ' + repo.name
+      summary = actor.display_login + ' open sourced ' + repo.name
       break
     }
     case 'ForkEvent': {
-      msg = actor.display_login + ' forked ' + payload.forkee.full_name + ' from ' + repo.name
+      summary = actor.display_login + ' forked ' + payload.forkee.full_name + ' from ' + repo.name
       break
     }
     case 'CreateEvent': {
-      msg = actor.display_login + ' created ' + payload.ref_type + ' ' + (payload.ref || '') + ' at ' + repo.name
+      summary = actor.display_login + ' created ' + payload.ref_type + ' ' + (payload.ref || '') + ' at ' + repo.name
+      detail = payload.description
       break
     }
     case 'DeleteEvent': {
-      msg = actor.display_login + ' deleted ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
-      console.log(msg)
+      summary = actor.display_login + ' deleted ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
       break
     }
     case 'MemberEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' permissions of ' + payload.member.login + ' to ' + payload.repository.full_name
+      summary = actor.display_login + ' ' + payload.action + ' permissions of ' + payload.member.login + ' to ' + payload.repository.full_name
       break
     }
     case 'PullRequestReviewCommentEvent': {
-      msg = actor.display_login + payload.action + ' comment on ' + repo.name
+      console.log(actor.display_login + payload.action + ' comment on ' + repo.name)
+      summary = actor.display_login + payload.action + ' comment on ' + repo.name
       break
     }
     case 'GollumEvent': {
-      msg = actor.display_login + ' editted the wiki of ' + repository.name
+      var page = payload.pages[0]
+      summary = actor.display_login + ' ' + page.action + ' ' + page.page_name + ' ' + repo.name
       break
     }
     case 'ReleaseEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' ' + payload.release.name + ' ' + repository.full_name
+      summary = actor.display_login + ' ' + payload.action + ' ' + payload.release.name + ' ' + repository.full_name
       break
     }
     case 'CommitCommentEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' comment ' + payload.repository.full_name 
+      var comment = payload.comment
+      summary = actor.display_login + ' commented on commit ' + repo.name + '@' + comment.commit_id.substring(0, 10)
       break
     }
     default: {
-      msg = JSON.stringify(item)
+      summary = JSON.stringify(item)
       break
     }
   }
 
-  return msg
+  return [summary, detail]
 };
 
 module.exports = {
