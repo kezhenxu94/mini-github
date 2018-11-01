@@ -23,7 +23,7 @@ var format = function (item) {
       break
     }
     case 'WatchEvent': {
-      msg = actor.display_login + ' ' + payload.action + ' watch ' + repo.name
+      msg = actor.display_login + ' ' + ' starred ' + repo.name
       break
     }
     case 'PublicEvent': {

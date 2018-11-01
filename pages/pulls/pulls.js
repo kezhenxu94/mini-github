@@ -7,7 +7,7 @@ Page({
    */
   data: {
     filter: 'created',
-    issues: [],
+    pulls: [],
     scrollTop: 0
   },
 
@@ -77,10 +77,16 @@ Page({
   reloadData: function () {
     github.getPulls(this.data.filter, data => {
       console.log(data)
+      wx.stopPullDownRefresh()
       this.setData({
         issues: data
       })
+    }, error => {
       wx.stopPullDownRefresh()
+      wx.showToast({
+        title: error.message,
+        icon: 'none'
+      })
     })
   },
 

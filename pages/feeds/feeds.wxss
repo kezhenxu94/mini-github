@@ -1,4 +1,13 @@
 page {
   background-color: #000;
+  color: #eee;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.login-prompt {
+  background-color: transparent;
+  color: #eee;
+  font-size: 30rpx;
+  text-align: center;
+  padding: 20rpx;
 }

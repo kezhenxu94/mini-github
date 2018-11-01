@@ -26,6 +26,12 @@ Page({
         data: user,
       })
       wx.navigateBack({})
+    }, error => {
+      wx.showToast({
+        title: error.message,
+        icon: 'none',
+        duration: 10000
+      })
     })
   },
   commit (e) {

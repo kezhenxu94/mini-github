@@ -3,6 +3,6 @@
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
-    "pr": "../../../components/prItem/prItem"
+    "pr": "../../../components/pullItem/pullItem"
   }
 }

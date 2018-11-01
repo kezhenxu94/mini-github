@@ -1,4 +1,3 @@
-// components/prItem/prItem.js
 Component({
   /**
    * Component properties

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/pulls/pulls",
     "pages/feeds/feeds",
     "pages/issues/issues",
     "pages/me/me",
@@ -28,6 +29,12 @@
         "text": "Issues",
         "iconPath": "octicons/issue-opened.png",
         "selectedIconPath": "octicons/issue-opened.png"
+      },
+      {
+        "pagePath": "pages/pulls/pulls",
+        "text": "Pull Requests",
+        "iconPath": "octicons/git-pull-request.png",
+        "selectedIconPath": "octicons/git-pull-request.png"
       },
       {
         "pagePath": "pages/me/me",

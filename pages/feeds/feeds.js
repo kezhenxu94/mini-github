@@ -1,5 +1,6 @@
 const github = require('../../api/github.js')
-// pages/feeds.js
+const utils = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
    */
   data: {
     events: [],
-    scrollTop: 0
+    scrollTop: 0,
+    isSignedIn: utils.isSignedIn()
   },
 
   /**
@@ -72,12 +74,21 @@ Page({
   },
 
   reloadData: function () {
+    this.setData({
+      isSignedIn: utils.isSignedIn()
+    })
     github.getGlobalEvents(data => {
       console.log(data)
       this.setData({
         events: data
       })
       wx.stopPullDownRefresh()
+    }, error => {
+      wx.stopPullDownRefresh()
+      wx.showToast({
+        title: error.message,
+        icon: 'none'
+      })
     })
   }
 })

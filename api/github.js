@@ -23,51 +23,44 @@ let login = ({username, password}, onSuccess) => {
     token: token
   }).then(res => {
     console.log(res)
-    let statusCode = res.statusCode
+    const statusCode = res.statusCode
+    const data = JSON.parse(res.body)
     if (statusCode !== 200) {
-      wx.showToast({
-        title: '未知错误',
-        icon: 'none',
-      })
-      return
+      return onError(new Error(data.message))
     }
-    let user = JSON.parse(res.body)
+    const user = data
     user.created_at = moment(user.created_at).format('YYYY/MM/DD HH:mm:SS')
     user.token = token
     onSuccess(user)
   }).catch(error => {
     console.log(error)
-    wx.showToast({
-      title: '网络错误, 请稍后再试',
-      icon: 'none',
-    })
+    errorHandler()
   })
 }
 
-let getGlobalEvents = (onSuccess) => {
-  const token = (wx.getStorageSync('user') || {}).token || ''
+let getGlobalEvents = (onSuccess, onError) => {
+  const user = wx.getStorageSync('user')
+  let url = 'https://api.github.com/events'
+  if (user) {
+    url = `https://api.github.com/users/${user.login}/received_events`
+  }
   Bmob.functions('proxy', {
-    url: 'https://api.github.com/events',
-    _: new Date(),
-    token: token
+    url: url,
+    _: new Date()
   }).then(function (res) {
     console.log(res)
+    let data = JSON.parse(res.body)
     if (res.statusCode !== 200) {
-      wx.showToast({
-        title: res.data.message,
-        icon: 'none',
-        duration: 10000
-      })
-      return []
+      return onError(new Error(data.message))
     }
-    let data = JSON.parse(res.body).map(it => {
+    data = data.map(it => {
       it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
       return it
     })
-    onSuccess(data)
+    return onSuccess(data)
   }).catch(function (error) {
     console.log(error);
-    errorHandler()
+    onError(error)
   });
 }
 
@@ -84,49 +77,42 @@ let getIssues = (filter, onSuccess, onError) => {
   }).then(function (res) {
     console.log(res)
     if (res.statusCode !== 200) {
-      wx.showToast({
-        title: res.data.message,
-        icon: 'none',
-        duration: 10000
-      })
-      return []
+      return onError(new Error(data.message))
     }
     let data = JSON.parse(res.body).map(it => {
       it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
       return it
     })
-    onSuccess(data)
+    return onSuccess(data)
   }).catch(function (error) {
     console.log(error);
     errorHandler()
   })
 }
 
-let getPulls = (filter, onSuccess) => {
-  const url = 'https://api.github.com/user/pulls?filter=' + (filter || 'all')
-  const token = (wx.getStorageSync('user') || {}).token || ''
-  wx.request({
-    url,
-    header: {
-      'Authorization': token
-    },
-    success: function (res) {
-      console.log(res)
-      if (res.statusCode !== 200) {
-        wx.showToast({
-          title: res.data.message,
-          icon: 'none',
-          duration: 10000
-        })
-        return []
-      }
-      let data = res.data.map(it => {
-        it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
-        return it
-      })
-      onSuccess(data)
-    },
-    fail: () => errorHandler()
+let getPulls = (filter, onSuccess, onError) => {
+  const url = 'https://api.github.com/search/issues'
+  const user = wx.getStorageSync('user') || {}
+  const token = user.token || ''
+  const params = {
+    url: url,
+    q: `+type:pr+author:${user.login}`,
+    _: new Date(),
+    token: token
+  }
+  Bmob.functions('proxy', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(data.message))
+    }
+    let data = JSON.parse(res.body).map(it => {
+      it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+      return it
+    })
+    return onSuccess(data)
+  }).catch(function (error) {
+    console.log(error);
+    errorHandler()
   })
 }
 

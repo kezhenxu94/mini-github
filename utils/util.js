@@ -14,7 +14,10 @@ const getCurrentUser = () => {
   return user
 }
 
+const isSignedIn = () => wx.getStorageSync('user') != undefined && wx.getStorageSync('user').token != undefined
+
 module.exports = {
   formatTime: formatTime,
-  getCurrentUser: getCurrentUser
+  getCurrentUser: getCurrentUser,
+  isSignedIn: isSignedIn
 }
