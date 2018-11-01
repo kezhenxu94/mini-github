@@ -75,7 +75,7 @@ page {
 
 .org-text, .loc-text, .email-text, .blog-text, .create-text {
   margin-left: 20rpx;
-  display: flex;
+  display: flex -webkit-flex;
   flex-direction: column;
   justify-content: space-evenly;
 }

@@ -25,6 +25,7 @@ page {
 .form input {
   width: 100%;
   padding-left: 30rpx;
+  color: #000;
   box-sizing: border-box;
   height: 100rpx;
   border-radius: 4rpx;

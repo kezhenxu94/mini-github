@@ -81,6 +81,13 @@ Page({
         issues: data
       })
       wx.stopPullDownRefresh()
+    }, error => {
+      wx.showToast({
+        title: error.message,
+        icon: 'none',
+        duration: 10000
+      })
+      wx.stopPullDownRefresh()
     })
   },
 
@@ -102,6 +109,6 @@ Page({
         this.setData({ filter: 'all' })
         break
     }
-    this.reloadData()
+    wx.startPullDownRefresh({})
   }
 })

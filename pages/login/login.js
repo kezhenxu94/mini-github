@@ -1,6 +1,7 @@
 const config = getApp().globalData.config
 const utils = require('../../utils/util.js')
 const moment = require('../../utils/moment.js')
+const githubApi = require('../../api/github.js')
 Page({
   data: {
     mobile: '',
@@ -13,43 +14,18 @@ Page({
     let url = 'https://api.github.com/user'
     let username = params.username
     let password = params.password
-    let token = this.getToken(username, password)
-    wx.request({
-      url,
-      header: {
-        'Authorization': token
-      },
-      success: function (res) {
-        let statusCode = res.statusCode
-        if (statusCode !== 200) {
-          wx.showToast({
-            title: '未知错误',
-            icon: 'none',
-          })
-          return
-        }
-        let data = res.data
-        data.created_at = moment(data.created_at).format('YYYY/MM/DD HH:mm:SS')
-        wx.showToast({
-          title: '已登录',
-          icon: 'none',
-        })
-        wx.setStorage({
-          key: 'token',
-          data: token,
-        })
-        wx.setStorage({
-          key: 'user',
-          data: data,
-        })
-        wx.navigateBack({})
-      },
-      fail: function () {
-        wx.showToast({
-          title: '网络错误, 请稍后再试',
-          icon: 'none',
-        })
-      },
+    githubApi.login({
+      username, password
+    }, user => {
+      wx.showToast({
+        title: '已登录',
+        icon: 'none',
+      })
+      wx.setStorage({
+        key: 'user',
+        data: user,
+      })
+      wx.navigateBack({})
     })
   },
   commit (e) {
@@ -71,9 +47,5 @@ Page({
       return
     }
     this.login(values)
-  },
-  getToken (username, password) {
-    let str = username + ':' + password
-    return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
   }
 })
