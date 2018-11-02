@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "repo": "../../components/repo-item/repo-item",
+    "action-sheet": "../../components/action-sheet/index"
+  }
+}

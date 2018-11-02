@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/trends/trends",
     "pages/feeds/feeds",
     "pages/issues/issues",
     "pages/pulls/pulls",
@@ -32,8 +33,14 @@
         "selectedIconPath": "octicons/issue-opened.png"
       },
       {
+        "pagePath": "pages/trends/trends",
+        "text": "Trends",
+        "iconPath": "octicons/flame.png",
+        "selectedIconPath": "octicons/flame.png"
+      },
+      {
         "pagePath": "pages/pulls/pulls",
-        "text": "Pull Requests",
+        "text": "PR",
         "iconPath": "octicons/git-pull-request.png",
         "selectedIconPath": "octicons/git-pull-request.png"
       },

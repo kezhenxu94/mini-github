@@ -1,0 +1,9 @@
+<view class='trends'>
+  <view class='fix-top'>
+    <image class='lang-btn' mode='aspectFit' src='/md/language.png' bindtap='showLanguages'></image>
+  </view>
+  <navigator wx:for="{{trends}}" wx:key="{{index}}" catchtap='toRepoDetail'>
+    <repo item='{{item}}'></repo>
+  </navigator>
+  <action-sheet show="{{showSelectLanguage}}" actions="{{languages}}" bind:select="changeLang" cancel-text="Cancel" bind:cancel='closeLanguages'/>
+</view>

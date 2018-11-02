@@ -1,7 +1,6 @@
-// components/feedItem/feedItem.js
 Component({
   /**
-   * 组件的属性列表
+   * Component properties
    */
   properties: {
     item: {
@@ -11,14 +10,16 @@ Component({
   },
 
   /**
-   * 组件的初始数据
+   * Component initial data
    */
   data: {
+
   },
 
   /**
-   * 组件的方法列表
+   * Component methods
    */
   methods: {
+
   }
 })

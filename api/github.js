@@ -157,10 +157,29 @@ let getIssue = (url, onSuccess, onError) => {
   })
 }
 
+let getTrends = (since, lang, onSuccess, onError) => {
+  const params = {
+    since: since,
+    lang: lang
+  }
+  Bmob.functions('trend', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(data.message))
+    }
+    const trends = JSON.parse(res.body)
+    return onSuccess(trends)
+  }).catch(function (error) {
+    console.log(error);
+    errorHandler()
+  })
+}
+
 module.exports = {
   login: login,
   getGlobalEvents: getGlobalEvents,
   getIssues: getIssues,
   getPulls: getPulls,
-  getIssue: getIssue
+  getIssue: getIssue,
+  getTrends: getTrends
 }

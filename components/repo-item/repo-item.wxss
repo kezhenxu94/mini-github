@@ -1,0 +1,46 @@
+.repo {
+  padding: 20rpx 20rpx;
+  color: #b8b8b8;
+}
+
+.repo .name {
+  color: #fff;
+  font-size: 30rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.repo .desc {
+  font-size: 24rpx;
+  margin: 10rpx 0;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.bottom {
+  display: flex;
+  font-size: 24rpx;
+  margin: 10rpx 0;
+}
+
+.bottom image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.bottom view:not(:first-child) {
+  margin-left: 20rpx;
+}
+
+.bottom view {
+  display: flex;
+  width: 20%;
+}
+
+.bottom view text {
+  margin-left: 5rpx;
+}

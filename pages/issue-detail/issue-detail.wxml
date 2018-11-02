@@ -1,7 +1,7 @@
 <wxs module='filters' src='../../filter/issue.wxs'></wxs>
 <view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}' catchtap=''>
   <view class='header'>
-    <image mode='aspectFill' class='avatar' src='{{issue.user.avatar_url || "/img/default_avatar.png"}}'></image>
+    <image mode='aspectFill' class='avatar' src='{{issue.user.avatar_url}}'></image>
     <text class='user'>{{issue.user.login}}</text>
   </view>
   <text class='title'>{{issue.title}}</text>

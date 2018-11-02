@@ -1,0 +1,30 @@
+page {
+  background-color: #000;
+  color: #eee;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+navigator:not(:last-of-type) {
+  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+}
+
+.fix-top {
+  position:fixed;
+  bottom: 60rpx;
+  right: 60rpx;
+  height: 60rpx;
+  display: flex;
+  background-color: transparent;
+}
+
+.fix-top .lang-btn {
+  width: 60rpx;
+  height: 60rpx;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+button {
+  border-radius: 0;
+  color: #eee;
+}

@@ -1,6 +1,6 @@
 <view>
   <view class='user' data-item='{{user}}' catchtap=''>
-    <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/img/default_avatar.png"}}'></image>
+    <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
     <view>
       <view class='name'>{{user.name || '未登陆'}}</view>
       <view class='bio'>{{user.bio}}</view>

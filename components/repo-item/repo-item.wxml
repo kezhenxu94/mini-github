@@ -1,0 +1,18 @@
+<view class='repo' hover-class='hover-class' data-item='{{item}}' catchtap=''>
+  <text class='name'>{{item.author}} / {{item.name}}</text>
+  <text class='desc'>{{item.description}}</text>
+  <view class='bottom'>
+    <view class='stars'>
+      <image mode='aspectFit' src='/md/star.png'></image>
+      <text>{{item.stars}}</text>
+    </view>
+    <view class='forks'>
+      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <text>{{item.forks}}</text>
+    </view>
+    <view class='lang' wx:if='{{item.language}}'>
+      <image mode='aspectFit' src='/md/language.png'></image>
+      <text>{{item.language}}</text>
+    </view>
+  </view>
+</view>
