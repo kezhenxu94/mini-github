@@ -136,9 +136,31 @@ let getPulls = (filter, onSuccess, onError) => {
   })
 }
 
+let getIssue = (url, onSuccess, onError) => {
+  const user = wx.getStorageSync('user') || {}
+  const token = user.token || ''
+  const params = {
+    url: url,
+    _: new Date(),
+    token: token
+  }
+  Bmob.functions('proxy', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(data.message))
+    }
+    const issue = JSON.parse(res.body)
+    return onSuccess(issue)
+  }).catch(function (error) {
+    console.log(error);
+    errorHandler()
+  })
+}
+
 module.exports = {
   login: login,
   getGlobalEvents: getGlobalEvents,
   getIssues: getIssues,
-  getPulls: getPulls
+  getPulls: getPulls,
+  getIssue: getIssue
 }

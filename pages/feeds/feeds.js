@@ -1,6 +1,7 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 const moment = require('../../utils/moment.js')
+const Base64 = require('../../utils/base64.js')
 
 Page({
 
@@ -119,5 +120,16 @@ Page({
         icon: 'none'
       })
     })
+  },
+  
+  toFeedDetail: function (event) {
+    var feed = event.currentTarget.dataset.feed
+    if (feed.type.startsWith('Issue')) {
+      var issue = (feed.payload || {}).issue || {}
+      var url = issue.url
+      wx.navigateTo({
+        url: '/pages/issue-detail/issue-detail?url=' + url
+      })
+    }
   }
 })

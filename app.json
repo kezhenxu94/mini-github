@@ -4,7 +4,8 @@
     "pages/issues/issues",
     "pages/pulls/pulls",
     "pages/me/me",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/issue-detail/issue-detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",

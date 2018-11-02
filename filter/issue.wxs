@@ -4,6 +4,12 @@ var format = function (item) {
   return msg
 };
 
+var formatDetail = function (issue) {
+  var msg = ''
+  return msg
+};
+
 module.exports = {
-  format: format
+  format: format,
+  formatDetail: formatDetail
 };

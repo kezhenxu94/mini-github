@@ -1,0 +1,11 @@
+var format = function (item) {
+  var repo_url = item.repository_url
+  var reg = getRegExp('https://api.github.com/repos/')
+  var repo = repo_url.replace(reg, '')
+  var msg = repo + '#' + item.number + ' ' + item.state + ' at ' + item.updated_at
+  return msg
+};
+
+module.exports = {
+  format: format
+};
