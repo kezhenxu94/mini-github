@@ -60,7 +60,13 @@ let getGlobalEvents = (link, onSuccess, onError) => {
       return onError(new Error(data.message))
     }
     data = data.map(it => {
-      it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+      let m = moment(it.created_at)
+      it.created_at = m.format('YYYY/MM/DD HH:mm:SS')
+
+      let now = moment()
+      if (now.diff(m, 'hours') <= 12) {
+        it.created_at = m.fromNow()
+      }
       return it
     })
     const headers = res.headers

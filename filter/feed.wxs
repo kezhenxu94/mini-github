@@ -1,3 +1,16 @@
+var spacesRegExp = getRegExp('[\r\n\t]')
+
+function truncateText(text) {
+  var maxTextLength = 120
+
+  text = text || ''
+  var truncated = text.slice(0, maxTextLength)
+  if (text.length > maxTextLength) {
+    truncated += '...'
+  }
+  return truncated
+}
+
 var format = function (item) {
   var type = item.type
   var repo = item.repo
@@ -9,6 +22,12 @@ var format = function (item) {
   switch (type) {
     case 'PushEvent': {
       summary = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
+      var commits = payload.commits
+      detail = commits.length + ' new commit(s)'
+      commits.forEach(function (commit) {
+        detail += '\n'
+        detail += commit.sha.slice(0, 10) + ' ' + truncateText(commit.message.replace(spacesRegExp, ''))
+      })
       break
     }
     case 'IssuesEvent': {
@@ -26,7 +45,10 @@ var format = function (item) {
     case 'IssueCommentEvent': {
       var issue = payload.issue || {}
       summary = actor.display_login + ' commented on issue ' + repo.name + '#' + issue.number
-      detail = issue.title
+      var comment = payload.comment || {}
+      detail = comment.body
+      detail = detail.replace(spacesRegExp, '')
+      detail = truncateText(detail)
       break
     }
     case 'WatchEvent': {
@@ -55,8 +77,12 @@ var format = function (item) {
       break
     }
     case 'PullRequestReviewCommentEvent': {
-      console.log(actor.display_login + payload.action + ' comment on ' + repo.name)
-      summary = actor.display_login + payload.action + ' comment on ' + repo.name
+      var pr = payload.pull_request
+      summary = actor.display_login + ' reviewed pull request in ' + repo.name + '#' + pr.number
+      var comment = payload.comment || {}
+      detail = comment.body
+      detail = detail.replace(spacesRegExp, '')
+      detail = truncateText(detail)
       break
     }
     case 'GollumEvent': {
@@ -78,7 +104,7 @@ var format = function (item) {
       break
     }
   }
-
+  
   return [summary, detail]
 };
 

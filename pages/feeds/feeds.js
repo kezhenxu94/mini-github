@@ -1,5 +1,6 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
+const moment = require('../../utils/moment.js')
 
 Page({
 
@@ -9,6 +10,7 @@ Page({
   data: {
     events: [],
     scrollTop: 0,
+    lastRefresh: moment().unix(),
     isSignedIn: utils.isSignedIn(),
     links: {},
     loadingMore: false
@@ -30,7 +32,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.scrollTop === 0) {
+    var lastMoment = moment(this.data.lastRefresh)
+    if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
@@ -85,7 +88,8 @@ Page({
       wx.stopPullDownRefresh()
       this.setData({
         events: res.data,
-        links: res.links
+        links: res.links,
+        lastRefresh: moment()
       })
     }, error => {
       wx.stopPullDownRefresh()
@@ -104,7 +108,8 @@ Page({
       this.setData({
         events: [...this.data.events, ...res.data],
         links: res.links,
-        loadingMore: false
+        loadingMore: false,
+        lastRefresh: moment()
       })
     }, error => {
       wx.stopPullDownRefresh()

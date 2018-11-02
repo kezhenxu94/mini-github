@@ -1,4 +1,5 @@
 const github = require('../../api/github.js')
+const moment = require('../../utils/moment.js')
 // pages/issues/issues.js
 Page({
 
@@ -8,7 +9,8 @@ Page({
   data: {
     filter: 'created',
     issues: [],
-    scrollTop: 0
+    scrollTop: 0,
+    lastRefresh: moment().unix()
   },
 
   /**
@@ -28,7 +30,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.scrollTop === 0) {
+    var lastMoment = moment(this.data.lastRefresh)
+    if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
@@ -78,7 +81,8 @@ Page({
     github.getIssues(this.data.filter, data => {
       console.log(data)
       this.setData({
-        issues: data
+        issues: data,
+        lastRefresh: moment()
       })
       wx.stopPullDownRefresh()
     }, error => {
