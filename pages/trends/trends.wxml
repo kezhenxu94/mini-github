@@ -1,7 +1,7 @@
 <view class='trends'>
-  <view class='fix-top'>
-    <image class='lang-btn' mode='aspectFit' src='/md/language.png' bindtap='showLanguages'></image>
-  </view>
+  <picker class='fix-top' mode='multiSelector' bindchange="changeFilter" value="{{selectedIndices}}" range="{{selectorValues}}">
+    <image class='lang-btn' mode='aspectFit' src='/md/language.png'></image>
+  </picker>
   <navigator wx:for="{{trends}}" wx:key="{{index}}" catchtap='toRepoDetail'>
     <repo item='{{item}}'></repo>
   </navigator>

@@ -1,20 +1,8 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+const getCurrentUser = () => wx.getStorageSync('user')
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
+const getCurrentToken = () => (getCurrentUser() || {}).token
 
-const getCurrentUser = () => {
-  let user = wx.getStorageSync('user')
-  return user
-}
-
-const isSignedIn = () => wx.getStorageSync('user') != undefined && wx.getStorageSync('user').token != undefined
+const isSignedIn = () => getCurrentToken() != undefined
 
 const parseLinks = (header) => {
   if (header.length == 0) {
@@ -38,8 +26,8 @@ const parseLinks = (header) => {
 }
 
 module.exports = {
-  formatTime: formatTime,
-  getCurrentUser: getCurrentUser,
-  isSignedIn: isSignedIn,
-  parseLinks: parseLinks
+  getCurrentUser,
+  getCurrentToken,
+  isSignedIn,
+  parseLinks
 }

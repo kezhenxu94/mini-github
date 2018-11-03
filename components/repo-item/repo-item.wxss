@@ -36,9 +36,12 @@
   margin-left: 20rpx;
 }
 
+.bottom view:not(:last-child) {
+  width: 20%;
+}
+
 .bottom view {
   display: flex;
-  width: 20%;
 }
 
 .bottom view text {

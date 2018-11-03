@@ -40,8 +40,8 @@ let login = ({username, password}, onSuccess) => {
 }
 
 let getGlobalEvents = (link, onSuccess, onError) => {
-  const user = wx.getStorageSync('user')
-  const token = (wx.getStorageSync('user') || {}).token || ''
+  const user = utils.getCurrentUser()
+  const token = utils.getCurrentToken() || ''
   let url = 'https://api.github.com/events'
   if (user) {
     url = `https://api.github.com/users/${user.login}/received_events`
@@ -82,7 +82,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
 
 let getIssues = (filter, onSuccess, onError) => {
   const url = 'https://api.github.com/user/issues?filter=' + (filter || 'all')
-  const token = (wx.getStorageSync('user') || {}).token || ''
+  const token = utils.getCurrentToken() || ''
   if (!token) {
     return onError(new Error('使用此功能, 请先登录'))
   }
@@ -107,8 +107,8 @@ let getIssues = (filter, onSuccess, onError) => {
 }
 
 let getPulls = (filter, onSuccess, onError) => {
-  const user = wx.getStorageSync('user') || {}
-  const token = user.token || ''
+  const user = utils.getCurrentUser() || {}
+  const token = utils.getCurrentToken() || ''
   const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login || ''}+is:${filter}`
   if (!token) {
     return onError(new Error('使用此功能, 请先登录'))
@@ -137,8 +137,8 @@ let getPulls = (filter, onSuccess, onError) => {
 }
 
 let getIssue = (url, onSuccess, onError) => {
-  const user = wx.getStorageSync('user') || {}
-  const token = user.token || ''
+  const user = utils.getCurrentUser() || {}
+  const token = utils.getCurrentToken() || ''
   const params = {
     url: url,
     _: new Date(),
