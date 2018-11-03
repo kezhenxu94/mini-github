@@ -1,7 +1,5 @@
 .empty {
-  height: 100vh;
-  display: -webkit-flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
   font-size: 30rpx;
+  margin-top: 40rpx;
 }
