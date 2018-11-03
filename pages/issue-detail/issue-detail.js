@@ -41,6 +41,8 @@ Page({
   },
 
   loadMore: function () {
+    if (this.data.loadingMore) return
+
     let loadingMore = true
     this.setData({ loadingMore })
     if (!this.data.hasMore) {
@@ -59,7 +61,7 @@ Page({
     }
     github.getComments(comments_url, res => {
       console.log(res)
-      const comments = res.comments
+      const comments = [...this.data.comments, ...res.comments]
       const links = res.links
       let hasMore = true
       if (!links['rel="next"']) {

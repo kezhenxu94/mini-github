@@ -60,6 +60,12 @@ let getGlobalEvents = (link, onSuccess, onError) => {
     }
     data = data.map(it => {
       it.created_at = utils.toReadableTime(it.created_at)
+      // 简化数据, 翻页数据越来越大
+      it.org = {}
+      it.actor = {
+        display_login: it.actor.display_login,
+        avatar_url: it.actor.avatar_url
+      }
       return it
     })
     const headers = res.headers

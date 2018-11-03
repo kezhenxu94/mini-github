@@ -2,8 +2,8 @@
   <navigator class='login-prompt' wx:if='{{!isSignedIn}}' url='/pages/login/login'>
     登陆查看我关注的事件 >
   </navigator>
-  <view hover-class='hover' wx:for="{{events}}" wx:key="{{index}}">
-    <feed item="{{item}}" catchtap='toFeedDetail' data-feed='{{item}}'></feed>
+  <view hover-class='hover' wx:for="{{events.length}}" wx:key="{{index}}">
+    <feed item="{{events[item]}}" catchtap='toFeedDetail' data-feed='{{events[item]}}'></feed>
   </view>
   <view class='loading' wx:if='{{loadingMore}}'>
     <loading type='spinner' color="#fff" />

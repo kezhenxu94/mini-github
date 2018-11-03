@@ -9,7 +9,8 @@ Page({
     lastRefresh: moment().unix(),
     isSignedIn: utils.isSignedIn(),
     links: {},
-    loadingMore: false
+    loadingMore: false,
+    refresing: false
   },
   
   onShow: function () {
@@ -24,7 +25,6 @@ Page({
   },
 
   onReachBottom: function () {
-    console.log(this.data.links)
     this.loadMore()
   },
 
@@ -35,8 +35,10 @@ Page({
   },
 
   reloadData: function () {
+    if (this.data.refresing) return
     this.setData({
-      isSignedIn: utils.isSignedIn()
+      isSignedIn: utils.isSignedIn(),
+      refresing: true
     })
     github.getGlobalEvents(undefined, res => {
       console.log(res)
@@ -44,7 +46,8 @@ Page({
       this.setData({
         events: res.data,
         links: res.links,
-        lastRefresh: moment()
+        lastRefresh: moment(),
+        refresing: false
       })
     }, error => {
       wx.stopPullDownRefresh()
@@ -52,6 +55,11 @@ Page({
   },
 
   loadMore: function () {
+    if (this.data.loadingMore) {
+      console.log('Loading more, returning')
+      return
+    }
+
     this.setData({ loadingMore: true })
     github.getGlobalEvents(this.data.links['rel="next"'], res => {
       console.log(res)
