@@ -1,6 +1,6 @@
-const moment = require('../utils/moment.js')
-const utils = require('../utils/util.js')
+const moment = require('../lib/moment.js')
 const Bmob = require('../lib/bmob.js')
+const utils = require('../utils/util.js')
 Bmob.initialize('a6ca02364643e5214d51a84ac10e2ff6', '3cee74cb07ef58620c4cc04909edd3d3')
 
 function errorHandler() {

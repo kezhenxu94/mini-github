@@ -1,6 +1,6 @@
+const moment = require('../../lib/moment.js')
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
-const moment = require('../../utils/moment.js')
 
 Page({
   data: {

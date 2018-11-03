@@ -1,5 +1,5 @@
 const github = require('../../api/github.js')
-const moment = require('../../utils/moment.js')
+const moment = require('../../lib/moment.js')
 
 const timeRange = ['Daily', 'Weekly', 'Monthly']
 const languages = [

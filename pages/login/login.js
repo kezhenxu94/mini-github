@@ -1,6 +1,5 @@
-const config = getApp().globalData.config
+const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
-const moment = require('../../utils/moment.js')
 const githubApi = require('../../api/github.js')
 Page({
   data: {
