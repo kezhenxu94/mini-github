@@ -208,6 +208,50 @@ let getComments = (url, onSuccess, onError) => {
   })
 }
 
+let getRepo = (url, onSuccess, onError) => {
+  const user = utils.getCurrentUser() || {}
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url: url,
+    token: token
+  }
+  Bmob.functions('proxy', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(res.message))
+    }
+    const repo = JSON.parse(res.body)
+    repo.created_at = utils.toReadableTime(repo.created_at)
+    repo.updated_at = utils.toReadableTime(repo.updated_at)
+    repo.pushed_at = utils.toReadableTime(repo.pushed_at)
+    return onSuccess({ repo })
+  }).catch(function (error) {
+    console.log(error)
+    errorHandler()
+    onError(error)
+  })
+}
+
+let getFile = (url, onSuccess, onError) => {
+  const user = utils.getCurrentUser() || {}
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url: url,
+    token: token
+  }
+  Bmob.functions('proxy', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(res.body))
+    }
+    return onSuccess(res.body)
+  }).catch(function (error) {
+    console.log(error)
+    errorHandler()
+    onError(error)
+  })
+}
+
 module.exports = {
   login,
   getGlobalEvents,
@@ -215,5 +259,7 @@ module.exports = {
   getPulls,
   getIssue,
   getTrends,
-  getComments
+  getComments,
+  getRepo,
+  getFile
 }

@@ -1,0 +1,31 @@
+<import src="../../lib/wxParse/wxParse.wxml"/>
+<view class='repo'>
+  <view class='header'>
+    <image mode='aspectFit' class='avatar' src='{{repo.owner.avatar_url}}'></image>
+    <view class='name-time'>
+      <text class='name'>{{repo.full_name}}</text>
+      <text class='time'>{{repo.pushed_at}}</text>
+    </view>
+  </view>
+  <view class='stats'>
+    <view class='watch'>
+      <image mode='aspectFit' src='/octicons/eye.png'></image>
+      <text>{{repo.subscribers_count}}</text>
+    </view>
+    <view class='star'>
+      <image mode='aspectFit' src='/md/star.png'></image>
+      <text>{{repo.stargazers_count}}</text>
+    </view>
+    <view class='fork'>
+      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <text>{{repo.forks_count}}</text>
+    </view>
+  </view>
+  <tabs bind:change='changeFilter'>
+    <tab title='Readme'>
+      <view class='readme'>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>
+    </tab>
+  </tabs>
+</view>

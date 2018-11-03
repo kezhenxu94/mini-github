@@ -1,0 +1,93 @@
+@import '../../lib/wxParse/wxParse.wxss';
+
+.header {
+  padding: 20rpx 20rpx 20rpx 40rpx;
+  display: flex;
+  color: #fff;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
+  border-radius: 50%;
+}
+
+.name-time {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.time {
+  font-size: 28rpx;
+  color: #eee;
+}
+
+.stats {
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10rpx 0;
+  padding: 20rpx;
+}
+
+.stats view {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stats view:not(:first-child) {
+  border-left: 1rpx solid #333;
+}
+
+.stats view image {
+  width: 50rpx;
+  height:50rpx;
+}
+
+.stats view text {
+  margin-top: 10rpx;
+}
+
+.readme {
+  font-size: 28rpx !important;
+  line-height: 48rpx !important;
+  padding: 20rpx 20rpx 20rpx 40rpx;
+}
+
+.wxParse-pre {
+  margin: 8rpx 0 !important;
+  border: 1rpx dashed #eee;
+  border-radius: 8rpx !important;
+}
+
+.wxParse-code, .wxParse-wxxxcode-style {
+  background-color: transparent !important;
+  color: #eee !important;
+  line-height: inherit !important;
+  padding: 0 8rpx;
+}
+
+.wxParse-blockquote {
+  background: #000 !important;
+  padding:10rpx !important;
+}
+
+.wxParse-inline:not(:first-of-type) {
+  margin-left: 10rpx !important;
+}
+
+.wxParse-p > .wxParse-img {
+  width: 100% !important;
+}
+
+.wxParse-pre .wxParse-code .wxParse-inline {
+  display: block !important;
+  width: 100% !important;
+}

@@ -62,9 +62,15 @@ Page({
     wx.startPullDownRefresh({})
   },
 
-  onPageScroll(e) {
+  onPageScroll (e) {
     this.setData({
       scrollTop: e.scrollTop,
     })
+  },
+
+  toRepoDetail: function (event) {
+    var repo = event.currentTarget.dataset.repo
+    var url = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repo.author}/${repo.name}`
+    wx.navigateTo({ url })
   }
 })

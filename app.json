@@ -5,6 +5,7 @@
     "pages/issues/issues",
     "pages/pulls/pulls",
     "pages/issue-detail/issue-detail",
+    "pages/repo-detail/repo-detail",
     "pages/me/me",
     "pages/login/login"
   ],

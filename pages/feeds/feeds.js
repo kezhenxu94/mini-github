@@ -78,12 +78,34 @@ Page({
   
   toFeedDetail: function (event) {
     var feed = event.currentTarget.dataset.feed
+    console.log('feed %o', feed)
     if (feed.type.startsWith('Issue')) {
       var issue = (feed.payload || {}).issue || {}
       var url = issue.url
       wx.navigateTo({
         url: '/pages/issue-detail/issue-detail?url=' + url
       })
+      return
+    }
+
+    let repoUrl = undefined
+    switch (feed.type) {
+      case 'WatchEvent':
+      case 'ForkEvent':
+      case 'PullRequestEvent':
+      case 'PushEvent':
+      case 'DeleteEvent':
+        repoUrl = feed.repo.url
+        break
+      case 'ReleaseEvent':
+        repoUrl = feed.repository.url
+        break
+    }
+    if (repoUrl) {
+      wx.navigateTo({
+        url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
+      })
+      return
     }
   }
 })
