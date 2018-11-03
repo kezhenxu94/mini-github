@@ -48,10 +48,6 @@ Page({
       })
     }, error => {
       wx.stopPullDownRefresh()
-      wx.showToast({
-        title: error.message,
-        icon: 'none'
-      })
     })
   },
 
@@ -69,10 +65,6 @@ Page({
     }, error => {
       wx.stopPullDownRefresh()
       this.setData({ loadingMore: false })
-      wx.showToast({
-        title: error.message,
-        icon: 'none'
-      })
     })
   },
   

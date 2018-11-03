@@ -1,47 +1,27 @@
-page {
-  background-color: #000;
-  color: #eee;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
 .issue-detail {
-  padding: 20rpx;
   color: #fff;
 }
 
-.header {
-  display: flex;
-  height: 140rpx;
-}
-
-.user {
-  margin-left: 10rpx;
-  padding: 20rpx;
-}
-
-.avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
-}
-
 .title {
-  font-size: 34rpx;
-  padding: 0 10rpx;
+  font-size: 40rpx;
+  padding: 20rpx 30rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
 }
 
-.body {
-  font-size: 28rpx;
-  color: #b8b8b8;
-  padding: 10rpx;
-  word-break: break-all;
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
+.comment-wrapper {
+  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+}
+
+.loading {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.more-btn button {
+  background-color: transparent;
+  color: #fff !important;
+  border-color: #fff;
 }

@@ -1,8 +1,6 @@
 page {
-  background-color: #000;
   color: #fff;
   font-size: 30rpx;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .user {

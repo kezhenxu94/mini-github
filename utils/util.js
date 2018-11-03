@@ -1,12 +1,25 @@
+const moment = require('../lib/moment.js')
+
 const getCurrentUser = () => wx.getStorageSync('user')
 
 const getCurrentToken = () => (getCurrentUser() || {}).token
 
 const isSignedIn = () => getCurrentToken() != undefined
 
+const extractRepoName = (repo_url) => repo_url.replace(/https:\/\/api.github.com\/repos\//, '')
+
+const toReadableTime = (time) => {
+  let then = moment(time)
+  let now = moment()
+  if (now.diff(then, 'days') <= 7) {
+    return then.fromNow()
+  }
+  return then.format('YYYY/MM/DD')
+}
+
 const parseLinks = (header) => {
   if (header.length == 0) {
-    throw new Error("input must not be of zero length")
+    return {}
   }
   const links = {}
 
@@ -29,5 +42,7 @@ module.exports = {
   getCurrentUser,
   getCurrentToken,
   isSignedIn,
-  parseLinks
+  parseLinks,
+  toReadableTime,
+  extractRepoName
 }

@@ -1,12 +1,11 @@
-const moment = require('../lib/moment.js')
 const Bmob = require('../lib/bmob.js')
 const utils = require('../utils/util.js')
 Bmob.initialize('a6ca02364643e5214d51a84ac10e2ff6', '3cee74cb07ef58620c4cc04909edd3d3')
 
 function errorHandler() {
   wx.showToast({
-    title: '出现错误, 请稍后再试',
-    icon: 'none',
+    title: '网络异常, 请稍后再试',
+    icon: 'none'
   })
 }
 
@@ -30,7 +29,7 @@ let login = ({username, password}, onSuccess) => {
       return onError(new Error(data.message))
     }
     const user = data
-    user.created_at = moment(user.created_at).format('YYYY/MM/DD HH:mm:SS')
+    user.created_at = utils.toReadableTime(user.created_at)
     user.token = token
     onSuccess(user)
   }).catch(error => {
@@ -60,13 +59,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
       return onError(new Error(data.message))
     }
     data = data.map(it => {
-      let m = moment(it.created_at)
-      it.created_at = m.format('YYYY/MM/DD HH:mm:SS')
-
-      let now = moment()
-      if (now.diff(m, 'hours') <= 12) {
-        it.created_at = m.fromNow()
-      }
+      it.created_at = utils.toReadableTime(it.created_at)
       return it
     })
     const headers = res.headers
@@ -76,6 +69,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
     })
   }).catch(function (error) {
     console.log(error);
+    errorHandler()
     onError(error)
   });
 }
@@ -96,7 +90,7 @@ let getIssues = (filter, onSuccess, onError) => {
       return onError(new Error(data.message))
     }
     let data = JSON.parse(res.body).map(it => {
-      it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
+      it.created_at = utils.toReadableTime(it.created_at)
       return it
     })
     return onSuccess(data)
@@ -125,8 +119,8 @@ let getPulls = (filter, onSuccess, onError) => {
     }
     const data = JSON.parse(res.body)
     const pulls = data.items.map(it => {
-      it.created_at = moment(it.created_at).format('YYYY/MM/DD HH:mm:SS')
-      it.updated_at = moment(it.updated_at).format('YYYY/MM/DD HH:mm:SS')
+      it.created_at = utils.toReadableTime(it.created_at)
+      it.updated_at = utils.toReadableTime(it.updated_at)
       return it
     })
     return onSuccess(pulls)
@@ -150,6 +144,8 @@ let getIssue = (url, onSuccess, onError) => {
       return onError(new Error(data.message))
     }
     const issue = JSON.parse(res.body)
+    issue.updated_at = utils.toReadableTime(issue.updated_at)
+    issue.created_at = utils.toReadableTime(issue.created_at)
     return onSuccess(issue)
   }).catch(function (error) {
     console.log(error);
@@ -175,11 +171,43 @@ let getTrends = (since, lang, onSuccess, onError) => {
   })
 }
 
+let getComments = (url, onSuccess, onError) => {
+  const user = utils.getCurrentUser() || {}
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url: url,
+    _: new Date(),
+    token: token
+  }
+  Bmob.functions('proxy', params).then(function (res) {
+    console.log(res)
+    if (res.statusCode !== 200) {
+      return onError(new Error(data.message))
+    }
+    const comments = JSON.parse(res.body)
+    comments.forEach(comment => {
+      comment.updated_at = utils.toReadableTime(comment.updated_at)
+      comment.created_at = utils.toReadableTime(comment.created_at)
+    })
+    const headers = res.headers
+    const links = utils.parseLinks(headers.link || "")
+    return onSuccess({
+      comments,
+      links
+    })
+  }).catch(function (error) {
+    console.log(error)
+    errorHandler()
+    onError(error)
+  })
+}
+
 module.exports = {
-  login: login,
-  getGlobalEvents: getGlobalEvents,
-  getIssues: getIssues,
-  getPulls: getPulls,
-  getIssue: getIssue,
-  getTrends: getTrends
+  login,
+  getGlobalEvents,
+  getIssues,
+  getPulls,
+  getIssue,
+  getTrends,
+  getComments
 }

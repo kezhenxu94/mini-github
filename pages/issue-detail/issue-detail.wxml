@@ -1,9 +1,13 @@
-<wxs module='filters' src='../../filter/issue.wxs'></wxs>
+<wxs module='filters' src='../../filter/issue.wxs'/>
 <view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}' catchtap=''>
-  <view class='header'>
-    <image mode='aspectFill' class='avatar' src='{{issue.user.avatar_url}}'></image>
-    <text class='user'>{{issue.user.login}}</text>
+  <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
+  <view class='comment-wrapper'>
+    <comment comment='{{issue}}'></comment>
   </view>
-  <text class='title'>{{issue.title}}</text>
-  <text class='body'>{{issue.body}}</text>
+  <view class='comment-wrapper' wx:for='{{comments}}' wx:key='{{index}}' >
+    <comment comment='{{item}}'></comment>
+  </view>
+  <view class='loading' wx:if='{{pageReady}}'>
+    <v-button plain round type='primary' size='small' loading='{{loadingMore}}' bind:click='loadMore' class='more-btn'>{{loadMoreBtnText}}</v-button>
+  </view>
 </view>

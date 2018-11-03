@@ -4,9 +4,9 @@
     "pages/feeds/feeds",
     "pages/issues/issues",
     "pages/pulls/pulls",
+    "pages/issue-detail/issue-detail",
     "pages/me/me",
-    "pages/login/login",
-    "pages/issue-detail/issue-detail"
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "dark",
