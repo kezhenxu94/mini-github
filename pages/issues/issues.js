@@ -21,6 +21,9 @@ Page({
     }
   },
 
+  onShareAppMessage: function (options) {
+  },
+
   onPullDownRefresh: function () {
     this.reloadData()
   },

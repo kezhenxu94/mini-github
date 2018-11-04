@@ -18,6 +18,9 @@ Page({
     this.init()
   },
 
+  onShareAppMessage: function (options) {
+  },
+
   init: function () {
     const currentUser = utils.getCurrentUser()
     if (currentUser) {

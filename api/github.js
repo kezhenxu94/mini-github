@@ -53,8 +53,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
   }
   Bmob.functions('proxy', {
     url: url,
-    token: token,
-    _: new Date()
+    token: token
   }).then(function(res) {
     console.log(res)
     let data = JSON.parse(res.body)

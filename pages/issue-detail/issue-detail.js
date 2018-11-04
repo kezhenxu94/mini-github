@@ -12,14 +12,25 @@ Page({
     loadMoreBtnText: 'Load More',
     pageReady: false
   },
-  
-  onLoad: function (options) {
-    var url = options.url
-    this.setData({ url })
+
+  onLoad: function(options) {
+    var url = decodeURIComponent(options.url)
+    this.setData({
+      url
+    })
     wx.startPullDownRefresh({})
   },
-  
-  onPullDownRefresh: function () {
+
+  onShareAppMessage: function(options) {
+    var url = this.data.url
+    var title = this.data.issue.title
+    return {
+      title,
+      path: `/pages/issue-detail/issue-detail?url=${url}`
+    }
+  },
+
+  onPullDownRefresh: function() {
     github.getIssue(this.data.url, issue => {
       console.log(issue)
       wx.stopPullDownRefresh()
@@ -40,15 +51,17 @@ Page({
     })
   },
 
-  loadMore: function () {
+  loadMore: function() {
     if (this.data.loadingMore) return
 
     let loadingMore = true
-    this.setData({ loadingMore })
+    this.setData({
+      loadingMore
+    })
     if (!this.data.hasMore) {
       loadingMore = false
       const loadMoreBtnText = 'No More Comment'
-      this.setData({ 
+      this.setData({
         loadMoreBtnText,
         loadingMore
       })
@@ -67,7 +80,12 @@ Page({
       if (!links['rel="next"']) {
         hasMore = false
       }
-      this.setData({ comments, links, loadingMore, hasMore })
+      this.setData({
+        comments,
+        links,
+        loadingMore,
+        hasMore
+      })
     }, error => {
       wx.stopPullDownRefresh()
       wx.showToast({

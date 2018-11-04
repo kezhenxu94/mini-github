@@ -1,6 +1,7 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 const WxParse = require('../../lib/wxParse/wxParse.js')
+const defaultUrl = 'https://api.github.com/repos/kezhenxu94/mini-github'
 
 Page({
   data: {
@@ -12,15 +13,20 @@ Page({
   },
 
   onLoad: function(options) {
-    var url = options.url || 'https://api.github.com/repos/kezhenxu94/mini-github'
+    var url = decodeURIComponent(options.url || defaultUrl)
     this.setData({
       url
     })
     this.reloadData()
   },
 
-  onShareAppMessage: function() {
-
+  onShareAppMessage: function(options) {
+    var url = this.data.url
+    var title = this.data.repo.full_name
+    return {
+      title,
+      path: `/pages/repo-detail/repo-detail?url=${url}`
+    }
   },
 
   tryGetReadMe: function(repo) {
@@ -74,6 +80,9 @@ Page({
       this.setData({
         repo,
         showTabs
+      })
+      wx.setNavigationBarTitle({
+        title: repo.full_name,
       })
       this.tryGetReadMe(repo).then(res => wx.hideNavigationBarLoading({})).catch(error => wx.hideNavigationBarLoading({}))
     }).catch(error => nBarLoading({}))

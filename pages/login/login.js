@@ -52,5 +52,7 @@ Page({
       return
     }
     this.login(values)
-  }
+  },
+  onShareAppMessage: function (options) {
+  },
 })

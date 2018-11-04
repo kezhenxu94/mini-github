@@ -25,6 +25,9 @@ Page({
     this.reloadData()
   },
 
+  onShareAppMessage: function (options) {
+  },
+
   onPageScroll(e) {
     this.setData({
       scrollTop: e.scrollTop,

@@ -23,6 +23,9 @@ Page({
     }
   },
 
+  onShareAppMessage: function (options) {
+  },
+
   onPullDownRefresh: function() {
     this.reloadData()
   },
@@ -86,8 +89,8 @@ Page({
   toFeedDetail: function(event) {
     const feed = event.currentTarget.dataset.feed
     switch (feed.type) {
-      case 'IssueCommentEvent':
       case 'IssuesEvent':
+      case 'IssueCommentEvent':
         var issue = (feed.payload || {}).issue || {}
         var url = issue.url
         wx.navigateTo({
