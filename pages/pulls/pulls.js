@@ -4,7 +4,7 @@ const utils = require('../../utils/util.js')
 
 Page({
   data: {
-    filter: 'CREATED',
+    filter: 'open',
     pulls: [],
     scrollTop: 0,
     lastRefresh: moment().unix(),
@@ -51,19 +51,13 @@ Page({
   changeFilter: function (event) {
     switch (event.detail.index) {
       case 0:
-        this.setData({ filter: 'CREATED' })
+        this.setData({ filter: 'open' })
         break
       case 1:
-        this.setData({ filter: 'ASSIGNED' })
+        this.setData({ filter: 'closed' })
         break
       case 2:
-        this.setData({ filter: 'MENTIONED' })
-        break
-      case 3:
-        this.setData({ filter: 'REVIEW' })
-        break
-      case 4:
-        this.setData({ filter: 'CLOSED' })
+        this.setData({ filter: 'merged' })
         break
     }
     wx.startPullDownRefresh({})

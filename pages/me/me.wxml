@@ -8,8 +8,8 @@
   </view>
   <view wx:if='{{signedIn}}'>
     <view class='follow'>
-      <view class='followers'>关注我({{user.followers}})</view>
-      <view class='following'>我关注({{user.following}})</view>
+      <view class='followers'>Followers({{user.followers}})</view>
+      <view class='following'>Following({{user.following}})</view>
     </view>
     <view class='org'>
       <image mode='aspectFit' src='/md/group.png' class='org-img'></image>
