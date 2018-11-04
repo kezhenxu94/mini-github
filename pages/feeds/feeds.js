@@ -46,7 +46,7 @@ Page({
       isSignedIn: utils.isSignedIn(),
       refresing: true
     })
-    github.getGlobalEvents(undefined, res => {
+    github.getGlobalEvents(undefined).then(res => {
       console.log(res)
       wx.stopPullDownRefresh()
       this.setData({
@@ -55,7 +55,7 @@ Page({
         lastRefresh: moment(),
         refresing: false
       })
-    }, error => {
+    }).catch(error => {
       wx.stopPullDownRefresh()
     })
   },
@@ -69,7 +69,7 @@ Page({
     this.setData({
       loadingMore: true
     })
-    github.getGlobalEvents(this.data.links['rel="next"'], res => {
+    github.getGlobalEvents(this.data.links['rel="next"']).then(res => {
       console.log(res)
       wx.stopPullDownRefresh()
       this.setData({
@@ -78,7 +78,7 @@ Page({
         loadingMore: false,
         lastRefresh: moment()
       })
-    }, error => {
+    }).catch(error => {
       wx.stopPullDownRefresh()
       this.setData({
         loadingMore: false

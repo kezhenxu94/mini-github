@@ -13,6 +13,7 @@ Page({
     this.setData({
       user
     })
+    if (!user) return
     wx.setNavigationBarTitle({
       title: user.login
     })

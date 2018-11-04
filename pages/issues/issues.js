@@ -35,14 +35,14 @@ Page({
   },
 
   reloadData: function () {
-    github.getIssues(this.data.filter, data => {
+    github.getIssues(this.data.filter).then(data => {
       console.log(data)
       this.setData({
         issues: data,
         lastRefresh: moment()
       })
       wx.stopPullDownRefresh()
-    }, error => {
+    }).catch(error => {
       wx.showToast({
         title: error.message,
         icon: 'none'

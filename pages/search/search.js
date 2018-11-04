@@ -2,10 +2,13 @@ const github = require('../../api/github.js')
 
 Page({
   data: {
-    q: undefined,
+    q: '',
     repos: [],
     users: [],
-    activeTab: 'repos'
+    repoUrl: '',
+    userUrl: '',
+    activeTab: 'repos',
+    hasMore: false
   },
 
   onLoad: function(options) {
@@ -21,7 +24,29 @@ Page({
     this.performSearch()
   },
 
-  onReachBottom: function() {},
+  onReachBottom: function() {
+    const {
+      activeTab,
+      repoUrl,
+      userUrl
+    } = this.data
+    if (activeTab === 'repos' && !repoUrl) {
+      wx.showToast({
+        title: 'No more results'
+      })
+      return
+    }
+    if (activeTab === 'users' && !userUrl) {
+      wx.showToast({
+        title: 'No more results'
+      })
+      return
+    }
+    this.setData({
+      loadingMore: true
+    })
+    this.performSearch()
+  },
 
   onShareAppMessage: function() {
     const {
@@ -39,16 +64,34 @@ Page({
       q
     } = this.data
     if (this.data.activeTab === 'repos') {
-      github.searchRepos(q).then(repos => {
+      github.searchRepos(this.data.repoUrl, q).then(res => {
+        let {
+          repos,
+          links
+        } = res
+        const repoUrl = links['rel="next"'] || ''
+        const hasMore = repoUrl !== ''
+        repos = [...this.data.repos, ...repos]
         this.setData({
-          repos
+          repos,
+          repoUrl,
+          hasMore
         })
         wx.hideNavigationBarLoading({})
       }).catch(error => wx.hideNavigationBarLoading({}))
     } else if (this.data.activeTab === 'users') {
-      github.searchUsers(q).then(users => {
+      github.searchUsers(this.data.userUrl, q).then(res => {
+        let {
+          users,
+          links
+        } = res
+        const userUrl = links['rel="next"'] || ''
+        const hasMore = userUrl !== ''
+        users = [...this.data.users, ...users]
         this.setData({
-          users
+          users,
+          userUrl,
+          hasMore
         })
         wx.hideNavigationBarLoading({})
       }).catch(error => wx.hideNavigationBarLoading({}))
@@ -57,7 +100,11 @@ Page({
 
   onSearch: function(e) {
     this.setData({
-      q: e.detail
+      q: e.detail,
+      userUrl: '',
+      repoUrl: '',
+      repos: [],
+      users: []
     })
     this.performSearch()
   },

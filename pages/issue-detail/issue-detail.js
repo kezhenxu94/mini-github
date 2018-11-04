@@ -31,7 +31,7 @@ Page({
   },
 
   onPullDownRefresh: function() {
-    github.getIssue(this.data.url, issue => {
+    github.getIssue(this.data.url).then(issue => {
       console.log(issue)
       wx.stopPullDownRefresh()
       this.setData({
@@ -42,7 +42,7 @@ Page({
       wx.setNavigationBarTitle({
         title: `${repoName}#${issue.number}`
       })
-    }, error => {
+    }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
         title: error.message,
@@ -72,7 +72,7 @@ Page({
     if (this.data.links['rel="next"']) {
       comments_url = this.data.links['rel="next"']
     }
-    github.getComments(comments_url, res => {
+    github.getComments(comments_url).then(res => {
       console.log(res)
       const comments = [...this.data.comments, ...res.comments]
       const links = res.links
@@ -86,7 +86,7 @@ Page({
         loadingMore,
         hasMore
       })
-    }, error => {
+    }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
         title: error.message,

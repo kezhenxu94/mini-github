@@ -12,4 +12,7 @@
       </view>
     </tab>
   </tabs>
+  <view class='loading' wx:if='{{hasMore}}'>
+    <loading type='spinner' color="#fff" />
+  </view>
 </view>

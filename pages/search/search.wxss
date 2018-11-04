@@ -7,3 +7,7 @@
 .van-search__field .field-index--van-field {
   border-radius: 8rpx !important;
 }
+
+.loading {
+  text-align: center;
+}

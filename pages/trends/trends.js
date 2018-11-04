@@ -39,14 +39,14 @@ Page({
     const [timeIndex, langIndex] = this.data.selectedIndices
     const lang = languages[langIndex] || 'all'
     const time = timeRange[timeIndex] || 'daily'
-    github.getTrends(time.toLowerCase(), lang.toLowerCase(), data => {
+    github.getTrends(time.toLowerCase(), lang.toLowerCase()).then(data => {
       console.log(data)
       wx.stopPullDownRefresh()
       this.setData({
         trends: data,
         lastRefresh: moment()
       })
-    }, error => {
+    }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
         title: error.message,

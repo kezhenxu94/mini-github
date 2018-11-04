@@ -15,7 +15,7 @@ Page({
     let password = params.password
     githubApi.login({
       username, password
-    }, user => {
+    }).then(user => {
       wx.showToast({
         title: '已登录',
         icon: 'none',
@@ -25,7 +25,7 @@ Page({
         data: user,
       })
       wx.navigateBack({})
-    }, error => {
+    }).catch(error => {
       wx.showToast({
         title: error.message,
         icon: 'none',

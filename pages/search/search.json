@@ -3,6 +3,7 @@
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
+    "loading": "../../components/loading/index",
     "repo": "../../components/repo-item/repo-item",
     "user": "../../components/user-item/user-item",
     "search": "../../components/search/index"
