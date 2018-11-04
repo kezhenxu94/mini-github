@@ -41,15 +41,39 @@
   line-height: 48rpx !important;
 }
 
-.wxParse-code, .wxParse-wxxxcode-style {
-  background-color: #000 !important;
-  color: #eee !important;
-  line-height: calc(100% + 24rpx) !important;
+.wxParse-pre {
+  margin: 8rpx 0 !important;
   border: 1rpx dashed #eee;
-  border-radius: 8rpx;
+  border-radius: 8rpx !important;
+}
+
+.wxParse-code .wxParse-inline {
+  border: 1rpx dashed #eee;
+  border-radius: 8rpx !important;
+}
+
+.wxParse-code, .wxParse-wxxxcode-style {
+  background-color: transparent !important;
+  color: #eee !important;
+  line-height: inherit !important;
   padding: 0 8rpx;
 }
 
 .wxParse-blockquote {
   background: #000 !important;
+  padding:10rpx !important;
+}
+
+.wxParse-inline:not(:first-of-type) {
+  margin-left: 10rpx !important;
+}
+
+.wxParse-p > .wxParse-img {
+  width: 100% !important;
+}
+
+.wxParse-pre .wxParse-code .wxParse-inline {
+  display: block !important;
+  width: 100% !important;
+  border: none !important;
 }

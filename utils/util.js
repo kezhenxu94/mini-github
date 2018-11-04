@@ -6,7 +6,7 @@ const getCurrentToken = () => (getCurrentUser() || {}).token
 
 const isSignedIn = () => getCurrentToken() != undefined
 
-const extractRepoName = (repo_url) => repo_url.replace(/https:\/\/api.github.com\/repos\//, '')
+const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.com\/repos\/(.*)\/\d+$/, '$1')
 
 const toReadableTime = (time) => {
   let then = moment(time)

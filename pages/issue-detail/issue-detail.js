@@ -27,7 +27,7 @@ Page({
         issue: issue,
         pageReady: true
       })
-      const repoName = utils.extractRepoName(issue.repository_url)
+      const repoName = utils.extractRepoName(issue.url)
       wx.setNavigationBarTitle({
         title: `${repoName}#${issue.number}`
       })

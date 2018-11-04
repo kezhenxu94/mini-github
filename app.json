@@ -13,7 +13,8 @@
     "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "Mini GitHub",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "onReachBottomDistance": 100
   },
   "tabBar": {
     "color": "#eee",

@@ -1,26 +1,20 @@
-// components/issueItem/issueItem.js
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-    item: {
+    issue: {
       type: Object,
       value: {}
     }
   },
 
-  /**
-   * Component initial data
-   */
-  data: {
+  data: {},
 
-  },
-
-  /**
-   * Component methods
-   */
   methods: {
-
+    toIssueDetail: function(event) {
+      var issue = this.data.issue
+      var url = issue.url
+      wx.navigateTo({
+        url: '/pages/issue-detail/issue-detail?url=' + url
+      })
+    }
   }
 })

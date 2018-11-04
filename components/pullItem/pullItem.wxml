@@ -1,5 +1,5 @@
 <wxs module='filters' src='../../filter/pull.wxs'></wxs>
-<view class='pull' hover-class='hover-class' data-item='{{item}}' catchtap=''>
-  <view class='title'>{{item.title}}</view>
-  <view class='desc'>{{filters.format(item)}}</view>
+<view class='pull' catchtap='toPullDetail'>
+  <view class='title'>{{pull.title}}</view>
+  <view class='desc'>{{filters.format(pull)}}</view>
 </view>

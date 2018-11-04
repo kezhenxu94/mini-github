@@ -14,7 +14,10 @@ function getToken(username, password) {
   return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
 }
 
-let login = ({username, password}, onSuccess) => {
+let login = ({
+  username,
+  password
+}, onSuccess) => {
   let url = 'https://api.github.com/user'
   let token = getToken(username, password)
   Bmob.functions('proxy', {
@@ -52,7 +55,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
     url: url,
     token: token,
     _: new Date()
-  }).then(function (res) {
+  }).then(function(res) {
     console.log(res)
     let data = JSON.parse(res.body)
     if (res.statusCode !== 200) {
@@ -73,7 +76,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
       data: data,
       links: utils.parseLinks(headers.link || "")
     })
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error);
     errorHandler()
     onError(error)
@@ -90,17 +93,17 @@ let getIssues = (filter, onSuccess, onError) => {
     url: url,
     _: new Date(),
     token: token
-  }).then(function (res) {
+  }).then(function(res) {
     console.log(res)
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
     }
-    let data = JSON.parse(res.body).map(it => {
+    const data = JSON.parse(res.body).map(it => {
       it.created_at = utils.toReadableTime(it.created_at)
       return it
     })
     return onSuccess(data)
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error);
     errorHandler()
   })
@@ -118,7 +121,7 @@ let getPulls = (filter, onSuccess, onError) => {
     _: new Date(),
     token: token
   }
-  Bmob.functions('proxy', params).then(function (res) {
+  Bmob.functions('proxy', params).then(function(res) {
     console.log(res)
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
@@ -130,21 +133,20 @@ let getPulls = (filter, onSuccess, onError) => {
       return it
     })
     return onSuccess(pulls)
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error);
     errorHandler()
   })
 }
 
 let getIssue = (url, onSuccess, onError) => {
-  const user = utils.getCurrentUser() || {}
   const token = utils.getCurrentToken() || ''
   const params = {
     url: url,
     _: new Date(),
     token: token
   }
-  Bmob.functions('proxy', params).then(function (res) {
+  Bmob.functions('proxy', params).then(function(res) {
     console.log(res)
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
@@ -153,7 +155,7 @@ let getIssue = (url, onSuccess, onError) => {
     issue.updated_at = utils.toReadableTime(issue.updated_at)
     issue.created_at = utils.toReadableTime(issue.created_at)
     return onSuccess(issue)
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error);
     errorHandler()
   })
@@ -164,28 +166,27 @@ let getTrends = (since, lang, onSuccess, onError) => {
     since: since,
     lang: lang
   }
-  Bmob.functions('trend', params).then(function (res) {
+  Bmob.functions('trend', params).then(function(res) {
     console.log(res)
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
     }
     const trends = JSON.parse(res.body)
     return onSuccess(trends)
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error);
     errorHandler()
   })
 }
 
 let getComments = (url, onSuccess, onError) => {
-  const user = utils.getCurrentUser() || {}
   const token = utils.getCurrentToken() || ''
   const params = {
     url: url,
     _: new Date(),
     token: token
   }
-  Bmob.functions('proxy', params).then(function (res) {
+  Bmob.functions('proxy', params).then(function(res) {
     console.log(res)
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
@@ -201,54 +202,112 @@ let getComments = (url, onSuccess, onError) => {
       comments,
       links
     })
-  }).catch(function (error) {
+  }).catch(function(error) {
     console.log(error)
     errorHandler()
     onError(error)
   })
 }
 
-let getRepo = (url, onSuccess, onError) => {
-  const user = utils.getCurrentUser() || {}
+let getRepo = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
-    url: url,
-    token: token
+    url,
+    token
   }
-  Bmob.functions('proxy', params).then(function (res) {
-    console.log(res)
-    if (res.statusCode !== 200) {
-      return onError(new Error(res.message))
-    }
-    const repo = JSON.parse(res.body)
-    repo.created_at = utils.toReadableTime(repo.created_at)
-    repo.updated_at = utils.toReadableTime(repo.updated_at)
-    repo.pushed_at = utils.toReadableTime(repo.pushed_at)
-    return onSuccess({ repo })
-  }).catch(function (error) {
-    console.log(error)
-    errorHandler()
-    onError(error)
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        reject(new Error(res.message))
+      }
+      const repo = JSON.parse(res.body)
+      repo.created_at = utils.toReadableTime(repo.created_at)
+      repo.updated_at = utils.toReadableTime(repo.updated_at)
+      repo.pushed_at = utils.toReadableTime(repo.pushed_at)
+      resolve({
+        repo
+      })
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
   })
 }
 
-let getFile = (url, onSuccess, onError) => {
-  const user = utils.getCurrentUser() || {}
+let getFile = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
-    url: url,
-    token: token
+    url,
+    token
   }
-  Bmob.functions('proxy', params).then(function (res) {
-    console.log(res)
-    if (res.statusCode !== 200) {
-      return onError(new Error(res.body))
-    }
-    return onSuccess(res.body)
-  }).catch(function (error) {
-    console.log(error)
-    errorHandler()
-    onError(error)
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      resolve(res.body)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let getRepoIssues = ({full_name}) => {
+  const url = `https://api.github.com/repos/${full_name}/issues`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const issues = JSON.parse(res.body).filter(it => {
+        return it.pull_request === undefined
+      }).map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      resolve(issues)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let getRepoPulls = ({ full_name }) => {
+  const url = `https://api.github.com/repos/${full_name}/pulls`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const pulls = JSON.parse(res.body).map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      resolve(pulls)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
   })
 }
 
@@ -261,5 +320,7 @@ module.exports = {
   getTrends,
   getComments,
   getRepo,
-  getFile
+  getFile,
+  getRepoIssues,
+  getRepoPulls
 }

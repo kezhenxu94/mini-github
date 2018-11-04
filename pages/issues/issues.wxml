@@ -5,36 +5,28 @@
         登陆以查看我创建的 Issue
       </navigator>
       <view class='empty' wx:elif='{{issues.length===0}}'>没有我创建的 Issue</view>
-      <view wx:for='{{issues}}' wx:key='{{index}}' data-issue='{{item}}' bindtap='toIssueDetail'>
-        <issue item='{{item}}'></issue>
-      </view>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
     </tab>
     <tab title='被分配'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看我创建的 Issue
       </navigator>
       <view class='empty' wx:elif='{{issues.length===0}}'>没有我创建的 Issue</view>
-      <view wx:for='{{issues}}' wx:key='{{index}}' data-issue='{{item}}' bindtap='toIssueDetail'>
-        <issue data-issue='{{item}}' item='{{item}}'></issue>
-      </view>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
     </tab>
     <tab title='提及我'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看提及我的 Issue
       </navigator>
       <view class='empty' wx:if='{{issues.length===0}}'>没有提及我的 Issue</view>
-      <view wx:for='{{issues}}' wx:key='{{index}}' data-issue='{{item}}' bindtap='toIssueDetail'>
-        <issue item='{{item}}'></issue>
-      </view>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
     </tab>
     <tab title='已参与'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看我参与的 Issue
       </navigator>
       <view class='empty' wx:if='{{issues.length===0}}'>没有我参与的 Issue</view>
-      <view wx:for='{{issues}}' wx:key='{{index}}' data-issue='{{item}}' bindtap='toIssueDetail'>
-        <issue item='{{item}}'></issue>
-      </view>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
     </tab>
   </tabs>
 </view>

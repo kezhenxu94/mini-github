@@ -1,25 +1,19 @@
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-    item: {
+    pull: {
       type: Object,
       value: {}
     }
   },
 
-  /**
-   * Component initial data
-   */
-  data: {
+  data: {},
 
-  },
-
-  /**
-   * Component methods
-   */
   methods: {
-
+    toPullDetail: function() {
+      const url = this.data.pull.url
+      wx.navigateTo({
+        url: '/pages/issue-detail/issue-detail?url=' + url
+      })
+    }
   }
 })

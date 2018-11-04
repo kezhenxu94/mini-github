@@ -21,10 +21,20 @@
       <text>{{repo.forks_count}}</text>
     </view>
   </view>
-  <tabs bind:change='changeFilter'>
+  <tabs bind:change='changeTab' wx:if='{{showTabs}}'>
     <tab title='Readme'>
       <view class='readme'>
         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+      </view>
+    </tab>
+    <tab title='Issues'>
+      <view wx:for='{{issues}}' wx:key='{{index}}'>
+        <issue issue='{{item}}'></issue>
+      </view>
+    </tab>
+    <tab title='Pull Requests'>
+      <view wx:for='{{pulls}}' wx:key='{{index}}'>
+        <pull pull='{{item}}'></pull>
       </view>
     </tab>
   </tabs>

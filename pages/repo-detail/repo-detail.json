@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
-    "tab": "../../../components/tab/index"
+    "tab": "../../../components/tab/index",
+    "issue": "../../../components/issueItem/issueItem",
+    "pull": "../../../components/pullItem/pullItem"
   }
 }

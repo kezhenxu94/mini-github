@@ -5,40 +5,104 @@ const WxParse = require('../../lib/wxParse/wxParse.js')
 Page({
   data: {
     url: undefined,
-    repo: {}
+    repo: {},
+    issues: [],
+    pulls: [],
+    showTabs: false
   },
 
-  onLoad: function (options) {
-    var url = options.url
-    this.setData({ url })
+  onLoad: function(options) {
+    var url = options.url || 'https://api.github.com/repos/kezhenxu94/mini-github'
+    this.setData({
+      url
+    })
     this.reloadData()
   },
 
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
 
-  tryGetReadMe: function (repo, complete) {
+  tryGetReadMe: function(repo) {
     let readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/README.md`
 
-    github.getFile(readMeUrl, readMeContent => {
-      WxParse.wxParse('article', 'md', readMeContent, this)
-      complete()
-    }, error => {
-      readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
-      github.getFile(readMeUrl, readMeContent => {
+    return new Promise((resolve, reject) => {
+      github.getFile(readMeUrl).then(readMeContent => {
         WxParse.wxParse('article', 'md', readMeContent, this)
-        complete()
-      }, error => complete())
+        resolve({})
+      }).catch(error => {
+        readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
+        github.getFile(readMeUrl).then(readMeContent => {
+          WxParse.wxParse('article', 'md', readMeContent, this)
+          resolve({})
+        }).catch(error => reject(error))
+      })
     })
   },
 
-  reloadData: function () {
+  tryGetIssues: function() {
     wx.showNavigationBarLoading({})
-    github.getRepo(this.data.url, res => {
-      const { repo } = res
-      this.setData({ repo })
-      this.tryGetReadMe(repo, () => wx.hideNavigationBarLoading({}))
-    }, error => wx.hideNavigationBarLoading({}))
+    const repo = this.data.repo
+    github.getRepoIssues(repo).then(issues => {
+      console.log(issues)
+      this.setData({
+        issues
+      })
+      wx.hideNavigationBarLoading({})
+    }).catch(error => wx.hideNavigationBarLoading({}))
+  },
+
+  tryGetPulls: function() {
+    wx.showNavigationBarLoading({})
+    const repo = this.data.repo
+    github.getRepoPulls(repo).then(pulls => {
+      console.log(pulls)
+      this.setData({
+        pulls
+      })
+      wx.hideNavigationBarLoading({})
+    }).catch(error => wx.hideNavigationBarLoading({}))
+  },
+
+  reloadData: function() {
+    wx.showNavigationBarLoading({})
+    github.getRepo(this.data.url).then(res => {
+      const {
+        repo
+      } = res
+      const showTabs = repo != undefined
+      this.setData({
+        repo,
+        showTabs
+      })
+      this.tryGetReadMe(repo).then(res => wx.hideNavigationBarLoading({})).catch(error => wx.hideNavigationBarLoading({}))
+    }).catch(error => nBarLoading({}))
+  },
+
+  changeTab: function(event) {
+    const tabIndex = event.detail.index
+    switch (tabIndex) {
+      case 0:
+        break
+      case 1:
+        if (this.data.issues.length === 0) {
+          this.tryGetIssues()
+        }
+        break
+      case 2:
+        if (this.data.pulls.length === 0) {
+          this.tryGetPulls()
+        }
+        break
+      default:
+        break
+    }
+  },
+
+  wxParseTagATap: function(event) {
+    const url = event.currentTarget.dataset.src
+    wx.setClipboardData({
+      data: url,
+    })
   }
 })

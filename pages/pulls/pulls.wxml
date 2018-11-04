@@ -5,35 +5,35 @@
         登陆以查看我创建的 Pull Request
       </navigator>
       <view class='empty' wx:elif='{{pulls.length===0}}'>没有我创建的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
     <tab title='被分配'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看被分配的 Pull Request
       </navigator>
       <view class='empty' wx:elif='{{pulls.length===0}}'>没有被分配的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
     <tab title='提及我'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看提及我的 Pull Request
       </navigator>
       <view class='empty' wx:elif='{{pulls.length===0}}'>没有提及我的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
     <tab title='待审核'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看待审核的 Pull Request
       </navigator>
       <view class='empty' wx:elif='{{pulls.length===0}}'>没有待审核的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
     <tab title='已关闭'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         登陆以查看已关闭的 Pull Request
       </navigator>
       <view class='empty' wx:elif='{{pulls.length===0}}'>没有已关闭的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' item='{{item}}'></pull>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
   </tabs>
 </view>

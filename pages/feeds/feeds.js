@@ -12,19 +12,22 @@ Page({
     loadingMore: false,
     refresing: false
   },
-  
-  onShow: function () {
+
+  onShow: function() {
+    this.setData({
+      isSignedIn: utils.isSignedIn()
+    })
     var lastMoment = moment(this.data.lastRefresh)
     if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
 
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     this.reloadData()
   },
 
-  onReachBottom: function () {
+  onReachBottom: function() {
     this.loadMore()
   },
 
@@ -34,7 +37,7 @@ Page({
     })
   },
 
-  reloadData: function () {
+  reloadData: function() {
     if (this.data.refresing) return
     this.setData({
       isSignedIn: utils.isSignedIn(),
@@ -54,13 +57,15 @@ Page({
     })
   },
 
-  loadMore: function () {
+  loadMore: function() {
     if (this.data.loadingMore) {
       console.log('Loading more, returning')
       return
     }
 
-    this.setData({ loadingMore: true })
+    this.setData({
+      loadingMore: true
+    })
     github.getGlobalEvents(this.data.links['rel="next"'], res => {
       console.log(res)
       wx.stopPullDownRefresh()
@@ -72,40 +77,52 @@ Page({
       })
     }, error => {
       wx.stopPullDownRefresh()
-      this.setData({ loadingMore: false })
+      this.setData({
+        loadingMore: false
+      })
     })
   },
-  
-  toFeedDetail: function (event) {
-    var feed = event.currentTarget.dataset.feed
-    console.log('feed %o', feed)
-    if (feed.type.startsWith('Issue')) {
-      var issue = (feed.payload || {}).issue || {}
-      var url = issue.url
-      wx.navigateTo({
-        url: '/pages/issue-detail/issue-detail?url=' + url
-      })
-      return
-    }
 
-    let repoUrl = undefined
+  toFeedDetail: function(event) {
+    const feed = event.currentTarget.dataset.feed
     switch (feed.type) {
+      case 'IssueCommentEvent':
+      case 'IssuesEvent':
+        var issue = (feed.payload || {}).issue || {}
+        var url = issue.url
+        wx.navigateTo({
+          url: '/pages/issue-detail/issue-detail?url=' + url
+        })
+        break
+      case 'PullRequestEvent':
+      case 'PullRequestReviewEvent':
+      case 'PullRequestReviewCommentEvent':
+        var pullRequest = (feed.payload || {}).pull_request || {}
+        var url = pullRequest.issue_url
+        wx.navigateTo({
+          url: '/pages/issue-detail/issue-detail?url=' + url
+        })
+        break
       case 'WatchEvent':
       case 'ForkEvent':
-      case 'PullRequestEvent':
       case 'PushEvent':
       case 'DeleteEvent':
-        repoUrl = feed.repo.url
+        var repoUrl = feed.repo.url
+        wx.navigateTo({
+          url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
+        })
         break
       case 'ReleaseEvent':
-        repoUrl = feed.repository.url
+        var repoUrl = feed.repository.url
+        wx.navigateTo({
+          url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
+        })
         break
-    }
-    if (repoUrl) {
-      wx.navigateTo({
-        url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
-      })
-      return
+      default:
+        wx.showToast({
+          title: 'Coming Soon'
+        })
+        break
     }
   }
 })

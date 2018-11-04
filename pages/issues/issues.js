@@ -67,14 +67,5 @@ Page({
         break
     }
     wx.startPullDownRefresh({})
-  },
-
-  toIssueDetail: function (event) {
-    console.log(event)
-    var issue = event.currentTarget.dataset.issue
-    var url = issue.url
-    wx.navigateTo({
-      url: '/pages/issue-detail/issue-detail?url=' + url
-    })
   }
 })
