@@ -1,12 +1,13 @@
 {
   "pages": [
-    "pages/trends/trends",
     "pages/feeds/feeds",
+    "pages/trends/trends",
     "pages/issues/issues",
     "pages/pulls/pulls",
+    "pages/me/me",
+    "pages/user/user",
     "pages/issue-detail/issue-detail",
     "pages/repo-detail/repo-detail",
-    "pages/me/me",
     "pages/login/login"
   ],
   "window": {
@@ -19,7 +20,7 @@
   "tabBar": {
     "color": "#eee",
     "selectedColor": "#fff",
-    "borderStyle": "#000",
+    "borderStyle": "white",
     "backgroundColor": "#000",
     "list": [
       {

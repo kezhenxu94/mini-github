@@ -47,3 +47,11 @@
 .bottom view text {
   margin-left: 5rpx;
 }
+
+.fork-mark {
+  background-color: #fff;
+  color: #000;
+  padding: 0 10rpx;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}

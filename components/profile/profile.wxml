@@ -1,0 +1,33 @@
+<view>
+  <view class='user' data-item='{{user}}' catchtap=''>
+    <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
+    <view>
+      <view class='name'>{{user.login || 'Octocat'}}</view>
+      <view class='bio'>{{user.bio}}</view>
+    </view>
+  </view>
+  <view class='follow'>
+    <view class='followers'>Followers({{user.followers}})</view>
+    <view class='following'>Following({{user.following}})</view>
+  </view>
+  <view class='org'>
+    <image mode='aspectFit' src='/md/group.png' class='org-img'></image>
+    <view class='org-text'>{{user.company}}</view>
+  </view>
+  <view class='loc'>
+    <image mode='aspectFit' src='/md/location.png' class='loc-img'></image>
+    <view class='loc-text'>{{user.location}}</view>
+  </view>
+  <view class='email' bind:tap="onTapEmail">
+    <image mode='aspectFit' src='/md/email.png' class='email-img'></image>
+    <view class='email-text'>{{user.email}}</view>
+  </view>
+  <view class='blog' bind:tap="onTapBlog">
+    <image mode='aspectFit' src='/md/link.png' class='blog-img'></image>
+    <view class='blog-text'>{{user.blog || 'null'}}</view>
+  </view>
+  <view class='create'>
+    <image mode='aspectFit' src='/md/clock.png' class='create-img'></image>
+    <view class='create-text'>{{user.created_at}}</view>
+  </view>
+</view>

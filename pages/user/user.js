@@ -1,25 +1,22 @@
 const github = require('../../api/github.js')
-const utils = require('../../utils/util.js')
 
 Page({
   data: {
+    username: undefined,
     user: {},
     repos: [],
     starred: []
   },
 
-  onLoad: function (options) {
-    const user = utils.getCurrentUser()
+  onLoad: function(options) {
+    const username = options.username || 'kezhenxu94'
     this.setData({
-      user
+      username
     })
     wx.setNavigationBarTitle({
-      title: user.login
+      title: username
     })
-  },
-
-  onShow: function () {
-    this.onLoad({})
+    this.loadUserInfo()
   },
 
   onShareAppMessage: function (options) {
@@ -30,8 +27,25 @@ Page({
     }
   },
 
-  loadUserRepos: function () {
-    const username = this.data.user.login
+  loadUserInfo: function() {
+    const {
+      username
+    } = this.data
+    wx.showNavigationBarLoading({})
+    github.getUser(username).then(user => {
+      this.setData({
+        user
+      })
+      wx.hideNavigationBarLoading({})
+    }, error => {
+      wx.hideNavigationBarLoading({})
+    })
+  },
+
+  loadUserRepos: function() {
+    const {
+      username
+    } = this.data
     wx.showNavigationBarLoading({})
     github.getUserRepos(username).then(repos => {
       this.setData({
@@ -43,8 +57,10 @@ Page({
     })
   },
 
-  loadUserStarredRepos: function () {
-    const username = this.data.user.login
+  loadUserStarredRepos: function() {
+    const {
+      username
+    } = this.data
     wx.showNavigationBarLoading({})
     github.getStarredRepos(username).then(repos => {
       this.setData({
@@ -56,10 +72,16 @@ Page({
     })
   },
 
-  changeTab: function (event) {
-    const username = this.data.user.login
+  changeTab: function(event) {
+    const {
+      username
+    } = this.data
 
     switch (event.detail.index) {
+      case 0:
+        if (this.data.user) return
+        this.loadUserInfo()
+        break
       case 1:
         if (this.data.repos.length > 0 || !username) return
         this.loadUserRepos()

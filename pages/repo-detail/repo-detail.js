@@ -85,7 +85,7 @@ Page({
         title: repo.full_name,
       })
       this.tryGetReadMe(repo).then(res => wx.hideNavigationBarLoading({})).catch(error => wx.hideNavigationBarLoading({}))
-    }).catch(error => nBarLoading({}))
+    }).catch(error => wx.hideNavigationBarLoading({}))
   },
 
   changeTab: function(event) {

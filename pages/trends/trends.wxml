@@ -2,8 +2,6 @@
   <picker class='fix-top' mode='multiSelector' bindchange="changeFilter" value="{{selectedIndices}}" range="{{selectorValues}}">
     <image class='lang-btn' mode='aspectFit' src='/md/language.png'></image>
   </picker>
-  <view wx:for="{{trends}}" wx:key="{{index}}">
-    <repo item='{{item}}' data-repo='{{item}}' catchtap='toRepoDetail'></repo>
-  </view>
+  <repo wx:for="{{trends}}" wx:key="{{index}}" repo='{{item}}'></repo>
   <action-sheet show="{{showSelectLanguage}}" actions="{{languages}}" bind:select="changeLang" cancel-text="Cancel" bind:cancel='closeLanguages'/>
 </view>

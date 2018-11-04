@@ -1,25 +1,21 @@
 Component({
-  /**
-   * Component properties
-   */
   properties: {
-    item: {
+    repo: {
       type: Object,
       value: {}
     }
   },
 
-  /**
-   * Component initial data
-   */
   data: {
-
   },
 
-  /**
-   * Component methods
-   */
   methods: {
-
+    toRepoDetail: function() {
+      var repo = this.data.repo
+      var url = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repo.full_name}`
+      wx.navigateTo({
+        url
+      })
+    }
   }
 })

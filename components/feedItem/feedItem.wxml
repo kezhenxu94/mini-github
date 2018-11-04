@@ -1,6 +1,6 @@
 <wxs module='filters' src='../../filter/feed.wxs'></wxs>
-<view class='feed' hover-class='hover-class' data-item='{{item}}' catchtap=''>
-  <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "/octicons/octoface.png"}}'></image>
+<view class='feed' bindtap='toFeedDetail'>
+  <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "/octicons/octoface.png"}}' catchtap='toUserPage' hover-stop-propagation='true'></image>
   <view>
     <text class='summary'>{{filters.format(item)[0]}}</text>
     <text class='detail'>{{filters.format(item)[1]}}</text>

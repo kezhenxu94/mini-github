@@ -14,6 +14,26 @@ function getToken(username, password) {
   return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
 }
 
+function getRepos(params) {
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const repos = JSON.parse(res.body).map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      console.log(repos)
+      resolve(repos)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
 let login = ({
   username,
   password
@@ -65,6 +85,7 @@ let getGlobalEvents = (link, onSuccess, onError) => {
       // 简化数据, 翻页数据越来越大
       it.org = {}
       it.actor = {
+        login: it.actor.login,
         display_login: it.actor.display_login,
         avatar_url: it.actor.avatar_url
       }
@@ -170,7 +191,11 @@ let getTrends = (since, lang, onSuccess, onError) => {
     if (res.statusCode !== 200) {
       return onError(new Error(data.message))
     }
-    const trends = JSON.parse(res.body)
+    const trends = JSON.parse(res.body).map(it => {
+      it.stargazers_count = it.stars
+      it.full_name = `${it.author}/${it.name}`
+      return it
+    })
     return onSuccess(trends)
   }).catch(function(error) {
     console.log(error);
@@ -256,7 +281,9 @@ let getFile = (url) => {
   })
 }
 
-let getRepoIssues = ({full_name}) => {
+let getRepoIssues = ({
+  full_name
+}) => {
   const url = `https://api.github.com/repos/${full_name}/issues`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -284,7 +311,9 @@ let getRepoIssues = ({full_name}) => {
   })
 }
 
-let getRepoPulls = ({ full_name }) => {
+let getRepoPulls = ({
+  full_name
+}) => {
   const url = `https://api.github.com/repos/${full_name}/pulls`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -293,7 +322,6 @@ let getRepoPulls = ({ full_name }) => {
   }
   return new Promise((resolve, reject) => {
     Bmob.functions('proxy', params).then(res => {
-      console.log(res)
       if (res.statusCode !== 200) {
         reject(new Error(res.body))
       }
@@ -301,7 +329,52 @@ let getRepoPulls = ({ full_name }) => {
         it.created_at = utils.toReadableTime(it.created_at)
         return it
       })
+      console.log(pulls)
       resolve(pulls)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let getUserRepos = (username) => {
+  const url = `https://api.github.com/users/${username}/repos`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return getRepos(params)
+}
+
+let getStarredRepos = (username) => {
+  const url = `https://api.github.com/users/${username}/starred`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return getRepos(params)
+}
+
+let getUser = (username) => {
+  const url = `https://api.github.com/users/${username}`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const user = JSON.parse(res.body)
+      user.created_at = utils.toReadableTime(user.created_at)
+      console.log(user)
+      resolve(user)
     }).catch(error => {
       console.log(error)
       errorHandler()
@@ -321,5 +394,8 @@ module.exports = {
   getRepo,
   getFile,
   getRepoIssues,
-  getRepoPulls
+  getRepoPulls,
+  getUserRepos,
+  getStarredRepos,
+  getUser
 }
