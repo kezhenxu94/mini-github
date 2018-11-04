@@ -17,6 +17,7 @@ function getToken(username, password) {
 function getRepos(params) {
   return new Promise((resolve, reject) => {
     Bmob.functions('proxy', params).then(res => {
+      console.log(res)
       if (res.statusCode !== 200) {
         reject(new Error(res.body))
       }
@@ -383,6 +384,112 @@ let getUser = (username) => {
   })
 }
 
+let searchRepos = (q) => {
+  const url = `https://api.github.com/search/repositories`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    q
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const repos = JSON.parse(res.body).items.map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      console.log(repos)
+      resolve(repos)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let searchUsers = (q) => {
+  const url = `https://api.github.com/search/users`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    q
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const repos = JSON.parse(res.body).items.map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      console.log(repos)
+      resolve(repos)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let getFollowers = (username) => {
+  const url = `https://api.github.com/users/${username}/followers`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const followers = JSON.parse(res.body).map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      console.log(followers)
+      resolve(followers)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let getFollowing = (username) => {
+  const url = `https://api.github.com/users/${username}/following`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode !== 200) {
+        reject(new Error(res.body))
+      }
+      const followers = JSON.parse(res.body).map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      })
+      console.log(followers)
+      resolve(followers)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
 module.exports = {
   login,
   getGlobalEvents,
@@ -397,5 +504,9 @@ module.exports = {
   getRepoPulls,
   getUserRepos,
   getStarredRepos,
-  getUser
+  getUser,
+  searchRepos,
+  searchUsers,
+  getFollowers,
+  getFollowing
 }

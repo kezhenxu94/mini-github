@@ -1,4 +1,4 @@
-navigator:not(:last-of-type) {
+.repo:not(:last-of-type) {
   border-top: 1rpx solid rgba(65, 65, 65, 0.9);
 }
 
@@ -21,4 +21,13 @@ navigator:not(:last-of-type) {
 button {
   border-radius: 0;
   color: #eee;
+}
+
+.van-search {
+  padding: 20rpx !important;
+  background-color: #333;
+}
+
+.van-search__field .field-index--van-field {
+  border-radius: 8rpx !important;
 }

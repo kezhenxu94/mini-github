@@ -113,5 +113,12 @@ Page({
     wx.setClipboardData({
       data: url,
     })
+  },
+
+  toUserDetail: function() {
+    const username = this.data.repo.owner.login
+    wx.navigateTo({
+      url: `/pages/user/user?username=${username}`,
+    })
   }
 })

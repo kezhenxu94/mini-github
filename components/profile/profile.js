@@ -1,12 +1,11 @@
+const github = require('../../api/github.js')
+
 Component({
   properties: {
     user: {
       type: Object,
       value: {}
     }
-  },
-  data: {
-
   },
   methods: {
     onTapEmail: function() {
@@ -23,6 +22,20 @@ Component({
         success(res) {
           wx.getClipboardData()
         }
+      })
+    },
+
+    toFollowers: function() {
+      const username = this.data.user.login
+      wx.navigateTo({
+        url: `/pages/user-list/user-list?username=${username}&followers=true`,
+      })
+    },
+
+    toFollowing: function () {
+      const username = this.data.user.login
+      wx.navigateTo({
+        url: `/pages/user-list/user-list?username=${username}&following=true`,
       })
     }
   }

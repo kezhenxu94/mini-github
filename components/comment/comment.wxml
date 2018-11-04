@@ -1,7 +1,7 @@
 <import src="../../lib/wxParse/wxParse.wxml"/>
 <view class='comment'>
   <view class='header'>
-    <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}'></image>
+    <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}' catchtap='toUserPage'></image>
     <view class='author-time'>
       <text class='user'>{{comment.user.login}}</text>
       <text class='time'>{{comment.created_at}}</text>

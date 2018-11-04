@@ -69,5 +69,12 @@ Page({
     this.setData({
       scrollTop: e.scrollTop,
     })
+  },
+
+  onSearch: function (e) {
+    const q = e.detail
+    wx.navigateTo({
+      url: `/pages/search/search?q=${q}`,
+    })
   }
 })

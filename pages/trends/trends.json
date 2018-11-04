@@ -1,6 +1,7 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "repo": "../../components/repo-item/repo-item"
+    "repo": "../../components/repo-item/repo-item",
+    "search": "../../components/search/index"
   }
 }

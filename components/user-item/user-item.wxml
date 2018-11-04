@@ -1,0 +1,4 @@
+<view class='user' bindtap='toUserDetail'>
+  <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
+  <text class='username'>{{user.login}}</text>
+</view>

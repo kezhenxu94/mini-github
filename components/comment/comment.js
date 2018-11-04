@@ -24,6 +24,13 @@ Component({
       wx.setClipboardData({
         data: url,
       })
+    },
+
+    toUserPage: function () {
+      const username = this.data.comment.user.login
+      wx.navigateTo({
+        url: `/pages/user/user?username=${username}`
+      })
     }
   }
 })

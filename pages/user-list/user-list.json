@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "user": "../../components/user-item/user-item"
+  }
+}

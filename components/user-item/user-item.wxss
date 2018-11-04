@@ -1,0 +1,17 @@
+.user {
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
+  border-radius: 50%;
+}
+
+.username {
+  margin-left: 10rpx;
+}
