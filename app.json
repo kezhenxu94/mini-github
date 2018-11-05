@@ -10,7 +10,8 @@
     "pages/repo-detail/repo-detail",
     "pages/login/login",
     "pages/search/search",
-    "pages/user-list/user-list"
+    "pages/user-list/user-list",
+    "pages/about/about"
   ],
   "window": {
     "backgroundTextStyle": "dark",

@@ -14,7 +14,7 @@ Page({
   },
 
   onLoad: function(options) {
-    var url = decodeURIComponent(options.url)
+    var url = decodeURIComponent(options.url || 'https://api.github.com/repos/kezhenxu94/mini-github/issues/3')
     this.setData({
       url
     })
@@ -36,6 +36,11 @@ Page({
       wx.stopPullDownRefresh()
       this.setData({
         issue: issue,
+        comments: [],
+        links: {},
+        hasMore: true,
+        loadingMore: false,
+        loadMoreBtnText: 'Load More',
         pageReady: true
       })
       const repoName = utils.extractRepoName(issue.url)

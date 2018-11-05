@@ -142,15 +142,15 @@ let getPulls = (filter) => {
   const user = utils.getCurrentUser() || {}
   const token = utils.getCurrentToken() || ''
   const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login || ''}+is:${filter}`
-  if (!token) {
-    reject(new Error('使用此功能, 请先登录'))
-  }
   const params = {
     url: url,
     _: new Date(),
     token: token
   }
   return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
     Bmob.functions('proxy', params).then(res => {
       console.log(res)
       if (res.statusCode !== 200) {
@@ -182,7 +182,7 @@ let getIssue = (url) => {
     Bmob.functions('proxy', params).then(function(res) {
       console.log(res)
       if (res.statusCode !== 200) {
-        reject(new Error(data.message))
+        reject(new Error(res.message))
       }
       const issue = JSON.parse(res.body)
       issue.updated_at = utils.toReadableTime(issue.updated_at)
@@ -521,6 +521,220 @@ let getFollowing = (username) => {
   })
 }
 
+let checkStar = (repoFullName) => {
+  const url = `https://api.github.com/user/starred/${repoFullName}`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode === 204) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let star = (repoFullName) => {
+  const url = `https://api.github.com/user/starred/${repoFullName}`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'PUT',
+    headers: {
+      'Content-Length': 0
+    }
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 204) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let unstar = (repoFullName) => {
+  const url = `https://api.github.com/user/starred/${repoFullName}`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'DELETE',
+    headers: {
+      'Content-Length': 0
+    }
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 204) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let checkWatching = (repoFullName) => {
+  const url = `https://api.github.com/repos/${repoFullName}/subscription`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token
+  }
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy', params).then(res => {
+      if (res.statusCode === 200) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let startWatching = (repoFullName) => {
+  const url = `https://api.github.com/repos/${repoFullName}/subscription`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'PUT',
+    headers: {
+      'Content-Length': 0
+    }
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 200) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+
+let stopWatching = (repoFullName) => {
+  const url = `https://api.github.com/repos/${repoFullName}/subscription`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'DELETE',
+    headers: {
+      'Content-Length': 0
+    }
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 200) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let fork = function (repoFullName) {
+  const url = `https://api.github.com/repos/${repoFullName}/forks`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'POST'
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 202) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+let createComment = (repoFullName, issueNum, content) => {
+  const url = `https://api.github.com/repos/${repoFullName}/issues/${issueNum}/comments`
+  const token = utils.getCurrentToken() || ''
+  const params = {
+    url,
+    token,
+    method: 'POST',
+    body: {
+      body: content
+    }
+  }
+  return new Promise((resolve, reject) => {
+    if (!token) {
+      reject(new Error('使用此功能, 请先登录'))
+    }
+    Bmob.functions('proxy', params).then(res => {
+      console.log(res)
+      if (res.statusCode === 201) {
+        resolve(true)
+      }
+      resolve(false)
+    }).catch(error => {
+      console.log(error)
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
 module.exports = {
   login,
   getGlobalEvents,
@@ -539,5 +753,13 @@ module.exports = {
   searchRepos,
   searchUsers,
   getFollowers,
-  getFollowing
+  getFollowing,
+  checkStar,
+  star,
+  unstar,
+  checkWatching,
+  startWatching,
+  stopWatching,
+  fork,
+  createComment
 }

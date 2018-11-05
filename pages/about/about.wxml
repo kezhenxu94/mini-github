@@ -1,0 +1,51 @@
+<view>
+  <view class='content'>
+    <view class='item'>
+      <view class='title'>声明</view>
+      <view>该小程序完全为第三方开发者开发，仅用于学习交流，禁止用于其他用途。</view>
+    </view>
+    <view class='item'>
+      <view class='title'>代码已开源</view>
+      <view class='i' catchtap='toProjectPage' data-title='项目地址' data-content='{{projectAddress}}'>
+        <view class='icon'>
+          <image src='/octicons/mark-github.png'></image>
+        </view>
+        <view class='text'>
+          <view>欢迎 Star</view>
+          <view>{{projectAddress}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='item'>
+      <view class='title'>联系开发者</view>
+      <view class='i' catchtap='toUserPage' data-title='GitHub' data-content='{{github}}'>
+        <view class='icon'>
+          <image src='/octicons/mark-github.png'></image>
+        </view>
+        <view class='text'>
+          <view>通过 GitHub</view>
+          <view>{{github}}</view>
+        </view>
+      </view>
+      <view class='i' catchtap='copy' data-title='邮箱' data-content='{{email}}'>
+        <view class='icon'>
+          <image src='/md/email.png'></image>
+        </view>
+        <view class='text'>
+          <view>通过 Email</view>
+          <view>{{email}}</view>
+        </view>
+      </view>
+      <view class='i' catchtap='copy' data-title='QQ' data-content='{{qq}}'>
+        <view class='icon'>
+          <image src='/img/qq.png'></image>
+        </view>
+        <view class='text'>
+          <view>通过 QQ</view>
+          <view>{{qq}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='footer'>开发者 · kezhenxu94</view>
+</view>

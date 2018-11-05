@@ -51,6 +51,7 @@
   display: flex;
   padding: 30rpx 40rpx;
   overflow: hidden;
+  font-size: 30rpx;
 }
 
 .org-img, .loc-img, .email-img, .blog-img, .create-img {

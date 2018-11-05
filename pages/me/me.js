@@ -5,7 +5,8 @@ Page({
   data: {
     user: {},
     repos: [],
-    starred: []
+    starred: [],
+    tab: 0
   },
 
   onLoad: function (options) {
@@ -58,6 +59,9 @@ Page({
   },
 
   changeTab: function (event) {
+    this.setData({
+      tab: event.detail.index
+    })
     const username = this.data.user.login
 
     switch (event.detail.index) {

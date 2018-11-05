@@ -6,7 +6,9 @@ const getCurrentToken = () => (getCurrentUser() || {}).token
 
 const isSignedIn = () => getCurrentToken() != undefined
 
-const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.com\/repos\/(.*\/.*)\/.*\/\d+$/, '$1')
+const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.com\/repos\/(.*?\/.*?)(\/.*)?$/, '$1')
+
+const extractIssueNumber = issueUrl => issueUrl.replace(/^https:\/\/api.github.com\/repos\/.*\/issues\/(\d+)$/, '$1')
 
 const toReadableTime = (time) => {
   let then = moment(time)
@@ -44,5 +46,6 @@ module.exports = {
   isSignedIn,
   parseLinks,
   toReadableTime,
-  extractRepoName
+  extractRepoName,
+  extractIssueNumber
 }

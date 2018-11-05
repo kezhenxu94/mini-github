@@ -36,6 +36,15 @@
   padding-right: 20rpx;
 }
 
+.reply {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+modal {
+  color: #000;
+}
+
 .body {
   font-size: 28rpx !important;
   line-height: 48rpx !important;
