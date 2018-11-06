@@ -4,19 +4,16 @@ const utils = require('../../utils/util.js')
 Page({
   data: {
     url: '',
-    issue: {},
+    issue: undefined,
     comments: [],
     links: {},
     hasMore: true,
-    loadingMore: false,
-    loadMoreBtnText: 'Load More',
-    pageReady: false
+    loadingMore: false
   },
 
   onLoad: function(options) {
-    var url = decodeURIComponent(options.url || 'https://api.github.com/repos/kezhenxu94/mini-github/issues/3')
     this.setData({
-      url
+      url: decodeURIComponent(options.url)
     })
     wx.startPullDownRefresh({})
   },
@@ -24,29 +21,29 @@ Page({
   onShareAppMessage: function(options) {
     var url = this.data.url
     var title = this.data.issue.title
+    var path = `/pages/issue-detail/issue-detail?url=${url}`
     return {
       title,
-      path: `/pages/issue-detail/issue-detail?url=${url}`
+      path
     }
   },
 
   onPullDownRefresh: function() {
     github.getIssue(this.data.url).then(issue => {
-      console.log(issue)
       wx.stopPullDownRefresh()
+      const hasMore = issue.comments > 0
       this.setData({
-        issue: issue,
+        issue,
         comments: [],
         links: {},
-        hasMore: true,
-        loadingMore: false,
-        loadMoreBtnText: 'Load More',
-        pageReady: true
+        hasMore,
+        loadingMore: false
       })
       const repoName = utils.extractRepoName(issue.url)
       wx.setNavigationBarTitle({
         title: `${repoName}#${issue.number}`
       })
+      if (hasMore) this.loadMore()
     }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
@@ -57,26 +54,19 @@ Page({
   },
 
   loadMore: function() {
-    if (this.data.loadingMore) return
+    const {
+      hasMore,
+      loadingMore,
+      issue,
+      links
+    } = this.data
 
-    let loadingMore = true
+    if (loadingMore || !hasMore) return
     this.setData({
-      loadingMore
+      loadingMore: true
     })
-    if (!this.data.hasMore) {
-      loadingMore = false
-      const loadMoreBtnText = 'No More Comment'
-      this.setData({
-        loadMoreBtnText,
-        loadingMore
-      })
-      return
-    }
-    loadingMore = false
-    let comments_url = this.data.issue.comments_url
-    if (this.data.links['rel="next"']) {
-      comments_url = this.data.links['rel="next"']
-    }
+
+    const comments_url = links['rel="next"'] || issue.comments_url
     github.getComments(comments_url).then(res => {
       console.log(res)
       const comments = [...this.data.comments, ...res.comments]

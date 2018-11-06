@@ -1,4 +1,4 @@
-<import src="../../lib/wxParse/wxParse.wxml"/>
+<import src="../../lib/wxParse/wxParse.wxml" />
 <view class='comment'>
   <view class='header'>
     <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}' catchtap='toUserPage'></image>
@@ -6,12 +6,12 @@
       <text class='user'>{{comment.user.login}}</text>
       <text class='time'>{{comment.created_at}}</text>
     </view>
-    <image class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
+    <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
   </view>
   <view class='body' wx:if='{{loaded}}'>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
-  <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply">  
+  <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply">
     <textarea placeholder="请输入评论内容" value='{{replyContent}}' bindinput='updateContent'></textarea>
-</modal>  
+  </modal>
 </view>

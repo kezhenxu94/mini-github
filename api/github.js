@@ -174,13 +174,11 @@ let getPulls = (filter) => {
 let getIssue = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
-    url: url,
-    _: new Date(),
-    token: token
+    url,
+    token
   }
   return new Promise((resolve, reject) => {
     Bmob.functions('proxy', params).then(function(res) {
-      console.log(res)
       if (res.statusCode !== 200) {
         reject(new Error(res.message))
       }
