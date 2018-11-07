@@ -2,6 +2,119 @@ const Bmob = require('bmob.js')
 const utils = require('../utils/util.js')
 Bmob.initialize('a6ca02364643e5214d51a84ac10e2ff6', '3cee74cb07ef58620c4cc04909edd3d3')
 
+const token = () => utils.getCurrentToken() || ''
+
+const params = (params) => Object.assign({
+  'method': 'GET',
+  'Authorization': token()
+}, params)
+
+const getRepos = params => {
+  return new Promise((resolve, reject) => {
+    Bmob.functions('proxy302', params).then(repos => {
+      resolve(repos.map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        return it
+      }))
+    }).catch(error => {
+      errorHandler()
+      reject(error)
+    })
+  })
+}
+
+const getUrl = p => new Promise((resolve, reject) => {
+  console.log(p)
+  Bmob.functions('proxy', params(p)).then(res => {
+    const {
+      statusCode,
+      headers,
+      body
+    } = res
+    if (statusCode !== 200) {
+      reject(new Error(body))
+    }
+    resolve({
+      headers,
+      body
+    })
+  }).catch(error => {
+    errorHandler()
+    reject(error)
+  })
+})
+
+const getEventsByUrl = p => new Promise((resolve, reject) => {
+  getUrl(p).then(({
+    headers,
+    body
+  }) => {
+    const events = JSON.parse(body).map(it => {
+      it.created_at = utils.toReadableTime(it.created_at)
+      it.org = {}
+      it.actor = {
+        login: it.actor.login,
+        display_login: it.actor.display_login,
+        avatar_url: it.actor.avatar_url
+      }
+      return it
+    })
+    const links = utils.parseLinks(headers.link || "")
+    const nextUrl = links['rel="next"']
+    console.log(nextUrl)
+    if (nextUrl) {
+      resolve({
+        events,
+        next: (nextUrl) => {
+          return () => getEventsByUrl(params({
+            url: nextUrl
+          }))
+        }
+      })
+    } else {
+      resolve({
+        events,
+        next: null
+      })
+    }
+  }).catch(error => reject(error))
+})
+
+const events = () => {
+  return {
+    end: () => getEventsByUrl({
+      url: `https://api.github.com/events`
+    })
+  }
+}
+
+const users = (username) => {
+  return {
+    repos: () => getRepos(params({
+      'Location': `https://api.github.com/users/${username}/repos`
+    })),
+    starred: () => getRepos(params({
+      'Location': `https://api.github.com/users/${username}/starred`
+    })),
+    receivedEvents: () => getEventsByUrl({
+      url: `https://api.github.com/users/${username}/received_events`
+    }),
+    end: () => {
+      return new Promise((resolve, reject) => {
+        Bmob.functions('proxy302', params({
+          'Location': `https://api.github.com/users/${username}`
+        })).then(user => {
+          user.created_at = utils.toReadableTime(user.created_at)
+          resolve(user)
+        }).catch(error => {
+          errorHandler()
+          reject(error)
+        })
+      })
+    }
+  }
+}
+
 function errorHandler() {
   wx.showToast({
     title: '网络异常, 请稍后再试',
@@ -12,27 +125,6 @@ function errorHandler() {
 function getToken(username, password) {
   let str = username + ':' + password
   return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
-}
-
-function getRepos(params) {
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy', params).then(res => {
-      console.log(res)
-      if (res.statusCode !== 200) {
-        reject(new Error(res.body))
-      }
-      const repos = JSON.parse(res.body).map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        return it
-      })
-      console.log(repos)
-      resolve(repos)
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
 }
 
 let login = ({
@@ -57,50 +149,6 @@ let login = ({
       user.created_at = utils.toReadableTime(user.created_at)
       user.token = token
       resolve(user)
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
-let getGlobalEvents = (link) => {
-  const user = utils.getCurrentUser()
-  const token = utils.getCurrentToken() || ''
-  let url = 'https://api.github.com/events'
-  if (user) {
-    url = `https://api.github.com/users/${user.login}/received_events`
-  }
-  if (link) {
-    url = link
-  }
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy', {
-      url: url,
-      token: token
-    }).then(function(res) {
-      console.log(res)
-      let data = JSON.parse(res.body)
-      if (res.statusCode !== 200) {
-        reject(new Error(data.message))
-      }
-      data = data.map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        // 简化数据, 翻页数据越来越大
-        it.org = {}
-        it.actor = {
-          login: it.actor.login,
-          display_login: it.actor.display_login,
-          avatar_url: it.actor.avatar_url
-        }
-        return it
-      })
-      const headers = res.headers
-      resolve({
-        data: data,
-        links: utils.parseLinks(headers.link || "")
-      })
     }).catch(error => {
       console.log(error)
       errorHandler()
@@ -349,50 +397,6 @@ let getRepoPulls = ({
       })
       console.log(pulls)
       resolve(pulls)
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
-let getUserRepos = (username) => {
-  const url = `https://api.github.com/users/${username}/repos`
-  const token = utils.getCurrentToken() || ''
-  const params = {
-    url,
-    token
-  }
-  return getRepos(params)
-}
-
-let getStarredRepos = (username) => {
-  const url = `https://api.github.com/users/${username}/starred`
-  const token = utils.getCurrentToken() || ''
-  const params = {
-    url,
-    token
-  }
-  return getRepos(params)
-}
-
-let getUser = (username) => {
-  const url = `https://api.github.com/users/${username}`
-  const token = utils.getCurrentToken() || ''
-  const params = {
-    url,
-    token
-  }
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy', params).then(res => {
-      if (res.statusCode !== 200) {
-        reject(new Error(res.body))
-      }
-      const user = JSON.parse(res.body)
-      user.created_at = utils.toReadableTime(user.created_at)
-      console.log(user)
-      resolve(user)
     }).catch(error => {
       console.log(error)
       errorHandler()
@@ -678,7 +682,7 @@ let stopWatching = (repoFullName) => {
   })
 }
 
-let fork = function (repoFullName) {
+let fork = function(repoFullName) {
   const url = `https://api.github.com/repos/${repoFullName}/forks`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -735,7 +739,6 @@ let createComment = (repoFullName, issueNum, content) => {
 
 module.exports = {
   login,
-  getGlobalEvents,
   getIssues,
   getPulls,
   getIssue,
@@ -745,9 +748,6 @@ module.exports = {
   getFile,
   getRepoIssues,
   getRepoPulls,
-  getUserRepos,
-  getStarredRepos,
-  getUser,
   searchRepos,
   searchUsers,
   getFollowers,
@@ -759,5 +759,7 @@ module.exports = {
   startWatching,
   stopWatching,
   fork,
-  createComment
+  createComment,
+  events,
+  users
 }

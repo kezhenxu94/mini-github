@@ -8,7 +8,7 @@ Page({
     scrollTop: 0,
     lastRefresh: moment().unix(),
     isSignedIn: utils.isSignedIn(),
-    links: {},
+    next: null,
     loadingMore: false,
     refresing: false
   },
@@ -46,18 +46,25 @@ Page({
       isSignedIn: utils.isSignedIn(),
       refresing: true
     })
-    github.getGlobalEvents(undefined).then(res => {
-      console.log(res)
+    const successHandler = ({ events, next }) => {
       wx.stopPullDownRefresh()
       this.setData({
-        events: res.data,
-        links: res.links,
+        events,
+        next,
         lastRefresh: moment(),
         refresing: false
       })
-    }).catch(error => {
+    }
+    const errorHandler = (error) => {
+      console.log(error)
       wx.stopPullDownRefresh()
-    })
+    }
+    if (utils.isSignedIn()) {
+      const username = utils.getCurrentUser().login
+      github.users(username).receivedEvents().then(successHandler).catch(errorHandler)
+    } else {
+      github.events().end().then(successHandler).catch(errorHandler)
+    }
   },
 
   loadMore: function() {
@@ -65,24 +72,20 @@ Page({
       console.log('Loading more, returning')
       return
     }
-
-    this.setData({
-      loadingMore: true
-    })
-    github.getGlobalEvents(this.data.links['rel="next"']).then(res => {
-      console.log(res)
-      wx.stopPullDownRefresh()
+    
+    if (this.data.next) {
       this.setData({
-        events: [...this.data.events, ...res.data],
-        links: res.links,
-        loadingMore: false,
-        lastRefresh: moment()
+        loadingMore: true
       })
-    }).catch(error => {
-      wx.stopPullDownRefresh()
-      this.setData({
-        loadingMore: false
-      })
-    })
+      this.data.next().then(({ events, next }) => {
+        wx.stopPullDownRefresh()
+        this.setData({
+          events: [...this.data.events, ...events],
+          next,
+          lastRefresh: moment(),
+          refresing: false
+        })
+      }).catch(error => wx.stopPullDownRefresh())
+    }
   }
 })

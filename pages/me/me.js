@@ -35,7 +35,7 @@ Page({
   loadUserRepos: function () {
     const username = this.data.user.login
     wx.showNavigationBarLoading({})
-    github.getUserRepos(username).then(repos => {
+    github.users(username).repos().then(repos => {
       this.setData({
         repos
       })
@@ -48,7 +48,7 @@ Page({
   loadUserStarredRepos: function () {
     const username = this.data.user.login
     wx.showNavigationBarLoading({})
-    github.getStarredRepos(username).then(repos => {
+    github.users(username).starred().then(repos => {
       this.setData({
         starred: repos
       })

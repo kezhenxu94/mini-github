@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/feeds/feeds",
     "pages/trends/trends",
     "pages/issues/issues",
     "pages/pulls/pulls",
-    "pages/feeds/feeds",
     "pages/me/me",
     "pages/user/user",
     "pages/issue-detail/issue-detail",

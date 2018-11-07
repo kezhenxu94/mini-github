@@ -32,7 +32,7 @@ Page({
       username
     } = this.data
     wx.showNavigationBarLoading({})
-    github.getUser(username).then(user => {
+    github.users(username).end().then(user => {
       this.setData({
         user
       })
@@ -47,7 +47,7 @@ Page({
       username
     } = this.data
     wx.showNavigationBarLoading({})
-    github.getUserRepos(username).then(repos => {
+    github.users(username).repos().then(repos => {
       this.setData({
         repos
       })
@@ -62,7 +62,7 @@ Page({
       username
     } = this.data
     wx.showNavigationBarLoading({})
-    github.getStarredRepos(username).then(repos => {
+    github.users(username).starred().then(repos => {
       this.setData({
         starred: repos
       })
