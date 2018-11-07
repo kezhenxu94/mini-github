@@ -65,11 +65,9 @@ const getEventsByUrl = p => new Promise((resolve, reject) => {
     if (nextUrl) {
       resolve({
         events,
-        next: (nextUrl) => {
-          return () => getEventsByUrl(params({
-            url: nextUrl
-          }))
-        }
+        next: () => getEventsByUrl(params({
+          url: nextUrl
+        }))
       })
     } else {
       resolve({

@@ -11,7 +11,7 @@
   <view class='body' wx:if='{{loaded}}'>
     <template is="wxParse" data="{{wxParseData:article.nodes}}" />
   </view>
-  <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply">
+  <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
     <textarea placeholder="请输入评论内容" value='{{replyContent}}' bindinput='updateContent'></textarea>
   </modal>
 </view>

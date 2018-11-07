@@ -83,9 +83,15 @@ Page({
           events: [...this.data.events, ...events],
           next,
           lastRefresh: moment(),
-          refresing: false
+          refresing: false,
+          loadingMore: false
         })
-      }).catch(error => wx.stopPullDownRefresh())
+      }).catch(error => {
+        wx.stopPullDownRefresh()
+        this.setData({
+          loadingMore: false
+        })
+      })
     }
   }
 })

@@ -45,6 +45,10 @@ modal {
   color: #000;
 }
 
+modal textarea {
+  width: 100%;
+}
+
 .body {
   font-size: 28rpx !important;
   line-height: 48rpx !important;
