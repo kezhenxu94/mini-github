@@ -2,8 +2,17 @@ const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
 
+const filters = [
+  { value: 'created', label: '我创建' },
+  { value: 'assigned', label: '被分配' },
+  { value: 'mentioned', label: '提到我' },
+  { value: 'subscribed', label: '我参与' },
+  { value: 'all', label: '所有' },
+]
+
 Page({
   data: {
+    filters,
     filter: 'created',
     issues: [],
     scrollTop: 0,
@@ -21,10 +30,12 @@ Page({
     }
   },
 
-  onShareAppMessage: function (options) {
-  },
+  onShareAppMessage: function (options) {},
 
   onPullDownRefresh: function () {
+    if (!utils.isSignedIn()) {
+      return wx.stopPullDownRefresh()
+    }
     this.reloadData()
   },
 
@@ -35,40 +46,25 @@ Page({
   },
 
   reloadData: function () {
-    github.getIssues(this.data.filter).then(data => {
-      console.log(data)
+    const filter = this.data.filter
+    github.user().issues({ filter }).then(issues => {
+      wx.stopPullDownRefresh()
       this.setData({
-        issues: data,
+        issues,
         lastRefresh: moment()
       })
-      wx.stopPullDownRefresh()
     }).catch(error => {
+      wx.stopPullDownRefresh()
       wx.showToast({
         title: error.message,
         icon: 'none'
       })
-      wx.stopPullDownRefresh()
     })
   },
 
   changeFilter: function (event) {
-    switch (event.detail.index) {
-      case 0:
-        this.setData({ filter: 'created' })
-        break
-      case 1:
-        this.setData({ filter: 'assigned' })
-        break
-      case 2:
-        this.setData({ filter: 'mentioned' })
-        break
-      case 3:
-        this.setData({ filter: 'subscribed' })
-        break
-      default:
-        this.setData({ filter: 'all' })
-        break
-    }
-    wx.startPullDownRefresh({})
+    const filter = filters[event.detail.index].value
+    this.setData({ filter })
+    wx.startPullDownRefresh()
   }
 })

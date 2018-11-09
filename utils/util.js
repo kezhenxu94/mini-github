@@ -2,9 +2,9 @@ const moment = require('../lib/moment.js')
 
 const getCurrentUser = () => wx.getStorageSync('user')
 
-const getCurrentToken = () => (getCurrentUser() || {}).token
+const getCurrentToken = () => (getCurrentUser() || {}).token || wx.getStorageSync('token')
 
-const isSignedIn = () => getCurrentToken() != undefined
+const isSignedIn = () => getCurrentUser().plan != undefined
 
 const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.com\/repos\/(.*?\/.*?)(\/.*)?$/, '$1')
 

@@ -133,8 +133,24 @@ Page({
 
   wxParseTagATap: function(event) {
     const url = event.currentTarget.dataset.src
+    console.log(url)
+    const repoRegExp = /^https:\/\/github.com\/(.*?\/.*?)(\/.*)?$/
+    if (repoRegExp.test(url)) {
+      const repoFullName = url.replace(repoRegExp, '$1')
+      const repoUrl = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repoFullName}`
+      wx.navigateTo({
+        url: repoUrl,
+      })
+      return
+    }
     wx.setClipboardData({
       data: url,
+      success() {
+        wx.showToast({
+          title: '链接已复制',
+          duration: 2000,
+        })
+      },
     })
   },
 

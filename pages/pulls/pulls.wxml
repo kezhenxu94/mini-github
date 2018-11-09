@@ -1,25 +1,13 @@
 <view class='pulls'>
   <tabs border='{{false}}' bind:change='changeFilter'>
-    <tab title='已创建'>
-      <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
-        登陆以查看我创建的 Pull Request
-      </navigator>
-      <view class='empty' wx:elif='{{pulls.length===0}}'>没有我创建的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
-    </tab>
-    <tab title='已关闭'>
-      <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
-        登陆以查看已关闭的 Pull Request
-      </navigator>
-      <view class='empty' wx:elif='{{pulls.length===0}}'>没有已关闭的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
-    </tab>
-    <tab title='已合并'>
-      <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
-        登陆以查看已合并的 Pull Request
-      </navigator>
-      <view class='empty' wx:elif='{{pulls.length===0}}'>没有已合并的 Pull Request</view>
-      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
-    </tab>
+    <block wx:for='{{filters}}' wx:key='{{index}}'>
+      <tab title='{{item.label}}'>
+        <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
+          登陆以查看{{item.label}}的 Pull Request
+        </navigator>
+        <view class='empty' wx:elif='{{pulls.length===0}}'>没有{{item.label}}的 Pull Request</view>
+        <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
+      </tab>
+    </block>
   </tabs>
 </view>

@@ -24,7 +24,7 @@
   </view>
   <view class='blog' bind:tap="onTapBlog">
     <image mode='aspectFit' src='/md/link.png' class='blog-img'></image>
-    <view class='blog-text'>{{user.blog || 'null'}}</view>
+    <view class='blog-text'>{{user.blog}}</view>
   </view>
   <view class='create'>
     <image mode='aspectFit' src='/md/clock.png' class='create-img'></image>

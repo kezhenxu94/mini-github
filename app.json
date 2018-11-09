@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/feeds/feeds",
     "pages/trends/trends",
+    "pages/feeds/feeds",
     "pages/issues/issues",
     "pages/pulls/pulls",
     "pages/me/me",
@@ -11,10 +11,12 @@
     "pages/login/login",
     "pages/search/search",
     "pages/user-list/user-list",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/index/index"
   ],
   "window": {
-    "backgroundTextStyle": "dark",
+    "backgroundColor": "#000",
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "Mini GitHub",
     "navigationBarTextStyle": "white",

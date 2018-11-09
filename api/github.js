@@ -2,42 +2,40 @@ const Bmob = require('bmob.js')
 const utils = require('../utils/util.js')
 Bmob.initialize('a6ca02364643e5214d51a84ac10e2ff6', '3cee74cb07ef58620c4cc04909edd3d3')
 
-const token = () => utils.getCurrentToken() || ''
-
-const params = (params) => Object.assign({
-  'method': 'GET',
-  'Authorization': token()
-}, params)
-
-const getRepos = params => {
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy302', params).then(repos => {
-      resolve(repos.map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        return it
-      }))
-    }).catch(error => {
-      errorHandler()
-      reject(error)
-    })
+function errorHandler() {
+  wx.showToast({
+    title: '网络异常, 稍后再试',
+    icon: 'none'
   })
 }
 
-const getUrl = p => new Promise((resolve, reject) => {
-  console.log(p)
-  Bmob.functions('proxy', params(p)).then(res => {
-    const {
-      statusCode,
-      headers,
-      body
-    } = res
+const token = () => utils.getCurrentToken() || ''
+
+const params = (params) => Object.assign({
+  'Authorization': token()
+}, params)
+
+const getUrl = params => new Promise((resolve, reject) => {
+  Bmob.functions('proxy', params).then(res => {
+    console.log(res)
+    const { statusCode, headers, body } = res
     if (statusCode !== 200) {
       reject(new Error(body))
     }
-    resolve({
-      headers,
-      body
-    })
+    resolve({ headers, body })
+  }).catch(error => {
+    errorHandler()
+    reject(error)
+  })
+})
+
+const getRepos = params => new Promise((resolve, reject) => {
+  getUrl(params).then(({ body }) => {
+    const repos = JSON.parse(body)
+    resolve(repos.map(it => {
+      it.created_at = utils.toReadableTime(it.created_at)
+      return it
+    }))
   }).catch(error => {
     errorHandler()
     reject(error)
@@ -45,10 +43,7 @@ const getUrl = p => new Promise((resolve, reject) => {
 })
 
 const getEventsByUrl = p => new Promise((resolve, reject) => {
-  getUrl(p).then(({
-    headers,
-    body
-  }) => {
+  getUrl(p).then(({ headers, body }) => {
     const events = JSON.parse(body).map(it => {
       it.created_at = utils.toReadableTime(it.created_at)
       it.org = {}
@@ -61,7 +56,6 @@ const getEventsByUrl = p => new Promise((resolve, reject) => {
     })
     const links = utils.parseLinks(headers.link || "")
     const nextUrl = links['rel="next"']
-    console.log(nextUrl)
     if (nextUrl) {
       resolve({
         events,
@@ -89,102 +83,61 @@ const events = () => {
 const users = (username) => {
   return {
     repos: () => getRepos(params({
-      'Location': `https://api.github.com/users/${username}/repos`
+      url: `https://api.github.com/users/${username}/repos`
     })),
     starred: () => getRepos(params({
-      'Location': `https://api.github.com/users/${username}/starred`
+      url: `https://api.github.com/users/${username}/starred`
     })),
     receivedEvents: () => getEventsByUrl({
       url: `https://api.github.com/users/${username}/received_events`
     }),
-    end: () => {
-      return new Promise((resolve, reject) => {
-        Bmob.functions('proxy302', params({
-          'Location': `https://api.github.com/users/${username}`
-        })).then(user => {
-          user.created_at = utils.toReadableTime(user.created_at)
-          resolve(user)
-        }).catch(error => {
-          errorHandler()
-          reject(error)
-        })
+    end: () => new Promise((resolve, reject) => {
+      getUrl(params({
+        url: `https://api.github.com/users/${username}`
+      })).then(({ body }) => {
+        const user = JSON.parse(body)
+        user.created_at = utils.toReadableTime(user.created_at)
+        resolve(user)
+      }).catch(error => {
+        errorHandler()
+        reject(error)
       })
-    }
+    })
   }
 }
 
-function errorHandler() {
-  wx.showToast({
-    title: '网络异常, 请稍后再试',
-    icon: 'none'
-  })
-}
-
-function getToken(username, password) {
-  let str = username + ':' + password
-  return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
-}
-
-let login = ({
-  username,
-  password
-}) => {
-  let url = 'https://api.github.com/user'
-  let token = getToken(username, password)
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy', {
-      url: url,
-      _: new Date(),
-      token: token
-    }).then(res => {
-      console.log(res)
-      const statusCode = res.statusCode
-      const data = JSON.parse(res.body)
-      if (statusCode !== 200) {
-        reject(new Error(data.message))
-      }
-      const user = data
-      user.created_at = utils.toReadableTime(user.created_at)
-      user.token = token
-      resolve(user)
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
-let getIssues = (filter) => {
-  const url = 'https://api.github.com/user/issues?filter=' + (filter || 'all')
-  const token = utils.getCurrentToken() || ''
-  return new Promise((resolve, reject) => {
-    if (!token) {
-      reject(new Error('使用此功能, 请先登录'))
-    }
-    Bmob.functions('proxy', {
-      url: url,
-      _: new Date(),
-      token: token
-    }).then(res => {
-      console.log(res)
-      if (res.statusCode !== 200) {
-        reject(new Error(data.message))
-      }
-      const data = JSON.parse(res.body).map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        return it
+const user = () => {
+  return {
+    issues: ({ filter = 'all' }) => new Promise((resolve, reject) => {
+      getUrl(params({
+        url: `https://api.github.com/user/issues?filter=${filter}`
+      })).then(({ body }) => {
+        const issues = JSON.parse(body).map(it => {
+          it.created_at = utils.toReadableTime(it.created_at)
+          return it
+        })
+        resolve(issues)
+      }).catch(error => {
+        errorHandler()
+        reject(error)
       })
-      resolve(data)
-    }).catch(error => {
-      console.log(error);
-      errorHandler()
-      reject(error)
+    }),
+    end: () => new Promise((resolve, reject) => {
+      getUrl(params({
+        url: `https://api.github.com/user`
+      })).then(({ body }) => {
+        const user = JSON.parse(body)
+        user.created_at = utils.toReadableTime(user.created_at)
+        resolve(user)
+      }).catch(error => {
+        errorHandler()
+        reject(error)
+      })
     })
-  })
+  }
 }
 
-let getPulls = (filter) => {
+const getPulls = (filter) => {
   const user = utils.getCurrentUser() || {}
   const token = utils.getCurrentToken() || ''
   const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login || ''}+is:${filter}`
@@ -217,30 +170,20 @@ let getPulls = (filter) => {
   })
 }
 
-let getIssue = (url) => {
-  const token = utils.getCurrentToken() || ''
-  const params = {
-    url,
-    token
-  }
-  return new Promise((resolve, reject) => {
-    Bmob.functions('proxy', params).then(function(res) {
-      if (res.statusCode !== 200) {
-        reject(new Error(res.message))
-      }
-      const issue = JSON.parse(res.body)
-      issue.updated_at = utils.toReadableTime(issue.updated_at)
-      issue.created_at = utils.toReadableTime(issue.created_at)
-      resolve(issue)
-    }).catch(error => {
-      console.log(error);
-      errorHandler()
-      reject(error)
-    })
+const getIssue = (url) => new Promise((resolve, reject) => {
+  getUrl(params({ url })).then(res => {
+    const { body } = res
+    const issue = JSON.parse(body)
+    issue.updated_at = utils.toReadableTime(issue.updated_at)
+    issue.created_at = utils.toReadableTime(issue.created_at)
+    resolve(issue)
+  }).catch(error => {
+    errorHandler()
+    reject(error)
   })
-}
+})
 
-let getTrends = (since, lang) => {
+const getTrends = (since, lang) => {
   const params = {
     since: since,
     lang: lang
@@ -265,7 +208,7 @@ let getTrends = (since, lang) => {
   })
 }
 
-let getComments = (url) => {
+const getComments = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
     url: url,
@@ -297,7 +240,7 @@ let getComments = (url) => {
   })
 }
 
-let getRepo = (url) => {
+const getRepo = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
     url,
@@ -324,7 +267,7 @@ let getRepo = (url) => {
   })
 }
 
-let getFile = (url) => {
+const getFile = (url) => {
   const token = utils.getCurrentToken() || ''
   const params = {
     url,
@@ -345,7 +288,7 @@ let getFile = (url) => {
   })
 }
 
-let getRepoIssues = ({
+const getRepoIssues = ({
   full_name
 }) => {
   const url = `https://api.github.com/repos/${full_name}/issues`
@@ -375,7 +318,7 @@ let getRepoIssues = ({
   })
 }
 
-let getRepoPulls = ({
+const getRepoPulls = ({
   full_name
 }) => {
   const url = `https://api.github.com/repos/${full_name}/pulls`
@@ -403,7 +346,7 @@ let getRepoPulls = ({
   })
 }
 
-let searchRepos = (_url, q) => {
+const searchRepos = (_url, q) => {
   const url = !_url ? `https://api.github.com/search/repositories` : _url
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -436,7 +379,7 @@ let searchRepos = (_url, q) => {
   })
 }
 
-let searchUsers = (_url, q) => {
+const searchUsers = (_url, q) => {
   const url = (!_url) ? `https://api.github.com/search/users` : _url
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -469,7 +412,7 @@ let searchUsers = (_url, q) => {
   })
 }
 
-let getFollowers = (username) => {
+const getFollowers = (username) => {
   const url = `https://api.github.com/users/${username}/followers`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -495,7 +438,7 @@ let getFollowers = (username) => {
   })
 }
 
-let getFollowing = (username) => {
+const getFollowing = (username) => {
   const url = `https://api.github.com/users/${username}/following`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -521,7 +464,7 @@ let getFollowing = (username) => {
   })
 }
 
-let checkStar = (repoFullName) => {
+const checkStar = (repoFullName) => {
   const url = `https://api.github.com/user/starred/${repoFullName}`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -542,7 +485,7 @@ let checkStar = (repoFullName) => {
   })
 }
 
-let star = (repoFullName) => {
+const star = (repoFullName) => {
   const url = `https://api.github.com/user/starred/${repoFullName}`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -571,7 +514,7 @@ let star = (repoFullName) => {
   })
 }
 
-let unstar = (repoFullName) => {
+const unstar = (repoFullName) => {
   const url = `https://api.github.com/user/starred/${repoFullName}`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -600,7 +543,7 @@ let unstar = (repoFullName) => {
   })
 }
 
-let checkWatching = (repoFullName) => {
+const checkWatching = (repoFullName) => {
   const url = `https://api.github.com/repos/${repoFullName}/subscription`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -621,7 +564,7 @@ let checkWatching = (repoFullName) => {
   })
 }
 
-let startWatching = (repoFullName) => {
+const startWatching = (repoFullName) => {
   const url = `https://api.github.com/repos/${repoFullName}/subscription`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -651,7 +594,7 @@ let startWatching = (repoFullName) => {
 }
 
 
-let stopWatching = (repoFullName) => {
+const stopWatching = (repoFullName) => {
   const url = `https://api.github.com/repos/${repoFullName}/subscription`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -680,7 +623,7 @@ let stopWatching = (repoFullName) => {
   })
 }
 
-let fork = function(repoFullName) {
+const fork = function(repoFullName) {
   const url = `https://api.github.com/repos/${repoFullName}/forks`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -706,7 +649,7 @@ let fork = function(repoFullName) {
   })
 }
 
-let createComment = (repoFullName, issueNum, content) => {
+const createComment = (repoFullName, issueNum, content) => {
   const url = `https://api.github.com/repos/${repoFullName}/issues/${issueNum}/comments`
   const token = utils.getCurrentToken() || ''
   const params = {
@@ -736,8 +679,6 @@ let createComment = (repoFullName, issueNum, content) => {
 }
 
 module.exports = {
-  login,
-  getIssues,
   getPulls,
   getIssue,
   getTrends,
@@ -759,5 +700,6 @@ module.exports = {
   fork,
   createComment,
   events,
-  users
+  users,
+  user
 }

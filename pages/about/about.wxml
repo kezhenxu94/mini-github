@@ -18,7 +18,7 @@
     </view>
     <view class='item'>
       <view class='title'>联系开发者</view>
-      <view class='i' catchtap='toUserPage' data-title='GitHub' data-content='{{github}}'>
+      <view class='i' catchtap='toUserPage' data-title='GitHub 地址' data-content='{{github}}'>
         <view class='icon'>
           <image src='/octicons/mark-github.png'></image>
         </view>
@@ -27,7 +27,7 @@
           <view>{{github}}</view>
         </view>
       </view>
-      <view class='i' catchtap='copy' data-title='邮箱' data-content='{{email}}'>
+      <view class='i' catchtap='copy' data-title='邮箱地址' data-content='{{email}}'>
         <view class='icon'>
           <image src='/md/email.png'></image>
         </view>
@@ -36,13 +36,22 @@
           <view>{{email}}</view>
         </view>
       </view>
-      <view class='i' catchtap='copy' data-title='QQ' data-content='{{qq}}'>
+      <view class='i' catchtap='copy' data-title='QQ 号码' data-content='{{qq}}'>
         <view class='icon'>
           <image src='/img/qq.png'></image>
         </view>
         <view class='text'>
           <view>通过 QQ</view>
           <view>{{qq}}</view>
+        </view>
+      </view>
+      <view class='i' catchtap='copy' data-title='QQ 群号' data-content='{{qqGroup}}'>
+        <view class='icon'>
+          <image src='/img/qqgroup.png'></image>
+        </view>
+        <view class='text'>
+          <view>通过 QQ 群</view>
+          <view>{{qqGroup}}</view>
         </view>
       </view>
     </view>

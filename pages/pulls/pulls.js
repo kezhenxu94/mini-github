@@ -2,8 +2,15 @@ const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
 
+const filters = [
+  { value: 'open', label: '我创建' },
+  { value: 'closed', label: '已关闭' },
+  { value: 'merged', label: '已合并' },
+]
+
 Page({
   data: {
+    filters,
     filter: 'open',
     pulls: [],
     scrollTop: 0,
@@ -25,8 +32,7 @@ Page({
     this.reloadData()
   },
 
-  onShareAppMessage: function (options) {
-  },
+  onShareAppMessage: function (options) {},
 
   onPageScroll(e) {
     this.setData({
@@ -36,7 +42,6 @@ Page({
 
   reloadData: function () {
     github.getPulls(this.data.filter).then(data => {
-      console.log(data)
       wx.stopPullDownRefresh()
       this.setData({
         pulls: data,
@@ -52,17 +57,8 @@ Page({
   },
 
   changeFilter: function (event) {
-    switch (event.detail.index) {
-      case 0:
-        this.setData({ filter: 'open' })
-        break
-      case 1:
-        this.setData({ filter: 'closed' })
-        break
-      case 2:
-        this.setData({ filter: 'merged' })
-        break
-    }
+    const filter = filters[event.detail.index].value
+    this.setData({ filter })
     wx.startPullDownRefresh({})
   }
 })

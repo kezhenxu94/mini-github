@@ -4,16 +4,17 @@ Page({
     github: 'https://github.com/kezhenxu94',
     email: 'kezhenxu94@163.com',
     qq: '917423081',
+    qqGroup: '948577975',
   },
   copy(e) {
-    let dataset = (e.currentTarget || {}).dataset || {}
-    let title = dataset.title || ''
-    let content = dataset.content || ''
+    const dataset = (e.currentTarget || {}).dataset || {}
+    const title = dataset.title || ''
+    const content = dataset.content || ''
     wx.setClipboardData({
       data: content,
       success() {
         wx.showToast({
-          title: `${title} 已复制`,
+          title: `${title}已复制`,
           duration: 2000,
         })
       },

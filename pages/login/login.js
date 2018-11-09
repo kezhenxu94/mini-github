@@ -1,35 +1,33 @@
 const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
-const githubApi = require('../../api/github.js')
+const github = require('../../api/github.js')
 Page({
   data: {
     mobile: '',
     password: ''
   },
+  getToken (username, password) {
+    const str = username + ':' + password
+    return 'Basic ' + wx.arrayBufferToBase64(new Uint8Array([...str].map(char => char.charCodeAt(0))))
+  },
   login (params) {
     wx.showLoading({
-      title: '加载中...',
+      title: '正在登陆',
     })
-    let url = 'https://api.github.com/user'
-    let username = params.username
-    let password = params.password
-    githubApi.login({
-      username, password
-    }).then(user => {
-      wx.showToast({
-        title: '已登录',
-        icon: 'none',
-      })
-      wx.setStorage({
-        key: 'user',
-        data: user,
-      })
+    const username = params.username
+    const password = params.password
+    const token = this.getToken(username, password)
+    wx.setStorageSync('token', token)
+
+    github.user().end().then(user => {
+      wx.showToast({ title: '登录成功' })
+      wx.setStorageSync('user', user)
       wx.navigateBack({})
     }).catch(error => {
       wx.showToast({
-        title: error.message,
+        title: '账户密码错误',
         icon: 'none',
-        duration: 10000
+        duration: 5000
       })
     })
   },
@@ -52,7 +50,5 @@ Page({
       return
     }
     this.login(values)
-  },
-  onShareAppMessage: function (options) {
-  },
+  }
 })
