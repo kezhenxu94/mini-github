@@ -22,7 +22,7 @@ const getUrl = params => new Promise((resolve, reject) => {
     if (statusCode !== 200) {
       reject(new Error(body))
     }
-    resolve({ headers, body })
+    resolve({ statusCode, headers, body })
   }).catch(error => {
     errorHandler()
     reject(error)
@@ -122,6 +122,54 @@ const user = () => {
         reject(error)
       })
     }),
+    following: (username) => {
+      return {
+        get: () => new Promise((resolve, reject) => {
+          Bmob.functions('proxy', params({
+            url: `https://api.github.com/user/following/${username}`
+          })).then(res => {
+            const { statusCode, headers, body } = res
+            if (statusCode === 204) {
+              resolve(true)
+            }
+            resolve(false)
+          }).catch(error => {
+            errorHandler()
+            reject(error)
+          })
+        }),
+        put: () => new Promise((resolve, reject) => {
+          Bmob.functions('proxy', params({
+            url: `https://api.github.com/user/following/${username}`,
+            method: 'PUT'
+          })).then(res => {
+            const { statusCode, headers, body } = res
+            if (statusCode === 204) {
+              resolve(true)
+            }
+            resolve(false)
+          }).catch(error => {
+            errorHandler()
+            reject(error)
+          })
+        }),
+        delete: () => new Promise((resolve, reject) => {
+          Bmob.functions('proxy', params({
+            url: `https://api.github.com/user/following/${username}`,
+            method: 'DELETE'
+          })).then(res => {
+            const { statusCode, headers, body } = res
+            if (statusCode === 204) {
+              resolve(true)
+            }
+            resolve(false)
+          }).catch(error => {
+            errorHandler()
+            reject(error)
+          })
+        })
+      }
+    },
     end: () => new Promise((resolve, reject) => {
       getUrl(params({
         url: `https://api.github.com/user`

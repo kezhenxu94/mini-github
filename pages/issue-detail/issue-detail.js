@@ -8,12 +8,15 @@ Page({
     comments: [],
     links: {},
     hasMore: true,
-    loadingMore: false
+    loadingMore: false,
+    repoName: undefined
   },
 
   onLoad: function(options) {
+    const url = options.url || 'https://api.github.com/repos/kezhenxu94/mini-github/issues/3'
     this.setData({
-      url: decodeURIComponent(options.url)
+      url: decodeURIComponent(url),
+      repoName: utils.extractRepoName(url)
     })
     wx.startPullDownRefresh({})
   },
@@ -92,4 +95,12 @@ Page({
       })
     })
   },
+
+  toRepoDetail () {
+    const repoName = this.data.repoName
+    const url = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repoName}`
+    wx.navigateTo({
+      url
+    })
+  }
 })

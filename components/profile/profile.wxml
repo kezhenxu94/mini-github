@@ -1,10 +1,17 @@
 <view>
-  <view class='user' data-item='{{user}}' catchtap=''>
-    <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
-    <view>
-      <view class='name'>{{user.login || 'Octocat'}}</view>
-      <view class='bio'>{{user.bio}}</view>
+  <view class='header' data-item='{{user}}' catchtap=''>
+    <view class='user'>
+      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
+      <view>
+        <view class='name'>{{user.login || 'Octocat'}}</view>
+        <view class='bio'>{{user.bio}}</view>
+      </view>
     </view>
+    <v-button type='primary' size='small' plain round loading='{{loading}}' bind:click='toggleFollow' class='follow-btn' wx:if='{{!isMyself}}'>
+      <text class='iconfont icon-plus' wx:if='{{!isFollowing}}'></text>
+      <text class='iconfont icon-cross' wx:if='{{isFollowing}}'></text>
+      {{isFollowing ? 'Unfollow' : 'Follow'}}
+    </v-button>
   </view>
   <view class='follow'>
     <view class='followers' catchtap='toFollowers'>Followers({{user.followers}})</view>

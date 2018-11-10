@@ -51,6 +51,21 @@ Component({
     },
 
     toReply: function () {
+      if (!utils.isSignedIn()) {
+        return wx.showModal({
+          title: '请先登录',
+          content: '评论功能需要登陆, 是否先去登陆',
+          confirmText: '先去登陆',
+          cancelText: '暂不登陆',
+          success(res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+            }
+          }
+        })
+      }
       const user = this.data.comment.user
       this.setData({
         showInputDialog: true,

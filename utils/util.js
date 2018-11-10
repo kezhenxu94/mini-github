@@ -4,7 +4,7 @@ const getCurrentUser = () => wx.getStorageSync('user')
 
 const getCurrentToken = () => (getCurrentUser() || {}).token || wx.getStorageSync('token')
 
-const isSignedIn = () => getCurrentUser().plan != undefined
+const isSignedIn = () => getCurrentToken() && getCurrentUser().plan
 
 const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.com\/repos\/(.*?\/.*?)(\/.*)?$/, '$1')
 
@@ -33,11 +33,30 @@ const parseLinks = (header) => {
     }
     const url = section[0].replace(/<(.*)>/, '$1').trim()
     const name = section[1].replace(/<(.*)>/, '$1').trim()
-    
+
     links[name] = url
   })
 
   return links;
+}
+
+const ensureSignedIn = () => {
+  if (isSignedIn()) return true
+
+  wx.showModal({
+    title: '请先登录',
+    content: '此功能需要登陆, 是否先去登陆',
+    confirmText: '先去登陆',
+    cancelText: '暂不登陆',
+    success(res) {
+      if (res.confirm) {
+        wx.navigateTo({
+          url: '/pages/login/login',
+        })
+      }
+    }
+  })
+  return false
 }
 
 module.exports = {
@@ -47,5 +66,6 @@ module.exports = {
   parseLinks,
   toReadableTime,
   extractRepoName,
-  extractIssueNumber
+  extractIssueNumber,
+  ensureSignedIn
 }

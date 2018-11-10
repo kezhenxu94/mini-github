@@ -1,9 +1,34 @@
+@import '../../style/iconfont.wxss';
 
-.user {
+.header {
   display: flex;
   padding: 40rpx;
   overflow: hidden;
   color: #eee;
+  justify-content: space-between;
+}
+
+.user {
+  display: flex;
+  width: 100%;
+}
+
+.follow-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 300rpx;
+}
+
+.follow-btn button {
+  font-size: 24rpx !important;
+  background-color: transparent;
+  color: #fff !important;
+  border-color: #fff;
+}
+
+.follow-btn .iconfont {
+  font-size: 24rpx !important;
 }
 
 .avatar {

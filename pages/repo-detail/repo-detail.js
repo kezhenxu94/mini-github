@@ -81,7 +81,6 @@ Page({
     }, error => {})
   },
 
-
   loadWatchingStatus: function() {
     const repo = this.data.repo
     github.checkWatching(repo.full_name).then(isWatching => {
@@ -182,6 +181,7 @@ Page({
   },
 
   toggleStar: function() {
+    if (!utils.ensureSignedIn()) return
     const isStarred = this.data.isStarred
     const repoFullName = this.data.repo.full_name
     if (isStarred) {
@@ -213,7 +213,8 @@ Page({
     }
   },
 
-  toggleWatching: function() {
+  toggleWatching: function () {
+    if (!utils.ensureSignedIn()) return
     const isWatching = this.data.isWatching
     const repoFullName = this.data.repo.full_name
     if (isWatching) {
@@ -246,6 +247,7 @@ Page({
   },
 
   forkRepo: function () {
+    if (!utils.ensureSignedIn()) return
     const repoFullName = this.data.repo.full_name
     wx.showModal({
       title: 'Mini GitHub',
