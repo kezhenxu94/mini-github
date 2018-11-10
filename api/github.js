@@ -211,7 +211,7 @@ const getPulls = (filter) => {
       })
       resolve(pulls)
     }).catch(error => {
-      console.log(error);
+      console.log(error)
       errorHandler()
       reject(error)
     })
@@ -249,7 +249,7 @@ const getTrends = (since, lang) => {
       })
       resolve(trends)
     }).catch(error => {
-      console.log(error);
+      console.log(error)
       errorHandler()
       reject(error)
     })

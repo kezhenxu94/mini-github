@@ -37,7 +37,7 @@ const parseLinks = (header) => {
     links[name] = url
   })
 
-  return links;
+  return links
 }
 
 const ensureSignedIn = () => {
