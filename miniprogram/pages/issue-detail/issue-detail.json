@@ -1,0 +1,8 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "feed": "../../components/feedItem/feedItem",
+    "comment": "../../components/comment/comment",
+    "v-button": "../../components/button/index"
+  }
+}

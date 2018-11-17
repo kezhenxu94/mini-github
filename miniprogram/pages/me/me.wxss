@@ -1,0 +1,56 @@
+page {
+  color: #fff;
+  font-size: 30rpx;
+}
+
+.login-prompt {
+  position: absolute;
+  bottom: 40%;
+  width: 100%;
+  text-align: center;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.login-prompt navigator {
+  font-size: 40rpx;
+  color: #fff;
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+button.feedback {
+  display: -webkit-flex;
+  align-items: center;
+  line-height: inherit;
+  background-color: transparent;
+  color: #eee;
+}
+
+.about, .feedback {
+  display: flex;
+  padding: 30rpx 40rpx;
+  overflow: hidden;
+  font-size: 30rpx;
+}
+
+.about image, .feedback image {
+  width: 50rpx;
+  height: 50rpx;
+  min-width: 50rpx;
+  min-height: 50rpx;
+}
+
+.about text, .feedback text {
+  margin-left: 20rpx;
+  display: -webkit-flex;
+  align-items: center;
+  line-height: inherit;
+}
+
+.van-tabs__wrap {
+  position: fixed !important;
+}

@@ -1,0 +1,23 @@
+.issue {
+  padding: 20rpx;
+  color: #fff;
+}
+
+.title {
+  font-size: 30rpx;
+  padding: 0 10rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.desc {
+  font-size: 24rpx;
+  color: #b8b8b8;
+  padding: 0 10rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}

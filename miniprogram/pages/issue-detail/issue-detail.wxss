@@ -1,0 +1,42 @@
+@import '../../style/iconfont.wxss';
+
+.issue-detail {
+  color: #fff;
+}
+
+.title {
+  font-size: 40rpx;
+  padding: 20rpx 30rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.repo {
+  display: flex;
+  font-size: 28rpx;
+  color: #888;
+  padding: 0 0 20rpx 30rpx;
+  align-items: center;
+}
+
+.repo .iconfont {
+  font-size: 28rpx !important;
+  padding-left: 4rpx;
+}
+
+.comment-wrapper:not(:first-of-type) {
+  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+}
+
+.loading {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.more-btn button {
+  background-color: transparent;
+  color: #fff !important;
+  border-color: #fff;
+}

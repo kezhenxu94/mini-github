@@ -1,0 +1,14 @@
+var format = function (issue) {
+  var repoFullNameRegExp = getRegExp('^https://api.github.com/repos/(.*/.*)/(issues|pulls)/\d+$')
+  var url = issue.url || (issue.pull_request || {}).url || ''
+  if (!url) {
+    return ''
+  }
+
+  var repoFullName = url.replace(repoFullNameRegExp, '$1')
+  return repoFullName + '#' + issue.number + ' ' + issue.state + ' at ' + issue.updated_at
+};
+
+module.exports = {
+  format: format
+};

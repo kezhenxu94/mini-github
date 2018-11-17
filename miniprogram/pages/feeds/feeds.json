@@ -1,0 +1,7 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "../../components/loading/index",
+    "feed": "../../components/feedItem/feedItem"
+  }
+}

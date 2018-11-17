@@ -1,0 +1,9 @@
+.empty {
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+}
+
+.van-tabs__wrap {
+  position: fixed !important;
+}

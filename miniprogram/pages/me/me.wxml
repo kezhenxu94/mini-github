@@ -1,0 +1,27 @@
+<view>
+  <tabs active='{{tab}}' bind:change='changeTab'>
+    <tab title='Overview'>
+      <profile user='{{user}}' wx:if='{{user}}'></profile>
+    </tab>
+    <tab title='Repositories'>
+      <repo wx:for='{{repos}}' wx:key='{{index}}' repo='{{item}}'></repo>
+    </tab>
+    <tab title='Starred'>
+      <repo wx:for='{{starred}}' wx:key='{{index}}' repo='{{item}}'></repo>
+    </tab>
+  </tabs>
+  <view class='login-prompt' wx:if='{{!user}}'>
+    <image mode='aspectFit' class='avatar' src='/octicons/octoface.png'></image>
+    <navigator url='/pages/login/login'>
+      还没登陆, 马上去登陆
+    </navigator>
+  </view>
+  <button class='feedback' open-type='feedback' wx:if='{{tab===0}}'>
+    <image mode='aspectFit' src='/md/feedback.png'></image>
+    <text class='text'>Feedback</text>
+  </button>
+  <navigator class='about' url='/pages/about/about' wx:if='{{tab===0}}'>
+    <image mode='aspectFit' src='/md/info.png'></image>
+    <text class='about-text'>About</text>
+  </navigator>
+</view>

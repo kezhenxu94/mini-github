@@ -1,0 +1,39 @@
+/* components/feedItem/feedItem.wxss */
+.feed {
+  display: flex;
+  padding: 20rpx;
+  overflow: hidden;
+  color: #fff;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  min-width: 100rpx;
+  min-height: 100rpx;
+  border-radius: 50%;
+}
+
+.summary, .detail {
+  margin-left: 10rpx;
+  font-size: 30rpx;
+  padding: 0 10rpx;
+  word-break: break-all;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.detail {
+  color: rgb(192, 192, 192);
+  margin-top: 10rpx;
+  font-size: 24rpx;
+}
+
+.time {
+  margin-left: 10rpx;
+  margin-top: 10rpx;
+  font-size: 20rpx;
+  padding: 10rpx;
+  color: #eee
+}

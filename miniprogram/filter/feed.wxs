@@ -1,0 +1,113 @@
+var spacesRegExp = getRegExp('[\r\n\t]')
+
+function truncateText(text) {
+  var maxTextLength = 120
+
+  text = text || ''
+  var truncated = text.slice(0, maxTextLength)
+  if (text.length > maxTextLength) {
+    truncated += '...'
+  }
+  return truncated
+}
+
+var format = function (item) {
+  var type = item.type
+  var repo = item.repo
+  var actor = item.actor
+  var payload = item.payload
+
+  var summary = ''
+  var detail = ''
+  switch (type) {
+    case 'PushEvent': {
+      summary = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
+      var commits = payload.commits
+      detail = commits.length + ' new commit(s)'
+      commits.forEach(function (commit) {
+        detail += '\n'
+        detail += commit.sha.slice(0, 10) + ' ' + truncateText(commit.message.replace(spacesRegExp, ''))
+      })
+      break
+    }
+    case 'IssuesEvent': {
+      var issue = payload.issue || {}
+      summary = actor.display_login + ' ' + payload.action + ' issue ' + repo.name + '#' + issue.number
+      detail = issue.title
+      break
+    }
+    case 'PullRequestEvent': {
+      var pr = payload.pull_request || {}
+      summary = actor.display_login + ' ' + payload.action + ' pull request ' + repo.name + '#' + payload.number
+      detail = pr.title
+      break
+    }
+    case 'IssueCommentEvent': {
+      var issue = payload.issue || {}
+      summary = actor.display_login + ' commented on issue ' + repo.name + '#' + issue.number
+      var comment = payload.comment || {}
+      detail = comment.body
+      detail = detail.replace(spacesRegExp, '')
+      detail = truncateText(detail)
+      break
+    }
+    case 'WatchEvent': {
+      summary = actor.display_login + ' ' + ' starred ' + repo.name
+      break
+    }
+    case 'PublicEvent': {
+      summary = actor.display_login + ' open sourced ' + repo.name
+      break
+    }
+    case 'ForkEvent': {
+      summary = actor.display_login + ' forked ' + payload.forkee.full_name + ' from ' + repo.name
+      break
+    }
+    case 'CreateEvent': {
+      summary = actor.display_login + ' created ' + payload.ref_type + ' ' + (payload.ref || '') + ' at ' + repo.name
+      detail = payload.description
+      break
+    }
+    case 'DeleteEvent': {
+      summary = actor.display_login + ' deleted ' + payload.ref_type + ' ' + payload.ref + ' at ' + repo.name
+      break
+    }
+    case 'MemberEvent': {
+      summary = actor.display_login + ' ' + payload.action + ' permissions of ' + payload.member.login + ' to ' + payload.repository.full_name
+      break
+    }
+    case 'PullRequestReviewCommentEvent': {
+      var pr = payload.pull_request
+      summary = actor.display_login + ' reviewed pull request in ' + repo.name + '#' + pr.number
+      var comment = payload.comment || {}
+      detail = comment.body
+      detail = detail.replace(spacesRegExp, '')
+      detail = truncateText(detail)
+      break
+    }
+    case 'GollumEvent': {
+      var page = payload.pages[0]
+      summary = actor.display_login + ' ' + page.action + ' ' + page.page_name + ' ' + repo.name
+      break
+    }
+    case 'ReleaseEvent': {
+      summary = actor.display_login + ' ' + payload.action + ' ' + payload.release.name + ' ' + repository.full_name
+      break
+    }
+    case 'CommitCommentEvent': {
+      var comment = payload.comment
+      summary = actor.display_login + ' commented on commit ' + repo.name + '@' + comment.commit_id.substring(0, 10)
+      break
+    }
+    default: {
+      summary = JSON.stringify(item)
+      break
+    }
+  }
+  
+  return [summary, detail]
+};
+
+module.exports = {
+  format: format
+};
