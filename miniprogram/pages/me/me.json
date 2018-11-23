@@ -1,6 +1,7 @@
 {
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "loading": "../../components/loading/index",
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
     "profile": "../../../components/profile/profile",

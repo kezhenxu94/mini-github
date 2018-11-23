@@ -5,9 +5,15 @@
     </tab>
     <tab title='Repositories'>
       <repo wx:for='{{repos}}' wx:key='{{index}}' repo='{{item}}'></repo>
+      <view class='loading' wx:if='{{loadingMore}}'>
+        <loading type='spinner' color="#fff" />
+      </view>
     </tab>
     <tab title='Starred'>
       <repo wx:for='{{starred}}' wx:key='{{index}}' repo='{{item}}'></repo>
+      <view class='loading' wx:if='{{loadingMore}}'>
+        <loading type='spinner' color="#fff" />
+      </view>
     </tab>
   </tabs>
 </view>

@@ -5,17 +5,18 @@ Page({
     username: undefined,
     user: {},
     repos: [],
-    starred: []
+    tab: 0,
+    starred: [],
+    starredNext: null,
+    reposNext: null,
+    loadingMore: false,
+    refreshing: false
   },
 
   onLoad: function(options) {
     const username = options.username || 'kezhenxu94'
-    this.setData({
-      username
-    })
-    wx.setNavigationBarTitle({
-      title: username
-    })
+    this.setData({ username })
+    wx.setNavigationBarTitle({ title: username })
     this.loadUserInfo()
   },
 
@@ -27,15 +28,15 @@ Page({
     }
   },
 
+  onReachBottom: function () {
+    this.loadMore()
+  },
+
   loadUserInfo: function() {
-    const {
-      username
-    } = this.data
+    const { username } = this.data
     wx.showNavigationBarLoading({})
     github.users(username).end().then(user => {
-      this.setData({
-        user
-      })
+      this.setData({ user })
       wx.hideNavigationBarLoading({})
     }, error => {
       wx.hideNavigationBarLoading({})
@@ -43,13 +44,12 @@ Page({
   },
 
   loadUserRepos: function() {
-    const {
-      username
-    } = this.data
+    const { username } = this.data
     wx.showNavigationBarLoading({})
-    github.users(username).repos().then(repos => {
+    github.users(username).repos().then(({ repos, next }) => {
       this.setData({
-        repos
+        repos,
+        reposNext: next
       })
       wx.hideNavigationBarLoading({})
     }).catch(error => {
@@ -58,24 +58,73 @@ Page({
   },
 
   loadUserStarredRepos: function() {
-    const {
-      username
-    } = this.data
+    const { username } = this.data
     wx.showNavigationBarLoading({})
-    github.users(username).starred().then(repos => {
-      this.setData({
-        starred: repos
-      })
+    github.users(username).starred().then(({ repos, next }) => {
+      this.setData({ starred: repos, starredNext: next })
       wx.hideNavigationBarLoading({})
     }).catch(error => {
       wx.hideNavigationBarLoading({})
     })
   },
 
-  changeTab: function(event) {
-    const {
-      username
-    } = this.data
+  loadMore: function () {
+    console.log('load more')
+    if (this.data.loadingMore) {
+      console.log('Loading more, returning')
+      return
+    }
+
+    if (this.data.tab === 1 && this.data.reposNext) {
+      this.loadMoreUserRepos()
+    }
+    if (this.data.tab === 2 && this.data.starredNext) {
+      this.loadMoreStarredRepos()
+    }
+  },
+
+  loadMoreUserRepos: function () {
+    console.log('load more user repos')
+    this.setData({ loadingMore: true })
+    this.data.reposNext().then(({ repos, next }) => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        repos: [...this.data.repos, ...repos],
+        reposNext: next,
+        refreshing: false,
+        loadingMore: false
+      })
+    }).catch(error => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        loadingMore: false
+      })
+    })
+  },
+
+  loadMoreStarredRepos: function () {
+    this.setData({ loadingMore: true })
+    this.data.starredNext().then(({ repos, next }) => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        starred: [...this.data.starred, ...repos],
+        starredNext: next,
+        refreshing: false,
+        loadingMore: false
+      })
+    }).catch(error => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        loadingMore: false
+      })
+    })
+  },
+
+  changeTab: function (event) {
+    this.setData({
+      tab: event.detail.index
+    })
+    const { username } = this.data
 
     switch (event.detail.index) {
       case 0:

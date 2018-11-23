@@ -6,7 +6,11 @@ Page({
     user: {},
     repos: [],
     starred: [],
-    tab: 0
+    tab: 0,
+    reposNext: null,
+    starredNext: null,
+    loadingMore: false,
+    refreshing: false
   },
 
   onLoad: function (options) {
@@ -32,13 +36,15 @@ Page({
     }
   },
 
+  onReachBottom: function () {
+    this.loadMore()
+  },
+
   loadUserRepos: function () {
     const username = this.data.user.login
     wx.showNavigationBarLoading({})
-    github.users(username).repos().then(repos => {
-      this.setData({
-        repos
-      })
+    github.users(username).repos().then(({ repos, next }) => {
+      this.setData({ repos, reposNext: next })
       wx.hideNavigationBarLoading({})
     }).catch(error => {
       wx.hideNavigationBarLoading({})
@@ -48,13 +54,61 @@ Page({
   loadUserStarredRepos: function () {
     const username = this.data.user.login
     wx.showNavigationBarLoading({})
-    github.users(username).starred().then(repos => {
-      this.setData({
-        starred: repos
-      })
+    github.users(username).starred().then(({ repos, next }) => {
+      this.setData({ starred: repos, starredNext: next })
       wx.hideNavigationBarLoading({})
     }).catch(error => {
       wx.hideNavigationBarLoading({})
+    })
+  },
+
+  loadMore: function () {
+    if (this.data.loadingMore) {
+      console.log('Loading more, returning')
+      return
+    }
+
+    if (this.data.tab === 1 && this.data.reposNext) {
+      this.loadMoreUserRepos()
+    }
+    if (this.data.tab === 2 && this.data.starredNext) {
+      this.loadMoreStarredRepos()
+    }
+  },
+
+  loadMoreUserRepos: function () {
+    this.setData({ loadingMore: true })
+    this.data.reposNext().then(({ repos, next }) => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        repos: [...this.data.repos, ...repos],
+        reposNext: next,
+        refreshing: false,
+        loadingMore: false
+      })
+    }).catch(error => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        loadingMore: false
+      })
+    })
+  },
+
+  loadMoreStarredRepos: function () {
+    this.setData({ loadingMore: true })
+    this.data.starredNext().then(({ repos, next }) => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        starred: [...this.data.starred, ...repos],
+        starredNext: next,
+        refreshing: false,
+        loadingMore: false
+      })
+    }).catch(error => {
+      wx.stopPullDownRefresh()
+      this.setData({
+        loadingMore: false
+      })
     })
   },
 

@@ -36,22 +36,35 @@ function getEventsByUrl(url) {
   })
 }
 
+function getReposByUrl(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url).then(({ status, headers, data }) => {
+      if (status !== 200) reject(new Error(data))
+      const repos = data.map(it => asRepository(it))
+      const links = util.parseLinks(headers.link || "")
+      const nextUrl = links['rel="next"']
+      if (nextUrl) {
+        resolve({
+          repos,
+          next: () => getReposByUrl(nextUrl)
+        })
+      } else {
+        resolve({ repos, next: null })
+      }
+    }).catch(error => reject(error))
+  })
+}
+
 const users = (username) => {
   return {
-    repos: () => new Promise((resolve, reject) => {
+    repos: () => {
       const url = `https://api.github.com/users/${username}/repos`
-      http.get(url).then(({ status, headers, data }) => {
-        if (status !== 200) reject(new Error(data))
-        resolve(data.map(it => asRepository(it)))
-      }).catch(error => reject(error))
-    }),
-    starred: () => new Promise((resolve, reject) => {
+      return getReposByUrl(url)
+    },
+    starred: () => {
       const url = `https://api.github.com/users/${username}/starred`
-      http.get(url).then(({ status, headers, data }) => {
-        if (status !== 200) reject(new Error(data))
-        resolve(data.map(it => asRepository(it)))
-      }).catch(error => reject(error))
-    }),
+      return getReposByUrl(url)
+    },
     receivedEvents: () => {
       const url = `https://api.github.com/users/${username}/received_events`
       return getEventsByUrl(url)

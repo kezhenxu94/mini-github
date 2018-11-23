@@ -9,3 +9,11 @@ page {
   border: none;
   background-color: transparent;
 }
+
+.van-tabs__wrap {
+  position: fixed !important;
+}
+
+.loading {
+  text-align: center;
+}
