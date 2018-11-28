@@ -30,4 +30,8 @@
     <image mode='aspectFit' src='/md/info.png'></image>
     <text class='about-text'>About</text>
   </navigator>
+  <view class='logout' wx:if='{{user && tab===0}}' catchtap='logout'>
+    <image mode='aspectFit' src='/md/exit.png'></image>
+    <text class='text'>Sign Out</text>
+  </view>
 </view>

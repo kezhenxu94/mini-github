@@ -3,6 +3,7 @@
   <view class='repo' wx:for="{{trends}}" wx:key="{{index}}">
     <repo repo='{{item}}'></repo>
   </view>
+  <ad wx:if='{{trends.length>0}}' unit-id="adunit-dff765999dd73930"></ad>
   <action-sheet show="{{showSelectLanguage}}" actions="{{languages}}" bind:select="changeLang" cancel-text="Cancel" bind:cancel='closeLanguages'/>
   <picker class='fix-top' mode='multiSelector' bindchange="changeFilter" value="{{selectedIndices}}" range="{{selectorValues}}">
     <image class='lang-btn' mode='aspectFit' src='/md/language.png'></image>

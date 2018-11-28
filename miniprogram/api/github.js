@@ -121,7 +121,7 @@ const getIssue = (url) => new Promise((resolve, reject) => {
 
 const trendings = (since, language) => new Promise((resolve, reject) => {
   const url = 'https://github-trending-api.now.sh/repositories'
-  http.get(url, { since, language }).then(({ status, headers, data }) => {
+  http.get(url, { params: { since, language } }).then(({ status, headers, data }) => {
     if (status !== 200) {
       reject(new Error(data))
     }

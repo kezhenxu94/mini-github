@@ -13,6 +13,7 @@
     <view class='security-hint'>
       由于小程序不支持跳转网页, 因此无法使用 OAuth 跳转验证, 用户名和密码只用于校验身份, 不会被上传服务器
     </view>
+    <ad class='ad' unit-id="adunit-f30d4ae08359393c"></ad>
   </view>
   <view class='footer'>GitHub</view>
 </view>

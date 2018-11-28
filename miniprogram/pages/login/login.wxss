@@ -51,6 +51,10 @@ page {
   color: #eee;
 }
 
+.ad {
+  margin-top: 40rpx;
+}
+
 .footer {
   height: 120rpx;
   display: flex;
