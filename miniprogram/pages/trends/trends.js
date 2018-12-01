@@ -11,19 +11,20 @@ const languages = [
   'Swift'
 ]
 
+let scrollTop = 0
+let lastRefresh = moment().unix()
+
 Page({
   data: {
     since: 'daily',
     trends: [],
-    scrollTop: 0,
-    lastRefresh: moment().unix(),
     selectorValues: [timeRange, languages],
     selectedIndices: [0, 0]
   },
 
   onShow: function () {
-    const lastMoment = moment(this.data.lastRefresh)
-    if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
+    const lastMoment = moment(lastRefresh)
+    if (scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
@@ -43,8 +44,8 @@ Page({
       wx.stopPullDownRefresh()
       this.setData({
         trends: data,
-        lastRefresh: moment()
       })
+      lastRefresh = moment()
     }).catch(error => wx.stopPullDownRefresh() )
   },
 
@@ -59,9 +60,7 @@ Page({
   },
 
   onPageScroll (e) {
-    this.setData({
-      scrollTop: e.scrollTop,
-    })
+    scrollTop = e.scrollTop
   },
 
   onSearch: function (e) {

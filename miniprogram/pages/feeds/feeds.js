@@ -2,23 +2,24 @@ const moment = require('../../lib/moment.js')
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 
+let scrollTop = 0
+let refreshing = false
+let lastRefresh = moment().unix()
+let nextFunc = null
+
 Page({
   data: {
     events: [],
-    scrollTop: 0,
-    lastRefresh: moment().unix(),
     isSignedIn: utils.isSignedIn(),
-    next: null,
-    loadingMore: false,
-    refresing: false
+    loadingMore: false
   },
 
   onShow: function() {
     this.setData({
       isSignedIn: utils.isSignedIn()
     })
-    var lastMoment = moment(this.data.lastRefresh)
-    if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
+    var lastMoment = moment(lastRefresh)
+    if (scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
@@ -35,25 +36,21 @@ Page({
   },
 
   onPageScroll(e) {
-    this.setData({
-      scrollTop: e.scrollTop,
-    })
+    scrollTop = e.scrollTop
   },
 
   reloadData: function() {
-    if (this.data.refresing) return
+    if (refreshing) return
+    refreshing = true
     this.setData({
-      isSignedIn: utils.isSignedIn(),
-      refresing: true
+      isSignedIn: utils.isSignedIn()
     })
     const successHandler = ({ events, next }) => {
       wx.stopPullDownRefresh()
-      this.setData({
-        events,
-        next,
-        lastRefresh: moment(),
-        refresing: false
-      })
+      this.setData({ events }),
+      nextFunc = next
+      lastRefresh = moment()
+      refreshing = false
     }
     const errorHandler = (error) => {
       console.log(error)
@@ -73,19 +70,19 @@ Page({
       return
     }
     
-    if (this.data.next) {
+    if (nextFunc) {
       this.setData({
         loadingMore: true
       })
-      this.data.next().then(({ events, next }) => {
+      nextFunc().then(({ events, next }) => {
         wx.stopPullDownRefresh()
         this.setData({
           events: [...this.data.events, ...events],
-          next,
-          lastRefresh: moment(),
-          refresing: false,
           loadingMore: false
         })
+        nextFunc = next
+        lastRefresh = moment()
+        refreshing = false
       }).catch(error => {
         wx.stopPullDownRefresh()
         this.setData({

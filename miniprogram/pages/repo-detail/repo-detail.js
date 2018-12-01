@@ -93,9 +93,8 @@ Page({
   reloadData: function() {
     wx.showNavigationBarLoading({})
     github.getRepo(this.data.url).then(res => {
-      const {
-        repo
-      } = res
+      const { repo } = res
+      repo.owner.avatar_url = repo.owner.avatar_url + '&s=50'
       const showTabs = repo != undefined
       this.setData({
         repo,

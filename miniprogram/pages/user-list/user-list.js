@@ -37,7 +37,10 @@ Page({
     wx.showNavigationBarLoading({})
     github.users(username).followers().then(({ followers }) => {
       this.setData({
-        users: followers
+        users: followers.map(it => {
+          it.avatar_url += '&s=50'
+          return it
+        })
       })
       wx.hideNavigationBarLoading({})
     }).catch(error => wx.hideNavigationBarLoading({}))
@@ -50,7 +53,10 @@ Page({
     wx.showNavigationBarLoading({})
     github.users(username).following().then(({ following }) => {
       this.setData({
-        users: following
+        users: following.map(it => {
+          it.avatar_url += '&s=50'
+          return it
+        })
       })
       wx.hideNavigationBarLoading({})
     }).catch(error => wx.hideNavigationBarLoading({}))

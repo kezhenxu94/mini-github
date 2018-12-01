@@ -47,7 +47,7 @@ const getEventsByUrl = p => new Promise((resolve, reject) => {
       it.actor = {
         login: it.actor.login,
         display_login: it.actor.display_login,
-        avatar_url: it.actor.avatar_url
+        avatar_url: it.actor.avatar_url + 's=50'
       }
       return it
     })
@@ -146,7 +146,6 @@ const getRepo = (url) => new Promise((resolve, reject) => {
       }
     },
   }).then(({ result: { status, data, headers } }) => {
-    console.log(headers)
     const repo = data
     repo.created_at = utils.toReadableTime(repo.created_at)
     repo.updated_at = utils.toReadableTime(repo.updated_at)

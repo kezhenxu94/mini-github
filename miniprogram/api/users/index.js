@@ -12,7 +12,7 @@ function asEvent(object = {}) {
   object.actor = {
     login: object.actor.login,
     display_login: object.actor.display_login,
-    avatar_url: object.actor.avatar_url
+    avatar_url: object.actor.avatar_url + 's=50'
   }
   return object
 }

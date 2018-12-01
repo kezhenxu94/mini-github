@@ -1,7 +1,7 @@
 <view>
   <view class='header' data-item='{{user}}' catchtap=''>
     <view class='user'>
-      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}'></image>
+      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}' lazy-load></image>
       <view>
         <view class='name'>{{user.login || 'Octocat'}}</view>
         <view class='bio'>{{user.bio}}</view>
