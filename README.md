@@ -30,7 +30,7 @@
 
 
 ## TODO
-[x] Star, Watch, Fork
-[x] 评论, 回复评论
-[x] 使用 Token 登陆
-[x] Markdown 渲染优化
+- [x] Star, Watch, Fork
+- [x] 评论, 回复评论
+- [x] 使用 Token 登陆
+- [x] Markdown 渲染优化
