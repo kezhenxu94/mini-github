@@ -1,5 +1,5 @@
 page {
-  background-color: #000;
+  background-color: #24292e;
   color: #eee;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }

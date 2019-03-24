@@ -1,4 +1,5 @@
-<import src="../../lib/wxParse/wxParse.wxml" />
+<import src="../../lib/towxml/entry.wxml"/>
+
 <view class='comment'>
   <view class='header'>
     <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}' catchtap='toUserPage'></image>
@@ -9,7 +10,7 @@
     <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
   </view>
   <view class='body' wx:if='{{loaded}}'>
-    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    <template is="entry" data="{{...article}}"/>
   </view>
   <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
     <textarea placeholder="请输入评论内容" value='{{replyContent}}' bindinput='updateContent'></textarea>

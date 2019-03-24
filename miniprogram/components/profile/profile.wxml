@@ -10,26 +10,26 @@
     <v-button type='primary' size='small' plain round loading='{{loading}}' bind:click='toggleFollow' class='follow-btn' wx:if='{{!isMyself}}'>
       <text class='iconfont icon-plus' wx:if='{{!isFollowing}}'></text>
       <text class='iconfont icon-cross' wx:if='{{isFollowing}}'></text>
-      {{isFollowing ? 'Unfollow' : 'Follow'}}
+      {{isFollowing ? '取消关注' : '关注'}}
     </v-button>
   </view>
   <view class='follow'>
-    <view class='followers' catchtap='toFollowers'>Followers({{user.followers}})</view>
-    <view class='following' catchtap='toFollowing'>Following({{user.following}})</view>
+    <view class='followers' catchtap='toFollowers'>关注我({{user.followers}})</view>
+    <view class='following' catchtap='toFollowing'>我关注({{user.following}})</view>
   </view>
-  <view class='org'>
+  <view class='org' wx:if='{{user.company}}'>
     <image mode='aspectFit' src='/md/group.png' class='org-img'></image>
     <view class='org-text'>{{user.company}}</view>
   </view>
-  <view class='loc'>
+  <view class='loc' wx:if='{{user.location}}'>
     <image mode='aspectFit' src='/md/location.png' class='loc-img'></image>
     <view class='loc-text'>{{user.location}}</view>
   </view>
-  <view class='email' bind:tap="onTapEmail">
+  <view class='email' bind:tap="onTapEmail" wx:if='{{user.email}}'>
     <image mode='aspectFit' src='/md/email.png' class='email-img'></image>
     <view class='email-text'>{{user.email}}</view>
   </view>
-  <view class='blog' bind:tap="onTapBlog">
+  <view class='blog' bind:tap="onTapBlog" wx:if='{{user.blog}}'>
     <image mode='aspectFit' src='/md/link.png' class='blog-img'></image>
     <view class='blog-text'>{{user.blog}}</view>
   </view>

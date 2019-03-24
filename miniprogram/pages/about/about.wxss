@@ -3,13 +3,13 @@ page {
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
-  background-color: #222;
+  background-color: #333;
   font-size: 30rpx;
 }
 
 .item {
   line-height: 2.2em;
-  background: #000;
+  background: #24292e;
   padding: 10rpx 30rpx 20rpx;
   box-sizing: border-box;
 }

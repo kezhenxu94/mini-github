@@ -81,9 +81,14 @@ const user = () => {
     },
     end: () => new Promise((resolve, reject) => {
       const url = 'https://api.github.com/user'
-      http.get(url).then(({ data: user}) => {
-        user.created_at = utils.toReadableTime(user.created_at)
-        resolve(user)
+      http.get(url).then(({ status, data}) => {
+        if (status === 200) {
+          const user = data
+          user.created_at = utils.toReadableTime(user.created_at)
+          resolve(user)
+        } else {
+          reject(new Error(data.message))
+        }
       }).catch(error => {
         reject(error)
       })

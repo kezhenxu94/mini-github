@@ -1,9 +1,9 @@
 <view class='trends'>
-  <search placeholder="Search Users or Repos" background='#000' bind:search="onSearch"></search>
+  <search placeholder="Search Users or Repos" bind:search="onSearch"></search>
   <view class='repo' wx:for="{{trends}}" wx:key="{{index}}">
     <repo repo='{{item}}'></repo>
   </view>
-  <ad wx:if='{{trends.length>0}}' unit-id="adunit-dff765999dd73930"></ad>
+  <!-- <ad wx:if='{{trends.length>0}}' unit-id="adunit-dff765999dd73930"></ad> -->
   <action-sheet show="{{showSelectLanguage}}" actions="{{languages}}" bind:select="changeLang" cancel-text="Cancel" bind:cancel='closeLanguages'/>
   <picker class='fix-top' mode='multiSelector' bindchange="changeFilter" value="{{selectedIndices}}" range="{{selectorValues}}">
     <image class='lang-btn' mode='aspectFit' src='/md/language.png'></image>

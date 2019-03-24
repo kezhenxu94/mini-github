@@ -15,9 +15,9 @@
     "pages/index/index"
   ],
   "window": {
-    "backgroundColor": "#000",
+    "backgroundColor": "#24292e",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000",
+    "navigationBarBackgroundColor": "#24292e",
     "navigationBarTitleText": "Mini GitHub",
     "navigationBarTextStyle": "white",
     "onReachBottomDistance": 100
@@ -26,23 +26,23 @@
     "color": "#eee",
     "selectedColor": "#fff",
     "borderStyle": "white",
-    "backgroundColor": "#000",
+    "backgroundColor": "#24292e",
     "list": [
       {
         "pagePath": "pages/feeds/feeds",
-        "text": "Feeds",
+        "text": "Feed",
         "iconPath": "octicons/mark-github.png",
         "selectedIconPath": "octicons/mark-github.png"
       },
       {
         "pagePath": "pages/issues/issues",
-        "text": "Issues",
+        "text": "Issue",
         "iconPath": "octicons/issue-opened.png",
         "selectedIconPath": "octicons/issue-opened.png"
       },
       {
         "pagePath": "pages/trends/trends",
-        "text": "Trends",
+        "text": "Trending",
         "iconPath": "octicons/flame.png",
         "selectedIconPath": "octicons/flame.png"
       },
