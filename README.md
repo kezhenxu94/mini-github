@@ -12,7 +12,7 @@
 ## 利益相关
 无
 
-## 高清无码截图（无动图）
+## 高清无码截图
 | Feeds | Issues | Trendings | Pulls | Profile |
 | :------: | :------: | :------: | :------: | :------: |
 | ![feeds](https://user-gold-cdn.xitu.io/2018/11/5/166df7715dfe2549?w=1080&h=1920&f=jpeg&s=176105) | ![my-issues](https://user-gold-cdn.xitu.io/2018/11/5/166df7715ede64f8?w=1080&h=1920&f=jpeg&s=147648) | ![trendings](https://user-gold-cdn.xitu.io/2018/11/5/166df7715dd26e72?w=1080&h=1920&f=jpeg&s=185857) | ![my-pulls](https://user-gold-cdn.xitu.io/2018/11/5/166df7716006224c?w=1080&h=1920&f=png&s=242495) | ![user](https://user-gold-cdn.xitu.io/2018/11/5/166df772a8dcf366?w=1080&h=1920&f=png&s=137049) |
