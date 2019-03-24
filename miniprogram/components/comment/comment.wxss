@@ -1,4 +1,5 @@
-@import '../../lib/wxParse/wxParse.wxss';
+@import '../../lib/towxml/style/main.wxss';
+@import '../../lib/towxml/style/theme/dark.wxss';
 
 .comment {
   padding: 20rpx 30rpx;
@@ -47,46 +48,4 @@ modal {
 
 modal textarea {
   width: 100%;
-}
-
-.body {
-  font-size: 28rpx !important;
-  line-height: 48rpx !important;
-}
-
-.wxParse-pre {
-  margin: 8rpx 0 !important;
-  border: 1rpx dashed #eee;
-  border-radius: 8rpx !important;
-}
-
-.wxParse-code .wxParse-inline {
-  border: 1rpx dashed #eee;
-  border-radius: 8rpx !important;
-}
-
-.wxParse-code, .wxParse-wxxxcode-style {
-  background-color: transparent !important;
-  color: #eee !important;
-  line-height: inherit !important;
-  padding: 0 8rpx;
-}
-
-.wxParse-blockquote {
-  background: #000 !important;
-  padding:10rpx !important;
-}
-
-.wxParse-inline:not(:first-of-type) {
-  margin-left: 10rpx !important;
-}
-
-.wxParse-p > .wxParse-img {
-  width: 100% !important;
-}
-
-.wxParse-pre .wxParse-code .wxParse-inline {
-  display: block !important;
-  width: 100% !important;
-  border: none !important;
 }

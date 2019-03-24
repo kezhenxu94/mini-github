@@ -1,6 +1,5 @@
 <view
   class="van-search custom-class {{ showAction || useActionSlot ? 'van-search--show-action' : '' }}"
-  style="background: {{ background }}"
 >
   <view class="van-search__field">
     <van-field

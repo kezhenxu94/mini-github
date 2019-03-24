@@ -1,6 +1,7 @@
 page {
   color: #fff;
 }
+
 .wrapper {
   min-height: 100vh;
   padding: 0 30rpx;
@@ -8,18 +9,26 @@ page {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .logo {
   text-align: center;
   padding: 40rpx 0;
 }
+
 .logo image {
   width: 94rpx;
   height: 94rpx;
 }
+
+.van-tab__pane {
+  margin-top: 24px;
+}
+
 .form view {
-  border-radius: 4rpx;
+  border-radius: 2px;
   background: #fff;
 }
+
 .form input {
   width: 100%;
   padding-left: 30rpx;
@@ -36,30 +45,21 @@ page {
 
 .login {
   width: 100%;
-  margin-top: 20rpx;
+  margin-top: 24px;
   color: #fff;
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  border-radius: 4rpx;
-  background: rgba(0, 0, 0, .5);
+  border-radius: 4px;
+  background-image: linear-gradient(-180deg, #2fcb53, #269f42 90%);
 }
 
 .security-hint {
-  margin-top: 20rpx;
-  font-size: 22rpx;
+  margin: 24px 0;
+  font-size: 11px;
   color: #eee;
 }
 
 .ad {
-  margin-top: 40rpx;
-}
-
-.footer {
-  height: 120rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  color: #fff;
+  margin-top: 24px;
 }

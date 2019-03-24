@@ -1,3 +1,7 @@
 {
-  "navigationBarTitleText": "登陆"
+  "navigationBarTitleText": "登陆",
+  "usingComponents": {
+    "tabs": "../../../components/tabs/index",
+    "tab": "../../../components/tab/index"
+  }
 }

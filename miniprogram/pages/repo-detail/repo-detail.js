@@ -1,7 +1,7 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
-const WxParse = require('../../lib/wxParse/wxParse.js')
 const defaultUrl = 'https://api.github.com/repos/kezhenxu94/mini-github'
+const app = getApp()
 
 Page({
   data: {
@@ -20,6 +20,15 @@ Page({
       url
     })
     this.reloadData()
+
+
+    this['event_bind_tap'] = event => {
+      const target = ((event.target.dataset._el || {})._e || {})
+      if (target.tagName === 'a' && target.attr && target.attr.href) {
+        this.urlClicked(target.attr.href)
+      }
+    };
+
   },
 
   onShareAppMessage: function(options) {
@@ -36,12 +45,35 @@ Page({
 
     return new Promise((resolve, reject) => {
       github.getFile(readMeUrl).then(readMeContent => {
-        WxParse.wxParse('article', 'md', readMeContent, this)
+        let parsed = app.towxml.toJson(
+          readMeContent,
+          'markdown'
+        )
+        parsed = app.towxml.initData(parsed, {
+          base: `https://github.com/${this.data.repo.full_name}/raw/master/`,
+          app: this
+        })
+        parsed.theme = 'dark'
+
+        this.setData({
+          article: parsed
+        })
         resolve({})
       }).catch(error => {
         readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
         github.getFile(readMeUrl).then(readMeContent => {
-          WxParse.wxParse('article', 'md', readMeContent, this)
+          let parsed = app.towxml.toJson(
+            readMeContent,
+            'markdown'
+          )
+          parsed = app.towxml.initData(parsed, {
+            base: `https://github.com/${this.data.repo.full_name}/raw/master/`,
+            app: this
+          })
+          parsed.theme = 'dark'
+          this.setData({
+            article: parsed
+          })
           resolve({})
         }).catch(error => reject(error))
       })
@@ -129,9 +161,7 @@ Page({
     }
   },
 
-  wxParseTagATap: function(event) {
-    const url = event.currentTarget.dataset.src
-    console.log(url)
+  urlClicked: function(url) {
     const repoRegExp = /^https:\/\/github.com\/(.*?\/.*?)(\/.*)?$/
     if (repoRegExp.test(url)) {
       const repoFullName = url.replace(repoRegExp, '$1')

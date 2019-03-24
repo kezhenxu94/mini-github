@@ -1,3 +1,5 @@
+const Towxml = require('lib/towxml/main')
+
 App({
   onLaunch: function () {
     wx.cloud.init({
@@ -8,5 +10,6 @@ App({
   },
   globalData: {
     userInfo: null
-  }
+  },
+  towxml: new Towxml()
 })

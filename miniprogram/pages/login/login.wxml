@@ -1,19 +1,32 @@
 <view class='wrapper'>
-  <view class='top'>
+  <view class='main'>
     <view class='logo'>
       <image src='/octicons/mark-github.png'></image>
     </view>
-    <form class='form' bindsubmit='commit'>
-      <view>
-        <input name='username' placeholder='输入用户名' focus></input>
-        <input name='password' placeholder='输入密码' password='true' value='{{password}}'></input>
-      </view>
-      <button class='login' formType='submit'>登陆</button>
-    </form>
-    <view class='security-hint'>
-      由于小程序不支持跳转网页, 因此无法使用 OAuth 跳转验证, 用户名和密码只用于校验身份, 不会被上传服务器
-    </view>
-    <ad class='ad' unit-id="adunit-f30d4ae08359393c"></ad>
+    <tabs>
+      <tab title='账号密码'>
+        <form class='form' bindsubmit='commitAccount'>
+          <view>
+            <input name='username' placeholder='输入账号' focus></input>
+            <input name='password' placeholder='输入密码' password='true' value='{{password}}'></input>
+          </view>
+          <button class='login' formType='submit'>登陆</button>
+        </form>
+      </tab>
+      <tab title='Token'>
+        <form class='form' bindsubmit='commitToken'>
+          <view>
+            <input name='token' placeholder='输入 Token' focus></input>
+          </view>
+          <button class='login' formType='submit'>登陆</button>
+        </form>
+      </tab>
+    </tabs>
+
+    <text class='security-hint'>
+      由于小程序不支持跳转网页, 因此无法使用 OAuth 跳转验证, 用户名和密码只用于校验身份, 不会被上传服务器, 您也可以使用 Token 进行登陆.<br/>
+      当您开启了双重认证(Two-Factor Authentication)时, 您必须使用 Token 认证.
+    </text>
+    <!-- <ad class='ad' unit-id="adunit-f30d4ae08359393c"></ad> -->
   </view>
-  <view class='footer'>GitHub</view>
 </view>

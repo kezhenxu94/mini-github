@@ -1,4 +1,5 @@
-<import src="../../lib/wxParse/wxParse.wxml"/>
+<import src="../../lib/towxml/entry.wxml"/>
+
 <view class='repo'>
   <view class='header'>
     <image mode='aspectFit' class='avatar' src='{{repo.owner.avatar_url}}' catchtap='toUserDetail'></image>
@@ -24,7 +25,7 @@
   <tabs bind:change='changeTab' wx:if='{{showTabs}}'>
     <tab title='Readme'>
       <view class='readme'>
-        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        <template is="entry" data="{{...article}}"/>
       </view>
     </tab>
     <tab title='Issues'>

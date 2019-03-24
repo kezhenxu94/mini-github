@@ -1,15 +1,15 @@
 <view>
   <tabs active='{{tab}}' bind:change='changeTab'>
-    <tab title='Overview'>
+    <tab title='个人中心'>
       <profile user='{{user}}' wx:if='{{user}}'></profile>
     </tab>
-    <tab title='Repositories'>
+    <tab title='代码仓库'>
       <repo wx:for='{{repos}}' wx:key='{{index}}' repo='{{item}}'></repo>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
       </view>
     </tab>
-    <tab title='Starred'>
+    <tab title='我的收藏'>
       <repo wx:for='{{starred}}' wx:key='{{index}}' repo='{{item}}'></repo>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
@@ -24,14 +24,14 @@
   </view>
   <button class='feedback' open-type='feedback' wx:if='{{tab===0}}'>
     <image mode='aspectFit' src='/md/feedback.png'></image>
-    <text class='text'>Feedback</text>
+    <text class='text'>建议反馈</text>
   </button>
   <navigator class='about' url='/pages/about/about' wx:if='{{tab===0}}'>
     <image mode='aspectFit' src='/md/info.png'></image>
-    <text class='about-text'>About</text>
+    <text class='about-text'>关于作者</text>
   </navigator>
   <view class='logout' wx:if='{{user && tab===0}}' catchtap='logout'>
     <image mode='aspectFit' src='/md/exit.png'></image>
-    <text class='text'>Sign Out</text>
+    <text class='text'>退出登录</text>
   </view>
 </view>

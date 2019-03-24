@@ -1,6 +1,6 @@
-const WxParse = require('../../lib/wxParse/wxParse.js')
 const utils = require('../../utils/util.js')
 const github = require('../../api/github.js')
+const app = getApp()
 
 Component({
   properties: {
@@ -9,8 +9,16 @@ Component({
       value: {},
       observer: function(comment) {
         if (!comment || !comment.body) return
-        WxParse.wxParse('article', 'md', comment.body, this)
+        let parsed = app.towxml.toJson(
+          comment.body,
+          'markdown'
+        )
+        parsed = app.towxml.initData(parsed, {
+          app: this
+        })
+        parsed.theme = 'dark'
         this.setData({
+          article: parsed,
           loaded: true
         })
       }
@@ -18,6 +26,7 @@ Component({
   },
 
   data: {
+    article: {},
     loaded: false,
     showInputDialog: false,
     replyContent: ''
@@ -27,13 +36,6 @@ Component({
     hideInputDialog: function () {
       this.setData({
         showInputDialog: false
-      })
-    },
-
-    wxParseTagATap: function(event) {
-      const url = event.currentTarget.dataset.src
-      wx.setClipboardData({
-        data: url,
       })
     },
 
