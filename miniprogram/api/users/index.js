@@ -1,6 +1,8 @@
 const http = require('../http.js')
 const util = require('../../utils/util.js')
 
+const token = () => utils.getCurrentToken() || ''
+
 function asRepository(object = {}) {
   object.created_at = util.toReadableTime(object.created_at)
   return object

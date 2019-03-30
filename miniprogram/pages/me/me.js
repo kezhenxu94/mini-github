@@ -44,7 +44,7 @@ Page({
   loadUserRepos: function () {
     const username = this.data.user.login
     wx.showNavigationBarLoading({})
-    github.users(username).repos().then(({ repos, next }) => {
+    github.user().repos().then(({ repos, next }) => {
       this.setData({ repos })
       reposNext = next
       wx.hideNavigationBarLoading({})

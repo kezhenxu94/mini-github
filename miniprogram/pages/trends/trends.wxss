@@ -1,36 +1,24 @@
 .repo:first-of-type {
-  padding-top: 46px;
+  margin-top: 50px;
 }
 
 .repo {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
-.fix-top {
-  position:fixed;
-  bottom: 300rpx;
-  right: 60rpx;
-  height: 60rpx;
-  display: flex;
-  background-color: transparent;
-}
-
-.fix-top .lang-btn {
-  width: 60rpx;
-  height: 60rpx;
-  border-radius: 50%;
-}
-
-button {
-  border-radius: 0;
-  color: #eee;
+.lang-picker {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  height: 24px;
 }
 
 .van-search {
   width: 100%;
+  top: 0;
   position: fixed;
   padding: 20rpx !important;
-  background: #24292e;
+  background-color: #24292e;
 }
 
 .van-search__field .field-index--van-field {

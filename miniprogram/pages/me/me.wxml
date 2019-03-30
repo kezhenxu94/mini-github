@@ -4,13 +4,17 @@
       <profile user='{{user}}' wx:if='{{user}}'></profile>
     </tab>
     <tab title='代码仓库'>
-      <repo wx:for='{{repos}}' wx:key='{{index}}' repo='{{item}}'></repo>
+      <view wx:for='{{repos}}' wx:key='{{index}}' class='repo'>
+        <repo repo='{{item}}'></repo>
+      </view>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
       </view>
     </tab>
     <tab title='我的收藏'>
-      <repo wx:for='{{starred}}' wx:key='{{index}}' repo='{{item}}'></repo>
+      <view wx:for='{{starred}}' wx:key='{{index}}' class='repo'>
+        <repo repo='{{item}}'></repo>
+      </view>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
       </view>

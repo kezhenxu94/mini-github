@@ -3,6 +3,30 @@ const utils = require('../../utils/util.js')
 
 const token = () => utils.getCurrentToken() || ''
 
+function asRepository(object = {}) {
+  object.created_at = utils.toReadableTime(object.created_at)
+  return object
+}
+
+function getReposByUrl(url) {
+  return new Promise((resolve, reject) => {
+    http.get(url).then(({ status, headers, data }) => {
+      if (status !== 200) reject(new Error(data))
+      const repos = data.map(it => asRepository(it))
+      const links = utils.parseLinks(headers.link || "")
+      const nextUrl = links['rel="next"']
+      if (nextUrl) {
+        resolve({
+          repos,
+          next: () => getReposByUrl(nextUrl)
+        })
+      } else {
+        resolve({ repos, next: null })
+      }
+    }).catch(error => reject(error))
+  })
+}
+
 const user = () => {
   return {
     issues: ({ filter = 'all' }) => new Promise((resolve, reject) => {
@@ -78,6 +102,10 @@ const user = () => {
         put: () => $('PUT'),
         delete: () => $('DELETE')
       }
+    },
+    repos: () => {
+      const url = 'https://api.github.com/user/repos'
+      return getReposByUrl(url)
     },
     end: () => new Promise((resolve, reject) => {
       const url = 'https://api.github.com/user'

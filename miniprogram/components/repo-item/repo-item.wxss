@@ -48,10 +48,18 @@
   margin-left: 5rpx;
 }
 
-.fork-mark {
-  background-color: #fff;
-  color: #000;
+.fork-mark, .private-mark {
   padding: 0 10rpx;
   border-radius: 10rpx;
   margin-right: 10rpx;
+}
+
+.fork-mark {
+  background-color: #fff;
+  color: #000;
+}
+
+.private-mark {
+  background-color: #f00;
+  color: #fff;
 }

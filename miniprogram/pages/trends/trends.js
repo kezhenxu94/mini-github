@@ -1,25 +1,39 @@
 const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
 
-const timeRange = ['Daily', 'Weekly', 'Monthly']
-const languages = [
-  'All',
-  'c', 'css',
-  'Java', 'JavaScript',
-  'Kotlin',
-  'Python',
-  'Swift'
+const timeRange = [
+  {label: '今日', value: 'Daily'},
+  {label: '本周', value: 'Weekly'},
+  {label: '本月', value: 'Monthly'}
 ]
+const languages = [
+  { label: '所有语言', value: 'All' },
+  ...[
+  'C', 'CSS', 'C#', 'C++',
+  'Dart', 'Dockerfile',
+  'Erlang',
+  'Gradle', 'Go',
+  'HTML', 'Haskell',
+  'Java', 'JavaScript', 'JSON', 'Julia',
+  'Kotlin',
+  'MATLAB',
+  'Python', 'PHP',
+  'R', 'Ruby', 'Rust',
+  'Shell', 'SQL', 'Swift',
+  'TeX',
+  'Vue'
+].map(it => ({label: it, value: it}))]
 
 let scrollTop = 0
 let lastRefresh = moment().unix()
 
 Page({
   data: {
-    since: 'daily',
-    trends: [],
+    since: timeRange[0],
+    lang: languages[0],
     selectorValues: [timeRange, languages],
-    selectedIndices: [0, 0]
+    selectedIndices: [0, 0],
+    trends: []
   },
 
   onShow: function () {
@@ -38,9 +52,10 @@ Page({
 
   reloadData: function () {
     const [timeIndex, langIndex] = this.data.selectedIndices
-    const lang = languages[langIndex] || 'all'
-    const time = timeRange[timeIndex] || 'daily'
-    github.trendings(time.toLowerCase(), lang.toLowerCase()).then(data => {
+    const lang = languages[langIndex] || languages[0]
+    const since = timeRange[timeIndex] || timeRange[0]
+    this.setData({lang, since})
+    github.trendings(since.value.toLowerCase(), lang.value.toLowerCase()).then(data => {
       wx.stopPullDownRefresh()
       this.setData({
         trends: data,
@@ -51,7 +66,6 @@ Page({
 
   changeFilter: function (event) {
     const selectedIndices = event.detail.value
-    console.log(selectedIndices)
     this.setData({ selectedIndices })
     wx.pageScrollTo({
       scrollTop: 0
@@ -66,7 +80,7 @@ Page({
   onSearch: function (e) {
     const q = e.detail
     wx.navigateTo({
-      url: `/pages/search/search?q=${q}`,
+      url: `/pages/search/search?q=${q}`
     })
   }
 })
