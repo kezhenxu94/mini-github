@@ -34,3 +34,4 @@
 - [x] 评论, 回复评论
 - [x] 使用 Token 登陆
 - [x] Markdown 渲染优化
+- [ ] 显示 Issue, PR 的 Label
