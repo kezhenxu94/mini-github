@@ -22,7 +22,7 @@
       <text>{{repo.forks_count}}</text>
     </view>
   </view>
-  <tabs bind:change='changeTab' wx:if='{{showTabs}}'>
+  <tabs bind:change='changeTab' wx:if='{{showTabs}}' sticky animated>
     <tab title='Readme'>
       <view class='readme'>
         <template is="entry" data="{{...article}}"/>

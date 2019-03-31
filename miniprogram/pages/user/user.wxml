@@ -1,5 +1,5 @@
 <view>
-  <tabs bind:change='changeTab'>
+  <tabs bind:change='changeTab' sticky swipeable animated>
     <tab title='Overview'>
       <profile user='{{user}}'></profile>
     </tab>

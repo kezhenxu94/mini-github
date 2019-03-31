@@ -51,10 +51,6 @@ button.feedback {
   line-height: inherit;
 }
 
-.van-tabs__wrap {
-  position: fixed !important;
-}
-
 .loading {
   text-align: center;
 }

@@ -1,5 +1,5 @@
 <view>
-  <tabs active='{{tab}}' bind:change='changeTab'>
+  <tabs active='{{tab}}' bind:change='changeTab' sticky swipeable animated>
     <tab title='Overview'>
       <profile user='{{user}}' wx:if='{{user}}'></profile>
     </tab>

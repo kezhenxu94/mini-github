@@ -6,10 +6,13 @@
 }
 
 .van-tabs__wrap {
-  top: 0;
-  left: 0;
-  right: 0;
   position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: -webkit-flex;
+  display: flex;
+  background-color: #24292e;
 }
 
 .van-tabs__wrap--page-top {
@@ -22,22 +25,21 @@
 }
 
 .van-tabs__wrap--scrollable .van-tab {
-  -webkit-flex: 0 0 25%;
-  flex: 0 0 25%;
+  -webkit-flex: 0 0 22%;
+  flex: 0 0 22%;
 }
 
 .van-tabs__scroll--card {
-  border: 1px solid #fff;
+  border: 1px solid #f44;
   border-radius: 2px;
 }
 
 .van-tabs__nav {
+  position: relative;
   display: -webkit-flex;
   display: flex;
   -webkit-user-select: none;
   user-select: none;
-  position: relative;
-  background-color: #fff;
 }
 
 .van-tabs__nav--line {
@@ -45,13 +47,13 @@
 }
 
 .van-tabs__nav--card {
-  height: 60rpx;
+  height: 30px;
 }
 
 .van-tabs__nav--card .van-tab {
-  color: #fff;
-  border-right: 1px solid #fff;
-  line-height: 56rpx;
+  line-height: 30px;
+  color: #f44;
+  border-right: 1px solid #f44;
 }
 
 .van-tabs__nav--card .van-tab:last-child {
@@ -60,59 +62,80 @@
 
 .van-tabs__nav--card .van-tab.van-tab--active {
   color: #fff;
-  background-color: #fff;
+  background-color: #f44;
 }
 
 .van-tabs__line {
-  z-index: 1;
-  left: 0;
-  bottom: 0;
-  height: 4rpx;
   position: absolute;
-  background-color: #fff;
-  border-radius: 4rpx 0 4rpx 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  height: 3px;
+  background-color: #f44;
+  border-radius: 3px;
 }
 
 .van-tabs--line {
-  padding-top: 88rpx;
+  padding-top: 44px;
 }
 
 .van-tabs--line .van-tabs__wrap {
-  height: 88rpx;
+  height: 44px;
 }
 
 .van-tabs--card {
-  padding-top: 60rpx;
-  margin: 0 30rpx;
+  padding-top: 30px;
+  margin: 0 15px;
 }
 
 .van-tabs--card .van-tabs__wrap {
-  height: 60rpx;
+  height: 30px;
+}
+
+.van-tabs__content {
+  overflow: hidden;
+}
+
+.van-tab, .van-tabs__track {
+  position: relative;
 }
 
 .van-tab {
+  min-width: 0;
+  padding: 0 5px;
+  font-size: 14px;
+  line-height: 44px;
+  color: #7d7e80;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
   -webkit-flex: 1;
   flex: 1;
-  cursor: pointer;
-  padding: 0 10rpx;
-  font-size: 28rpx;
-  position: relative;
-  color: #b8b8b8;
-  line-height: 88rpx;
-  text-align: center;
-  box-sizing: border-box;
-  background-color: #24292e;
-  min-width: 0;
-}
-
-.van-tab span {
-  display: block;
 }
 
 .van-tab--active {
-  color: #fff;
+  font-weight: 500;
+  color: #f44;
 }
 
 .van-tab--disabled {
   color: #c9c9c9;
+}
+
+.van-tab__title--dot:after {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  vertical-align: middle;
+  background-color: #f44;
+  border-radius: 100%;
+  content: "";
+}
+
+.van-tab__title__info {
+  position: relative !important;
+  top: -1px !important;
+  display: inline-block;
+  -webkit-transform: translateX(0) !important;
+  transform: translateX(0) !important;
 }
