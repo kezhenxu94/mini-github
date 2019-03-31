@@ -1,16 +1,16 @@
 .repo:first-of-type {
-  margin-top: 50px;
+  margin-top: 100rpx;
 }
 
 .repo {
-  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
+  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
 }
 
 .lang-picker {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
-  height: 24px;
+  bottom: 48rpx;
+  right: 48rpx;
+  height: 48rpx;
 }
 
 .van-search {

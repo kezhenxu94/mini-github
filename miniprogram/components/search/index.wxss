@@ -3,7 +3,7 @@
 .van-search {
   display: -webkit-flex;
   display: flex;
-  padding: 7px 15px;
+  padding: 14rpx 30rpx;
   -webkit-align-items: center;
   align-items: center;
   box-sizing: border-box;
@@ -12,7 +12,7 @@
 .van-search__field {
   -webkit-flex: 1;
   flex: 1;
-  border-radius: 4px;
+  border-radius: 8rpx;
 }
 
 .van-search__field__left-icon {
@@ -31,9 +31,9 @@
 }
 
 .van-search__action {
-  padding: 0 10px;
-  font-size: 14px;
-  line-height: 30px;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  line-height: 60rpx;
   color: #666;
 }
 

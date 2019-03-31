@@ -43,6 +43,7 @@ const repos = (repo) => {
         if (status !== 200) reject(new Error(data))
         const pulls = data.map(it => {
           it.created_at = util.toReadableTime(it.created_at)
+          it.updated_at = util.toReadableTime(it.updated_at)
           return it
         })
         resolve(pulls)

@@ -1,5 +1,10 @@
 <wxs module='filters' src='../../filter/issue.wxs'></wxs>
 <view class='issue' catchtap='toIssueDetail'>
-  <view class='title'>{{issue.title}}</view>
+  <view class='title'>
+    {{issue.title}}
+  </view>
   <view class='desc'>{{filters.format(issue)}}</view>
+  <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}'>
+    {{item.name}}
+  </tag>
 </view>

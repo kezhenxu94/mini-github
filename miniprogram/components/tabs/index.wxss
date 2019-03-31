@@ -45,13 +45,13 @@
 }
 
 .van-tabs__nav--card {
-  height: 30px;
+  height: 60rpx;
 }
 
 .van-tabs__nav--card .van-tab {
   color: #fff;
   border-right: 1px solid #fff;
-  line-height: 28px;
+  line-height: 56rpx;
 }
 
 .van-tabs__nav--card .van-tab:last-child {
@@ -67,38 +67,38 @@
   z-index: 1;
   left: 0;
   bottom: 0;
-  height: 2px;
+  height: 4rpx;
   position: absolute;
   background-color: #fff;
-  border-radius: 2px 0 2px 0;
+  border-radius: 4rpx 0 4rpx 0;
 }
 
 .van-tabs--line {
-  padding-top: 44px;
+  padding-top: 88rpx;
 }
 
 .van-tabs--line .van-tabs__wrap {
-  height: 44px;
+  height: 88rpx;
 }
 
 .van-tabs--card {
-  padding-top: 30px;
-  margin: 0 15px;
+  padding-top: 60rpx;
+  margin: 0 30rpx;
 }
 
 .van-tabs--card .van-tabs__wrap {
-  height: 30px;
+  height: 60rpx;
 }
 
 .van-tab {
   -webkit-flex: 1;
   flex: 1;
   cursor: pointer;
-  padding: 0 5px;
-  font-size: 14px;
+  padding: 0 10rpx;
+  font-size: 28rpx;
   position: relative;
   color: #b8b8b8;
-  line-height: 44px;
+  line-height: 88rpx;
   text-align: center;
   box-sizing: border-box;
   background-color: #24292e;

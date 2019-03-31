@@ -2,4 +2,7 @@
 <view class='pull' catchtap='toPullDetail'>
   <view class='title'>{{pull.title}}</view>
   <view class='desc'>{{filters.format(pull)}}</view>
+  <tag wx:for='{{pull.labels}}' wx:key="index" color='#{{item.color}}'>
+    {{item.name}}
+  </tag>
 </view>

@@ -48,6 +48,7 @@ Page({
   reloadData: function () {
     const filter = this.data.filter
     github.user().issues({ filter }).then(issues => {
+      console.info(issues)
       wx.stopPullDownRefresh()
       this.setData({
         issues,

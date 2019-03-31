@@ -404,7 +404,7 @@
 }
 
 /**内置元素**/
-image,video {
+video {
     width: 100%;
     margin: 10rpx auto;
 }

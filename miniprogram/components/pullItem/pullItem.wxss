@@ -1,11 +1,12 @@
 .pull {
-  padding: 20rpx;
+  padding: 24rpx;
   color: #fff;
+  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
 .title {
   font-size: 30rpx;
-  padding: 0 10rpx;
+  padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -15,9 +16,13 @@
 .desc {
   font-size: 24rpx;
   color: #b8b8b8;
-  padding: 0 10rpx;
+  padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+}
+
+tag:not(first-of-type) {
+  margin-left: 16rpx;
 }

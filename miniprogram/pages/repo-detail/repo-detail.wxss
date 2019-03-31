@@ -57,5 +57,5 @@
 }
 
 .readme {
-  margin: 24px;
+  margin: 48rpx;
 }
