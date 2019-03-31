@@ -3,9 +3,9 @@
     <block wx:for='{{filters}}' wx:key='{{index}}'>
       <tab title='{{item.label}}'>
         <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
-          登陆以查看{{item.label}}的 Pull Request
+          Sign In to See {{item.label}} Pull Requests
         </navigator>
-        <view class='empty' wx:elif='{{pulls.length===0}}'>没有{{item.label}}的 Pull Request</view>
+        <view class='empty' wx:elif='{{pulls.length===0}}'>No {{item.label}} Pull Request</view>
         <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
       </tab>
     </block>

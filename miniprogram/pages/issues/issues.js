@@ -3,11 +3,11 @@ const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
 
 const filters = [
-  { value: 'created', label: '我创建' },
-  { value: 'assigned', label: '被分配' },
-  { value: 'mentioned', label: '提到我' },
-  { value: 'subscribed', label: '我参与' },
-  { value: 'all', label: '所有' },
+  { value: 'created', label: 'Created' },
+  { value: 'assigned', label: 'Assigned' },
+  { value: 'mentioned', label: 'Mentioned' },
+  { value: 'subscribed', label: 'Participated' },
+  { value: 'all', label: 'All' },
 ]
 
 Page({

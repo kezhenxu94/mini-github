@@ -404,14 +404,13 @@
 }
 
 /**内置元素**/
-image,
-video {
+image,video {
     width: 100%;
-    /* margin: 10rpx auto; */
+    margin: 10rpx auto;
 }
 
 image {
-    /* height: auto; */
+    height: auto;
 }
 
 video {

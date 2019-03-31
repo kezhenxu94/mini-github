@@ -11,7 +11,7 @@
           <image src='/octicons/mark-github.png'></image>
         </view>
         <view class='text'>
-          <view>欢迎 Star</view>
+          <view>欢迎 Star 和参与贡献</view>
           <view>{{projectAddress}}</view>
         </view>
       </view>

@@ -56,8 +56,7 @@
 
 .follow {
   display: flex;
-  padding: 20rpx;
-  margin: 40rpx 0;
+  padding: 12px;
 }
 
 .followers, .following {

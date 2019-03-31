@@ -1,7 +1,8 @@
 {
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "repo": "../../components/repo-item/repo-item",
+    "trend": "../../components/trend-item/trend-item",
     "search": "../../components/search/index"
-  }
+  },
+  "navigationBarTitleText": "Trendings"
 }

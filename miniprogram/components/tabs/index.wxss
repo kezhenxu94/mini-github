@@ -22,8 +22,8 @@
 }
 
 .van-tabs__wrap--scrollable .van-tab {
-  -webkit-flex: 0 0 22%;
-  flex: 0 0 22%;
+  -webkit-flex: 0 0 25%;
+  flex: 0 0 25%;
 }
 
 .van-tabs__scroll--card {

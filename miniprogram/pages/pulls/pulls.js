@@ -3,9 +3,9 @@ const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
 
 const filters = [
-  { value: 'open', label: '我创建' },
-  { value: 'closed', label: '已关闭' },
-  { value: 'merged', label: '已合并' },
+  { value: 'open', label: 'Created' },
+  { value: 'closed', label: 'Closed' },
+  { value: 'merged', label: 'Merged' },
 ]
 
 Page({

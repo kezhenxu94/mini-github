@@ -2,13 +2,12 @@ const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
 
 const timeRange = [
-  {label: '今日', value: 'Daily'},
-  {label: '本周', value: 'Weekly'},
-  {label: '本月', value: 'Monthly'}
+  { label: 'Daily', value: 'Daily'},
+  { label: 'Weekly', value: 'Weekly'},
+  { label: 'Monthly', value: 'Monthly'}
 ]
 const languages = [
-  { label: '所有语言', value: 'All' },
-  ...[
+  'All',
   'C', 'CSS', 'C#', 'C++',
   'Dart', 'Dockerfile',
   'Erlang',
@@ -22,7 +21,7 @@ const languages = [
   'Shell', 'SQL', 'Swift',
   'TeX',
   'Vue'
-].map(it => ({label: it, value: it}))]
+].map(it => ({label: it, value: it}))
 
 let scrollTop = 0
 let lastRefresh = moment().unix()

@@ -42,7 +42,7 @@
       },
       {
         "pagePath": "pages/trends/trends",
-        "text": "Trending",
+        "text": "Trend",
         "iconPath": "octicons/flame.png",
         "selectedIconPath": "octicons/flame.png"
       },

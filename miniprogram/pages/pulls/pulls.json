@@ -4,5 +4,6 @@
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
     "pull": "../../../components/pullItem/pullItem"
-  }
+  },
+  "navigationBarTitleText": "Pull Requests"
 }

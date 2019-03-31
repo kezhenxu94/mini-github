@@ -32,8 +32,8 @@ let wxml = [
     // 'switch',
     // // 'audio',
     // 'contact-button'
-],
-binds = [
+  ],
+  binds = [
     // 建议保留的事件
     'bind:touchstart',
     'bind:touchmove',
@@ -47,18 +47,18 @@ binds = [
     // 'bind:animationiteration',
     // 'bind:animationend',
     // 'bind:touchforcechange'
-],
-attrs = [
+  ],
+  attrs = [
     'class',
     'width',
     'height',
     'data',
     'id',
     'style'
-];
+  ];
 
 module.exports = {
-    wxml:wxml,
-    binds:binds,
-    attrs:[...binds,...attrs]
+  wxml: wxml,
+  binds: binds,
+  attrs: [...binds, ...attrs]
 };

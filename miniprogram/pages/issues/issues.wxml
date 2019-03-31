@@ -3,9 +3,9 @@
     <block wx:for='{{filters}}' wx:key='{{index}}'>
       <tab title='{{item.label}}'>
         <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
-          登陆以查看{{item.label}}的 Issue
+          Sign In to See {{item.label}} Issues
         </navigator>
-        <view class='empty' wx:elif='{{issues.length===0}}'>没有{{item.label}}的 Issue</view>
+        <view class='empty' wx:elif='{{issues.length===0}}'>No {{item.label}} Issue</view>
         <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
       </tab>
     </block>

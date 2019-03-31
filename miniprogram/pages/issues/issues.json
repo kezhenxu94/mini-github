@@ -4,5 +4,6 @@
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
     "issue": "../../../components/issueItem/issueItem"
-  }
+  },
+  "navigationBarTitleText": "Issues"
 }

@@ -1,0 +1,22 @@
+<view class='repo' catchtap='toRepoDetail'>
+  <text class='name'>{{repo.full_name}}</text>
+  <text class='desc'>{{repo.description}}</text>
+  <view class='bottom'>
+    <view>
+      <image mode='aspectFit' src='/octicons/flame.png'></image>
+      <text>{{repo.currentPeriodStars || 0}}</text>
+    </view>
+    <view>
+      <image mode='aspectFit' src='/md/unstar.png'></image>
+      <text>{{repo.stargazers_count}}</text>
+    </view>
+    <view>
+      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <text>{{repo.forks}}</text>
+    </view>
+    <view>
+      <image mode='aspectFit' src='/md/language.png'></image>
+      <text>{{repo.language || 'Unknown'}}</text>
+    </view>
+  </view>
+</view>
