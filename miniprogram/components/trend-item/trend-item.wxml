@@ -19,4 +19,14 @@
       <text>{{repo.language || 'Unknown'}}</text>
     </view>
   </view>
+  <view class='built-by'>
+    <image wx:for='{{repo.builtBy}}'
+           wx:key='{{index}}'
+           mode='aspectFit'
+           src='{{item.avatar}}'
+           class='avatar'
+           data-username='{{item.username}}'
+           catchtap='toUserPage'
+           hover-stop-propagation></image>
+  </view>
 </view>

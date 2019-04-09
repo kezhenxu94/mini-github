@@ -26,12 +26,15 @@ const languages = [
 let scrollTop = 0
 let lastRefresh = moment().unix()
 
+const sinceCacheKey = 'Trending:Since'
+const langCacheKey = 'Trending:Lang'
+
 Page({
   data: {
     since: timeRange[0],
     lang: languages[0],
     selectorValues: [timeRange, languages],
-    selectedIndices: [0, 0],
+    selectedIndices: [wx.getStorageSync(sinceCacheKey) || 0, wx.getStorageSync(langCacheKey) || 0],
     trends: []
   },
 
@@ -53,7 +56,16 @@ Page({
     const [timeIndex, langIndex] = this.data.selectedIndices
     const lang = languages[langIndex] || languages[0]
     const since = timeRange[timeIndex] || timeRange[0]
-    this.setData({lang, since})
+    this.setData({lang, since}, () => {
+      wx.setStorage({
+        key: sinceCacheKey,
+        data: timeIndex,
+      })
+      wx.setStorage({
+        key: langCacheKey,
+        data: langIndex,
+      })
+    })
     github.trendings(since.value.toLowerCase(), lang.value.toLowerCase()).then(data => {
       wx.stopPullDownRefresh()
       this.setData({

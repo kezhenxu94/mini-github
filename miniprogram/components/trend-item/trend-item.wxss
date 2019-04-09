@@ -14,7 +14,7 @@
 
 .repo .desc {
   font-size: 12px;
-  margin: 4px 0;
+  margin: 12rpx 0;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -24,6 +24,7 @@
 .bottom {
   display: flex;
   font-size: 12px;
+  margin: 12rpx 0;
 }
 
 .bottom image {
@@ -45,4 +46,19 @@
 
 .bottom view text {
   margin-left: 2px;
+  color: #FFF;
+}
+
+.built-by {
+  margin-top: 12rpx;
+}
+
+.built-by .avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 6rpx;
+}
+
+.built-by .avatar:not(:first-of-type) {
+  margin-left: 8rpx;
 }
