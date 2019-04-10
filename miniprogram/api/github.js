@@ -150,6 +150,7 @@ const getRepo = (url) => new Promise((resolve, reject) => {
     repo.created_at = utils.toReadableTime(repo.created_at)
     repo.updated_at = utils.toReadableTime(repo.updated_at)
     repo.pushed_at = utils.toReadableTime(repo.pushed_at)
+    console.info({repo})
     resolve({
       repo
     })

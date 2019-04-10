@@ -10,6 +10,7 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 .repo .desc {
@@ -47,6 +48,7 @@
 .bottom view text {
   margin-left: 2px;
   color: #FFF;
+  line-height: 16px;
 }
 
 .built-by {

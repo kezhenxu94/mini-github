@@ -4,8 +4,9 @@ var format = function(item) {
     var repoUrl = item.repository_url || ''
     repoFullName = repoUrl.replace(getRegExp('https://api.github.com/repos/'), '')
   }
+  var author = (item.user || {}).login
 
-  return repoFullName + '#' + item.number + ' opened at ' + item.created_at
+  return repoFullName + '#' + item.number + ' opened at ' + item.created_at + ' by ' + item.user.login
 };
 
 module.exports = {

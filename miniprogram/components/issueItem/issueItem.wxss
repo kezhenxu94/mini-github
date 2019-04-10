@@ -17,10 +17,11 @@
   font-size: 24rpx;
   color: #b8b8b8;
   padding: 0 16rpx;
-  word-break: break-all;
+  /* word-break: break-all; */
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  margin-top: 8rpx;
 }
 
 tag:not(first-of-type) {

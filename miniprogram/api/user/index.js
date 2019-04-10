@@ -33,7 +33,7 @@ const user = () => {
       wx.cloud.callFunction({
         name: 'proxy',
         data: {
-          url: `https://api.github.com/user/issues?filter=${filter}`,
+          url: `https://api.github.com/issues?filter=${filter}`,
           headers: {
             'Authorization': token()
           }
@@ -42,10 +42,10 @@ const user = () => {
         const issues = data.map(it => {
           it.created_at = utils.toReadableTime(it.created_at)
           return it
-        })
+        }).filter(it => !it.pull_request)
+        console.info({issues})
         resolve(issues)
       }).catch(error => {
-        console.log(error)
         reject(error)
       })
     }),
