@@ -38,5 +38,10 @@
         <pull pull='{{item}}'></pull>
       </view>
     </tab>
+    <tab title='Contributors'>
+      <view wx:for='{{contributors}}' wx:key='{{index}}'>
+        <contributor contributor='{{item}}'></contributor>
+      </view>
+    </tab>
   </tabs>
 </view>

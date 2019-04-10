@@ -49,6 +49,16 @@ const repos = (repo) => {
         resolve(pulls)
       }).catch(error => reject(error))
     }),
+
+    contributors: () => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/repos/${repo}/contributors`
+      http.get(url).then(({ status, headers, data }) => {
+        if (status !== 200) reject(new Error(data))
+        const contributors = data
+        resolve(contributors)
+      }).catch(error => reject(error))
+    }),
+
     forks: () => {
       return {
         post: () => new Promise((resolve, reject) => {

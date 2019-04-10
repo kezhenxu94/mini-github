@@ -1,0 +1,7 @@
+<view class='user' bindtap='toUserDetail'>
+  <image mode='aspectFill' class='avatar' src='{{contributor.avatar_url || "/octicons/octoface.png"}}' lazy-load></image>
+  <view class='content'>
+    <text class='username'>{{contributor.login}}</text>
+    <text class='contributions'>{{contributor.contributions}} commit{{contributor.contributions > 1 ? 's' : ''}}</text>
+  </view>
+</view>

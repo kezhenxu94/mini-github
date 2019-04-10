@@ -9,6 +9,7 @@ Page({
     repo: {},
     issues: [],
     pulls: [],
+    contributors: [],
     showTabs: false,
     isStarred: false,
     isWatching: false
@@ -92,12 +93,23 @@ Page({
     }).catch(error => wx.hideNavigationBarLoading({}))
   },
 
-  tryGetPulls: function() {
+  tryGetPulls: function () {
     wx.showNavigationBarLoading({})
     const repoFullName = this.data.repo.full_name
     github.repos(repoFullName).pulls().then(pulls => {
       this.setData({
         pulls
+      })
+      wx.hideNavigationBarLoading({})
+    }).catch(error => wx.hideNavigationBarLoading({}))
+  },
+
+  tryGetContributors: function () {
+    wx.showNavigationBarLoading({})
+    const repoFullName = this.data.repo.full_name
+    github.repos(repoFullName).contributors().then(contributors => {
+      this.setData({
+        contributors
       })
       wx.hideNavigationBarLoading({})
     }).catch(error => wx.hideNavigationBarLoading({}))
@@ -155,6 +167,10 @@ Page({
           this.tryGetPulls()
         }
         break
+      case 3:
+        if (this.data.contributors.length === 0) {
+          this.tryGetContributors()
+        }
       default:
         break
     }
