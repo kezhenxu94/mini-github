@@ -16,12 +16,16 @@
 
 .summary, .detail {
   margin-left: 10rpx;
-  font-size: 30rpx;
+  font-size: 14px;
   padding: 0 10rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+}
+
+.summary {
+  font-weight: bold;
 }
 
 .detail {

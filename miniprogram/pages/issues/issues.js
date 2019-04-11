@@ -3,17 +3,15 @@ const moment = require('../../lib/moment.js')
 const utils = require('../../utils/util.js')
 
 const filters = [
-  { value: 'created', label: 'Created' },
-  { value: 'assigned', label: 'Assigned' },
-  { value: 'mentioned', label: 'Mentioned' },
-  { value: 'subscribed', label: 'Participated' },
-  { value: 'all', label: 'All' },
+  { value: 'author', label: 'Created' },
+  { value: 'assignee', label: 'Assigned' },
+  { value: 'mentions', label: 'Mentioned' }
 ]
 
 Page({
   data: {
     filters,
-    filter: 'created',
+    filter: 'author',
     issues: [],
     scrollTop: 0,
     lastRefresh: moment().unix(),
@@ -46,8 +44,10 @@ Page({
   },
 
   reloadData: function () {
+    const user = utils.getCurrentUser().login || ''
     const filter = this.data.filter
-    github.user().issues({ filter }).then(issues => {
+    const q = `is:open+is:issue+${filter}:${user}+archived:false`
+    github.search().issues({ q }).then(issues => {
       wx.stopPullDownRefresh()
       this.setData({
         issues,

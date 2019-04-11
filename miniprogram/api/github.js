@@ -3,6 +3,7 @@ const http = require('../api/http.js')
 const user = require('user/index.js')
 const users = require('users/index.js')
 const repos = require('repos/index.js')
+const search = require('search/index.js')
 
 const utils = require('../utils/util.js')
 
@@ -289,5 +290,6 @@ module.exports = {
   events,
   users,
   user,
-  repos
+  repos,
+  search
 }

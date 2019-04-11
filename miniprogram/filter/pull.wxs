@@ -5,8 +5,16 @@ var format = function (issue) {
     return ''
   }
 
+
   var repoFullName = url.replace(repoFullNameRegExp, '$1')
-  return repoFullName + '#' + issue.number + ' ' + issue.state + ' at ' + issue.updated_at
+
+  var isRelativeTime = getRegExp(' ago$').test(issue.updated_at)
+
+  if (issue.state === 'closed') {
+    return repoFullName + '#' + issue.number + ' ' + issue.state + (isRelativeTime ? ' ' + issue.updated_at : (' at ' + issue.updated_at))
+  }
+
+  return repoFullName + '#' + issue.number + ' updated ' + (isRelativeTime ? ' ' + issue.updated_at : (' at ' + issue.updated_at))
 };
 
 module.exports = {

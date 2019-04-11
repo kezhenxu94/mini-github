@@ -5,22 +5,23 @@
 }
 
 .title {
-  font-size: 30rpx;
+  font-size: 14px;
   padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 .desc {
   font-size: 24rpx;
   color: #b8b8b8;
   padding: 0 16rpx;
-  word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  margin-top: 16rpx;
 }
 
 tag:not(first-of-type) {

@@ -41,8 +41,9 @@
 
 .name {
   margin-left: 30rpx;
-  font-size: 40rpx;
-  color: #eee
+  font-size: 20px;
+  color: #eee;
+  font-weight: bold;
 }
 
 .bio {
