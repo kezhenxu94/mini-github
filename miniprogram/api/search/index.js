@@ -10,10 +10,9 @@ const search = () => ({
       if (status !== 200) {
         reject(new Error(data))
       }
-      const issues = data.items.filter(it => {
-        return it.pull_request === undefined
-      }).map(it => {
+      const issues = data.items.map(it => {
         it.created_at = util.toReadableTime(it.created_at)
+        it.updated_at = util.toReadableTime(it.updated_at)
         return it
       })
       resolve(issues)

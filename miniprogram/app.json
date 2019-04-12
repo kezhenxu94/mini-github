@@ -59,5 +59,6 @@
         "selectedIconPath": "octicons/person.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

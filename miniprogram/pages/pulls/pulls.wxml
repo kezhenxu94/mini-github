@@ -1,5 +1,5 @@
 <view class='pulls'>
-  <tabs bind:change='changeFilter' sticky swipeable animated>
+  <tabs bind:change='changeFilter' sticky swipeable>
     <block wx:for='{{filters}}' wx:key='{{index}}'>
       <tab title='{{item.label}}'>
         <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>

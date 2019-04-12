@@ -6,7 +6,7 @@ var format = function(item) {
   }
   var author = (item.user || {}).login
 
-  return repoFullName + '#' + item.number + ' opened at ' + item.created_at + ' by ' + item.user.login
+  return repoFullName + '#' + item.number + ' opened at ' + item.created_at + ' by ' + author
 };
 
 module.exports = {

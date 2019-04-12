@@ -78,36 +78,6 @@ const events = () => {
   }
 }
 
-const getPulls = (filter) => {
-  const user = utils.getCurrentUser() || {}
-  const url = `https://api.github.com/search/issues?q=+type:pr+author:${user.login || ''}+is:${filter}`
-  return new Promise((resolve, reject) => {
-    if (!token) {
-      reject(new Error('使用此功能, 请先登录'))
-    }
-    wx.cloud.callFunction({
-      name: 'proxy',
-      data: {
-        url,
-        headers: {
-          'Authorization': token()
-        }
-      }
-    }).then(({ result: { data } }) => {
-      console.log(data)
-      const pulls = data.items.map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        it.updated_at = utils.toReadableTime(it.updated_at)
-        return it
-      })
-      resolve(pulls)
-    }).catch(error => {
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
 const getIssue = (url) => new Promise((resolve, reject) => {
   getUrl({ url }).then(({data}) => {
     const issue = data
@@ -279,7 +249,6 @@ const getComments = (url) => {
 }
 
 module.exports = {
-  getPulls,
   getIssue,
   trendings,
   getRepo,
