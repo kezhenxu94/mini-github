@@ -12,13 +12,8 @@ const get = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
       params
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.log(
-      'url= %o, status = %o, headers = %o, data = %o',
-      url, status, headers, data
-    )
     resolve({ status, headers, data })
   }).catch(error => {
-    console.log('url = %o, error = %o', url, error)
     reject(error)
   })
 })
@@ -34,10 +29,6 @@ const put = (url, { params = {}, data = {} } = {}) => new Promise((resolve, reje
       data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.log(
-      'url= %o, status = %o, headers = %o, data = %o',
-      url, status, headers, data
-    )
     resolve({ status, headers, data })
   }).catch(error => {
     console.log('url = %o, error = %o', url, error)
@@ -56,17 +47,28 @@ const post = (url, { params = {}, data = {} } = {}) => new Promise((resolve, rej
       data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.log(
-      'url= %o, status = %o, headers = %o, data = %o',
-      url, status, headers, data
-    )
     resolve({ status, headers, data })
   }).catch(error => {
-    console.log('url = %o, error = %o', url, error)
+    reject(error)
+  })
+})
+
+const del = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
+  wx.cloud.callFunction({
+    name: 'proxy',
+    data: {
+      method: 'DELETE',
+      url,
+      headers: { 'Authorization': token() },
+      params
+    }
+  }).then(({ result: { status, headers = {}, data } }) => {
+    resolve({ status, headers, data })
+  }).catch(error => {
     reject(error)
   })
 })
 
 module.exports = {
-  get, put, post
+  get, put, post, del
 }

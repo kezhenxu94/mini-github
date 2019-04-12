@@ -29,26 +29,6 @@ function getReposByUrl(url) {
 
 const user = () => {
   return {
-    issues: ({ filter = 'all' }) => new Promise((resolve, reject) => {
-      wx.cloud.callFunction({
-        name: 'proxy',
-        data: {
-          url: `https://api.github.com/issues?filter=${filter}`,
-          headers: {
-            'Authorization': token()
-          }
-        },
-      }).then(({ result: { status, data } }) => {
-        const issues = data.map(it => {
-          it.created_at = utils.toReadableTime(it.created_at)
-          return it
-        }).filter(it => !it.pull_request)
-        console.info({issues})
-        resolve(issues)
-      }).catch(error => {
-        reject(error)
-      })
-    }),
     following: (username) => {
       const $ = (method) => new Promise((resolve, reject) => {
         wx.cloud.callFunction({
@@ -61,10 +41,7 @@ const user = () => {
             }
           },
         }).then(({ result: { status } }) => {
-          if (status === 204) {
-            resolve(true)
-          }
-          resolve(false)
+          resolve(status === 204)
         }).catch(error => {
           reject(error)
         })
@@ -87,13 +64,8 @@ const user = () => {
             }
           },
         }).then(({ result: { status } }) => {
-          console.log(status)
-          if (status === 204) {
-            resolve(true)
-          }
-          resolve(false)
+          resolve(status === 204)
         }).catch(error => {
-          console.log(error)
           reject(error)
         })
       })

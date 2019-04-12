@@ -70,24 +70,29 @@ const repos = (repo) => {
       }
     },
     subscription: () => {
-      const $ = (method) => new Promise((resolve, reject) => {
-        wx.cloud.callFunction({
-          name: 'proxy',
-          data: {
-            url: `https://api.github.com/repos/${repo}/subscription`,
-            method,
-            headers: {
-              'Authorization': token()
-            }
-          }
-        }).then(({ result: { status } }) => {
-          resolve(status === 200)
-        }).catch(error => reject(error))
-      })
+      const url = `https://api.github.com/repos/${repo}/subscription`
       return {
-        get: () => $('GET'),
-        put: () => $('PUT'),
-        delete: () => $('DELETE')
+        get: () => new Promise((resolve, reject) => {
+          http.get(url).then(({ status }) => {
+            resolve(status === 200)
+          }).catch(error => {
+            reject(error)
+          })
+        }),
+        put: () => new Promise((resolve, reject) => {
+          http.put(url).then(({ status }) => {
+            resolve(status === 200)
+          }).catch(error => {
+            reject(error)
+          })
+        }),
+        delete: () => new Promise((resolve, reject) => {
+          http.del(url).then(({ status }) => {
+            resolve(status === 200)
+          }).catch(error => {
+            reject(error)
+          })
+        })
       }
     }
   }
