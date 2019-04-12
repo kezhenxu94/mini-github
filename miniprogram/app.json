@@ -30,7 +30,7 @@
     "list": [
       {
         "pagePath": "pages/feeds/feeds",
-        "text": "Feed",
+        "text": "News",
         "iconPath": "octicons/mark-github.png",
         "selectedIconPath": "octicons/mark-github.png"
       },

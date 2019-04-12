@@ -75,7 +75,7 @@ const users = (username) => {
       const url = `https://api.github.com/users/${username}/followers`
       http.get(url).then(({ status, headers, data }) => {
         if (status !== 200) reject(new Error(data))
-        resolve({ followers:data })
+        resolve({ followers: data })
       }).catch(error => reject(error))
     }),
     following: () => new Promise((resolve, reject) => {

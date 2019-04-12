@@ -27,73 +27,65 @@ function getReposByUrl(url) {
   })
 }
 
-const user = () => {
-  return {
-    following: (username) => {
-      const $ = (method) => new Promise((resolve, reject) => {
-        wx.cloud.callFunction({
-          name: 'proxy',
-          data: {
-            method,
-            url: `https://api.github.com/user/following/${username}`,
-            headers: {
-              'Authorization': token()
-            }
-          },
-        }).then(({ result: { status } }) => {
+const user = () => ({
+  following: (username) => {
+    const url = `https://api.github.com/user/following/${username}`
+    return {
+      get: () => new Promise((resolve, reject) => {
+        http.get(url).then(({ status }) => {
           resolve(status === 204)
-        }).catch(error => {
-          reject(error)
-        })
-      })
-      return {
-        get: () => $('GET'),
-        put: () => $('PUT'),
-        delete: () => $('DELETE')
-      }
-    },
-    starred: (repo) => {
-      const $ = (method) => new Promise((resolve, reject) => {
-        wx.cloud.callFunction({
-          name: 'proxy',
-          data: {
-            method,
-            url: `https://api.github.com/user/starred/${repo}`,
-            headers: {
-              'Authorization': token()
-            }
-          },
-        }).then(({ result: { status } }) => {
+        }).catch(error => reject(error))
+      }),
+      put: () => new Promise((resolve, reject) => {
+        http.put(url).then(({ status }) => {
           resolve(status === 204)
-        }).catch(error => {
-          reject(error)
-        })
+        }).catch(error => reject(error))
+      }),
+      delete: () => new Promise((resolve, reject) => {
+        http.del(url).then(({ status }) => {
+          resolve(status === 204)
+        }).catch(error => reject(error))
       })
-      return {
-        get: () => $('GET'),
-        put: () => $('PUT'),
-        delete: () => $('DELETE')
+    }
+  },
+  starred: (repo) => {
+    const url = `https://api.github.com/user/starred/${repo}`
+    return {
+      get: () => new Promise((resolve, reject) => {
+        http.get(url).then(({ status }) => {
+          resolve(status === 204)
+        }).catch(error => reject(error))
+      }),
+      put: () => new Promise((resolve, reject) => {
+        http.put(url).then(({ status }) => {
+          resolve(status === 204)
+        }).catch(error => reject(error))
+      }),
+      delete: () => new Promise((resolve, reject) => {
+        http.del(url).then(({ status }) => {
+          resolve(status === 204)
+        }).catch(error => reject(error))
+      })
+    }
+  },
+  repos: () => {
+    const url = 'https://api.github.com/user/repos'
+    return getReposByUrl(url)
+  },
+  end: () => new Promise((resolve, reject) => {
+    const url = 'https://api.github.com/user'
+    http.get(url).then(({ status, data}) => {
+      if (status === 200) {
+        const user = data
+        user.created_at = utils.toReadableTime(user.created_at)
+        resolve(user)
+      } else {
+        reject(new Error(data.message))
       }
-    },
-    repos: () => {
-      const url = 'https://api.github.com/user/repos'
-      return getReposByUrl(url)
-    },
-    end: () => new Promise((resolve, reject) => {
-      const url = 'https://api.github.com/user'
-      http.get(url).then(({ status, data}) => {
-        if (status === 200) {
-          const user = data
-          user.created_at = utils.toReadableTime(user.created_at)
-          resolve(user)
-        } else {
-          reject(new Error(data.message))
-        }
-      }).catch(error => {
-        reject(error)
-      })
+    }).catch(error => {
+      reject(error)
     })
-  }
-}
+  })
+})
 
 module.exports = user
