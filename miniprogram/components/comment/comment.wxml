@@ -12,7 +12,7 @@
   <view class='body' wx:if='{{loaded}}'>
     <template is="entry" data="{{...article}}"/>
   </view>
-  <modal hidden='{{!showInputDialog}}' title='发表评论' confirm-text='回复' cancel-text='取消' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
-    <textarea placeholder="请输入评论内容" value='{{replyContent}}' bindinput='updateContent'></textarea>
+  <modal hidden='{{!showInputDialog}}' title='Edit Comment' confirm-text='Reply' cancel-text='Cancel' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
+    <textarea placeholder="Type Content Here" value='{{replyContent}}' bindinput='updateContent'></textarea>
   </modal>
 </view>

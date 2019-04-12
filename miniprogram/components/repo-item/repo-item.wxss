@@ -1,19 +1,21 @@
 .repo {
-  padding: 20rpx 20rpx;
+  padding: 24rpx 24rpx;
   color: #b8b8b8;
 }
 
 .repo .name {
   color: #fff;
-  font-size: 30rpx;
-  word-break: break-all;
+  font-size: 14px;
   display: flex;
+  word-break: break-all;
   flex: 1;
   flex-wrap: wrap;
+  font-weight: bold;
+  line-height: 16px;
 }
 
 .repo .desc {
-  font-size: 24rpx;
+  font-size: 12px;
   margin: 10rpx 0;
   word-break: break-all;
   display: flex;
@@ -23,7 +25,7 @@
 
 .bottom {
   display: flex;
-  font-size: 24rpx;
+  font-size: 12px;
   margin: 10rpx 0;
 }
 
@@ -33,7 +35,7 @@
 }
 
 .bottom view:not(:first-child) {
-  margin-left: 20rpx;
+  margin-left: 24rpx;
 }
 
 .bottom view:not(:last-child) {
@@ -45,13 +47,17 @@
 }
 
 .bottom view text {
-  margin-left: 5rpx;
+  margin-left: 8rpx;
+  color: #FFF;
+  line-height: 16px;
 }
 
 .fork-mark, .private-mark {
-  padding: 0 10rpx;
-  border-radius: 10rpx;
+  padding: 8rpx 10rpx;
+  border-radius: 4rpx;
   margin-right: 10rpx;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .fork-mark {

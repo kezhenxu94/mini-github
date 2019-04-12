@@ -21,7 +21,7 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  margin-top: 16rpx;
+  margin-top: 12rpx;
 }
 
 tag:not(first-of-type) {

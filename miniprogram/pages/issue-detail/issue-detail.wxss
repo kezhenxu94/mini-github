@@ -5,20 +5,22 @@
 }
 
 .title {
-  font-size: 40rpx;
-  padding: 20rpx 30rpx;
+  font-size: 16px;
+  padding: 16rpx 30rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 .repo {
   display: flex;
-  font-size: 28rpx;
+  font-size: 14px;
   color: #888;
-  padding: 0 0 20rpx 30rpx;
+  padding: 0 0 30rpx 30rpx;
   align-items: center;
+  line-height: 14px;
 }
 
 .repo .iconfont {
@@ -39,4 +41,12 @@
   background-color: transparent;
   color: #fff !important;
   border-color: #fff;
+}
+
+.tag:first-of-type {
+  margin-left: 30rpx;
+}
+
+.tag {
+  margin-left: 12rpx;
 }

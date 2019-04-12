@@ -3,6 +3,7 @@
   "usingComponents": {
     "feed": "../../components/feedItem/feedItem",
     "comment": "../../components/comment/comment",
-    "v-button": "../../components/button/index"
+    "v-button": "../../components/button/index",
+    "tag": "../../components/tag/index"
   }
 }

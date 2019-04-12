@@ -4,6 +4,7 @@
 .comment {
   padding: 20rpx 30rpx;
   color: #fff;
+  font-size: 12px;
 }
 
 .header {
@@ -21,6 +22,8 @@
 .user {
   margin-left: 10rpx;
   padding: 0 20rpx;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .avatar {
@@ -33,7 +36,7 @@
 
 .time {
   color: rgb(175, 175, 175);
-  font-size: 28rpx;
+  font-size: 12px;
   padding-right: 20rpx;
 }
 

@@ -4,6 +4,9 @@
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
     {{repoName}}<text class='iconfont icon-goto'></text>
   </text>
+  <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}' class='tag'>
+    {{item.name}}
+  </tag>
   <view class='comment-wrapper' wx:if='{{issue}}'>
     <comment comment='{{issue}}'></comment>
   </view>
@@ -11,6 +14,6 @@
     <comment comment='{{item}}'></comment>
   </view>
   <view class='loading' wx:if='{{issue}}'>
-    <v-button plain round type='primary' size='small' loading='{{loadingMore}}' bind:click='loadMore' class='more-btn'>{{hasMore ? '加载更多' : '没有更多'}}</v-button>
+    <v-button plain round type='primary' size='small' loading='{{loadingMore}}' bind:click='loadMore' class='more-btn'>{{hasMore ? 'Load More' : 'No More Comments'}}</v-button>
   </view>
 </view>

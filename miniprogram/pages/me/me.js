@@ -46,6 +46,7 @@ Page({
     wx.showNavigationBarLoading({})
     github.user().repos().then(({ repos, next }) => {
       this.setData({ repos })
+      console.info({ repos })
       reposNext = next
       wx.hideNavigationBarLoading({})
     }).catch(error => {
