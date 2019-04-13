@@ -162,12 +162,11 @@ view{
 .wxParse-thead,.wxParse-tfoot,.wxParse-tr{
     display: flex;
     flex-direction: row;
-}
+}*/
 .wxParse-th,.wxParse-td{
     display: flex;
-    width: 580px;
     overflow: auto;
-} */
+}
 
 .wxParse-u {
   text-decoration: underline;
