@@ -1,4 +1,5 @@
 @import '../../style/iconfont.wxss';
+@import '../../style/base.wxss';
 
 .header {
   display: flex;
@@ -32,18 +33,14 @@
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
+  min-width: 88rpx;
+  min-height: 88rpx;
 }
 
 .name {
   margin-left: 30rpx;
   font-size: 20px;
   color: #eee;
-  font-weight: bold;
 }
 
 .bio {
@@ -66,6 +63,7 @@
   display: flex -webkit-flex;
   justify-content: space-evenly;
   text-align: center;
+  font-weight: bold;
 }
 
 .followers {
@@ -91,4 +89,5 @@
   display: -webkit-flex;
   align-items: center;
   line-height: inherit;
+  font-weight: bold;
 }

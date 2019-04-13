@@ -1,10 +1,12 @@
+@import '../../style/base.wxss';
+
 page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100vh;
   background-color: #333;
-  font-size: 30rpx;
+  font-size: 15px;
 }
 
 .item {

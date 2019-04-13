@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .repo {
   padding: 12px;
   color: #b8b8b8;
@@ -5,12 +7,10 @@
 
 .repo .name {
   color: #fff;
-  font-size: 14px;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  font-weight: bold;
 }
 
 .repo .desc {
@@ -58,7 +58,6 @@
 .built-by .avatar {
   width: 50rpx;
   height: 50rpx;
-  border-radius: 6rpx;
 }
 
 .built-by .avatar:not(:first-of-type) {

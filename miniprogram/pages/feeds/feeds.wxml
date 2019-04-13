@@ -1,6 +1,6 @@
 <view class='events'>
   <navigator class='login-prompt' wx:if='{{!isSignedIn}}' url='/pages/login/login'>
-    登陆查看我关注的事件 >
+    Sign In to Seee My News >
   </navigator>
   <view hover-class='hover' wx:for="{{events}}" wx:key="{{index}}">
     <feed item="{{item}}"></feed>

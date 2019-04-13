@@ -1,5 +1,5 @@
 <view class='repo' catchtap='toRepoDetail'>
-  <text class='name'>{{repo.full_name}}</text>
+  <text class='name title'>{{repo.full_name}}</text>
   <text class='desc'>{{repo.description}}</text>
   <view class='bottom'>
     <view>

@@ -1,5 +1,5 @@
 <view class='repo' catchtap='toRepoDetail'>
-  <text class='name'>
+  <text class='name title'>
     <text wx:if='{{repo.fork}}' class='fork-mark'>Fork</text><text wx:if='{{repo.private}}' class='private-mark'>Private</text>{{repo.full_name}}
   </text>
   <text class='desc'>{{repo.description}}</text>

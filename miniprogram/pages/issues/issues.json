@@ -3,6 +3,7 @@
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
+    "icon": "../../../components/icon/index",
     "issue": "../../../components/issueItem/issueItem"
   },
   "navigationBarTitleText": "Issues"

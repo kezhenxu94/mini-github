@@ -1,5 +1,6 @@
 @import '../../lib/towxml/style/main.wxss';
 @import '../../lib/towxml/style/theme/dark.wxss';
+@import '../../style/base.wxss';
 
 .header {
   padding: 20rpx 20rpx 20rpx 40rpx;
@@ -8,11 +9,8 @@
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
+  min-width: 88rpx;
+  min-height: 88rpx;
 }
 
 .name-time {

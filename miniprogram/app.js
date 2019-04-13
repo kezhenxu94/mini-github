@@ -1,4 +1,5 @@
 const Towxml = require('lib/towxml/main')
+const github = require('api/github.js')
 
 App({
   onLaunch: function () {

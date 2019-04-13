@@ -7,7 +7,7 @@
          hover-stop-propagation
          lazy-load></image>
   <view>
-    <text class='summary'>{{filters.format(item)[0]}}</text>
+    <text class='title summary'>{{filters.format(item)[0]}}</text>
     <text class='detail'>{{filters.format(item)[1]}}</text>
     <text class='time'>{{item.created_at}}</text>
   </view>

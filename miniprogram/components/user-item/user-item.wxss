@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .user {
   padding: 20rpx;
   display: flex;
@@ -5,11 +7,8 @@
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
+  min-width: 88rpx;
+  min-height: 88rpx;
 }
 
 .username {

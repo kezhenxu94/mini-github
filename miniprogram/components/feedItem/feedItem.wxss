@@ -1,21 +1,19 @@
-/* components/feedItem/feedItem.wxss */
+@import '../../style/base.wxss';
+
 .feed {
   display: flex;
-  padding: 20rpx;
+  padding: 24rpx;
   overflow: hidden;
   color: #fff;
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
+  min-width: 88rpx;
+  min-height: 88rpx;
 }
 
 .summary, .detail {
-  margin-left: 10rpx;
+  margin-left: 12rpx;
   font-size: 14px;
   padding: 0 10rpx;
   word-break: break-all;
@@ -24,20 +22,16 @@
   flex-wrap: wrap;
 }
 
-.summary {
-  font-weight: bold;
-}
-
 .detail {
   color: rgb(192, 192, 192);
-  margin-top: 10rpx;
-  font-size: 24rpx;
+  margin-top: 12rpx;
+  font-size: 12px;
 }
 
 .time {
-  margin-left: 10rpx;
-  margin-top: 10rpx;
-  font-size: 20rpx;
-  padding: 10rpx;
-  color: #eee
+  margin-left: 12rpx;
+  margin-top: 12rpx;
+  font-size: 12px;
+  padding: 12rpx;
+  color: #eee;
 }

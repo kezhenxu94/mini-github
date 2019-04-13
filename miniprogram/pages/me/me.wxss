@@ -28,13 +28,15 @@ button.feedback {
   line-height: inherit;
   background-color: transparent;
   color: #eee;
+  font-weight: bold;
 }
 
 .about, .feedback, .logout {
   display: flex;
   padding: 30rpx 40rpx;
   overflow: hidden;
-  font-size: 30rpx;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .about image, .feedback image, .logout image {

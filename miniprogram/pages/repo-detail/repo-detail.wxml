@@ -4,7 +4,7 @@
   <view class='header'>
     <image mode='aspectFit' class='avatar' src='{{repo.owner.avatar_url}}' catchtap='toUserDetail'></image>
     <view class='name-time'>
-      <text class='name'>{{repo.full_name}}</text>
+      <text class='name title'>{{repo.full_name}}</text>
       <text class='time'>{{repo.pushed_at}}</text>
     </view>
   </view>

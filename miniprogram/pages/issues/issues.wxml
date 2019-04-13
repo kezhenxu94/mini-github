@@ -1,5 +1,5 @@
 <view class='issues'>
-  <tabs bind:change='changeFilter' swipeable sticky animated>
+  <tabs bind:change='changeFilter' swipeable sticky>
     <tab wx:for='{{filters}}' wx:key='{{index}}' title='{{item.label}}'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         Sign In to See {{item.label}} Issues

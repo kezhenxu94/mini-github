@@ -1,5 +1,6 @@
 @import '../../lib/towxml/style/main.wxss';
 @import '../../lib/towxml/style/theme/dark.wxss';
+@import '../../style/base.wxss';
 
 .comment {
   padding: 20rpx 30rpx;
@@ -22,16 +23,11 @@
 .user {
   margin-left: 10rpx;
   padding: 0 20rpx;
-  font-weight: bold;
-  font-size: 14px;
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
-  min-width: 100rpx;
-  min-height: 100rpx;
-  border-radius: 50%;
+  min-width: 88rpx;
+  min-height: 88rpx;
 }
 
 .time {

@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .repo {
   padding: 24rpx 24rpx;
   color: #b8b8b8;
@@ -5,12 +7,10 @@
 
 .repo .name {
   color: #fff;
-  font-size: 14px;
   display: flex;
   word-break: break-all;
   flex: 1;
   flex-wrap: wrap;
-  font-weight: bold;
   line-height: 16px;
 }
 

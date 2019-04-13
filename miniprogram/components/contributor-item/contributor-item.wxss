@@ -1,13 +1,9 @@
+@import '../../style/base.wxss';
+
 .user {
   padding: 20rpx;
   display: flex;
   align-items: center;
-}
-
-.avatar {
-  width: 100rpx;
-  height: 100rpx;
-  border-radius: 6rpx;
 }
 
 .content {
@@ -21,11 +17,10 @@
 }
 
 .username {
-  font-weight: bold;
-  flex: 50rpx 0 0;
+  flex: 44rpx 0 0;
 }
 
 .contributions {
   font-size: 12px;
-  flex: 50rpx 1 0;
+  flex: 44rpx 1 0;
 }

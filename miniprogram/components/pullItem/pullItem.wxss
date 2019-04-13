@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .pull {
   padding: 24rpx;
   color: #fff;
@@ -5,13 +7,11 @@
 }
 
 .title {
-  font-size: 14px;
   padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  font-weight: bold;
 }
 
 .desc {
