@@ -55,6 +55,7 @@
   - 搜索代码仓库和用户
 
 ## Donation
-| 支付宝 | 微信支付 | 支付宝 | 微信支付 | 
-| :------: | :------: | :------: | :------: |
-| ![alipay](https://user-images.githubusercontent.com/15965696/55284497-83a9cd80-53aa-11e9-84f5-c61ba7d1190d.jpg) | ![wepay](https://user-images.githubusercontent.com/15965696/55284500-8d333580-53aa-11e9-8b3f-974cd0508f8e.png) | ![alipay](https://user-images.githubusercontent.com/15965696/55284497-83a9cd80-53aa-11e9-84f5-c61ba7d1190d.jpg) | ![wepay](https://user-images.githubusercontent.com/15965696/55284500-8d333580-53aa-11e9-8b3f-974cd0508f8e.png) |
+| 支付宝 | 微信支付 |
+| :------: | :------: |
+| ![alipay](https://user-images.githubusercontent.com/15965696/55284497-83a9cd80-53aa-11e9-84f5-c61ba7d1190d.jpg) | ![wepay](https://user-images.githubusercontent.com/15965696/55284500-8d333580-53aa-11e9-8b3f-974cd0508f8e.png) |
+
