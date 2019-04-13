@@ -18,11 +18,15 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  height: 88rpx;
 }
 
 .user {
-  margin-left: 10rpx;
-  padding: 0 20rpx;
+  height: 100%;
+  margin-left: 12rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .avatar {

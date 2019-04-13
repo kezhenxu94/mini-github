@@ -5,7 +5,7 @@ const token = () => util.getCurrentToken() || ''
 
 const repos = repo => ({
   issues: number => ({
-    comments: () => ({
+    comments: (commentId) => ({
       post: body => new Promise((resolve, reject) => {
         if (!token()) reject(new Error('使用此功能, 请先登录'))
         const url = `https://api.github.com/repos/${repo}/issues/${number}/comments`
@@ -14,7 +14,16 @@ const repos = repo => ({
         }).catch(error => {
           reject(error)
         })
-      })
+      }),
+      patch: body => new Promise((resolve, reject) => {
+        if (!token()) reject(new Error('使用此功能, 请先登录'))
+        const url = `https://api.github.com/repos/${repo}/issues/${number}/comments${commentId}`
+        http.patch(url, { data: { body } }).then(({ status, headers, data }) => {
+          resolve(status === 200)
+        }).catch(error => {
+          reject(error)
+        })
+      }) 
     }),
     end: () => new Promise((resolve, reject) => {
       const url = `https://api.github.com/repos/${repo}/issues`

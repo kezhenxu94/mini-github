@@ -4,7 +4,10 @@
   <view class='header'>
     <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}' catchtap='toUserPage'></image>
     <view class='author-time'>
-      <text class='user title'>{{comment.user.login}}</text>
+      <view class='user'>
+        <text class='title'>{{comment.user.login}}</text>
+        <tag type='{{ comment.author_association === "COLLABORATOR" ? "primary" : (comment.author_association === "MEMBER" ? "danger" : "") }}'>{{comment.author_association}}</tag>
+      </view>
       <text class='time'>{{comment.created_at}}</text>
     </view>
     <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
