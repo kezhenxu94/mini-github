@@ -1,6 +1,7 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 const defaultUrl = 'https://api.github.com/repos/kezhenxu94/mini-github'
+const WxParse = require('../../lib/wxParse/wxParse.js');
 const app = getApp()
 
 Page({
@@ -21,15 +22,6 @@ Page({
       url
     })
     this.reloadData()
-
-
-    this['event_bind_tap'] = event => {
-      const target = ((event.target.dataset._el || {})._e || {})
-      if (target.tagName === 'a' && target.attr && target.attr.href) {
-        this.urlClicked(target.attr.href)
-      }
-    };
-
   },
 
   onShareAppMessage: function(options) {
@@ -43,38 +35,15 @@ Page({
 
   tryGetReadMe: function(repo) {
     let readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/README.md`
-
     return new Promise((resolve, reject) => {
+      const baseUrl = repo.html_url + '/raw/' + repo.default_branch
       github.getFile(readMeUrl).then(readMeContent => {
-        let parsed = app.towxml.toJson(
-          readMeContent,
-          'markdown'
-        )
-        parsed = app.towxml.initData(parsed, {
-          base: `https://github.com/${this.data.repo.full_name}/raw/master/`,
-          app: this
-        })
-        parsed.theme = 'dark'
-
-        this.setData({
-          article: parsed
-        })
+        WxParse.wxParse('article', 'md', readMeContent, this, 5, baseUrl);
         resolve({})
       }).catch(error => {
         readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
         github.getFile(readMeUrl).then(readMeContent => {
-          let parsed = app.towxml.toJson(
-            readMeContent,
-            'markdown'
-          )
-          parsed = app.towxml.initData(parsed, {
-            base: `https://github.com/${this.data.repo.full_name}/raw/master/`,
-            app: this
-          })
-          parsed.theme = 'dark'
-          this.setData({
-            article: parsed
-          })
+          WxParse.wxParse('article', 'md', readMeContent, this, 5, baseUrl);
           resolve({})
         }).catch(error => reject(error))
       })
@@ -85,7 +54,6 @@ Page({
     wx.showNavigationBarLoading({})
     const repoFullName = this.data.repo.full_name
     github.repos(repoFullName).issues().end().then(issues => {
-      console.log(issues)
       this.setData({
         issues
       })
@@ -176,7 +144,8 @@ Page({
     }
   },
 
-  urlClicked: function(url) {
+  wxParseTagATap: function(event) {
+    const url = event.currentTarget.dataset.src
     const repoRegExp = /^https:\/\/github.com\/(.*?\/.*?)(\/.*)?$/
     if (repoRegExp.test(url)) {
       const repoFullName = url.replace(repoRegExp, '$1')

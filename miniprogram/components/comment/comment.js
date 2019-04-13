@@ -1,6 +1,6 @@
 const utils = require('../../utils/util.js')
 const github = require('../../api/github.js')
-const app = getApp()
+const WxParse = require('../../lib/wxParse/wxParse.js');
 
 Component({
   properties: {
@@ -9,16 +9,8 @@ Component({
       value: {},
       observer: function(comment) {
         if (!comment || !comment.body) return
-        let parsed = app.towxml.toJson(
-          comment.body,
-          'markdown'
-        )
-        parsed = app.towxml.initData(parsed, {
-          app: this
-        })
-        parsed.theme = 'dark'
+        WxParse.wxParse('article', 'md', comment.body, this, 5);
         this.setData({
-          article: parsed,
           loaded: true
         })
       }

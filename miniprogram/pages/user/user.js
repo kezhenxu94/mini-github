@@ -69,7 +69,6 @@ Page({
   },
 
   loadMore: function () {
-    console.log('load more')
     if (this.data.loadingMore) {
       console.log('Loading more, returning')
       return

@@ -1,5 +1,4 @@
-@import '../../lib/towxml/style/main.wxss';
-@import '../../lib/towxml/style/theme/dark.wxss';
+@import "../../lib/wxParse/wxParse.wxss";
 @import '../../style/base.wxss';
 
 .comment {

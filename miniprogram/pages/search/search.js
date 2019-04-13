@@ -46,7 +46,6 @@ Page({
       }
       this.setData({ loadingMore: true })
       if (searching.repos) {
-        console.log('searching repos, returning')
         return
       }
       searching.repos = true
@@ -77,7 +76,6 @@ Page({
       }
       this.setData({ loadingMore: true })
       if (searching.users) {
-        console.log('searching users, returning')
         return
       }
       searching.users = true
@@ -108,7 +106,6 @@ Page({
     const { q, searching } = this.data
     if (this.data.activeTab === 'repos') {
       if (searching.repos) {
-        console.log('searching repos, returning')
         return
       }
       searching.repos = true

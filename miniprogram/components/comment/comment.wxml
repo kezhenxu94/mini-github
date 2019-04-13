@@ -1,4 +1,4 @@
-<import src="../../lib/towxml/entry.wxml"/>
+<import src="../../lib/wxParse/wxParse.wxml"/>
 
 <view class='comment'>
   <view class='header'>
@@ -13,7 +13,7 @@
     <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
   </view>
   <view class='body' wx:if='{{loaded}}'>
-    <template is="entry" data="{{...article}}"/>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
   </view>
   <modal hidden='{{!showInputDialog}}' title='Edit Comment' confirm-text='Reply' cancel-text='Cancel' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
     <textarea placeholder="Type Content Here" value='{{replyContent}}' bindinput='updateContent'></textarea>

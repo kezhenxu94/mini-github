@@ -1,4 +1,4 @@
-<import src="../../lib/towxml/entry.wxml"/>
+<import src="../../lib/wxParse/wxParse.wxml"/>
 
 <view class='repo'>
   <view class='header'>
@@ -25,7 +25,7 @@
   <tabs bind:change='changeTab' wx:if='{{showTabs}}' sticky animated>
     <tab title='Readme'>
       <view class='readme'>
-        <template is="entry" data="{{...article}}"/>
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       </view>
     </tab>
     <tab title='Issues'>

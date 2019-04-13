@@ -1,4 +1,3 @@
-const Towxml = require('lib/towxml/main')
 const github = require('api/github.js')
 
 App({
@@ -10,6 +9,5 @@ App({
   },
   globalData: {
     userInfo: null
-  },
-  towxml: new Towxml()
+  }
 })
