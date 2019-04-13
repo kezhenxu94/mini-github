@@ -1,93 +1,93 @@
 <template name="m0">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m1" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m1" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m1" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m1" data="{{item}}" />
     </block>
@@ -96,93 +96,93 @@
 <template name="m1">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m2" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m2" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m2" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m2" data="{{item}}" />
     </block>
@@ -191,93 +191,93 @@
 <template name="m2">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m3" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m3" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m3" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m3" data="{{item}}" />
     </block>
@@ -286,93 +286,93 @@
 <template name="m3">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m4" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m4" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m4" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m4" data="{{item}}" />
     </block>
@@ -381,93 +381,93 @@
 <template name="m4">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m5" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m5" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m5" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m5" data="{{item}}" />
     </block>
@@ -476,93 +476,93 @@
 <template name="m5">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m6" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m6" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m6" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m6" data="{{item}}" />
     </block>
@@ -571,93 +571,93 @@
 <template name="m6">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m7" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m7" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m7" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m7" data="{{item}}" />
     </block>
@@ -666,93 +666,93 @@
 <template name="m7">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m8" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m8" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m8" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m8" data="{{item}}" />
     </block>
@@ -761,93 +761,93 @@
 <template name="m8">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m9" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m9" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m9" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
@@ -856,93 +856,93 @@
 <template name="m9">
   <block wx:if="{{item.node === 'text'}}">{{item.text}}</block>
   <view wx:if="{{item.node === 'element' && item.tag === 'view'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </view>
   <video wx:if="{{item.node === 'element' && item.tag === 'video'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" poster="{{item.attr['poster']}}" src="{{item.attr['src']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </video>
   <text wx:if="{{item.node === 'element' && item.tag === 'text'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m9" data="{{item}}"/></block></text>
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}"><block wx:for="{{item.child}}" wx:key="{{item}}"><template is="m9" data="{{item}}"/></block></text>
   <image wx:if="{{item.node === 'element' && item.tag === 'image'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" src="{{item.attr['src']}}" mode="{{item.type === 'audio' ? '' : 'widthFix'}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </image>
   <navigator wx:if="{{item.node === 'element' && item.tag === 'navigator'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" url="{{item.attr.href}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" url="{{item.attr.href}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </navigator>
   <swiper wx:if="{{item.node === 'element' && item.tag === 'swiper'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </swiper>
   <swiper-item wx:if="{{item.node === 'element' && item.tag === 'swiper-item'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </swiper-item>
   <block wx:if="{{item.node === 'element' && item.tag === 'block'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </block>
   <form wx:if="{{item.node === 'element' && item.tag === 'form'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </form>
   <input wx:if="{{item.node === 'element' && item.tag === 'input'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
   <block wx:for="{{item.child}}" wx:key="{{item}}">
     <template is="m9" data="{{item}}" />
   </block>
   </input>
   <textarea wx:if="{{item.node === 'element' && item.tag === 'textarea'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </textarea>
   <button wx:if="{{item.node === 'element' && item.tag === 'button'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </button>
   <checkbox-group wx:if="{{item.node === 'element' && item.tag === 'checkbox-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" bindchange="{{item.attr['bindchange']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" bindchange="{{item.attr['bindchange']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </checkbox-group>
   <checkbox wx:if="{{item.node === 'element' && item.tag === 'checkbox'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}" value="{{item.attr['value']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </checkbox>
   <radio-group wx:if="{{item.node === 'element' && item.tag === 'radio-group'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap'
-    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}">
+    class="{{item.attr.class}}" width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>
   </radio-group>
   <radio wx:if="{{item.node === 'element' && item.tag === 'radio'}}" data-_el="{{item}}" bind:touchstart='__bind_touchstart' bind:touchmove='__bind_touchmove' bind:touchcancel='__bind_touchcancel' bind:touchend='__bind_touchend' bind:tap='__bind_tap' class="{{item.attr.class}}"
-    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style']}}" checked="{{item.attr['checked']}}">
+    width="{{item.attr['width']}}" height="{{item.attr['height']}}" data="{{item.attr['data']}}" id="{{item.attr['id']}}" style="{{item.attr['style'] || ''}}" checked="{{item.attr['checked']}}">
     <block wx:for="{{item.child}}" wx:key="{{item}}">
       <template is="m9" data="{{item}}" />
     </block>

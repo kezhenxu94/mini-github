@@ -85,15 +85,10 @@
 /*正文样式*/
 .h2w {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, "STHeitiTC-Light", "Microsoft YaHei Light", "Hiragino Sans GB", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 32rpx;
+    font-size: 24rpx;
     line-height: 1.8;
     word-wrap: break-word;
     word-break: break-all;
-}
-
-.h2w__main {
-    /* margin: 0 40rpx; */
-    /* padding-top: 40rpx; */
 }
 
 /**标题**/
@@ -107,22 +102,22 @@
 }
 
 .h2w__h1 {
-    border-bottom-style: solid;
-    border-bottom-width: 1rpx;
-    font-size: 42rpx;
+    /* border-bottom-style: solid; */
+    /* border-bottom-width: 1rpx; */
+    font-size: 48rpx;
     padding-bottom: 10rpx;
     margin-bottom: 20rpx;
 }
 
 .h2w__h2 {
-    border-bottom-style: solid;
-    font-size: 40rpx;
+    /* border-bottom-style: solid; */
+    font-size: 44rpx;
     padding-bottom: 8rpx;
     margin-bottom: 18rpx;
 }
 
 .h2w__h3 {
-    font-size: 38rpx;
+    font-size: 40rpx;
     padding-bottom: 6rpx;
     margin-bottom: 12rpx;
 }
@@ -134,13 +129,13 @@
 }
 
 .h2w__h5 {
-    font-size: 34rpx;
+    font-size: 32rpx;
     padding-bottom: 2rpx;
     margin-bottom: 12rpx;
 }
 
 .h2w__h6 {
-    margin-bottom: 12rpx;
+    margin-bottom: 28rpx;
 }
 
 
@@ -253,7 +248,7 @@
 /**列表**/
 .h2w__ul,
 .h2w__ol {
-    margin-bottom: 40rpx;
+    margin-bottom: 24rpx;
     padding-left: 1rem;
 }
 
@@ -268,7 +263,7 @@
 
 /**todo**/
 .h2w__todogroup {
-    margin-bottom: 40rpx;
+    margin-bottom: 24rpx;
 }
 
 .h2w__todogroup .h2w__todogroup {
@@ -315,10 +310,7 @@
 
 /**块元素**/
 .h2w__p {
-    margin: 20rpx 0 20rpx 0;
-    /*word-wrap:break-word;
-    word-break:break-all;*/
-    /*text-align:justify;*/
+    margin: 12rpx 0 12rpx 0;
 }
 
 .h2w__div {
@@ -358,18 +350,10 @@
     text-decoration: line-through;
 }
 
-/**文本下划线**/
-.h2w__ins,
-.h2w__u {
-    text-decoration: underline;
-}
-
 /**链接**/
 .h2w__a {
-    margin: 0 8rpx;
-    border-bottom-width: 1rpx;
-    border-bottom-style: solid;
-    line-height: 1;
+    /* margin: 0 8rpx; */
+    /* line-height: 1; */
 }
 
 .h2w__hr {
@@ -404,13 +388,14 @@
 }
 
 /**内置元素**/
-image,video {
+video {
     width: 100%;
     /* margin: 10rpx auto; */
 }
 
 image {
-    height: auto;
+  /* height: auto; */
+  /* width: 100%; */
 }
 
 video {
