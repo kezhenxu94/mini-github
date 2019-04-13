@@ -28,6 +28,7 @@ let lastRefresh = moment().unix()
 
 const sinceCacheKey = 'Trending:Since'
 const langCacheKey = 'Trending:Lang'
+const trendsCacheKey = 'Trending:Data'
 
 Page({
   data: {
@@ -35,7 +36,7 @@ Page({
     lang: languages[0],
     selectorValues: [timeRange, languages],
     selectedIndices: [wx.getStorageSync(sinceCacheKey) || 0, wx.getStorageSync(langCacheKey) || 0],
-    trends: []
+    trends: wx.getStorageSync(trendsCacheKey) || []
   },
 
   onShow: function () {
@@ -70,6 +71,13 @@ Page({
       wx.stopPullDownRefresh()
       this.setData({
         trends: data,
+      }, () => {
+        if (data.length > 0) {
+          wx.setStorage({
+            key: trendsCacheKey,
+            data: data,
+          })
+        }
       })
       lastRefresh = moment()
     }).catch(error => wx.stopPullDownRefresh() )
