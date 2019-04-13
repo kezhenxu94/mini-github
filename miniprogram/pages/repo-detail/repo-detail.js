@@ -38,12 +38,13 @@ Page({
     return new Promise((resolve, reject) => {
       const baseUrl = repo.html_url + '/raw/' + repo.default_branch
       github.getFile(readMeUrl).then(readMeContent => {
-        WxParse.wxParse('article', 'md', readMeContent, this, 5, baseUrl);
+        //  + '\n\n' 末尾是表格时无法正确解析
+        WxParse.wxParse('article', 'md', readMeContent + '\n\n', this, 5, baseUrl);
         resolve({})
       }).catch(error => {
         readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
         github.getFile(readMeUrl).then(readMeContent => {
-          WxParse.wxParse('article', 'md', readMeContent, this, 5, baseUrl);
+          WxParse.wxParse('article', 'md', readMeContent + '\n\n', this, 5, baseUrl);
           resolve({})
         }).catch(error => reject(error))
       })
