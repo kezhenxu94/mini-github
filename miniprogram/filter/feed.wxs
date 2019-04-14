@@ -1,4 +1,5 @@
 var spacesRegExp = getRegExp('[\r\n\t]+', 'g')
+var refsHeadsRegExp = getRegExp('refs/heads/')
 
 function truncateText(text) {
   var maxTextLength = 100
@@ -21,7 +22,7 @@ var format = function (item) {
   var detail = ''
   switch (type) {
     case 'PushEvent': {
-      summary = actor.display_login + ' pushed to ' + payload.ref + ' at ' + repo.name
+      summary = actor.display_login + ' pushed to ' + payload.ref.replace(refsHeadsRegExp, '') + ' at ' + repo.name
       var commits = payload.commits
       detail = commits.length + ' new commit(s)'
       commits.forEach(function (commit) {
