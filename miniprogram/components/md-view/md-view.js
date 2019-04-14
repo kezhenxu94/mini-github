@@ -28,7 +28,7 @@ Component({
       }
       if (/\.md$/.test(url)) {
         wx.navigateTo({
-          url: `/pages/md/md?url=${this.data.md.baseUrl}/${url.replace(/^\//, '')}`
+          url: `/pages/md/md?url=${this.data.md.baseUrl}/${url}`
         })
         return
       }
