@@ -50,6 +50,7 @@
   margin-left: 8rpx;
   color: #FFF;
   line-height: 16px;
+  font-weight: bold;
 }
 
 .fork-mark, .private-mark {

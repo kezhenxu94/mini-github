@@ -2,6 +2,7 @@
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
+    "md": "../../../components/md-view/md-view",
     "issue": "../../../components/issueItem/issueItem",
     "pull": "../../../components/pullItem/pullItem",
     "contributor": "../../../components/contributor-item/contributor-item"

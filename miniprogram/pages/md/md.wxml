@@ -1,0 +1,3 @@
+<view class='md'>
+  <md md='{{md}}'></md>
+</view>

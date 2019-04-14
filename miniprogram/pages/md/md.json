@@ -1,0 +1,6 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "md": "../../../components/md-view/md-view"
+  }
+}

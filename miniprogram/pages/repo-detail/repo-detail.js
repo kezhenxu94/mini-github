@@ -1,9 +1,8 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
+const base64 = require('../../lib/base64.js')
 const defaultRepoName = 'kezhenxu94/mini-github'
 const baseUrl = 'https://api.github.com/repos/'
-const WxParse = require('../../lib/wxParse/wxParse.js');
-const app = getApp()
 
 Page({
   data: {
@@ -14,7 +13,8 @@ Page({
     contributors: [],
     showTabs: false,
     isStarred: false,
-    isWatching: false
+    isWatching: false,
+    readme: {}
   },
 
   onLoad: function(options) {
@@ -38,20 +38,19 @@ Page({
   },
 
   tryGetReadMe: function(repo) {
-    let readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/README.md`
     return new Promise((resolve, reject) => {
-      const baseUrl = repo.html_url + '/raw/' + repo.default_branch
-      github.getFile(readMeUrl).then(readMeContent => {
-        //  + '\n\n' 末尾是表格时无法正确解析
-        WxParse.wxParse('article', 'md', readMeContent + '\n\n', this, 5, baseUrl);
+      github.repos(repo.full_name).readme().then(data => {
+        const { content, download_url, path } = data
+        const mdContent = base64.decode(content)
+        const baseUrl = download_url.replace(new RegExp(`${path}\?.*$`), '')
+        this.setData({
+          readme: {
+            content: mdContent,
+            baseUrl: baseUrl
+          }
+        })
         resolve({})
-      }).catch(error => {
-        readMeUrl = `https://raw.githubusercontent.com/${repo.full_name}/${repo.default_branch}/readme.md`
-        github.getFile(readMeUrl).then(readMeContent => {
-          WxParse.wxParse('article', 'md', readMeContent + '\n\n', this, 5, baseUrl);
-          resolve({})
-        }).catch(error => reject(error))
-      })
+      }).catch(reject)
     })
   },
 
@@ -147,28 +146,6 @@ Page({
       default:
         break
     }
-  },
-
-  wxParseTagATap: function(event) {
-    const url = event.currentTarget.dataset.src
-    const repoRegExp = /^https:\/\/github.com\/(.*?\/.*?)(\/.*)?$/
-    if (repoRegExp.test(url)) {
-      const repoFullName = url.replace(repoRegExp, '$1')
-      const repoUrl = `/pages/repo-detail/repo-detail?repo=${repoFullName}`
-      wx.navigateTo({
-        url: repoUrl,
-      })
-      return
-    }
-    wx.setClipboardData({
-      data: url,
-      success() {
-        wx.showToast({
-          title: '链接已复制',
-          duration: 2000,
-        })
-      },
-    })
   },
 
   toUserDetail: function() {

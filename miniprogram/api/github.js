@@ -96,27 +96,6 @@ const getRepo = (url) => new Promise((resolve, reject) => {
   })
 })
 
-const getFile = (url) => new Promise((resolve, reject) => {
-  wx.cloud.callFunction({
-    name: 'proxy',
-    data: {
-      url,
-      headers: {
-        'Authorization': token()
-      }
-    },
-  }).then(({ result: { status, data, headers } }) => {
-    if (status !== 200) {
-      reject(new Error(data))
-    }
-    resolve(data)
-  }).catch(error => {
-    console.log(error)
-    errorHandler()
-    reject(error)
-  })
-})
-
 const getComments = (url) => {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
@@ -150,7 +129,6 @@ module.exports = {
   getIssue,
   trendings,
   getRepo,
-  getFile,
   getComments,
   events,
   users,

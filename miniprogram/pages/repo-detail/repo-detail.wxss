@@ -51,6 +51,7 @@
 
 .stats view text {
   margin-top: 10rpx;
+  font-weight: bold;
 }
 
 .readme {

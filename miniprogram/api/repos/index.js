@@ -71,6 +71,7 @@ const repos = repo => ({
       }).catch(error => reject(error))
     })
   }),
+
   subscription: () => {
     const url = `https://api.github.com/repos/${repo}/subscription`
     return {
@@ -96,6 +97,17 @@ const repos = repo => ({
         })
       })
     }
+  },
+
+  readme: () => {
+    const url = `https://api.github.com/repos/${repo}/readme`
+    return new Promise((resolve, reject) => {
+      http.get(url).then(({ status, data }) => {
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 })
 

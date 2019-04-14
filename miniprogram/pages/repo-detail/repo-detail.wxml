@@ -25,6 +25,7 @@
   <tabs bind:change='changeTab' wx:if='{{showTabs}}' sticky animated>
     <tab title='Readme'>
       <view class='readme'>
+        <md md='{{readme}}'></md>
         <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
       </view>
     </tab>

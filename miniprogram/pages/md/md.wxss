@@ -1,0 +1,6 @@
+@import "../../lib/wxParse/wxParse.wxss";
+@import '../../style/base.wxss';
+
+.md {
+  padding: 24rpx;
+}

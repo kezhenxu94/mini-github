@@ -81,14 +81,14 @@ function HTMLParser(html, handler) {
 
 			if (chars) {
 				index = html.indexOf("<");
-				var text = ''
+				var text = ' '
 				while (index === 0) {
                                   text += "<";
                                   html = html.substring(1);
                                   index = html.indexOf("<");
 				}
 				text += index < 0 ? html : html.substring(0, index);
-				html = index < 0 ? "" : html.substring(index);
+				html = index < 0 ? " " : html.substring(index);
 
 				if (handler.chars)
 					handler.chars(text);

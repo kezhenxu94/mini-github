@@ -12,7 +12,8 @@
     "pages/search/search",
     "pages/user-list/user-list",
     "pages/about/about",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/md/md"
   ],
   "window": {
     "backgroundColor": "#24292e",

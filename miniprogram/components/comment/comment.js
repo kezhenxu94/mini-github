@@ -1,6 +1,5 @@
 const utils = require('../../utils/util.js')
 const github = require('../../api/github.js')
-const WxParse = require('../../lib/wxParse/wxParse.js');
 
 Component({
   properties: {
@@ -9,19 +8,21 @@ Component({
       value: {},
       observer: function(comment) {
         if (!comment || !comment.body) return
-        WxParse.wxParse('article', 'md', comment.body, this, 5);
         this.setData({
-          loaded: true
+          loaded: true,
+          md: {
+            content: comment.body
+          }
         })
       }
     }
   },
 
   data: {
-    article: {},
     loaded: false,
     showInputDialog: false,
-    replyContent: ''
+    replyContent: '',
+    md: {}
   },
 
   methods: {
@@ -47,10 +48,10 @@ Component({
     toReply: function () {
       if (!utils.isSignedIn()) {
         return wx.showModal({
-          title: '请先登录',
-          content: '评论功能需要登陆, 是否先去登陆',
-          confirmText: '先去登陆',
-          cancelText: '暂不登陆',
+          title: 'Sign In',
+          content: 'You need to sign in to comment',
+          confirmText: 'Sign In',
+          cancelText: 'Not Now',
           success(res) {
             if (res.confirm) {
               wx.navigateTo({
@@ -80,27 +81,27 @@ Component({
       const repoUrl = comment.repository_url || issueUrl
       const repoFullName = utils.extractRepoName(repoUrl)
       wx.showLoading({
-        title: '正在发表'
+        title: 'Posting comment'
       })
       github.repos(repoFullName).issues(issueNumber).comments().post(replyContent).then(success => {
         wx.hideLoading()
         if (success) {
           wx.showToast({
-            title: '评论已发表'
+            title: 'Comment is posted'
           })
           this.setData({
             showInputDialog: false
           })
         } else {
           wx.showToast({
-            title: '评论发表失败, 稍后重试',
+            title: 'Failed to comment, try again later',
             icon: 'none'
           })
         }
       }).catch(error => {
         wx.hideLoading()
         wx.showToast({
-          title: '评论失败',
+          title: 'Failed to comment',
           icon: 'none'
         })
       })
