@@ -30,6 +30,12 @@ Component({
       this.copyToClipBoard(this.data.user.blog)
     },
 
+    onTapAvatar: function() {
+      wx.previewImage({
+        urls: [this.data.user.avatar_url]
+      })
+    },
+
     copyToClipBoard: function(content) {
       wx.setClipboardData({
         data: content,

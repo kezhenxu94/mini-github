@@ -1,12 +1,13 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
-const defaultUrl = 'https://api.github.com/repos/kezhenxu94/mini-github'
+const defaultRepoName = 'kezhenxu94/mini-github'
+const baseUrl = 'https://api.github.com/repos/'
 const WxParse = require('../../lib/wxParse/wxParse.js');
 const app = getApp()
 
 Page({
   data: {
-    url: undefined,
+    repoName: undefined,
     repo: {},
     issues: [],
     pulls: [],
@@ -17,19 +18,22 @@ Page({
   },
 
   onLoad: function(options) {
-    var url = decodeURIComponent(options.url || defaultUrl)
+    var repoName = decodeURIComponent(options.repo || defaultRepoName)
     this.setData({
-      url
+      repoName
+    })
+    wx.setNavigationBarTitle({
+      title: repoName,
     })
     this.reloadData()
   },
 
   onShareAppMessage: function(options) {
-    var url = this.data.url
+    var repoName = this.data.repoName
     var title = this.data.repo.full_name
     return {
       title,
-      path: `/pages/repo-detail/repo-detail?url=${url}`
+      path: `/pages/repo-detail/repo-detail?repo=${repoName}`
     }
   },
 
@@ -54,7 +58,7 @@ Page({
   tryGetIssues: function() {
     wx.showNavigationBarLoading({})
     const repoFullName = this.data.repo.full_name
-    github.repos(repoFullName).issues().end().then(issues => {
+    github.repos(repoFullName).issues().get().then(issues => {
       this.setData({
         issues
       })
@@ -104,7 +108,7 @@ Page({
 
   reloadData: function() {
     wx.showNavigationBarLoading({})
-    github.getRepo(this.data.url).then(res => {
+    github.getRepo(baseUrl + this.data.repoName).then(res => {
       const { repo } = res
       repo.owner.avatar_url = repo.owner.avatar_url + '&s=50'
       const showTabs = repo != undefined
@@ -150,7 +154,7 @@ Page({
     const repoRegExp = /^https:\/\/github.com\/(.*?\/.*?)(\/.*)?$/
     if (repoRegExp.test(url)) {
       const repoFullName = url.replace(repoRegExp, '$1')
-      const repoUrl = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repoFullName}`
+      const repoUrl = `/pages/repo-detail/repo-detail?repo=${repoFullName}`
       wx.navigateTo({
         url: repoUrl,
       })

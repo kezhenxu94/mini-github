@@ -2,17 +2,13 @@
   <search active='{{activeTab}}' placeholder="Search Users or Repos" background='#000' bind:search="onSearch" value='{{q}}' bind:change="changeTab"></search>
   <tabs border='{{false}}' bind:change='changeTab' sticky swipeable animated>
     <tab title='Repos'>
-      <view class='repo' wx:for="{{repos}}" wx:key="{{index}}">
-        <repo repo='{{item}}'></repo>
-      </view>
+      <repos repos='{{repos}}'></repos>
     </tab>
     <tab title='Users'>
-      <view class='user' wx:for="{{users}}" wx:key="{{index}}">
-        <user user='{{item}}'></user>
-      </view>
+      <users users='{{users}}'></users>
     </tab>
   </tabs>
-  <view class='loading' wx:if='{{loadingMore}}'>
+  <view class='loading' wx:if='{{ (activeTab === "users" && hasMoreUsers) || (activeTab === "repos" && hasMoreRepos) }}'>
     <loading type='spinner' color="#fff" />
   </view>
 </view>

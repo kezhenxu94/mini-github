@@ -1,7 +1,7 @@
 @import '../../style/base.wxss';
 
 .user {
-  padding: 20rpx;
+  padding: 24rpx;
   display: flex;
   align-items: center;
 }
@@ -12,5 +12,5 @@
 }
 
 .username {
-  margin-left: 10rpx;
+  margin-left: 24rpx;
 }

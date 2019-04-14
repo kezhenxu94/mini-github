@@ -4,9 +4,11 @@
   padding: 20rpx;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .content {
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: stretch;
@@ -23,4 +25,16 @@
 .contributions {
   font-size: 12px;
   flex: 44rpx 1 0;
+}
+
+.rank {
+  font-weight: bolder;
+  font-size: 40rpx;
+  text-align: center;
+  line-height: 88rpx;
+}
+
+.avatar, .rank {
+  min-width: 88rpx;
+  min-height: 88rpx;
 }

@@ -4,17 +4,13 @@
       <profile user='{{user}}' wx:if='{{user}}'></profile>
     </tab>
     <tab title='Repositories'>
-      <view wx:for='{{repos}}' wx:key='{{index}}' class='repo'>
-        <repo repo='{{item}}'></repo>
-      </view>
+      <repos repos='{{repos}}'></repos>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
       </view>
     </tab>
     <tab title='Starred'>
-      <view wx:for='{{starred}}' wx:key='{{index}}' class='repo'>
-        <repo repo='{{item}}'></repo>
-      </view>
+      <repos repos='{{starred}}'></repos>
       <view class='loading' wx:if='{{loadingMore}}'>
         <loading type='spinner' color="#fff" />
       </view>

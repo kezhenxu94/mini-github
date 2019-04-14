@@ -1,3 +1,5 @@
+const utils = require('../../utils/util.js')
+
 Component({
   properties: {
     item: {
@@ -38,15 +40,15 @@ Component({
         case 'ForkEvent':
         case 'PushEvent':
         case 'DeleteEvent':
-          var repoUrl = feed.repo.url
+          var repo = utils.extractRepoName(feed.repo.url)
           wx.navigateTo({
-            url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
+            url: `/pages/repo-detail/repo-detail?repo=${repo}`
           })
           break
         case 'ReleaseEvent':
-          var repoUrl = feed.repository.url
+          var repo = utils.extractRepoName(feed.repository.url)
           wx.navigateTo({
-            url: `/pages/repo-detail/repo-detail?url=${repoUrl}`
+            url: `/pages/repo-detail/repo-detail?repo=${repo}`
           })
           break
         default:

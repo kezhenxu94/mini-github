@@ -45,28 +45,28 @@ Page({
     this.setData({
       isSignedIn: utils.isSignedIn()
     })
-    const successHandler = ({ events, next }) => {
+    const successHandler = ({ data, next }) => {
       wx.stopPullDownRefresh()
+      const events = data.map(it => utils.asEvent(it))
       this.setData({ events }),
       nextFunc = next
       lastRefresh = moment()
       refreshing = false
     }
     const errorHandler = (error) => {
-      console.log(error)
+      console.error(error)
       wx.stopPullDownRefresh()
     }
     if (utils.isSignedIn()) {
       const username = utils.getCurrentUser().login
       github.users(username).receivedEvents().then(successHandler).catch(errorHandler)
     } else {
-      github.events().end().then(successHandler).catch(errorHandler)
+      github.events().get().then(successHandler).catch(errorHandler)
     }
   },
 
   loadMore: function() {
     if (this.data.loadingMore) {
-      console.log('Loading more, returning')
       return
     }
     
@@ -74,8 +74,9 @@ Page({
       this.setData({
         loadingMore: true
       })
-      nextFunc().then(({ events, next }) => {
+      nextFunc().then(({ data, next }) => {
         wx.stopPullDownRefresh()
+        const events = data.map(it => utils.asEvent(it))
         this.setData({
           events: [...this.data.events, ...events],
           loadingMore: false

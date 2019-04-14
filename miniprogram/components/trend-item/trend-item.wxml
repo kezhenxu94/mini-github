@@ -1,4 +1,5 @@
-<view class='repo' catchtap='toRepoDetail'>
+<navigator class='repo'
+           url='/pages/repo-detail/repo-detail?repo={{repo.full_name}}'>
   <text class='name title'>{{repo.full_name}}</text>
   <text class='desc'>{{repo.description}}</text>
   <view class='bottom'>
@@ -29,4 +30,4 @@
            catchtap='toUserPage'
            hover-stop-propagation></image>
   </view>
-</view>
+</navigator>

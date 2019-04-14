@@ -1,5 +1,5 @@
 <wxs module='filters' src='../../filter/issue.wxs'></wxs>
-<view class='issue' catchtap='toIssueDetail'>
+<navigator class='issue' url='/pages/issue-detail/issue-detail?url={{issue.url}}'>
   <view class='title'>
     {{issue.title}}
   </view>
@@ -7,4 +7,4 @@
   <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}'>
     {{item.name}}
   </tag>
-</view>
+</navigator>

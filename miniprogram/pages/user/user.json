@@ -5,6 +5,6 @@
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
     "profile": "../../../components/profile/profile",
-    "repo": "../../../components/repo-item/repo-item"
+    "repos": "../../../components/repo-list/repo-list"
   }
 }

@@ -71,7 +71,6 @@ Page({
 
     const comments_url = links['rel="next"'] || issue.comments_url
     github.getComments(comments_url).then(res => {
-      console.log(res)
       const comments = [...this.data.comments, ...res.comments]
       const links = res.links
       let hasMore = true
@@ -98,7 +97,7 @@ Page({
 
   toRepoDetail () {
     const repoName = this.data.repoName
-    const url = `/pages/repo-detail/repo-detail?url=https://api.github.com/repos/${repoName}`
+    const url = `/pages/repo-detail/repo-detail?repo=${repoName}`
     wx.navigateTo({
       url
     })

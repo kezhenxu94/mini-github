@@ -1,14 +1,16 @@
 Component({
   properties: {
-    repo: {
-      type: Object,
-      value: {}
+    users: {
+      type: Array,
+      value: []
     }
   },
-
+  
   data: {
-  },
 
+  },
+  
   methods: {
+
   }
 })

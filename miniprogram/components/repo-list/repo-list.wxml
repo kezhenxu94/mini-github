@@ -1,0 +1,3 @@
+<view wx:for='{{repos}}' wx:key='{{index}}' class='repo'>
+  <repo repo='{{item}}'></repo>
+</view>

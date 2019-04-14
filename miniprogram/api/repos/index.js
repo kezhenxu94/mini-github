@@ -25,7 +25,7 @@ const repos = repo => ({
         })
       }) 
     }),
-    end: () => new Promise((resolve, reject) => {
+    get: () => new Promise((resolve, reject) => {
       const url = `https://api.github.com/repos/${repo}/issues`
       http.get(url).then(({ status, headers, data }) => {
         if (status !== 200) reject(new Error(data))

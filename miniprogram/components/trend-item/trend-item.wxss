@@ -49,6 +49,7 @@
   margin-left: 2px;
   color: #FFF;
   line-height: 16px;
+  font-weight: bold;
 }
 
 .built-by {

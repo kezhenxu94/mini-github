@@ -1,5 +1,5 @@
 const http = require('../api/http.js')
-
+const pageable = require('../api/pageable.js')
 const user = require('user/index.js')
 const users = require('users/index.js')
 const repos = require('repos/index.js')
@@ -15,10 +15,6 @@ function errorHandler() {
 }
 
 const token = () => utils.getCurrentToken() || ''
-
-const params = (params) => Object.assign({
-  'Authorization': token()
-}, params)
 
 const getUrl = ({
   url,
@@ -40,43 +36,12 @@ const getUrl = ({
   })
 })
 
-const getEventsByUrl = p => new Promise((resolve, reject) => {
-  getUrl(p).then(({ headers, body, data }) => {
-    const events = data.map(it => {
-      it.created_at = utils.toReadableTime(it.created_at)
-      it.org = {}
-      it.actor = {
-        login: it.actor.login,
-        display_login: it.actor.display_login,
-        avatar_url: it.actor.avatar_url + 's=50'
-      }
-      return it
-    })
-    const links = utils.parseLinks(headers.link || "")
-    const nextUrl = links['rel="next"']
-    if (nextUrl) {
-      resolve({
-        events,
-        next: () => getEventsByUrl(params({
-          url: nextUrl
-        }))
-      })
-    } else {
-      resolve({
-        events,
-        next: null
-      })
-    }
-  }).catch(error => reject(error))
-})
-
-const events = () => {
-  return {
-    end: () => getEventsByUrl({
-      url: 'https://api.github.com/events'
-    })
+const events = () => ({
+  get: () => {
+    const promise = http.get('https://api.github.com/events')
+    return pageable.wrap(promise)
   }
-}
+})
 
 const getIssue = (url) => new Promise((resolve, reject) => {
   getUrl({ url }).then(({data}) => {
@@ -121,7 +86,6 @@ const getRepo = (url) => new Promise((resolve, reject) => {
     repo.created_at = utils.toReadableTime(repo.created_at)
     repo.updated_at = utils.toReadableTime(repo.updated_at)
     repo.pushed_at = utils.toReadableTime(repo.pushed_at)
-    console.info({repo})
     resolve({
       repo
     })
@@ -153,71 +117,6 @@ const getFile = (url) => new Promise((resolve, reject) => {
   })
 })
 
-const searchRepos = (_url, q) => {
-  const url = !_url ? `https://api.github.com/search/repositories` : _url
-
-  return new Promise((resolve, reject) => {
-    wx.cloud.callFunction({
-      name: 'proxy',
-      data: {
-        url,
-        params: { q },
-        headers: {
-          'Authorization': token()
-        }
-      },
-    }).then(({ result: { status, data, headers } }) => {
-      console.log(data)
-      const repos = data.items.map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        return it
-      })
-      const links = utils.parseLinks(headers.link || "")
-      console.log(repos)
-      resolve({
-        repos,
-        links
-      })
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
-const searchUsers = (_url, q) => {
-  const url = (!_url) ? `https://api.github.com/search/users` : _url
-  return new Promise((resolve, reject) => {
-    wx.cloud.callFunction({
-      name: 'proxy',
-      data: {
-        url,
-        params: { q },
-        headers: {
-          'Authorization': token()
-        }
-      },
-    }).then(({ result: { status, data, headers } }) => {
-      console.log(data)
-      const users = data.items.map(it => {
-        it.created_at = utils.toReadableTime(it.created_at)
-        return it
-      })
-      const links = utils.parseLinks(headers.link || "")
-      console.log(users)
-      resolve({
-        users,
-        links
-      })
-    }).catch(error => {
-      console.log(error)
-      errorHandler()
-      reject(error)
-    })
-  })
-}
-
 const getComments = (url) => {
   return new Promise((resolve, reject) => {
     wx.cloud.callFunction({
@@ -229,7 +128,6 @@ const getComments = (url) => {
         }
       },
     }).then(({ result: { status, data, headers } }) => {
-      console.log(headers)
       const comments = data
       comments.forEach(comment => {
         comment.updated_at = utils.toReadableTime(comment.updated_at)
@@ -253,8 +151,6 @@ module.exports = {
   trendings,
   getRepo,
   getFile,
-  searchRepos,
-  searchUsers,
   getComments,
   events,
   users,

@@ -4,8 +4,8 @@
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
     "loading": "../../components/loading/index",
-    "repo": "../../components/repo-item/repo-item",
-    "user": "../../components/user-item/user-item",
+    "repos": "../../components/repo-list/repo-list",
+    "users": "../../components/user-list/user-list",
     "search": "../../components/search/index"
   }
 }

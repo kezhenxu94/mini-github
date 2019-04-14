@@ -1,5 +1,1 @@
-<view>
-  <view wx:for='{{users}}' wx:key='{{index}}'>
-    <user user='{{item}}'></user>
-  </view>
-</view>
+<users users='{{users}}'></users>

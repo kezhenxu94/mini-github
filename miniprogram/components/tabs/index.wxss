@@ -101,6 +101,7 @@
 }
 
 .van-tab {
+  font-weight: bold;
   min-width: 0;
   padding: 0 5px;
   font-size: 14px;
@@ -114,7 +115,7 @@
 }
 
 .van-tab--active {
-  font-weight: 500;
+  font-weight: bolder;
   color: #f44;
 }
 

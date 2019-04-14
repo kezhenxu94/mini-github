@@ -4,7 +4,7 @@
   <view class='header'>
     <image mode='aspectFit' class='avatar' src='{{repo.owner.avatar_url}}' catchtap='toUserDetail'></image>
     <view class='name-time'>
-      <text class='name title'>{{repo.full_name}}</text>
+      <text class='name title'>{{repo.full_name || repoName}}</text>
       <text class='time'>{{repo.pushed_at}}</text>
     </view>
   </view>
@@ -40,7 +40,7 @@
     </tab>
     <tab title='Contributors'>
       <view wx:for='{{contributors}}' wx:key='{{index}}'>
-        <contributor contributor='{{item}}'></contributor>
+        <contributor contributor='{{item}}' rank='{{index}}'></contributor>
       </view>
     </tab>
   </tabs>

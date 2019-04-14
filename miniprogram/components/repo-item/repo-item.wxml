@@ -1,4 +1,5 @@
-<view class='repo' catchtap='toRepoDetail'>
+<navigator class='repo'
+           url='/pages/repo-detail/repo-detail?repo={{repo.full_name}}'>
   <text class='name title'>
     <text wx:if='{{repo.fork}}' class='fork-mark'>Fork</text><text wx:if='{{repo.private}}' class='private-mark'>Private</text>{{repo.full_name}}
   </text>
@@ -17,4 +18,4 @@
       <text>{{repo.language}}</text>
     </view>
   </view>
-</view>
+</navigator>

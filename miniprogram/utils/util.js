@@ -59,6 +59,22 @@ const ensureSignedIn = () => {
   return false
 }
 
+const asEvent = (object = {}) => {
+  try {
+    object.created_at = toReadableTime(object.created_at)
+    object.org = {}
+    object.actor = {
+      login: object.actor.login,
+      display_login: object.actor.display_login,
+      avatar_url: object.actor.avatar_url + 's=50'
+    }
+  } catch (error) {
+    console.error(error)
+  }
+  return object
+}
+
+
 module.exports = {
   getCurrentUser,
   getCurrentToken,
@@ -67,5 +83,6 @@ module.exports = {
   toReadableTime,
   extractRepoName,
   extractIssueNumber,
-  ensureSignedIn
+  ensureSignedIn,
+  asEvent
 }

@@ -3,6 +3,10 @@ Component({
     contributor: {
       type: Object,
       value: {}
+    },
+    rank: {
+      type: Number,
+      value: -1
     }
   },
 
@@ -11,11 +15,5 @@ Component({
   },
 
   methods: {
-    toUserDetail: function () {
-      const username = this.data.contributor.login
-      wx.navigateTo({
-        url: `/pages/user/user?username=${username}`
-      })
-    }
   }
 })

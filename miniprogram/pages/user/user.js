@@ -46,9 +46,9 @@ Page({
   loadUserRepos: function() {
     const { username } = this.data
     wx.showNavigationBarLoading({})
-    github.users(username).repos().then(({ repos, next }) => {
+    github.users(username).repos().then(({ data, next }) => {
       this.setData({
-        repos,
+        repos: data,
         reposNext: next
       })
       wx.hideNavigationBarLoading({})
@@ -60,8 +60,8 @@ Page({
   loadUserStarredRepos: function() {
     const { username } = this.data
     wx.showNavigationBarLoading({})
-    github.users(username).starred().then(({ repos, next }) => {
-      this.setData({ starred: repos, starredNext: next })
+    github.users(username).starred().then(({ data, next }) => {
+      this.setData({ starred: data, starredNext: next })
       wx.hideNavigationBarLoading({})
     }).catch(error => {
       wx.hideNavigationBarLoading({})
@@ -70,7 +70,6 @@ Page({
 
   loadMore: function () {
     if (this.data.loadingMore) {
-      console.log('Loading more, returning')
       return
     }
 
@@ -83,12 +82,11 @@ Page({
   },
 
   loadMoreUserRepos: function () {
-    console.log('load more user repos')
     this.setData({ loadingMore: true })
-    this.data.reposNext().then(({ repos, next }) => {
+    this.data.reposNext().then(({ data, next }) => {
       wx.stopPullDownRefresh()
       this.setData({
-        repos: [...this.data.repos, ...repos],
+        repos: [...this.data.repos, ...data],
         reposNext: next,
         refreshing: false,
         loadingMore: false
@@ -103,10 +101,10 @@ Page({
 
   loadMoreStarredRepos: function () {
     this.setData({ loadingMore: true })
-    this.data.starredNext().then(({ repos, next }) => {
+    this.data.starredNext().then(({ data, next }) => {
       wx.stopPullDownRefresh()
       this.setData({
-        starred: [...this.data.starred, ...repos],
+        starred: [...this.data.starred, ...data],
         starredNext: next,
         refreshing: false,
         loadingMore: false

@@ -16,7 +16,7 @@ Page({
     })
     wx.setStorageSync('token', token)
 
-    github.user().end().then(user => {
+    github.user().get().then(user => {
       wx.showToast({ title: '登录成功' })
       wx.setStorageSync('user', user)
       wx.navigateBack({})

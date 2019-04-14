@@ -17,7 +17,6 @@
 .follow-btn {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   width: 300rpx;
 }
 
@@ -33,14 +32,22 @@
 }
 
 .avatar {
-  min-width: 88rpx;
-  min-height: 88rpx;
+  min-width: 120rpx;
+  min-height: 120rpx;
 }
 
 .name {
   margin-left: 30rpx;
-  font-size: 20px;
-  color: #eee;
+  font-size: 40rpx;
+  color: #FFF;
+  font-weight: bolder;
+}
+
+.subname {
+  margin-left: 30rpx;
+  font-size: 32rpx;
+  color: #EEE;
+  font-weight:  bold;
 }
 
 .bio {

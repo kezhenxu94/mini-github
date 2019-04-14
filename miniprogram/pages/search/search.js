@@ -5,21 +5,22 @@ Page({
     q: '',
     repos: [],
     users: [],
-    repoUrl: '',
-    userUrl: '',
     activeTab: 'repos',
-    hasMore: false,
+    hasMoreRepos: false,
+    hasMoreUsers: false,
     searching: {
       repos: false,
       users: false
-    }
+    },
+    repoNext: null,
+    userNext: null
   },
 
   onLoad: function(options) {
     wx.setNavigationBarTitle({
       title: 'Search',
     })
-    const { q } = options
+    const { q = '' } = options
     this.setData({ q })
     this.performSearch()
   },
@@ -38,31 +39,48 @@ Page({
     }
   },
 
+  repoSuccessHandler: function ({ data, next }) {
+    const { searching } = this.data
+    const repos = data.items
+    const hasMoreRepos = next != null
+    searching.repos = false
+    this.setData({
+      repos: [...this.data.repos, ...repos],
+      hasMoreRepos,
+      searching,
+      repoNext: next
+    })
+  },
+
+  userSuccessHandler: function ({ data, next }) {
+    const { searching } = this.data
+    const users = data.items
+    const hasMoreUsers = next !== null
+    searching.users = false
+    this.setData({
+      users: [...this.data.users, ...users],
+      hasMoreUsers,
+      searching,
+      userNext: next
+    })
+  },
+
   loadMore() {
-    const { activeTab, repoUrl, userUrl, searching, q } = this.data
+    const { activeTab, searching, q, repoNext, userNext } = this.data
     if (activeTab === 'repos') {
-      if (!repoUrl) {
+      if (!repoNext) {
         return wx.showToast({ title: 'No more results' })
       }
-      this.setData({ loadingMore: true })
       if (searching.repos) {
         return
       }
       searching.repos = true
-      this.setData({ searching })
+      this.setData({
+        searching
+      })
       wx.showNavigationBarLoading({})
-      github.searchRepos(this.data.repoUrl, q).then(res => {
-        let { repos, links } = res
-        const repoUrl = links['rel="next"'] || ''
-        const hasMore = repoUrl !== ''
-        searching.repos = false
-        repos = [...this.data.repos, ...repos]
-        this.setData({
-          repos,
-          repoUrl,
-          hasMore,
-          searching
-        })
+      this.data.repoNext().then(({ data, next }) => {
+        this.repoSuccessHandler({ data, next })
         wx.hideNavigationBarLoading({})
       }).catch(error => {
         searching.repos = false
@@ -71,28 +89,19 @@ Page({
       })
     }
     if (activeTab === 'users') {
-      if (!userUrl) {
+      if (!userNext) {
         return wx.showToast({ title: 'No more results' })
       }
-      this.setData({ loadingMore: true })
       if (searching.users) {
         return
       }
       searching.users = true
-      this.setData({ searching })
+      this.setData({
+        searching
+      })
       wx.showNavigationBarLoading({})
-      github.searchUsers(this.data.userUrl, q).then(res => {
-        let { users, links } = res
-        const userUrl = links['rel="next"'] || ''
-        const hasMore = userUrl !== ''
-        searching.users = false
-        users = [...this.data.users, ...users]
-        this.setData({
-          users,
-          userUrl,
-          hasMore,
-          searching
-        })
+      this.data.userNext().then(({ data, next }) => {
+        this.userSuccessHandler({ data, next })
         wx.hideNavigationBarLoading({})
       }).catch(error => {
         searching.users = false
@@ -111,17 +120,8 @@ Page({
       searching.repos = true
       this.setData({ searching })
       wx.showNavigationBarLoading({})
-      github.searchRepos(this.data.repoUrl, q).then(res => {
-        let { repos, links } = res
-        const repoUrl = links['rel="next"'] || ''
-        const hasMore = repoUrl !== ''
-        searching.repos = false
-        this.setData({
-          repos,
-          repoUrl,
-          hasMore,
-          searching
-        })
+      github.search().repos({ q }).then(({ data, next }) => {
+        this.repoSuccessHandler({ data, next })
         wx.hideNavigationBarLoading({})
       }).catch(error => {
         searching.repos = false
@@ -130,23 +130,13 @@ Page({
       })
     } else if (this.data.activeTab === 'users') {
       if (searching.users) {
-        console.log('searching users, returning')
         return
       }
       searching.users = true
       this.setData({ searching })
       wx.showNavigationBarLoading({})
-      github.searchUsers(this.data.userUrl, q).then(res => {
-        let { users, links } = res
-        const userUrl = links['rel="next"'] || ''
-        const hasMore = userUrl !== ''
-        searching.users = false
-        this.setData({
-          users,
-          userUrl,
-          hasMore,
-          searching
-        })
+      github.search().users({ q }).then(({ data, next}) => {
+        this.userSuccessHandler({ data, next })
         wx.hideNavigationBarLoading({})
       }).catch(error => {
         searching.users = false
@@ -159,10 +149,12 @@ Page({
   onSearch: function(e) {
     this.setData({
       q: e.detail,
-      userUrl: '',
-      repoUrl: '',
       repos: [],
-      users: []
+      users: [],
+      repoNext: null,
+      userNext: null,
+      hasMoreUsers: false,
+      hasMoreRepos: false
     })
     this.performSearch()
   },

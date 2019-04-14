@@ -14,7 +14,7 @@ Page({
       data: content,
       success() {
         wx.showToast({
-          title: `${title}已复制`,
+          title: `Copied: ${title}`,
           duration: 2000,
         })
       },
@@ -22,7 +22,7 @@ Page({
   },
   toProjectPage() {
     wx.navigateTo({
-      url: '/pages/repo-detail/repo-detail?url=https://api.github.com/repos/kezhenxu94/mini-github',
+      url: '/pages/repo-detail/repo-detail?repo=kezhenxu94/mini-github',
     })
   },
   toUserPage() {
