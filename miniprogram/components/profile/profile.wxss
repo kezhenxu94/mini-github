@@ -77,24 +77,42 @@
   border-right: 0.5rpx solid rgba(255, 255, 255, 0.5)
 }
 
-.org, .loc, .email, .blog, .create {
+.company, .loc, .email, .blog, .create {
   display: flex;
   padding: 30rpx 40rpx;
   overflow: hidden;
   font-size: 30rpx;
 }
 
-.org-img, .loc-img, .email-img, .blog-img, .create-img {
+.company-img, .loc-img, .email-img, .blog-img, .create-img {
   width: 50rpx;
   height: 50rpx;
   min-width: 50rpx;
   min-height: 50rpx;
 }
 
-.org-text, .loc-text, .email-text, .blog-text, .create-text {
+.company-text, .loc-text, .email-text, .blog-text, .create-text {
   margin-left: 20rpx;
   display: -webkit-flex;
   align-items: center;
   line-height: inherit;
   font-weight: bold;
+}
+
+.orgs {
+  padding: 12rpx 0 12rpx 40rpx;
+}
+
+.orgs navigator {
+  display: inline;
+}
+
+.orgs image.avatar {
+  min-height: 64rpx !important;
+  min-width: 64rpx !important;
+  max-height: 64rpx !important;
+  max-width: 64rpx !important;
+  margin-right: 20rpx;
+  padding: 6rpx;
+  background-color: #FFF;
 }

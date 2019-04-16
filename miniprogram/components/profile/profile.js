@@ -9,6 +9,9 @@ Component({
       observer: function (user = {}) {
         const username = user.login
         if (!username) return
+        if (user.type === 'User') {
+          this.loadOrganizations()
+        }
         const myself = (username === utils.getCurrentUser().login)
         this.setData({ isMyself: myself })
         if (myself) return
@@ -19,7 +22,8 @@ Component({
   data: {
     isFollowing: false,
     loading: false,
-    isMyself: false
+    isMyself: false,
+    orgs: []
   },
   methods: {
     onTapEmail: function() {
@@ -94,6 +98,15 @@ Component({
       }).then(error => {
         this.setData({ loading: false })
       })
+    },
+
+    loadOrganizations: function () {
+      const username = this.data.user.login
+      github.users(username).orgs().then(({ orgs }) => {
+        this.setData({
+          orgs
+        })
+      }).catch(console.error)
     }
   }
 })

@@ -15,7 +15,7 @@ Page({
     })
   },
   onLoad: function() {
-    github.users('kezhenxu94').end().then(res => {
+    github.users('kezhenxu94').get().then(res => {
       console.log(res)
     })
   }

@@ -9,7 +9,7 @@ const users = (username) => {
     repos: () => {
       const promise = http.get(`https://api.github.com/users/${username}/repos`)
       return pageable.wrap(promise)
-    },
+    },  
     starred: () => {
       const promise = http.get(`https://api.github.com/users/${username}/starred`)
       return pageable.wrap(promise)
@@ -18,6 +18,13 @@ const users = (username) => {
       const promise = http.get(`https://api.github.com/users/${username}/received_events`)
       return pageable.wrap(promise)
     },
+    orgs: () => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/users/${username}/orgs`
+      http.get(url).then(({ status, headers, data }) => {
+        if (status !== 200) reject(new Error(data))
+        resolve({ orgs: data })
+      }).catch(error => reject(error))
+    }),
     followers: () => new Promise((resolve, reject) => {
       const url = `https://api.github.com/users/${username}/followers`
       http.get(url).then(({ status, headers, data }) => {
@@ -32,7 +39,7 @@ const users = (username) => {
         resolve({ following: data })
       }).catch(error => reject(error))
     }),
-    end: () => new Promise((resolve, reject) => {
+    get: () => new Promise((resolve, reject) => {
       const url = `https://api.github.com/users/${username}`
       http.get(url).then(({ status, headers, data }) => {
         if (status !== 200) reject(new Error(data))

@@ -35,7 +35,7 @@ Page({
   loadUserInfo: function() {
     const { username } = this.data
     wx.showNavigationBarLoading({})
-    github.users(username).end().then(user => {
+    github.users(username).get().then(user => {
       this.setData({ user })
       wx.hideNavigationBarLoading({})
     }, error => {
