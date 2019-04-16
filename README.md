@@ -43,27 +43,25 @@
 
 ## Change Logs
 - v2.4.0
-  - Features:
-    - Issue 和 Pull Request 支持查看 label
-    - Issue 和 Pull Request 评论作者添加与当前项目关系
-    - Repo 详情页支持查看 contributors 和贡献次数及排名
-    - Markdown(包含 README, 评论)中的超链接进行应用内跳转(如果可能), 或打开 Markdown 展示页
-    - Trending 榜单列表展示 Repo 主要五位贡献人
-  - Bugfixes:
-    - 我的 Issue 列表展示不全
+  - :new: Issue 和 Pull Request 支持查看 label
+  - :new: Issue 和 Pull Request 评论作者添加与当前项目关系
+  - :new: Repo 详情页支持查看 contributors 和贡献次数及排名
+  - :new: Markdown(包含 README, 评论)中的超链接进行应用内跳转(如果可能), 或打开 Markdown 展示页
+  - :new: Trending 榜单列表展示 Repo 主要五位贡献人
+  - :bug: 我的 Issue 列表展示不全
 - v2.2.0
-  - 个人中心仓库列表支持查看私有仓库
+  - :new: 个人中心仓库列表支持查看私有仓库
 - v2.1.0
-  - 支持使用 Token 登陆
-  - Markdown 渲染优化
+  - :new: 支持使用 Token 登陆
+  - :hammer: Markdown 渲染优化
 - v2.1.0 以前
-  - 查看 GitHub 榜单, 包括按语言/时间跨度筛选
-  - 查看 Feed 列表, 查看最近活动
-  - 查看与我相关的 Issue 列表, Pull Request 列表, 包括我创建的, 指派给我的, 等等
-  - 查看 Issue, Pull Request 详情及回复, 并可回复评论
-  - 查看代码仓库详情, 可 Star, Fork, Watch
-  - 查看本人用户信息以及他人用户信息, 关注列表, 关注者列表, 可关注和取消关注
-  - 搜索代码仓库和用户
+  - :new: 查看 GitHub 榜单, 包括按语言/时间跨度筛选
+  - :new: 查看 Feed 列表, 查看最近活动
+  - :new: 查看与我相关的 Issue 列表, Pull Request 列表, 包括我创建的, 指派给我的, 等等
+  - :new: 查看 Issue, Pull Request 详情及回复, 并可回复评论
+  - :new: 查看代码仓库详情, 可 Star, Fork, Watch
+  - :new: 查看本人用户信息以及他人用户信息, 关注列表, 关注者列表, 可关注和取消关注
+  - :new: 搜索代码仓库和用户
 
 ## Donation
 | 支付宝 | 微信支付 |
