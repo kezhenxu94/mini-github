@@ -12,7 +12,6 @@ Page({
     this.setData({
       url
     })
-    console.info(url)
     wx.startPullDownRefresh({})
   },
 
@@ -39,6 +38,8 @@ Page({
       return wx.stopPullDownRefresh()
     }
 
+    const baseUrl = url.replace(/\/[^/]+\.[mM][dD]$/, '')
+    console.info({baseUrl})
     http.get(url).then(({ data, status }) => {
       if (status !== 200) {
         wx.stopPullDownRefresh()
@@ -50,7 +51,8 @@ Page({
       }
       this.setData({
         md: {
-          content: data
+          content: data,
+          baseUrl: baseUrl
         }
       })
       wx.stopPullDownRefresh()

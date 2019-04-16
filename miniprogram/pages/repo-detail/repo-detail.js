@@ -42,7 +42,8 @@ Page({
       github.repos(repo.full_name).readme().then(data => {
         const { content, download_url, path } = data
         const mdContent = base64.decode(content)
-        const baseUrl = download_url.replace(new RegExp(`${path}\?.*$`), '')
+        const baseUrl = download_url.replace(new RegExp(`${path}$`), '')
+
         this.setData({
           readme: {
             content: mdContent,
