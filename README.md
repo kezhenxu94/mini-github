@@ -12,11 +12,11 @@
 ## Screenshots
 | Feeds | Issues | Trendings | Pulls | Profile |
 | :------: | :------: | :------: | :------: | :------: |
-| ![feeds](https://user-images.githubusercontent.com/15965696/47966268-a2ba6280-e08b-11e8-9f38-871b56bfa260.jpg) | ![my-issues](https://user-images.githubusercontent.com/15965696/47966271-a352f900-e08b-11e8-998e-b63e971af6f1.jpg) | ![trendings](https://user-images.githubusercontent.com/15965696/47966282-a4842600-e08b-11e8-8933-df4616059d63.jpg) | ![my-pulls](https://user-images.githubusercontent.com/15965696/47966272-a352f900-e08b-11e8-88f0-a8e8915cc07b.jpg) | ![user](https://user-images.githubusercontent.com/15965696/47966283-a51cbc80-e08b-11e8-8418-0d125736cb0e.jpg) |
+| ![feeds](https://user-images.githubusercontent.com/15965696/56143752-a7d4f380-5fd3-11e9-964e-627c21919485.jpg) | ![my-issues](https://user-images.githubusercontent.com/15965696/56143750-a73c5d00-5fd3-11e9-9191-f2915088aa54.jpg) | ![trendings](https://user-images.githubusercontent.com/15965696/56143749-a6a3c680-5fd3-11e9-95a9-2bfe6b10a31a.jpg) | ![my-pulls](https://user-images.githubusercontent.com/15965696/56143748-a60b3000-5fd3-11e9-9b40-c05705e529bd.jpg) | ![user](https://user-images.githubusercontent.com/15965696/56143747-a5729980-5fd3-11e9-9421-14f4339d56e3.jpg) |
 | Search Repos | Search Users | Repo Detail | Repo Detail | Issue Detail |
-| ![search-repos](https://user-images.githubusercontent.com/15965696/47966278-a3eb8f80-e08b-11e8-8c77-ed0e6f5f04bc.jpg) | ![search-users](https://user-images.githubusercontent.com/15965696/47966279-a4842600-e08b-11e8-9dbb-8ef5480710e9.jpg) | ![repo-readme](https://user-images.githubusercontent.com/15965696/47966277-a3eb8f80-e08b-11e8-9b4a-ad631b2c1cd2.jpg) | ![repo-issues](https://user-images.githubusercontent.com/15965696/47966276-a3eb8f80-e08b-11e8-953b-c699167ebfe7.jpg) | ![issue-detail](https://user-images.githubusercontent.com/15965696/47966270-a2ba6280-e08b-11e8-8c36-33f58f8cc1e0.jpg) |
+| ![search-repos](https://user-images.githubusercontent.com/15965696/56143745-a4da0300-5fd3-11e9-8a61-f942745f443a.jpg) | ![search-users](https://user-images.githubusercontent.com/15965696/56143742-a3a8d600-5fd3-11e9-8f4f-d3a795db7b55.jpg) | ![repo-readme](https://user-images.githubusercontent.com/15965696/56143733-a0ade580-5fd3-11e9-9f8c-0b5e82258096.jpg) | ![repo-issues](https://user-images.githubusercontent.com/15965696/56143732-a0154f00-5fd3-11e9-951d-ce93607e1867.jpg) | ![issue-detail](https://user-images.githubusercontent.com/15965696/56143734-a1467c00-5fd3-11e9-8ac2-527dd180a304.jpg) |
 | Followers | Following | My Repos | My Starred | Sign In |
-| ![followers](https://user-images.githubusercontent.com/15965696/47966269-a2ba6280-e08b-11e8-8ada-3694a92e4ebb.jpg) | ![following](https://user-images.githubusercontent.com/15965696/47966429-37719000-e08d-11e8-90a9-d0687bf9cb67.jpg) | ![my-repos](https://user-images.githubusercontent.com/15965696/47966273-a352f900-e08b-11e8-8c78-fe70d80f1862.jpg) | ![my-starred](https://user-images.githubusercontent.com/15965696/47966274-a3eb8f80-e08b-11e8-9dbc-d65cb0537b4d.jpg) | ![sign-in](https://user-images.githubusercontent.com/15965696/47966280-a4842600-e08b-11e8-9d01-c54b07029de4.jpg) |
+| ![followers](https://user-images.githubusercontent.com/15965696/56143741-a3a8d600-5fd3-11e9-9fc9-362ac5a5f208.jpg) | ![following](https://user-images.githubusercontent.com/15965696/56143731-a0154f00-5fd3-11e9-8c71-1a86a33dc4d1.jpg) | ![my-repos](https://user-images.githubusercontent.com/15965696/56143727-9ee42200-5fd3-11e9-9266-82781992c30d.jpg) | ![my-starred](https://user-images.githubusercontent.com/15965696/56143726-9e4b8b80-5fd3-11e9-84a3-14b81599b5e1.jpg) | ![sign-in](https://user-images.githubusercontent.com/15965696/56143723-9db2f500-5fd3-11e9-8a9b-8a034f4b6c52.jpg) |
 
 > 由于小程序不断优化，界面细节可能有所变化，请以实际页面为准
 
@@ -28,8 +28,10 @@
 - [x] 评论, 回复评论
 - [x] 使用 Token 登陆
 - [x] Markdown 渲染优化
-- [ ] 显示 Issue, PR 的 Label
+- [x] 显示 Issue, PR 的 label
 - [x] 支持使用 Token 登陆
+- [ ] 显示 Issue, PR 的时间线
+- [ ] News 页面添加通知 Tab
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
@@ -40,19 +42,26 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+- v2.4.0
+  - :new: Issue 和 Pull Request 支持查看 label
+  - :new: Issue 和 Pull Request 评论作者添加与当前项目关系
+  - :new: Repo 详情页支持查看 contributors 和贡献次数及排名
+  - :new: Markdown(包含 README, 评论)中的超链接进行应用内跳转(如果可能), 或打开 Markdown 展示页
+  - :new: Trending 榜单列表展示 Repo 主要五位贡献人
+  - :bug: 我的 Issue 列表展示不全
 - v2.2.0
-  - 个人中心仓库列表支持查看私有仓库
+  - :new: 个人中心仓库列表支持查看私有仓库
 - v2.1.0
-  - 支持使用 Token 登陆
-  - Markdown 渲染优化
+  - :new: 支持使用 Token 登陆
+  - :hammer: Markdown 渲染优化
 - v2.1.0 以前
-  - 查看 GitHub 榜单, 包括按语言/时间跨度筛选
-  - 查看 Feed 列表, 查看最近活动
-  - 查看与我相关的 Issue 列表, Pull Request 列表, 包括我创建的, 指派给我的, 等等
-  - 查看 Issue, Pull Request 详情及回复, 并可回复评论
-  - 查看代码仓库详情, 可 Star, Fork, Watch
-  - 查看本人用户信息以及他人用户信息, 关注列表, 关注者列表, 可关注和取消关注
-  - 搜索代码仓库和用户
+  - :new: 查看 GitHub 榜单, 包括按语言/时间跨度筛选
+  - :new: 查看 Feed 列表, 查看最近活动
+  - :new: 查看与我相关的 Issue 列表, Pull Request 列表, 包括我创建的, 指派给我的, 等等
+  - :new: 查看 Issue, Pull Request 详情及回复, 并可回复评论
+  - :new: 查看代码仓库详情, 可 Star, Fork, Watch
+  - :new: 查看本人用户信息以及他人用户信息, 关注列表, 关注者列表, 可关注和取消关注
+  - :new: 搜索代码仓库和用户
 
 ## Donation
 | 支付宝 | 微信支付 |

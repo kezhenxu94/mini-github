@@ -14,6 +14,24 @@
   flex-wrap: wrap;
 }
 
+.desc-comment {
+  display: flex;
+  margin-top: 12rpx;
+}
+
+.desc-comment .comment {
+  font-size: 24rpx;
+  display: flex;
+  justify-items: center;
+  color: #FFF;
+}
+
+.desc-comment image.icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}
+
 .desc {
   font-size: 24rpx;
   color: #b8b8b8;
@@ -21,7 +39,6 @@
   display: flex;
   flex: 1;
   flex-wrap: wrap;
-  margin-top: 12rpx;
 }
 
 tag:not(first-of-type) {
