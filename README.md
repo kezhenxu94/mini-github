@@ -28,8 +28,10 @@
 - [x] 评论, 回复评论
 - [x] 使用 Token 登陆
 - [x] Markdown 渲染优化
-- [ ] 显示 Issue, PR 的 Label
+- [x] 显示 Issue, PR 的 label
 - [x] 支持使用 Token 登陆
+- [ ] 显示 Issue, PR 的时间线
+- [ ] News 页面添加通知 Tab
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
@@ -40,6 +42,15 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+- v2.4.0
+  - Features:
+    - Issue 和 Pull Request 支持查看 label
+    - Issue 和 Pull Request 评论作者添加与当前项目关系
+    - Repo 详情页支持查看 contributors 和贡献次数及排名
+    - Markdown(包含 README, 评论)中的超链接进行应用内跳转(如果可能), 或打开 Markdown 展示页
+    - Trending 榜单列表展示 Repo 主要五位贡献人
+  - Bugfixes:
+    - 我的 Issue 列表展示不全
 - v2.2.0
   - 个人中心仓库列表支持查看私有仓库
 - v2.1.0
