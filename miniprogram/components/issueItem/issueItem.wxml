@@ -3,7 +3,13 @@
   <view class='title'>
     {{issue.title}}
   </view>
-  <view class='desc'>{{filters.format(issue)}}</view>
+  <view class='desc-comment'>
+    <view class='desc'>{{filters.format(issue)}}</view>
+    <view class='comment' wx:if='{{issue.comments}}'>
+      <image class='icon' src='/octicons/comment.png'></image>
+      <text>{{issue.comments}}</text>
+    </view>
+  </view>
   <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}'>
     {{item.name}}
   </tag>

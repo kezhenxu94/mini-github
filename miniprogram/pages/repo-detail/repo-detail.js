@@ -69,6 +69,7 @@ Page({
     wx.showNavigationBarLoading({})
     const repoFullName = this.data.repo.full_name
     github.repos(repoFullName).pulls().then(pulls => {
+      console.info(pulls)
       this.setData({
         pulls
       })
