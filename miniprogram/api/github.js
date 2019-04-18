@@ -4,6 +4,7 @@ const user = require('user/index.js')
 const users = require('users/index.js')
 const repos = require('repos/index.js')
 const search = require('search/index.js')
+const notifications = require('notifications/index.js')
 
 const utils = require('../utils/util.js')
 
@@ -134,5 +135,6 @@ module.exports = {
   users,
   user,
   repos,
-  search
+  search,
+  notifications
 }

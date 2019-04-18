@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading": "../loading/index",
+    "feed": "../feedItem/feedItem"
+  }
+}

@@ -1,0 +1,35 @@
+@import '../../style/base.wxss';
+
+.container {
+  display: flex;
+  padding: 24rpx;
+}
+
+.content {
+  margin-left: 12rpx;
+  width: 100%;
+}
+
+image.icon {
+  min-width: 48rpx;
+  min-height: 48rpx;
+}
+
+.footer {
+  margin: 12rpx 0 0 0;
+  display: flex;
+  font-size: 24rpx;
+  line-height: 48rpx;
+  color: #b8b8b8;
+  width: 100%;
+}
+
+.repo {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.time, .unsub, .mark {
+  margin-left: 24rpx;
+}

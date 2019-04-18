@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "loading": "../loading/index",
+    "collapse": "../collapse/index",
+    "collapse-item": "../collapse-item/index",
+    "feed": "../feedItem/feedItem",
+    "issue": "../issueItem/issueItem",
+    "notif": "../notif/notif"
+  }
+}

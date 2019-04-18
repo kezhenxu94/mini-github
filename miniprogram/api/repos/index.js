@@ -99,6 +99,14 @@ const repos = repo => ({
     }
   },
 
+  notifications: () => new Promise((resolve, reject) => {
+    http.get(`https://api.github.com/repos/${repo}/notifications`).then(({ status, data }) => {
+      resolve(data)
+    }).catch(error => {
+      reject(error)
+    })
+  }),
+
   readme: () => {
     const url = `https://api.github.com/repos/${repo}/readme`
     return new Promise((resolve, reject) => {

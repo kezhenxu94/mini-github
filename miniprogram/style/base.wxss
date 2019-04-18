@@ -8,3 +8,8 @@ image.avatar {
   height: 88rpx;
   border-radius: 6rpx;
 }
+
+image.icon {
+  width: 32rpx;
+  height: 32rpx;
+}

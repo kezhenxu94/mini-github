@@ -2,7 +2,6 @@
 @import '../../style/base.wxss';
 
 .md-view {
-  padding: 24rpx;
   overflow: hidden;
   font-size: 12px;
 }

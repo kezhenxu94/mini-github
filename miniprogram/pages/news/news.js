@@ -6,15 +6,16 @@ let scrollTop = 0
 let refreshing = false
 let lastRefresh = moment().unix()
 let nextFunc = null
+let tabIndex = 0
 
 Page({
   data: {
     events: [],
     isSignedIn: utils.isSignedIn(),
-    loadingMore: false
+    loadingMoreActivity: false
   },
 
-  onShow: function() {
+  onLoad: function () {
     this.setData({
       isSignedIn: utils.isSignedIn()
     })
@@ -27,19 +28,23 @@ Page({
   onShareAppMessage: function (options) {
   },
 
-  onPullDownRefresh: function() {
-    this.reloadData()
+  onPullDownRefresh: function () {
+    if (tabIndex === 0) {
+      this.reloadData()
+    }
   },
 
-  onReachBottom: function() {
-    this.loadMore()
+  onReachBottom: function () {
+    if (tabIndex === 0) {
+      this.loadMoreActivities()
+    }
   },
 
   onPageScroll(e) {
     scrollTop = e.scrollTop
   },
 
-  reloadData: function() {
+  reloadData: function () {
     if (refreshing) return
     refreshing = true
     this.setData({
@@ -49,7 +54,7 @@ Page({
       wx.stopPullDownRefresh()
       const events = data.map(it => utils.asEvent(it))
       this.setData({ events }),
-      nextFunc = next
+        nextFunc = next
       lastRefresh = moment()
       refreshing = false
     }
@@ -65,21 +70,21 @@ Page({
     }
   },
 
-  loadMore: function() {
-    if (this.data.loadingMore) {
+  loadMoreActivities: function () {
+    if (this.data.loadingMoreActivity) {
       return
     }
-    
+
     if (nextFunc) {
       this.setData({
-        loadingMore: true
+        loadingMoreActivity: true
       })
       nextFunc().then(({ data, next }) => {
         wx.stopPullDownRefresh()
         const events = data.map(it => utils.asEvent(it))
         this.setData({
           events: [...this.data.events, ...events],
-          loadingMore: false
+          loadingMoreActivity: false
         })
         nextFunc = next
         lastRefresh = moment()
@@ -87,9 +92,13 @@ Page({
       }).catch(error => {
         wx.stopPullDownRefresh()
         this.setData({
-          loadingMore: false
+          loadingMoreActivity: false
         })
       })
     }
+  },
+
+  changeTab: function (event) {
+    tabIndex = event.detail.index
   }
 })

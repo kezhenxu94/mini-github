@@ -1,1 +1,5 @@
 @import "../../lib/wxParse/wxParse.wxss";
+
+.md {
+  padding: 24rpx;
+}

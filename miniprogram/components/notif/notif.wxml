@@ -1,0 +1,24 @@
+<navigator class='container' url='/pages/issue-detail/issue-detail?url={{notification.subject.url}}&thread={{notification.id}}'>
+  <image src='{{notification.subject.type === "Issue" ? "/octicons/issue-opened.png" : "/octicons/git-pull-request.png"}}'
+         class='icon'
+         mode='aspectFit'></image>
+  <view class='content'>
+    <view class='title'>
+      {{notification.subject.title}}
+    </view>
+    <view class='footer'>
+      <text class='repo'>{{notification.repository.full_name}}</text>
+      <text class='time'>{{notification.updated_at}}</text>
+      <image class='unsub icon'
+             src='/octicons/mute.png'
+             mode='aspectFit'
+             catchtap='unsubscribe'
+             hover-stop-propagation></image>
+      <image class='mark icon'
+             src='/octicons/check.png'
+             mode='aspectFit'
+             catchtap='markAsRead'
+             hover-stop-propagation></image>
+    </view>
+  </view>
+</navigator>

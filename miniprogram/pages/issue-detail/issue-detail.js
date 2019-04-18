@@ -14,11 +14,15 @@ Page({
 
   onLoad: function(options) {
     const url = options.url || 'https://api.github.com/repos/kezhenxu94/mini-github/issues/3'
+    const thread = options.thread
     this.setData({
       url: decodeURIComponent(url),
       repoName: utils.extractRepoName(url)
     })
     wx.startPullDownRefresh({})
+    if (thread) {
+      github.notifications().threads(thread).patch()
+    }
   },
 
   onShareAppMessage: function(options) {

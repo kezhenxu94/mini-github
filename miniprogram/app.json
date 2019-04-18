@@ -1,7 +1,6 @@
 {
   "pages": [
     "pages/trends/trends",
-    "pages/feeds/feeds",
     "pages/issues/issues",
     "pages/pulls/pulls",
     "pages/user/user",
@@ -13,7 +12,8 @@
     "pages/user-list/user-list",
     "pages/about/about",
     "pages/index/index",
-    "pages/md/md"
+    "pages/md/md",
+    "pages/news/news"
   ],
   "window": {
     "backgroundColor": "#24292e",
@@ -30,7 +30,7 @@
     "backgroundColor": "#24292e",
     "list": [
       {
-        "pagePath": "pages/feeds/feeds",
+        "pagePath": "pages/news/news",
         "text": "News",
         "iconPath": "octicons/mark-github.png",
         "selectedIconPath": "octicons/mark-github.png"

@@ -49,6 +49,19 @@ const user = () => ({
     const promise = http.get('https://api.github.com/user/repos')
     return pageable.wrap(promise)
   },
+  subscriptions: () => new Promise((resolve, reject) => {
+    const url = 'https://api.github.com/user/subscriptions'
+    http.get(url).then(({ status, data }) => {
+      if (status === 200) {
+        const repos = data
+        resolve(repos)
+      } else {
+        reject(new Error(data.message))
+      }
+    }).catch(error => {
+      reject(error)
+    })
+  }),
   get: () => new Promise((resolve, reject) => {
     const url = 'https://api.github.com/user'
     http.get(url).then(({ status, data}) => {
