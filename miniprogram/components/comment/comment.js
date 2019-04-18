@@ -81,27 +81,27 @@ Component({
       const repoUrl = comment.repository_url || issueUrl
       const repoFullName = utils.extractRepoName(repoUrl)
       wx.showLoading({
-        title: 'Posting comment'
+        title: 'Posting'
       })
       github.repos(repoFullName).issues(issueNumber).comments().post(replyContent).then(success => {
         wx.hideLoading()
         if (success) {
           wx.showToast({
-            title: 'Comment is posted'
+            title: 'Posted'
           })
           this.setData({
             showInputDialog: false
           })
         } else {
           wx.showToast({
-            title: 'Failed to comment, try again later',
+            title: 'Failed',
             icon: 'none'
           })
         }
       }).catch(error => {
         wx.hideLoading()
         wx.showToast({
-          title: 'Failed to comment',
+          title: 'FailedP',
           icon: 'none'
         })
       })
