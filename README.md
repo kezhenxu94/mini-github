@@ -1,7 +1,7 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/kezhenxu94/mini-github.svg)
 ![GitHub stars](https://img.shields.io/github/stars/kezhenxu94/mini-github.svg)
 ![WeChat ID](https://img.shields.io/badge/WeChat-CynicalKid-%2344b549.svg)
-![QQ](https://img.shields.io/badge/QQ%20Group-917423081-12b7f5.svg)
+![QQ](https://img.shields.io/badge/QQ-917423081-12b7f5.svg)
 ![QQ ID](https://img.shields.io/badge/QQ%20Group-948577975-12b7f5.svg)
 
 ## 扫码体验
