@@ -31,7 +31,7 @@
 - [x] 显示 Issue, PR 的 label
 - [x] 支持使用 Token 登陆
 - [ ] 显示 Issue, PR 的时间线
-- [ ] News 页面添加通知 Tab
+- [x] News 页面添加通知 Tab
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
@@ -42,6 +42,8 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+- v2.5.0
+  - :new: News 页面添加通知 Tab, 按 Repo 分组显示
 - v2.4.0
   - :new: Issue 和 Pull Request 支持查看 label
   - :new: Issue 和 Pull Request 评论作者添加与当前项目关系
