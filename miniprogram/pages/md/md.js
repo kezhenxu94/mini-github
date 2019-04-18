@@ -1,50 +1,33 @@
 const http = require('../../api/http.js')
 
-Page({
+let url = null
+let path = null
+let baseUrl = null
 
+Page({
   data: {
-    url: null,
     md: {}
   },
 
   onLoad: function (options) {
-    const { url } = options
-    this.setData({
-      url
-    })
+    url = options.url
+    path = encodeURIComponent((decodeURIComponent(url.replace(/.*?([^/]+\.md)$/i, '$1'))))
+    baseUrl = url.replace(/([^/]+\.[mM][dD])$/, '')
     wx.startPullDownRefresh({})
   },
 
-  onReady: function () {
-
-  },
-
-  onShow: function () {
-
-  },
-
-  onHide: function () {
-
-  },
-
-  onUnload: function () {
-
-  },
-
   onPullDownRefresh: function () {
-    const { url } = this.data
-    
     if (!url) {
       return wx.stopPullDownRefresh()
     }
 
-    const baseUrl = url.replace(/\/[^/]+\.[mM][dD]$/, '')
-    console.info({baseUrl})
-    http.get(url).then(({ data, status }) => {
+    console.info({path, baseUrl})
+
+    http.get(`${baseUrl}/${path}`).then(({ data, status }) => {
+      wx.stopPullDownRefresh()
       if (status !== 200) {
-        wx.stopPullDownRefresh()
         wx.showToast({
-          title: data,
+          title: String(status),
           icon: 'none'
         })
         return
@@ -55,7 +38,6 @@ Page({
           baseUrl: baseUrl
         }
       })
-      wx.stopPullDownRefresh()
     })
   },
 

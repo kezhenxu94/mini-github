@@ -14,33 +14,38 @@ Component({
     }
   },
 
-  data: {
-  },
-
   methods: {
     wxParseTagATap: function (event) {
       const url = event.currentTarget.dataset.src
-      if (/^https?:\/\/.+\.md$/.test(url)) {
-        wx.navigateTo({
+
+      if (/^#/.test(url)) {
+        return wx.showToast({
+          title: '暂不支持页内锚点滚动',
+          icon: 'none'
+        })
+      }
+
+      if (/^https?:\/\/.+\.md$/i.test(url)) {
+        return wx.navigateTo({
           url: `/pages/md/md?url=${url}`
         })
-        return
       }
-      if (/\.md$/.test(url)) {
-        wx.navigateTo({
+
+      if (/\.md$/i.test(url)) {
+        return wx.navigateTo({
           url: `/pages/md/md?url=${this.data.md.baseUrl}/${url}`
         })
-        return
       }
-      const repoRegExp = /^https:\/\/(api.)?github.com\/(.*?\/.*?)(\/.*)?$/
+
+      const repoRegExp = /^https:\/\/(api.)?github.com\/(.*?\/.*?)(\/.*)?$/i
       if (repoRegExp.test(url)) {
         const repoFullName = url.replace(repoRegExp, '$2')
         const repoUrl = `/pages/repo-detail/repo-detail?repo=${repoFullName}`
-        wx.navigateTo({
+        return wx.navigateTo({
           url: repoUrl,
         })
-        return
       }
+      
       wx.setClipboardData({
         data: url,
         success() {
