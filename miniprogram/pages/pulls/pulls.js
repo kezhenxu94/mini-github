@@ -19,7 +19,7 @@ Page({
     isSignedIn: utils.isSignedIn()
   },
   
-  onShow: function () {
+  onLoad: function () {
     this.setData({
       isSignedIn: utils.isSignedIn()
     })
