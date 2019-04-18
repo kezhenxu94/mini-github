@@ -1,3 +1,6 @@
+![GitHub closed issues](https://img.shields.io/github/issues-closed/kezhenxu94/mini-github.svg)
+![GitHub stars](https://img.shields.io/github/stars/kezhenxu94/mini-github.svg)
+
 ## 扫码体验
 
 ![QRCode](https://user-images.githubusercontent.com/15965696/47959988-d2864d80-e02c-11e8-8c39-dac879bad3d6.jpg)
