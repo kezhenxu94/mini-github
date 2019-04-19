@@ -2,7 +2,8 @@ const userUtils = require('utils/users.js')
 
 App({
   onLaunch: function () {
-    const env = 'github-production' // 'github-development'
+    // const env = 'github-production'
+    const env = 'github-development'
 
     wx.cloud.init({
       env,
@@ -20,6 +21,15 @@ App({
         const { data: { token } = {} } = res
         if (token) {
           userUtils.signIn(token)
+        }
+      })
+      db.collection('subscriptions').where({ _openid: openId }).count().then(({ total }) => {
+        if (total === 0) {
+          db.collection('subscriptions').add({
+            data: {
+              type: 'participating'
+            }
+          })
         }
       })
     })

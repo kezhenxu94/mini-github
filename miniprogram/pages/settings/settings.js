@@ -1,5 +1,4 @@
-const app = getApp()
-const collection = app.globalData.db.collection('notifications')
+const notificationUtils = require('../../utils/notifications.js')
 
 Page({
   data: {
@@ -33,18 +32,15 @@ Page({
   },
 
   formSubmit: function(e) {
-    const enabled = this.data.enableNotification
-    if (!enabled) {
-      return
-    }
-
-    const openId = app.globalData.openId
+    const enableNotification = this.data.enableNotification
     const formId = e.detail.formId
 
-    collection.doc(openId).set({
-      data: {
-        formId,
-        enabled
+    notificationUtils.report({
+      formId,
+      extra: {
+        settings: {
+          enableNotification
+        }
       }
     })
   }
