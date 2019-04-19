@@ -20,6 +20,10 @@
     <image mode='aspectFit' class='avatar' src='/octicons/octoface.png'></image>
     <navigator url='/pages/login/login'>Sign In</navigator>
   </view>
+  <navigator class='settings' url='/pages/settings/settings' wx:if='{{tab===0}}'>
+    <image mode='aspectFit' src='/octicons/gear.png'></image>
+    <text class='settings-text'>Settings</text>
+  </navigator>
   <button class='feedback' open-type='feedback' wx:if='{{tab===0}}'>
     <image mode='aspectFit' src='/md/feedback.png'></image>
     <text class='text'>Feedback</text>

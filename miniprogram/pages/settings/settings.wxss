@@ -1,0 +1,12 @@
+@import '../../style/base.wxss';
+
+.van-cell {
+  background-color: transparent !important;
+  color: #FFF !important;
+}
+
+button {
+  margin: 24rpx;
+  background-color: #333;
+  color: #FFF;
+}

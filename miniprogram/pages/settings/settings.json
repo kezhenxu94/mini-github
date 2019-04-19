@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "cell-group": "../../components/cell-group/index",
+    "cell": "../../components/cell/index",
+    "switch-cell": "../../components/switch-cell/index"
+  }
+}

@@ -19,6 +19,7 @@
   position: fixed;
   padding: 20rpx !important;
   background-color: #24292e;
+  z-index: 100;
 }
 
 .van-search__field .field-index--van-field {

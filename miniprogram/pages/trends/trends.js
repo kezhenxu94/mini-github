@@ -1,6 +1,6 @@
+const app = getApp()
 const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
-
 const timeRange = [
   { label: 'Daily', value: 'Daily'},
   { label: 'Weekly', value: 'Weekly'},

@@ -1,6 +1,6 @@
-const moment = require('../../lib/moment.js')
-const utils = require('../../utils/util.js')
-const github = require('../../api/github.js')
+const app = getApp()
+const collection = app.globalData.db.collection('users')
+const userUtils = require('../../utils/users.js')
 Page({
   data: {
     mobile: '',
@@ -14,11 +14,10 @@ Page({
     wx.showLoading({
       title: '正在登陆',
     })
-    wx.setStorageSync('token', token)
 
-    github.user().get().then(user => {
+    userUtils.signIn(token).then(({ user, token }) => {
+      collection.doc(app.globalData.openId).set({ data: { token, user } })
       wx.showToast({ title: '登录成功' })
-      wx.setStorageSync('user', user)
       wx.navigateBack({})
     }).catch(error => {
       wx.showToast({

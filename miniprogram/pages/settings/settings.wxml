@@ -1,0 +1,6 @@
+<cell-group title="Notifications">
+  <form bindsubmit="formSubmit" report-submit='{{true}}'>
+    <switch-cell title="Enable Notifications" checked="{{ enableNotification }}" bind:change="onChangeNotification" formType='submit' />
+    <button form-type="submit">Submit</button>
+  </form>
+</cell-group>

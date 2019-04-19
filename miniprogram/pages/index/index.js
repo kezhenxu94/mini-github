@@ -9,14 +9,21 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+  bindViewTap: function () {
   },
   onLoad: function() {
-    github.users('kezhenxu94').get().then(res => {
-      console.log(res)
+    wx.cloud.callFunction({
+      name: 'login',
+      complete: res => {
+        console.log('callFunction test result: ', res)
+      }
     })
+  },
+  getUserInfo: function(e) {
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
+    })
+    console.info(e)
   }
 })
