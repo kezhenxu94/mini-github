@@ -4,6 +4,7 @@
     "feed": "../../components/feedItem/feedItem",
     "comment": "../../components/comment/comment",
     "v-button": "../../components/button/index",
-    "tag": "../../components/tag/index"
+    "tag": "../../components/tag/index",
+    "timeline": "../../components/timeline/timeline"
   }
 }

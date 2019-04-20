@@ -10,8 +10,9 @@
   <view class='comment-wrapper' wx:if='{{issue}}'>
     <comment comment='{{issue}}'></comment>
   </view>
-  <view class='comment-wrapper' wx:for='{{comments}}' wx:key='{{index}}' >
-    <comment comment='{{item}}'></comment>
+  <view class='comment-wrapper' wx:for='{{displayTimeline}}' wx:key='{{index}}' >
+    <comment wx:if='{{item.event === "commented"}}' comment='{{item}}'></comment>
+    <timeline wx:else timeline='{{item}}'></timeline>
   </view>
   <view class='loading' wx:if='{{issue}}'>
     <v-button plain round type='primary' size='small' loading='{{loadingMore}}' bind:click='loadMore' class='more-btn'>{{hasMore ? 'Load More' : 'No More Comments'}}</v-button>

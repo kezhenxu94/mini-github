@@ -1,0 +1,5 @@
+<view class='timeline'>
+  <image class='type' mode='aspectFit' src='{{icon}}' />
+  <image class='avatar' mode='aspectFit' src='{{timeline.actor.avatar_url || timeline.user.avatar_url}}' />
+  <view class='desc'>{{desc}}</view>
+</view>

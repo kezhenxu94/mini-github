@@ -27,7 +27,9 @@ App({
         if (total === 0) {
           db.collection('subscriptions').add({
             data: {
-              type: 'participating'
+              type: 'participating',
+              createdAt: db.serverDate(),
+              since: db.serverDate()
             }
           })
         }

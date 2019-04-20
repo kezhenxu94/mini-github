@@ -1,4 +1,5 @@
 const http = require('../http.js')
+const pageable = require('../../api/pageable.js')
 const util = require('../../utils/util.js')
 
 const token = () => util.getCurrentToken() || ''
@@ -25,20 +26,39 @@ const repos = repo => ({
         })
       }) 
     }),
+    timeline: () => {
+      const url = `https://api.github.com/repos/${repo}/issues/${number}/timeline`
+      const headers = {
+        'Accept': 'application/vnd.github.mockingbird-preview'
+      }
+      const promise = http.get(url, { headers })
+      return pageable.wrap(promise, headers)
+    },
     get: () => new Promise((resolve, reject) => {
-      const url = `https://api.github.com/repos/${repo}/issues`
-      http.get(url).then(({ status, headers, data }) => {
-        if (status !== 200) reject(new Error(data))
-        const issues = data.filter(it => {
-          return it.pull_request === undefined
-        }).map(it => {
-          it.created_at = util.toReadableTime(it.created_at)
-          return it
+      const isSingle = number && number > 0
+      if (isSingle) {
+        const url = `https://api.github.com/repos/${repo}/issues/${number}`
+        http.get(url).then(({ status, headers, data }) => {
+          data.created_at = util.toReadableTime(data.created_at)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
         })
-        resolve(issues)
-      }).catch(error => {
-        reject(error)
-      })
+      } else {
+        const url = `https://api.github.com/repos/${repo}/issues`
+        http.get(url).then(({ status, headers, data }) => {
+          if (status !== 200) reject(new Error(data))
+          const issues = data.filter(it => {
+            return it.pull_request === undefined
+          }).map(it => {
+            it.created_at = util.toReadableTime(it.created_at)
+            return it
+          })
+          resolve(issues)
+        }).catch(error => {
+          reject(error)
+        })
+      }
     })
   }),
   pulls: () => new Promise((resolve, reject) => {

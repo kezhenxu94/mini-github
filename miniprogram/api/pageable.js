@@ -21,7 +21,7 @@ const parseLinks = header => {
   return links
 }
 
-const wrap = promise => new Promise((resolve, reject) => {
+const wrap = (promise, reqHeaders = {}) => new Promise((resolve, reject) => {
   promise.then(({ status, headers, data }) => {
     console.info({ status, headers, data })
     if (status !== 200) {
@@ -32,7 +32,7 @@ const wrap = promise => new Promise((resolve, reject) => {
     if (nextUrl) {
       return resolve({
         data,
-        next: () => wrap(http.get(nextUrl))
+        next: () => wrap(http.get(nextUrl, { headers: reqHeaders }), reqHeaders)
       })
     }
     return resolve({ data, next: null })

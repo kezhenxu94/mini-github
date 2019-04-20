@@ -2,7 +2,7 @@
   <navigator class='login-prompt' wx:if='{{!isSignedIn}}' url='/pages/login/login'>
     Sign In to Seee My News >
   </navigator>
-  <tabs bind:change='changeTab' sticky swipeable>
+  <tabs bind:change='changeTab' sticky>
     <tab title='Activities'>
       <activities events='{{events}}' loading='{{loadingMoreActivity}}'></activities>
     </tab>

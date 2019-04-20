@@ -24,16 +24,4 @@
     <image mode='aspectFit' src='/octicons/gear.png'></image>
     <text class='settings-text'>Settings</text>
   </navigator>
-  <button class='feedback' open-type='feedback' wx:if='{{tab===0}}'>
-    <image mode='aspectFit' src='/md/feedback.png'></image>
-    <text class='text'>Feedback</text>
-  </button>
-  <navigator class='about' url='/pages/about/about' wx:if='{{tab===0}}'>
-    <image mode='aspectFit' src='/md/info.png'></image>
-    <text class='about-text'>About</text>
-  </navigator>
-  <view class='logout' wx:if='{{user && tab===0}}' catchtap='logout'>
-    <image mode='aspectFit' src='/md/exit.png'></image>
-    <text class='text'>Sign Out</text>
-  </view>
 </view>

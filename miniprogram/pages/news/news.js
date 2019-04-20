@@ -100,5 +100,8 @@ Page({
 
   changeTab: function (event) {
     tabIndex = event.detail.index
+    wx.pageScrollTo({
+      scrollTop: 0
+    })
   }
 })

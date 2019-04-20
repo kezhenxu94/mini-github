@@ -2,16 +2,17 @@ const utils = require('../utils/util.js')
 
 const token = () => utils.getCurrentToken() || ''
 
-const get = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
+const get = (url, { params = {}, headers = {} } = {}) => new Promise((resolve, reject) => {
   wx.cloud.callFunction({
     name: 'proxy',
     data: {
       method: 'GET',
       url,
-      headers: { 'Authorization': token() },
+      headers: Object.assign({ 'Authorization': token() }, headers),
       params
     }
   }).then(({ result: { status, headers = {}, data } }) => {
+    console.info({ url, params, data })
     resolve({ status, headers, data })
   }).catch(error => {
     reject(error)

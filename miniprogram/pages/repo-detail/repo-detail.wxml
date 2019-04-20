@@ -21,6 +21,10 @@
       <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
       <text>{{repo.forks_count}}</text>
     </view>
+    <view class='license' wx:if='{{license}}'>
+      <image mode='aspectFit' src='/octicons/law.png'></image>
+      <text>{{license}}</text>
+    </view>
   </view>
   <tabs bind:change='changeTab' wx:if='{{showTabs}}' sticky animated>
     <tab title='Readme'>
