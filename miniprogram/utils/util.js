@@ -34,7 +34,7 @@ const parseGitHubUrl = url => {
   }
 }
 
-const toReadableTime = (time) => {
+const toReadableTime = time => {
   let then = moment(time)
   let now = moment()
   if (now.diff(then, 'days') <= 7) {

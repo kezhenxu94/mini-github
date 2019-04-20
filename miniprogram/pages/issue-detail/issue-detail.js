@@ -12,7 +12,8 @@ const ignoredEvents = [
   'committed',
   'moved_columns_in_project',
   'converted_note_to_issue',
-  'review_request_removed'
+  'review_request_removed',
+  'base_ref_changed'
 ]
 
 let links = {}
@@ -22,7 +23,7 @@ Component({
   properties: {
     url: {
       type: String,
-      value: 'https://api.github.com/repos/kezhenxu94/mini-github/issues/20'
+      value: 'https://api.github.com/repos/kezhenxu94/mini-github/issues/21'
     },
     thread: {
       type: Number,
@@ -111,6 +112,15 @@ Component({
       })
 
       const successHandler = ({ data, next }) => {
+        data.forEach(timeline => {
+          if (timeline.created_at) {
+            timeline.created_at = utils.toReadableTime(timeline.created_at)
+          }
+          if (timeline.submitted_at) {
+            timeline.submitted_at = utils.toReadableTime(timeline.submitted_at)
+          }
+          return timeline
+        })
         this.setData({
           timeline: [...timeline, ...data],
           hasMore: next !== null,

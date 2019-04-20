@@ -8,7 +8,7 @@
       <text class='time'>{{repo.pushed_at}}</text>
     </view>
   </view>
-  <view class='stats'>
+  <view class='stats {{ license ? "has-license" : "" }}'>
     <view class='watch' catchtap='toggleWatching'>
       <image mode='aspectFit' src='/octicons/eye.png'></image>
       <text>{{repo.subscribers_count}}</text>
