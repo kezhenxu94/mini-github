@@ -22,19 +22,21 @@ Component({
 
   computed: {
     license () {
-      const { license: { spdx_id = null } = {} } = this.data.repo || {}
+      const repo = this.data.repo || {}
+      const license = repo.license || {}
+      const spdx_id = license.spdx_id
       return spdx_id
     }
   },
 
   methods: {
     onLoad: function(options) {
-      var repoName = decodeURIComponent(options.repo || defaultRepoName)
+      const repoName = decodeURIComponent(options.repo || defaultRepoName)
       this.setData({
         repoName
       })
       wx.setNavigationBarTitle({
-        title: repoName,
+        title: repoName
       })
       this.reloadData()
     },
@@ -130,12 +132,15 @@ Component({
           showTabs
         })
         wx.setNavigationBarTitle({
-          title: repo.full_name,
+          title: repo.full_name
         })
         this.loadWatchingStatus()
         this.loadStarStatus()
         this.tryGetReadMe(repo).then(res => wx.hideNavigationBarLoading({})).catch(error => wx.hideNavigationBarLoading({}))
-      }).catch(error => wx.hideNavigationBarLoading({}))
+      }).catch(error => {
+        console.error(error)
+        wx.hideNavigationBarLoading({})
+      })
     },
 
     changeTab: function(event) {
