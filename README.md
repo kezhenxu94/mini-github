@@ -32,8 +32,9 @@
 - [x] Markdown 渲染优化
 - [x] 显示 Issue, PR 的 label
 - [x] 支持使用 Token 登陆
-- [ ] 显示 Issue, PR 的时间线
+- [x] 显示 Issue, PR 的时间线
 - [x] News 页面添加通知 Tab
+- [x] 通过微信服务消息接收 GitHub 通知
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
@@ -44,6 +45,9 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+- v2.6.0
+  - :new: 显示 Issue/PR 时间线
+  - :new: 支持通过微信服务消息接收 GitHub 未读消息通知
 - v2.5.0
   - :new: News 页面添加通知 Tab, 按 Repo 分组显示
 - v2.4.0
