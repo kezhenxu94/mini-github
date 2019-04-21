@@ -46,7 +46,7 @@ Component({
           })
           break
         case 'ReleaseEvent':
-          var repo = utils.extractRepoName(feed.repository.url)
+          var repo = feed.repo.name
           wx.navigateTo({
             url: `/pages/repo-detail/repo-detail?repo=${repo}`
           })
