@@ -1,4 +1,5 @@
 <import src='../../lib/wxParse/wxParse.wxml'/>
 <view class='md-view'>
   <template wx:if='{{loaded}}' is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  <ad wx:if='{{loaded}}' unit-id="adunit-76857f23183be0b2"></ad>
 </view>

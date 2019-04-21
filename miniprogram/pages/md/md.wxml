@@ -1,4 +1,3 @@
 <view class='md'>
   <md md='{{md}}'></md>
-  <ad wx:if='{{md.content}}' unit-id="adunit-76857f23183be0b2"></ad>
 </view>

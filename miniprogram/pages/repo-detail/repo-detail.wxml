@@ -31,7 +31,6 @@
       <view class='readme'>
         <md md='{{readme}}'></md>
       </view>
-      <ad wx:if='{{readme}}' unit-id="adunit-2953eab5250f3d65"></ad>
     </tab>
     <tab title='Issues'>
       <view wx:for='{{issues}}' wx:key='{{index}}'>
