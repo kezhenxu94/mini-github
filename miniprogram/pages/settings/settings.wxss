@@ -45,3 +45,8 @@ button::after {
 .van-cell-group__title {
   font-weight: bolder;
 }
+
+.ad {
+  position: fixed;
+  bottom: 0;
+}

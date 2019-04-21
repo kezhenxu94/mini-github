@@ -17,7 +17,7 @@ Component({
     showTabs: false,
     isStarred: false,
     isWatching: false,
-    readme: {}
+    readme: null
   },
 
   computed: {

@@ -10,7 +10,7 @@ let tabIndex = 0
 
 Page({
   data: {
-    events: [],
+    events: wx.getStorageSync('Cache:News:Events') || [],
     isSignedIn: utils.isSignedIn(),
     loadingMoreActivity: false
   },
@@ -53,8 +53,12 @@ Page({
     const successHandler = ({ data, next }) => {
       wx.stopPullDownRefresh()
       const events = data.map(it => utils.asEvent(it))
-      this.setData({ events }),
-        nextFunc = next
+      this.setData({ events })
+      wx.setStorage({
+        key: 'Cache:News:Events',
+        data: events
+      })
+      nextFunc = next
       lastRefresh = moment()
       refreshing = false
     }

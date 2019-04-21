@@ -3,6 +3,7 @@
   <view class='repo' wx:for="{{trends}}" wx:key="{{index}}">
     <trend repo='{{item}}'></trend>
   </view>
+  <ad wx:if='{{trends}}' unit-id="adunit-dff765999dd73930"></ad>
   <picker class='lang-picker' mode='multiSelector' bindchange="changeFilter" value="{{selectedIndices}}" range="{{selectorValues}}" range-key='label'>
     <button type='primary' size='mini'>
       {{since.label}} / {{lang.label}}

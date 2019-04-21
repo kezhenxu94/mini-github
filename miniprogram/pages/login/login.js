@@ -1,6 +1,7 @@
 const app = getApp()
 const collection = app.globalData.db.collection('users')
 const userUtils = require('../../utils/users.js')
+const notifUtils = require('../../utils/notifications.js')
 Page({
   data: {
     mobile: '',
@@ -16,7 +17,14 @@ Page({
     })
 
     userUtils.signIn(token).then(({ user, token }) => {
-      collection.doc(app.globalData.openId).set({ data: { token, user } })
+      const openId = app.globalData.openId
+      collection.where({ _openid: openId }).count().then(count => {
+        if (count) {
+          collection.doc(openId).set({ data: { token, user } })
+        } else {
+          collection.add({ data: { _id: openId, token, user } })
+        }
+      })
       wx.showToast({ title: '登录成功' })
       wx.navigateBack({})
     }).catch(error => {
@@ -28,6 +36,7 @@ Page({
     })
   },
   commitAccount (e) {
+    notifUtils.report({ formId: e.detail.formId })
     let values = e.detail.value
     let username = values.username || ''
     let password = values.password || ''
@@ -49,6 +58,7 @@ Page({
     this.login(token)
   },
   commitToken(e) {
+    notifUtils.report({ formId: e.detail.formId })
     let values = e.detail.value
     let token = values.token || ''
     if (!token.replace(/\s+/g, '')) {

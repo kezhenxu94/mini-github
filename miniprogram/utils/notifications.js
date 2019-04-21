@@ -11,7 +11,7 @@ const report = ({ formId, enabled = true, extra }) => {
       enabled,
       extra
     }
-  })
+  }).then(console.info).catch(console.error)
 }
 
 module.exports = {

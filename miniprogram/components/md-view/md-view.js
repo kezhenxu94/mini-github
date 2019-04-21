@@ -8,8 +8,14 @@ Component({
         content: '',
         baseUrl: '',
       },
-      observer: function ({ content = '', baseUrl }) {
-        WxParse.wxParse('article', 'md', content + '\n\n', this, 5, baseUrl);
+      observer: function (md) {
+        if (md) {
+          const { content = '', baseUrl } = md
+          WxParse.wxParse('article', 'md', content + '\n\n', this, 5, baseUrl)
+          this.setData({
+            loaded: true
+          })
+        }
       }
     }
   },

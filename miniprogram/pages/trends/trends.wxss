@@ -8,9 +8,10 @@
 
 .lang-picker {
   position: fixed;
-  bottom: 48rpx;
+  bottom: 288rpx;
   right: 48rpx;
   height: 48rpx;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .van-search {

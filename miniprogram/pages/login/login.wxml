@@ -5,7 +5,7 @@
     </view>
     <tabs>
       <tab title='账号密码'>
-        <form class='form' bindsubmit='commitAccount'>
+        <form class='form' bindsubmit='commitAccount' report-submit='{{true}}'>
           <view>
             <input name='username' placeholder='输入账号' focus></input>
             <input name='password' placeholder='输入密码' password='true' value='{{password}}'></input>
@@ -23,10 +23,11 @@
       </tab>
     </tabs>
 
-    <text class='security-hint'>
+    <ad class='ad' unit-id="adunit-f30d4ae08359393c"></ad>
+
+    <view class='security-hint'>
       由于小程序不支持跳转网页, 因此无法使用 OAuth 跳转验证, 用户名和密码只用于校验身份, 不会被上传服务器, 您也可以使用 Token 进行登陆.<br/>
       当您开启了双重认证(Two-Factor Authentication)时, 您必须使用 Token 认证.
-    </text>
-    <!-- <ad class='ad' unit-id="adunit-f30d4ae08359393c"></ad> -->
+    </view>
   </view>
 </view>
