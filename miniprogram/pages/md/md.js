@@ -11,11 +11,12 @@ Page({
 
   onLoad: function (options) {
     url = decodeURIComponent(options.url)
-    path = encodeURIComponent((url.replace(/.*?([^/]+\.md)$/i, '$1')))
-    baseUrl = url.replace(/([^/]+\.[mM][dD])$/, '')
+    path = url.replace(/.*?([^/]+\.md)$/i, '$1')
     wx.setNavigationBarTitle({
       title: path
     })
+    path = encodeURIComponent(path)
+    baseUrl = url.replace(/([^/]+\.[mM][dD])$/, '')
     wx.startPullDownRefresh({})
   },
 
