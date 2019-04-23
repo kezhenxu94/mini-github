@@ -77,7 +77,8 @@ Component({
         this.setData({
           issue,
           comments: [],
-          loadingMore: false
+          loadingMore: false,
+          hasMore: true
         })
         const { repoName } = this.data
         wx.setNavigationBarTitle({

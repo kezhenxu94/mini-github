@@ -83,7 +83,7 @@ Component({
       wx.showLoading({
         title: 'Posting'
       })
-      const c = replyContent + '\n\n\n\n> Posted from [mini-github](https://github.com/kezhenxu94/mini-github)\n发送自微信小程序 [GitHub 专业版](https://github.com/kezhenxu94/mini-github)'
+      const c = replyContent + '\n\n\n\n> Sent from [mini-github](https://github.com/kezhenxu94/mini-github)'
       github.repos(repoFullName).issues(issueNumber).comments().post(c).then(success => {
         wx.hideLoading()
         if (success) {
