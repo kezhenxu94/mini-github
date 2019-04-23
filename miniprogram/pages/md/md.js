@@ -10,9 +10,12 @@ Page({
   },
 
   onLoad: function (options) {
-    url = options.url
-    path = encodeURIComponent((decodeURIComponent(url.replace(/.*?([^/]+\.md)$/i, '$1'))))
+    url = decodeURIComponent(options.url)
+    path = encodeURIComponent((url.replace(/.*?([^/]+\.md)$/i, '$1')))
     baseUrl = url.replace(/([^/]+\.[mM][dD])$/, '')
+    wx.setNavigationBarTitle({
+      title: path
+    })
     wx.startPullDownRefresh({})
   },
 
