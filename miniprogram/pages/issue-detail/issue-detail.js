@@ -23,7 +23,7 @@ Component({
   properties: {
     url: {
       type: String,
-      value: 'https://api.github.com/repos/kezhenxu94/mini-github/issues/21'
+      value: 'https://api.github.com/repos/apache/SkyWalking/pull/2460'
     },
     thread: {
       type: Number,

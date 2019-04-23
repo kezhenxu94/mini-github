@@ -41,6 +41,7 @@ Component({
           return '/octicons/pencil.png'
         case 'review_requested':
         case 'reviewed':
+        case 'ready_for_review':
           return '/octicons/eye.png'
         case 'review_dismissed':
           return '/octicons/x.png'
@@ -101,6 +102,8 @@ Component({
         return `${t.actor.login} added this to project ${t.created_at}`
       } else if (t.event === 'removed_from_project') {
         return `${t.actor.login} removed this from project ${t.created_at}`
+      } else if (t.event === 'ready_for_review') {
+        return `${t.actor.login} marked this pull request as ready for review ${t.created_at}`
       }
     }
   },

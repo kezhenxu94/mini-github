@@ -1,9 +1,5 @@
-.repo:first-of-type {
-  margin-top: 100rpx;
-}
-
-.repo {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+.trends {
+  padding-top: 100rpx;
 }
 
 .lang-picker {

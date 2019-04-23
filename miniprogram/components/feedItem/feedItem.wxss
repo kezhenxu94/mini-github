@@ -2,9 +2,10 @@
 
 .feed {
   display: flex;
-  padding: 24rpx;
+  padding: 12rpx 24rpx;
   overflow: hidden;
   color: #fff;
+  line-height: 1.5;
 }
 
 .avatar {
@@ -13,9 +14,8 @@
 }
 
 .summary, .detail {
-  margin-left: 12rpx;
   font-size: 14px;
-  padding: 0 10rpx;
+  padding-left: 24rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -24,14 +24,15 @@
 
 .detail {
   color: rgb(192, 192, 192);
-  margin-top: 12rpx;
   font-size: 12px;
 }
 
 .time {
-  margin-left: 12rpx;
-  margin-top: 12rpx;
-  font-size: 12px;
-  padding: 12rpx;
+  font-size: 24rpx;
+  padding-left: 24rpx;
   color: #eee;
+}
+
+button.id::after {
+  border: none;
 }

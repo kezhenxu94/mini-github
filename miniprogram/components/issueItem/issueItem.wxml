@@ -1,16 +1,20 @@
 <wxs module='filters' src='../../filter/issue.wxs'></wxs>
-<navigator class='issue' url='/pages/issue-detail/issue-detail?url={{issue.url}}'>
-  <view class='title'>
-    {{issue.title}}
-  </view>
-  <view class='desc-comment'>
-    <view class='desc'>{{filters.format(issue)}}</view>
-    <view class='comment' wx:if='{{issue.comments}}'>
-      <image class='icon' src='/octicons/comment.png'></image>
-      <text>{{issue.comments}}</text>
-    </view>
-  </view>
-  <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}'>
-    {{item.name}}
-  </tag>
-</navigator>
+<view class='issue' hover-class='hover'>
+  <form bindsubmit='toIssueDetail' report-submit='{{true}}' class='id'>
+    <button form-type='submit' class='borderless'>
+      <view class='title'>
+        {{issue.title}}
+      </view>
+      <view class='desc-comment'>
+        <view class='desc'>{{filters.format(issue)}}</view>
+        <view class='comment' wx:if='{{issue.comments}}'>
+          <image class='icon' src='/octicons/comment.png'></image>
+          <text>{{issue.comments}}</text>
+        </view>
+      </view>
+      <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}'>
+        {{item.name}}
+      </tag>
+    </button>
+  </form>
+</view>

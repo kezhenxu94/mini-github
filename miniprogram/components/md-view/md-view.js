@@ -20,6 +20,10 @@ Component({
     }
   },
 
+  data: {
+    loaded: false
+  },
+
   methods: {
     wxParseTagATap: function (event) {
       const url = event.currentTarget.dataset.src

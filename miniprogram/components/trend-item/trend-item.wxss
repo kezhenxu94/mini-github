@@ -3,6 +3,7 @@
 .repo {
   padding: 12px;
   color: #b8b8b8;
+  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
 .repo .name {

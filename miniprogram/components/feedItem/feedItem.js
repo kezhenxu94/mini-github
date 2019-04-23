@@ -1,4 +1,5 @@
 const utils = require('../../utils/util.js')
+const notifUtils = require('../../utils/notifications.js')
 
 Component({
   properties: {
@@ -16,8 +17,16 @@ Component({
       })
     },
 
-    toFeedDetail: function(event) {
+    toFeedDetail: function (event) {
+      const formId = event.detail.formId
       const feed = this.data.item
+
+      notifUtils.report({
+        formId,
+        enabled: true,
+        extra: { feed }
+      })
+
       switch (feed.type) {
         case 'IssuesEvent':
         case 'IssueCommentEvent':

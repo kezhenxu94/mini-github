@@ -2,7 +2,7 @@
 @import '../../style/base.wxss';
 
 .header {
-  padding: 20rpx 20rpx 20rpx 40rpx;
+  padding: 48rpx;
   display: flex;
   color: #fff;
 }
@@ -10,6 +10,7 @@
 .avatar {
   min-width: 88rpx;
   min-height: 88rpx;
+  background-color: #eee;
 }
 
 .name-time {
@@ -29,8 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10rpx 0;
-  padding: 20rpx;
+  padding: 24rpx;
 }
 
 .stats view {
@@ -62,4 +62,8 @@
   margin: 48rpx;
   overflow: hidden;
   font-size: 12px;
+}
+
+.ad {
+  margin-top: 24rpx;
 }

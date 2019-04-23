@@ -7,7 +7,6 @@
 }
 
 .title {
-  padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -35,12 +34,12 @@
 .desc {
   font-size: 24rpx;
   color: #b8b8b8;
-  padding: 0 16rpx;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  margin-right: 8rpx;
 }
 
-tag:not(first-of-type) {
-  margin-left: 16rpx;
+tag {
+  margin-right: 16rpx;
 }

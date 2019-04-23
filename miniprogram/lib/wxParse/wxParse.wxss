@@ -97,6 +97,8 @@ view{
 
 .wxParse-p > .wxParse-img {
   width: 100% !important;
+  background-color: #FFF;
+  border-radius: 16rpx;
 }
 
 .wxParse-inline > .wxParse-img {

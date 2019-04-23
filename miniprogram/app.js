@@ -21,14 +21,12 @@ App({
         const { data } = res
         if (data && data.length > 0) {
           const { token } = data[0]
-          console.info(token)
           if (token) {
             userUtils.signIn(token)
           }
         } else {
           const user = wx.getStorageSync('user')
           const token = wx.getStorageSync('token')
-          console.info(token)
           if (token) {
             db.collection('users').add({ data: { _id: openId, token, user } })
           }
