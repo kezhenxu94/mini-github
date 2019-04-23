@@ -10,7 +10,7 @@ Component({
       },
       observer: function (md) {
         if (md) {
-          const { content = '', baseUrl } = md
+          const { content = '', baseUrl = '' } = md
           WxParse.wxParse('article', 'md', content + '\n\n', this, 5, baseUrl)
           this.setData({
             loaded: true
@@ -18,6 +18,10 @@ Component({
         }
       }
     }
+  },
+  
+  data: {
+    loaded: false
   },
 
   data: {
