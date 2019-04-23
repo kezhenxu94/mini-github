@@ -10,10 +10,6 @@ button.notification {
   padding-right: 0 !important;
 }
 
-button::after {
-  border: none;
-}
-
 .about, .feedback, .logout {
   display: flex;
   overflow: hidden;
@@ -25,6 +21,7 @@ button::after {
   background-color: transparent;
   color: #eee;
   font-weight: bold;
+  padding: 0 24rpx !important;
 }
 
 .about image, .feedback image, .logout image {

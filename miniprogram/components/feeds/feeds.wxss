@@ -8,12 +8,6 @@
   padding: 20rpx;
 }
 
-.loading {
-  height: 96rpx;
-  line-height: 96rpx;
-  text-align: center;
-}
-
 .van-loading {
   width: 100% !important;
 }

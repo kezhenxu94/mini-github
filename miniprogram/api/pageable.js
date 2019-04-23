@@ -29,6 +29,7 @@ const wrap = (promise, reqHeaders = {}) => new Promise((resolve, reject) => {
     }
     const links = parseLinks(headers.link)
     const nextUrl = links['rel="next"']
+    console.info(links)
     if (nextUrl) {
       return resolve({
         data,

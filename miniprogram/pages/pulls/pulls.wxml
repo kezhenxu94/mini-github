@@ -7,6 +7,7 @@
         </navigator>
         <view class='empty' wx:elif='{{pulls.length===0}}'>No {{item.label}} Pull Request</view>
         <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
+        <loading type='spinner' color="#fff" class='loading' wx:if='{{loadingMore}}' />
       </tab>
     </block>
   </tabs>
