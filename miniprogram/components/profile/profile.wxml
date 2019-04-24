@@ -24,7 +24,7 @@
     </navigator>
   </view>
   <view class='company' wx:if='{{user.company}}'>
-    <image mode='aspectFit' src='/md/group.png' class='company-img'></image>
+    <image mode='aspectFit' src='/octicons/organization.png' class='company-img'></image>
     <view class='company-text'>{{user.company}}</view>
   </view>
   <view class='loc' wx:if='{{user.location}}'>
