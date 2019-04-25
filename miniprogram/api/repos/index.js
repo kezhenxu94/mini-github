@@ -59,6 +59,16 @@ const repos = repo => ({
           reject(error)
         })
       }
+    }),
+    labels: () => ({
+      put: (labels) => new Promise((resolve, reject) => {
+        const url = `https://api.github.com/repos/${repo}/issues/${number}/labels`
+        http.put(url, { 
+          data: labels
+        }).then(({ status, data }) => {
+          resolve(status === 200)
+        }).catch(reject)
+      })
     })
   }),
   pulls: () => new Promise((resolve, reject) => {
@@ -136,7 +146,32 @@ const repos = repo => ({
         reject(error)
       })
     })
-  }
+  },
+
+  collaborators: (username) => ({
+    permission: () => new Promise((resolve, reject) => {
+      if (!username) {
+        return resolve('none')
+      }
+      const url = `https://api.github.com/repos/${repo}/collaborators/${username}/permission`
+      http.get(url).then(({ status, data }) => {
+        if (status !== 200) {
+          return resolve({ permission: 'none' })
+        }
+        return resolve({ permission: data.permission })
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }),
+
+  labels: () => ({
+    get: () => {
+      const url = `https://api.github.com/repos/${repo}/labels`
+      const promise = http.get(url)
+      return pageable.wrap(promise)
+    }
+  })
 })
 
 module.exports = repos

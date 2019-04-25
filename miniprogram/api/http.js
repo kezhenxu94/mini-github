@@ -30,6 +30,7 @@ const put = (url, { params = {}, data = {} } = {}) => new Promise((resolve, reje
       data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
+    console.info({ url, params, data })
     resolve({ status, headers, data })
   }).catch(error => {
     console.log('url = %o, error = %o', url, error)

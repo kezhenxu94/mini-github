@@ -16,14 +16,19 @@ const ignoredEvents = [
   'base_ref_changed'
 ]
 
+const invertHex = hex => {
+  return (Number(`0x1${hex}`) ^ 0xFFFFFF).toString(16).substr(1).toUpperCase()
+}
+
 let links = {}
+let labelChanged = false
 
 Component({
   behaviors: [computedBehavior],
   properties: {
     url: {
       type: String,
-      value: 'https://api.github.com/repos/apache/SkyWalking/pull/2460'
+      value: 'https://api.github.com/repos/kezhenxu94/mini-github/issues/23'
     },
     thread: {
       type: Number,
@@ -40,6 +45,9 @@ Component({
     repoName () {
       const { url } = this.data
       return utils.extractRepoName(url)
+    },
+    labels () {
+      return (this.data.issue || {}).labels || []
     }
   },
 
@@ -48,7 +56,10 @@ Component({
     timeline: [],
     hasMore: true,
     loadingMore: false,
-    next: null
+    next: null,
+    permission: 'none',
+    editLabels: false,
+    allLabels: null
   },
 
   methods: {
@@ -58,6 +69,13 @@ Component({
       wx.startPullDownRefresh({})
 
       thread && github.notifications().threads(thread).patch()
+
+      const username = (utils.getCurrentUser() || {}).login
+      github.repos(this.data.repoName).collaborators(username).permission().then(({ permission }) => {
+        this.setData({
+          permission
+        })
+      })
     },
 
     onShareAppMessage: function(options) {
@@ -152,6 +170,89 @@ Component({
       const url = `/pages/repo-detail/repo-detail?repo=${repoName}`
       wx.navigateTo({
         url
+      })
+    },
+
+    editLabels (e) {
+      labelChanged = false
+      const repoName = this.data.repoName
+      wx.showLoading({
+        title: 'Loading Labels'
+      })
+      github.repos(repoName).labels().get().then(({ data, nextFunc }) => {
+        const labels = {}
+        data.forEach(it => {
+          labels[it.name] = it
+        })
+        this.data.labels.forEach(it => { // no pagination yet, put the existed tags also
+          it.selected = true
+          labels[it.name] = it
+        })
+        Object.values(labels).forEach(it => {
+          it.textColor = `#${invertHex(it.color)}`
+        })
+        wx.hideLoading()
+        this.setData({
+          allLabels: labels,
+          editLabels: true
+        })
+      }).catch(error => {
+        wx.hideLoading()
+        wx.showToast({
+          title: 'Failed',
+          icon: 'none'
+        })
+      })
+    },
+
+    onClose (e) {
+      if (!labelChanged) {
+        this.setData({ editLabels: false })
+        return
+      }
+      const url = this.data.url
+      const { owner, repo, issueNumber } = utils.parseGitHubUrl(url)
+      if (!this.data.allLabels || this.data.allLabels.length === 0) {
+        this.setData({ editLabels: false })
+        return
+      }
+      wx.showLoading({
+        title: 'Applying'
+      })
+      const allLabels = Object.values(this.data.allLabels).filter(it => it.selected).map(it => it.name)
+      github.repos(`${owner}/${repo}`).issues(issueNumber).labels().put(allLabels).then(success => {
+        wx.hideLoading()
+        if (success) {
+          wx.showToast({
+            title: 'Applied',
+          })
+          this.setData({
+            editLabels: false
+          })
+        } else {
+          wx.showToast({
+            title: 'Failed',
+            icon: 'none'
+          })
+        }
+      }).catch(error => {
+        wx.hideLoading()
+        wx.showToast({
+          title: error.message,
+          icon: 'none'
+        })
+      })
+    },
+
+    onLabelChanged (e) {
+      labelChanged = true
+      const tag = e.target.dataset.tag
+      const selected = e.detail
+      tag.selected = selected
+      const allLabels = this.data.allLabels
+      allLabels[tag.name] = tag
+      this.setData({
+        allLabels
       })
     }
   }

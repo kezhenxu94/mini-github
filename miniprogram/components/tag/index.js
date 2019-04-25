@@ -12,7 +12,8 @@ VantComponent({
     mark: Boolean,
     color: String,
     plain: Boolean,
-    round: Boolean
+    round: Boolean,
+    textColor: String
   },
   computed: {
     classes: function classes() {
@@ -28,7 +29,11 @@ VantComponent({
     style: function style() {
       var color = this.data.color || COLOR_MAP[this.data.type] || DEFAULT_COLOR;
       var key = this.data.plain ? 'color' : 'background-color';
-      return key + ": " + color;
+      var style = key + ": " + color;
+      if (this.data.textColor) {
+        style += "; color: " + this.data.textColor
+      }
+      return style;
     }
   }
 });
