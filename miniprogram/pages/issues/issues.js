@@ -23,7 +23,8 @@ Page({
   
   onLoad: function () {
     this.setData({
-      isSignedIn: utils.isSignedIn()
+      isSignedIn: utils.isSignedIn(),
+      issues: wx.getStorageSync('Issues') || []
     })
     var lastMoment = moment(lastRefresh)
     if (scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
@@ -61,7 +62,10 @@ Page({
         it.updated_at = utils.toReadableTime(it.updated_at)
         return it
       })
-      this.setData({ issues })
+      this.setData({ issues }, () => wx.setStorage({
+        key: 'Issues',
+        data: issues
+      }))
     }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
