@@ -35,6 +35,7 @@
 - [x] 显示 Issue, PR 的时间线
 - [x] News 页面添加通知 Tab
 - [x] 通过微信服务消息接收 GitHub 通知
+- [x] Issue/PR 详情页可编辑 label (如果有权限)
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
@@ -45,6 +46,8 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+- v2.8.0
+  - :new: Issue/PR 详情页可编辑 label (如果有权限)
 - v2.6.0
   - :new: 显示 Issue/PR 时间线
   - :new: 支持通过微信服务消息接收 GitHub 未读消息通知
