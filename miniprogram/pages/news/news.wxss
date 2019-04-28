@@ -1,0 +1,9 @@
+@import '../../style/base.wxss';
+
+.login-prompt {
+  text-align: center;
+  font-size: 30rpx;
+  margin-top: 40rpx;
+  font-weight: bold;
+}
+
