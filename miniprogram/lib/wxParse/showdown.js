@@ -47,12 +47,12 @@ function getDefaultOpts(simple) {
       type: 'boolean'
     },
     literalMidWordUnderscores: {
-      defaultValue: false,
+      defaultValue: true,
       describe: 'Parse midword underscores as literal underscores',
       type: 'boolean'
     },
     strikethrough: {
-      defaultValue: false,
+      defaultValue: true,
       describe: 'Turn on/off strikethrough support',
       type: 'boolean'
     },
@@ -72,7 +72,7 @@ function getDefaultOpts(simple) {
       type: 'boolean'
     },
     tasklists: {
-      defaultValue: false,
+      defaultValue: true,
       describe: 'Turn on/off GFM tasklist support',
       type: 'boolean'
     },
@@ -2055,7 +2055,7 @@ showdown.subParser('lists', function (text, options, globals) {
       if (taskbtn && options.tasklists) {
         bulletStyle = ' class="task-list-item" style="list-style-type: none;"';
         item = item.replace(/^[ \t]*\[(x|X| )?]/m, function () {
-          var otp = '<input type="checkbox" disabled style="margin: 0px 0.35em 0.25em -1.6em; vertical-align: middle;"';
+          var otp = '<checkbox disabled style="margin: 0px 1.35em 0.25em 0.5em; vertical-align: middle;"';
           if (checked) {
             otp += ' checked';
           }

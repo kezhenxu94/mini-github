@@ -1,7 +1,7 @@
 <import src='../../lib/wxParse/wxParse.wxml' />
 <view class='md-textarea'>
   <view class='edit'>
-    <textarea value='{{ content }}' bindinput='updateContent' maxlength='65535' wx:if='{{!preview}}' class='textarea' placeholder='{{placebolder}}'></textarea>
+    <textarea value='{{ content }}' bindinput='updateContent' maxlength='65535' wx:if='{{!preview}}' class='textarea' placeholder='{{placebolder}}' auto-focus='{{ true }}'></textarea>
     <view class='md-supported'>
       <image src='/octicons/markdown.png' mode='aspectFit' class='md-icon'></image> Styling with Markdown is supported
     </view>

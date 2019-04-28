@@ -17,7 +17,8 @@ Component({
     showTabs: false,
     isStarred: false,
     isWatching: false,
-    readme: null
+    readme: null,
+    tab: 0
   },
 
   computed: {
@@ -144,8 +145,9 @@ Component({
     },
 
     changeTab: function(event) {
-      const tabIndex = event.detail.index
-      switch (tabIndex) {
+      const tab = event.detail.index
+      this.setData({ tab })
+      switch (tab) {
         case 0:
           break
         case 1:
@@ -294,6 +296,13 @@ Component({
         }
       }).catch(res => {
         wx.hideLoading()
+      })
+    },
+
+    toCreateNewIssue: function () {
+      const { repo } = this.data
+      wx.navigateTo({
+        url: `/pages/issue-edit/issue-edit?url=${repo.url}&new=true`
       })
     }
   }

@@ -21,7 +21,6 @@ Component({
   data: {
     loaded: false,
     showInputDialog: false,
-    replyContent: '',
     md: {}
   },
 
@@ -38,13 +37,7 @@ Component({
         url: `/pages/user/user?username=${username}`
       })
     },
-
-    updateContent: function(e) {
-      this.setData({
-        replyContent: e.detail.value
-      })
-    },
-
+    
     toReply: function () {
       if (!utils.isSignedIn()) {
         return wx.showModal({
@@ -61,50 +54,18 @@ Component({
           }
         })
       }
-      const user = this.data.comment.user
-      this.setData({
-        showInputDialog: true,
-        replyContent: `@${user.login} \n\n\n> Sent from [mini-github](https://github.com/kezhenxu94/mini-github)`
-      })
-    },
-
-    reply: function() {
-      const {
-        comment,
-        replyContent
-      } = this.data
+      const comment = this.data.comment
+      const user = comment.user.login
       let issueNumber = comment.number
       const issueUrl = comment.issue_url
       if (issueUrl) { // is issue comment
-       issueNumber = utils.extractIssueNumber(issueUrl)
+        issueNumber = utils.extractIssueNumber(issueUrl)
       }
       const repoUrl = comment.repository_url || issueUrl
       const repoFullName = utils.extractRepoName(repoUrl)
-      wx.showLoading({
-        title: 'Posting'
-      })
-      const c = replyContent
-      github.repos(repoFullName).issues(issueNumber).comments().post(c).then(success => {
-        wx.hideLoading()
-        if (success) {
-          wx.showToast({
-            title: 'Posted'
-          })
-          this.setData({
-            showInputDialog: false
-          })
-        } else {
-          wx.showToast({
-            title: 'Failed',
-            icon: 'none'
-          })
-        }
-      }).catch(error => {
-        wx.hideLoading()
-        wx.showToast({
-          title: 'FailedP',
-          icon: 'none'
-        })
+
+      wx.navigateTo({
+        url: `/pages/comment-edit/comment-edit?repo=${repoFullName}&number=${issueNumber}&mention=${user}`
       })
     }
   }

@@ -44,6 +44,7 @@ Component({
         case 'ready_for_review':
           return '/octicons/eye.png'
         case 'review_dismissed':
+        case 'comment_deleted':
           return '/octicons/x.png'
         case 'merged':
           return '/octicons/git-merge.png'
@@ -104,6 +105,8 @@ Component({
         return `${t.actor.login} removed this from project ${t.created_at}`
       } else if (t.event === 'ready_for_review') {
         return `${t.actor.login} marked this pull request as ready for review ${t.created_at}`
+      } else if (t.event === 'comment_deleted') {
+        return `${t.actor.login} deleted a comment ${t.created_at}`
       }
     }
   },

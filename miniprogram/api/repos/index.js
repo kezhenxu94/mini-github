@@ -84,7 +84,22 @@ const repos = repo => ({
           reject(new Error(data))
         }
       }).catch(reject)
-    })
+    }),
+    post: issue => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/repos/${repo}/issues`
+      http.post(url, {
+        data: issue,
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.full+json, application/vnd.github.squirrel-girl-preview'
+        }
+      }).then(({ status, data }) => {
+        if (status === 201) {
+          resolve(true)
+        } else {
+          reject(new Error(data))
+        }
+      }).catch(reject)
+    }),
   }),
   pulls: () => new Promise((resolve, reject) => {
     const url = `https://api.github.com/repos/${repo}/pulls`

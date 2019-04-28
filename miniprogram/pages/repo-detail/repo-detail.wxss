@@ -67,3 +67,15 @@
 .ad {
   margin-top: 24rpx;
 }
+
+.new-issue {
+  width: 100rpx;
+  height: 100rpx;
+  max-width: 100rpx;
+  max-height: 100rpx;
+  border-radius: 50rpx;
+  position: fixed;
+  bottom: 48rpx;
+  right: 48rpx;
+  background-color: red;
+}

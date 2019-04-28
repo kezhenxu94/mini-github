@@ -97,7 +97,7 @@ Component({
         wx.stopPullDownRefresh()
         this.setData({
           issue,
-          comments: [],
+          timeline: [],
           loadingMore: false,
           hasMore: true
         })

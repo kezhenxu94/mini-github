@@ -4,10 +4,16 @@ const computedBehavior = require('../../lib/computed.js')
 
 Component({
   behaviors: [computedBehavior],
+
   properties: {
     url: {
       type: String,
       value: 'https://api.github.com/repos/seata/seata/issues/924'
+    },
+
+    new: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -19,7 +25,8 @@ Component({
   },
 
   data: {
-    title: ''
+    title: '',
+    issue: {}
   },
 
   methods: {
@@ -29,24 +36,33 @@ Component({
       this.init()
     },
 
-    onPullDownRefresh: function () {
-    },
-
-    onReachBottom: function () {
-
-    },
-
     submit: function (e) {
-      const url = this.data.url
       const { content } = e.detail
+      const title = this.data.title || this.data.issue.title
+      if (!title || title.length === 0) {
+        return wx.showToast({
+          title: 'Title Is Empty',
+          icon: 'none'
+        })
+      }
+      const url = this.data.url
       const { owner, repo, issueNumber } = utils.parseGitHubUrl(url)
       wx.showLoading({
         title: 'Editing'
       })
-      github.repos(`${owner}/${repo}`).issues(issueNumber).patch({
-        title: this.data.title || this.data.issue.title,
-        body: content
-      }).then(success => {
+      let promise = null
+      if (this.data.new) {
+        promise = github.repos(`${owner}/${repo}`).issues().post({
+          title: title,
+          body: content
+        })
+      } else {
+        promise = github.repos(`${owner}/${repo}`).issues(issueNumber).patch({
+          title: title,
+          body: content
+        })
+      }
+      promise.then(success => {
         wx.hideLoading()
         if (success) {
           wx.showToast({
@@ -69,23 +85,25 @@ Component({
     },
 
     init: function () {
-      wx.showLoading({
-        title: 'Loading'
-      })
-      github.getIssue(this.data.url).then(issue => {
-        wx.hideLoading()
-        this.setData({ issue })
-        const { repoName } = this.data
-        wx.setNavigationBarTitle({
-          title: `${repoName}#${issue.number}`
+      if (!this.data.new) {
+        wx.showLoading({
+          title: 'Loading'
         })
-      }).catch(error => {
-        wx.showToast({
-          title: error.message,
-          icon: 'none'
+        github.getIssue(this.data.url).then(issue => {
+          wx.hideLoading()
+          this.setData({ issue })
+          const { repoName } = this.data
+          wx.setNavigationBarTitle({
+            title: `${repoName}#${issue.number}`
+          })
+        }).catch(error => {
+          wx.showToast({
+            title: error.message,
+            icon: 'none'
+          })
+          wx.navigateBack({})
         })
-        wx.navigateBack({})
-      })
+      }
     },
 
     inputTitleChanged: function (e) {

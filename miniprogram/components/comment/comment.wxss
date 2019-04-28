@@ -48,11 +48,3 @@
   min-height: 50rpx;
 }
 
-modal {
-  color: #000;
-  overflow: hidden;
-}
-
-modal textarea {
-  width: 100%;
-}

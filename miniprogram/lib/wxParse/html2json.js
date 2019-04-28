@@ -157,6 +157,10 @@ function html2json(html, bindName, baseUrl) {
               results.images.push(node);
               results.imageUrls.push(imgUrl);
             }
+
+            if (node.tag === 'checkbox') {
+              node.attr.checked = (attrs.filter(it => it.name === 'checked')[0] || {}).value || false
+            }
             
             // 处理font标签样式属性
             if (node.tag === 'font') {

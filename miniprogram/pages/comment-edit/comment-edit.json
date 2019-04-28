@@ -1,6 +1,5 @@
 {
   "usingComponents": {
     "md-textarea": "../../components/md-textarea/md-textarea"
-  },
-  "navigationBarTitleText": "Create Issue"
+  }
 }

@@ -88,7 +88,7 @@
   overflow: scroll;
 }
 
-checkbox {
+.checkbox {
   display: block !important;
   padding: 24rpx 0;
   width: 100%;
