@@ -4,7 +4,7 @@
 
 ![QRCode](https://user-images.githubusercontent.com/15965696/47959988-d2864d80-e02c-11e8-8c39-dac879bad3d6.jpg)
 
-> [源码地址](https://github.com/kezhenxu94/mini-github), 欢迎 Star
+> [源码地址](https://github.com/kezhenxu94/mini-github), 欢迎 Star 和贡献(任何形式)
 
 ## 声明
 众所周知，GitHub 自己并没有官方 App，更别说微信小程序了。**本程序完全为第三方开发者开发，仅用于学习交流，禁止用于其他用途**。若要使用正版，请使用 [GitHub 网页端](https://github.com)。
