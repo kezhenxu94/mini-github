@@ -36,6 +36,9 @@
 - [x] News 页面添加通知 Tab
 - [x] 通过微信服务消息接收 GitHub 通知
 - [x] Issue/PR 详情页可编辑 label (如果有权限)
+- [ ] Issue/PR 详情页可编辑 milestone, project (如果有权限)
+- [ ] Issue/PR 详情页可 assign 成员 (如果有权限)
+- [ ] 支持重新编辑 Issue(Title, Comment)
 
 ## Contributions
 欢迎任何类型的贡献, 包括但不局限于:
