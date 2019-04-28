@@ -50,6 +50,7 @@
 - [ ] Issue/PR 详情页可编辑 milestone, project (如果有权限)
 - [ ] Issue/PR 详情页可 assign 成员 (如果有权限)
 - [x] 支持重新编辑 Issue(Title, Comment)
+- [x] 支持在项目详情页新建 Issue
 
 ## Contributions
 
@@ -64,6 +65,8 @@
 
 - v2.8.2
   - :new: 支持重新编辑 Issue(Title, Comment)
+  - :new: 支持在项目详情页新建 Issue
+  - :hammer: Markdown 渲染支持 tasklist
 - v2.8.0
   - :new: Issue/PR 详情页可编辑 label (如果有权限)
 - v2.6.0
