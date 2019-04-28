@@ -49,7 +49,7 @@
 - [x] Issue/PR 详情页可编辑 label (如果有权限)
 - [ ] Issue/PR 详情页可编辑 milestone, project (如果有权限)
 - [ ] Issue/PR 详情页可 assign 成员 (如果有权限)
-- [ ] 支持重新编辑 Issue(Title, Comment)
+- [x] 支持重新编辑 Issue(Title, Comment)
 
 ## Contributions
 
@@ -62,6 +62,8 @@
 
 ## Change Logs
 
+- v2.8.2
+  - :new: 支持重新编辑 Issue(Title, Comment)
 - v2.8.0
   - :new: Issue/PR 详情页可编辑 label (如果有权限)
 - v2.6.0
