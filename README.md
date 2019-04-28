@@ -4,14 +4,16 @@
 
 ![QRCode](https://user-images.githubusercontent.com/15965696/47959988-d2864d80-e02c-11e8-8c39-dac879bad3d6.jpg)
 
-> [源码地址](https://github.com/kezhenxu94/mini-github), 欢迎 Star 和贡献(任何形式)
+> 欢迎 Star 和任何形式的贡献
 
 ## 声明
+
 众所周知，GitHub 自己并没有官方 App，更别说微信小程序了。**本程序完全为第三方开发者开发，仅用于学习交流，禁止用于其他用途**。若要使用正版，请使用 [GitHub 网页端](https://github.com)。
 
 > 该小程序所有 API 均来自 GitHub 官方提供的开发者 API 第三版，详情请戳 [开发者文档](https://developer.github.com/v3/)。
 
 ## Screenshots
+
 | Feeds | Issues | Trendings | Pulls | Profile |
 | :------: | :------: | :------: | :------: | :------: |
 | ![feeds](https://user-images.githubusercontent.com/15965696/56143752-a7d4f380-5fd3-11e9-964e-627c21919485.jpg) | ![my-issues](https://user-images.githubusercontent.com/15965696/56143750-a73c5d00-5fd3-11e9-9191-f2915088aa54.jpg) | ![trendings](https://user-images.githubusercontent.com/15965696/56143749-a6a3c680-5fd3-11e9-95a9-2bfe6b10a31a.jpg) | ![my-pulls](https://user-images.githubusercontent.com/15965696/56143748-a60b3000-5fd3-11e9-9b40-c05705e529bd.jpg) | ![user](https://user-images.githubusercontent.com/15965696/56143747-a5729980-5fd3-11e9-9421-14f4339d56e3.jpg) |
@@ -23,9 +25,18 @@
 > 由于小程序不断优化，界面细节可能有所变化，请以实际页面为准
 
 ## Notes
+
 由于个人小程序内无法跳转网页，因此无法通过 Oauth 方式登陆 GitHub，所以这里使用了账号密码的方式登陆，**账号密码只会通过代理服务器转发到 GitHub 服务器认证，不会被保存，不会被保存，不会被保存，请放心使用（有疑问的可检查源代码）**，~~后续会让用户填自己的 access token 等更安全的方式~~（已实现）。
 
+以下两种情况你必须使用 access token 进行登录：
+
+- 当你开启了两因素认证时(two-factor authentication)
+- 当你需要访问那些使用了单点登录(SSO)的组织(organization)如 Apache 的内容时
+
+关于如何创建 access token，请参考 [这里](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line#creating-a-token)，或点击 [这里](https://github.com/settings/tokens)
+
 ## TODO
+
 - [x] Star, Watch, Fork
 - [x] 评论, 回复评论
 - [x] 使用 Token 登陆
@@ -41,6 +52,7 @@
 - [ ] 支持重新编辑 Issue(Title, Comment)
 
 ## Contributions
+
 欢迎任何类型的贡献, 包括但不局限于:
 - :mag: 报告问题: 请在 [Issue 列表](https://github.com/kezhenxu94/mini-github/issues) 创建一个 Issue 报告你发现的问题
 - :bug: 修复 Bug: 请在 [Issue 列表](https://github.com/kezhenxu94/mini-github/issues) 查看当前已发现的 Bug, 修复完成后发送 Pull Request
@@ -49,6 +61,7 @@
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
 ## Change Logs
+
 - v2.8.0
   - :new: Issue/PR 详情页可编辑 label (如果有权限)
 - v2.6.0
@@ -78,6 +91,9 @@
   - :new: 搜索代码仓库和用户
 
 ## Donation
+
+> 作者不喝咖啡☕️只喝茶🍵
+
 | 支付宝 | 微信支付 |
 | :------: | :------: |
 | ![alipay](https://user-images.githubusercontent.com/15965696/55284497-83a9cd80-53aa-11e9-84f5-c61ba7d1190d.jpg) | ![wepay](https://user-images.githubusercontent.com/15965696/55284500-8d333580-53aa-11e9-8b3f-974cd0508f8e.png) |
