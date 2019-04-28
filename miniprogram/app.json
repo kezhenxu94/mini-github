@@ -1,18 +1,19 @@
 {
   "pages": [
+    "pages/issue-detail/issue-detail",
     "pages/trends/trends",
     "pages/issues/issues",
     "pages/pulls/pulls",
     "pages/user/user",
     "pages/me/me",
     "pages/repo-detail/repo-detail",
-    "pages/issue-detail/issue-detail",
     "pages/login/login",
     "pages/search/search",
     "pages/user-list/user-list",
     "pages/about/about",
     "pages/md/md",
     "pages/news/news",
+    "pages/issue-edit/issue-edit",
     "pages/settings/settings"
   ],
   "window": {

@@ -105,7 +105,7 @@ exports.main = async (event, context) => {
         },
         params: {
           participating: true,
-          since: moment(since).toISOString()
+          since: moment(since).add(1, 'seconds').toISOString()
         }
       })
       console.info({
@@ -130,6 +130,7 @@ exports.main = async (event, context) => {
       if (!n.subject.latest_comment_url) {
         return await `not a comment: ${JSON.stringify(n)}`
       }
+      const title = n.subject.title
 
       const {
         data: {
@@ -155,10 +156,10 @@ exports.main = async (event, context) => {
         "form_id": notif.formId,
         "data": {
           "keyword1": {
-            "value": n.subject.title
+            "value": title.length > 80 ? `${title.slice(0, 79)}...` : title
           },
           "keyword2": {
-            "value": body.length > 100 ? `${body.slice(0, 99)}...` : body
+            "value": body.length > 80 ? `${body.slice(0, 79)}...` : body
           },
           "keyword3": {
             "value": user.login

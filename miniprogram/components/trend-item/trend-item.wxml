@@ -23,7 +23,7 @@
       </view>
     </button>
     <view class='built-by'>
-      <image wx:for='{{repo.builtBy}}' wx:key='{{index}}' mode='aspectFit' src='{{item.avatar}}' class='avatar' data-username='{{item.username}}' catchtap='toUserPage' hover-stop-propagation></image>
+      <image wx:for='{{repo.builtBy}}' wx:key='{{index}}' mode='aspectFit' src='{{item.avatar}}?s=40&v=4' class='avatar' data-username='{{item.username}}' catchtap='toUserPage' lazy-load='{{true}}' hover-stop-propagation></image>
     </view>
   </form>
 </view>

@@ -50,6 +50,7 @@
 
 modal {
   color: #000;
+  overflow: hidden;
 }
 
 modal textarea {

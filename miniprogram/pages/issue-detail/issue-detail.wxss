@@ -6,7 +6,7 @@
 }
 
 .top {
-  padding: 0 24rpx;
+  padding: 24rpx 24rpx 0 24rpx;
   display: flex;
 }
 

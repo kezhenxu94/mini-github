@@ -1,0 +1,8 @@
+@import '../../style/base.wxss';
+
+.title {
+  border: 1px solid #dfe2e5;
+  padding: 16rpx;
+  margin: 24rpx;
+  border-radius: 8rpx;
+}

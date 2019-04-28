@@ -1,0 +1,4 @@
+<view class='issue-edit'>
+  <input class='title' value='{{ issue.title }}' bindinput='inputTitleChanged'></input>
+  <md-textarea bind:submit='submit' default-content='{{ issue.body }}'></md-textarea>
+</view>

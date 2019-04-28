@@ -1,0 +1,16 @@
+<import src='../../lib/wxParse/wxParse.wxml' />
+<view class='md-textarea'>
+  <view class='edit'>
+    <textarea value='{{ content }}' bindinput='updateContent' maxlength='65535' wx:if='{{!preview}}' class='textarea' placeholder='{{placebolder}}'></textarea>
+    <view class='md-supported'>
+      <image src='/octicons/markdown.png' mode='aspectFit' class='md-icon'></image> Styling with Markdown is supported
+    </view>
+  </view>
+  <view class='buttons'>
+    <v-button type='warning' class='preview' bindtap='preview'>Preview</v-button>
+    <v-button type='primary' class='submit' bindtap='submit'>Submit</v-button>
+  </view>
+  <view class='md-view'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</view>

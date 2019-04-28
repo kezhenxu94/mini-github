@@ -71,18 +71,20 @@ const del = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
   })
 })
 
-const patch = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
+const patch = (url, { data = {}, headers = {} } = {}) => new Promise((resolve, reject) => {
   wx.cloud.callFunction({
     name: 'proxy',
     data: {
       method: 'PATCH',
       url,
-      headers: { 'Authorization': token() },
-      params
+      headers: Object.assign({ 'Authorization': token() }, headers),
+      data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
+    console.info({ status, url, data })
     resolve({ status, headers, data })
   }).catch(error => {
+    console.info({ url, data, error })
     reject(error)
   })
 })

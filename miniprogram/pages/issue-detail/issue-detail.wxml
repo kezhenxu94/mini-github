@@ -2,11 +2,11 @@
 <view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}'>
   <view class='top'>
     <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
-    <image wx:if='{{ false }}'
+    <image wx:if='{{ issue &&  (permission === "admin" || permission === "write" || issue.user.login === me.login) }}'
            class='edit'
            mode='aspectFit'
            src='/octicons/pencil.png'
-           catchtap='toReply'></image>
+           catchtap='toEdit'></image>
   </view>
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
     {{repoName}}<text class='iconfont icon-goto'></text>

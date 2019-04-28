@@ -64,7 +64,7 @@ Component({
       const user = this.data.comment.user
       this.setData({
         showInputDialog: true,
-        replyContent: `@${user.login} `
+        replyContent: `@${user.login} \n\n\n> Sent from [mini-github](https://github.com/kezhenxu94/mini-github)`
       })
     },
 
@@ -83,7 +83,7 @@ Component({
       wx.showLoading({
         title: 'Posting'
       })
-      const c = replyContent + '\n\n\n\n> Sent from [mini-github](https://github.com/kezhenxu94/mini-github)'
+      const c = replyContent
       github.repos(repoFullName).issues(issueNumber).comments().post(c).then(success => {
         wx.hideLoading()
         if (success) {

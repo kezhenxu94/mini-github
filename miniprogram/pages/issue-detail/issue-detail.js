@@ -22,6 +22,7 @@ const invertHex = hex => {
 
 let links = {}
 let labelChanged = false
+let nextFunc = null
 
 Component({
   behaviors: [computedBehavior],
@@ -48,6 +49,9 @@ Component({
     },
     labels () {
       return (this.data.issue || {}).labels || []
+    },
+    me () {
+      return utils.getCurrentUser() || {}
     }
   },
 
@@ -56,7 +60,6 @@ Component({
     timeline: [],
     hasMore: true,
     loadingMore: false,
-    next: null,
     permission: 'none',
     editLabels: false,
     allLabels: null
@@ -118,8 +121,7 @@ Component({
         loadingMore,
         issue,
         url,
-        timeline,
-        next
+        timeline
       } = this.data
       
       const { owner, repo, issueNumber } = utils.parseGitHubUrl(url)
@@ -140,11 +142,11 @@ Component({
           }
           return timeline
         })
+        nextFunc = next
         this.setData({
           timeline: [...timeline, ...data],
-          hasMore: next !== null,
-          loadingMore: false,
-          next
+          hasMore: nextFunc !== null,
+          loadingMore: false
         })
       }
       const failureHandler = error => {
@@ -158,8 +160,8 @@ Component({
         })
       }
 
-      if (next) {
-        next().then(successHandler).catch(failureHandler)
+      if (nextFunc) {
+        nextFunc().then(successHandler).catch(failureHandler)
       } else {
         github.repos(`${owner}/${repo}`).issues(issueNumber).timeline().then(successHandler).catch(failureHandler)
       }
@@ -179,7 +181,7 @@ Component({
       wx.showLoading({
         title: 'Loading Labels'
       })
-      github.repos(repoName).labels().get().then(({ data, nextFunc }) => {
+      github.repos(repoName).labels().get().then(({ data, next }) => {
         const labels = {}
         data.forEach(it => {
           labels[it.name] = it
@@ -253,6 +255,12 @@ Component({
       allLabels[tag.name] = tag
       this.setData({
         allLabels
+      })
+    },
+
+    toEdit (e) {
+      wx.navigateTo({
+        url: `/pages/issue-edit/issue-edit?url=${this.data.url}`
       })
     }
   }

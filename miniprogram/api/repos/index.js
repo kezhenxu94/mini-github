@@ -69,6 +69,21 @@ const repos = repo => ({
           resolve(status === 200)
         }).catch(reject)
       })
+    }),
+    patch: newIssue => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/repos/${repo}/issues/${number}`
+      http.patch(url, {
+        data: newIssue,
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.full+json, application/vnd.github.squirrel-girl-preview'
+        }
+      }).then(({ status, data }) => {
+        if (status === 200) {
+          resolve(true)
+        } else {
+          reject(new Error(data))
+        }
+      }).catch(reject)
     })
   }),
   pulls: () => new Promise((resolve, reject) => {
