@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/issue-detail/issue-detail",
     "pages/trends/trends",
     "pages/issues/issues",
     "pages/pulls/pulls",
@@ -14,6 +13,7 @@
     "pages/md/md",
     "pages/news/news",
     "pages/issue-edit/issue-edit",
+    "pages/issue-detail/issue-detail",
     "pages/settings/settings"
   ],
   "window": {
