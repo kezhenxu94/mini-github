@@ -6,6 +6,12 @@
 
 > 欢迎 Star 和任何形式的贡献
 
+## 加群交流
+
+![WeChat Group](https://user-images.githubusercontent.com/15965696/56934137-828ccd00-6b1d-11e9-9e19-f225f713cff1.png)
+
+> 欢迎前端大神加群交流（本人前端属于业余水平）
+
 ## 声明
 
 众所周知，GitHub 自己并没有官方 App，更别说微信小程序了。**本程序完全为第三方开发者开发，仅用于学习交流，禁止用于其他用途**。若要使用正版，请使用 [GitHub 网页端](https://github.com)。
