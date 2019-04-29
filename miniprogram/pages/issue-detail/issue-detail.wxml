@@ -31,7 +31,7 @@
   </view>
 </view>
 <popup show="{{ editLabels }}" position="bottom" bind:close="onClose" custom-class='labels-popup'>
-  <checkbox custom-class='checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#24292e' bind:change="onLabelChanged" data-tag='{{item}}'>
+  <v-checkbox custom-class='v-checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#24292e' bind:change="onLabelChanged" data-tag='{{item}}'>
     <tag color='#{{item.color}}' class='tag' size='large' text-color='{{ item.textColor }}'>{{ item.name }}</tag>
-  </checkbox>
+  </v-checkbox>
 </popup>

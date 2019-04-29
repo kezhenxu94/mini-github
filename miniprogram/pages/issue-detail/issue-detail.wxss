@@ -88,8 +88,8 @@
   overflow: scroll;
 }
 
-.checkbox {
-  display: block !important;
+.v-checkbox {
+  display: inline-block !important;
   padding: 24rpx 0;
   width: 100%;
 }
