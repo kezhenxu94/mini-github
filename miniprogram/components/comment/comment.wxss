@@ -48,3 +48,8 @@
   min-height: 50rpx;
 }
 
+
+action-sheet-item {
+  background-color: #24292e;
+  color: #FFF;
+}

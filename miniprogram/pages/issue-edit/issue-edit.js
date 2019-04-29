@@ -14,6 +14,11 @@ Component({
     new: {
       type: Boolean,
       value: false
+    },
+
+    commentId: {
+      type: Number,
+      value: 0
     }
   },
 
@@ -26,7 +31,8 @@ Component({
 
   data: {
     title: '',
-    issue: {}
+    issue: {},
+    comment: {}
   },
 
   methods: {
@@ -39,7 +45,8 @@ Component({
     submit: function (e) {
       const { content } = e.detail
       const title = this.data.title || this.data.issue.title
-      if (!title || title.length === 0) {
+      const { commentId } = this.data
+      if (!commentId && (!title || title.length === 0)) {
         return wx.showToast({
           title: 'Title Is Empty',
           icon: 'none'
@@ -57,10 +64,16 @@ Component({
           body: content
         })
       } else {
-        promise = github.repos(`${owner}/${repo}`).issues(issueNumber).patch({
-          title: title,
-          body: content
-        })
+        if (this.data.commentId) {
+          promise = github.repos(`${owner}/${repo}`).issues(issueNumber).comments(commentId).patch({
+            body: content
+          })
+        } else {
+          promise = github.repos(`${owner}/${repo}`).issues(issueNumber).patch({
+            title: title,
+            body: content
+          })
+        }
       }
       promise.then(success => {
         wx.hideLoading()
@@ -89,20 +102,40 @@ Component({
         wx.showLoading({
           title: 'Loading'
         })
-        github.getIssue(this.data.url).then(issue => {
-          wx.hideLoading()
-          this.setData({ issue })
-          const { repoName } = this.data
-          wx.setNavigationBarTitle({
-            title: `${repoName}#${issue.number}`
+        const { owner, repo, issueNumber } = utils.parseGitHubUrl(this.data.url)
+        const commentId = this.data.commentId
+        let promise
+        if (commentId) {
+          github.repos(`${owner}/${repo}`).issues(issueNumber).comments(commentId).get().then(comment => {
+            console.info({ comment })
+            wx.hideLoading()
+            this.setData({ comment })
+            wx.setNavigationBarTitle({
+              title: `${repo}#${issueNumber}#${commentId}`
+            })
+          }).catch(error => {
+            wx.showToast({
+              title: error.message,
+              icon: 'none'
+            })
+            wx.navigateBack({})
           })
-        }).catch(error => {
-          wx.showToast({
-            title: error.message,
-            icon: 'none'
+        } else {
+          github.getIssue(this.data.url).then(issue => {
+            wx.hideLoading()
+            this.setData({ issue })
+            const { repoName } = this.data
+            wx.setNavigationBarTitle({
+              title: `${repo}#${issueNumber}`
+            })
+          }).catch(error => {
+            wx.showToast({
+              title: error.message,
+              icon: 'none'
+            })
+            wx.navigateBack({})
           })
-          wx.navigateBack({})
-        })
+        }
       }
     },
 

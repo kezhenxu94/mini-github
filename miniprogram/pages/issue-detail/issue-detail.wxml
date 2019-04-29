@@ -5,8 +5,8 @@
     <image wx:if='{{ issue &&  (permission === "admin" || permission === "write" || issue.user.login === me.login) }}'
            class='edit'
            mode='aspectFit'
-           src='/octicons/pencil.png'
-           catchtap='toEdit'></image>
+           src='/octicons/kebab-vertical.png'
+           catchtap='more'></image>
   </view>
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
     {{repoName}}<text class='iconfont icon-goto'></text>

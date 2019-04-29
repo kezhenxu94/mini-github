@@ -1,4 +1,4 @@
 <view class='issue-edit'>
-  <input class='title' value='{{ issue.title }}' bindinput='inputTitleChanged' placeholder='Title'></input>
-  <md-textarea bind:submit='submit' default-content='{{ issue.body }}'></md-textarea>
+  <input wx:if='{{ !commentId }}' class='title' value='{{ issue.title }}' bindinput='inputTitleChanged' placeholder='Title'></input>
+  <md-textarea bind:submit='submit' default-content='{{ issue.body || comment.body }}'></md-textarea>
 </view>

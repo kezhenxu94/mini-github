@@ -258,9 +258,66 @@ Component({
       })
     },
 
-    toEdit (e) {
+    toEdit () {
       wx.navigateTo({
         url: `/pages/issue-edit/issue-edit?url=${this.data.url}`
+      })
+    },
+
+    changeIssueState (state) {
+      const url = this.data.url
+      const { owner, repo, issueNumber } = utils.parseGitHubUrl(url)
+      wx.showLoading({
+        title: 'Loading'
+      })
+      github.repos(`${owner}/${repo}`).issues(issueNumber).patch({ state }).then(success => {
+        wx.hideLoading()
+        if (success) {
+          wx.showToast({
+            title: 'Success'
+          })
+        } else {
+          wx.showToast({
+            title: 'Failed'
+          })
+        }
+      }).catch(error => {
+        wx.hideLoading()
+        wx.showToast({
+          title: 'Failed',
+          icon: 'none'
+        })
+      })
+    },
+
+    more (e) {
+      const itemList = ['Edit']
+      const issue = this.data.issue
+      if (issue.state === 'open') {
+        itemList.push('Close')
+      }
+      if (issue.state === 'closed') {
+        itemList.push('Reopen')
+      }
+      wx.showActionSheet({
+        itemList,
+        success: res => {
+          switch(res.tapIndex) {
+            case 0:
+              this.toEdit()
+              break;
+            case 1:
+              if (itemList[1] === 'Close') {
+                this.changeIssueState('closed')
+              }
+              if (itemList[1] === 'Reopen') {
+                this.changeIssueState('open')
+              }
+              break
+          }
+        },
+        fail: res => {
+        }
       })
     }
   }

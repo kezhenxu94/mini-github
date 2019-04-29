@@ -16,15 +16,27 @@ const repos = repo => ({
           reject(error)
         })
       }),
-      patch: body => new Promise((resolve, reject) => {
+      patch: comment => new Promise((resolve, reject) => {
         if (!token()) reject(new Error('使用此功能, 请先登录'))
-        const url = `https://api.github.com/repos/${repo}/issues/${number}/comments${commentId}`
-        http.patch(url, { data: { body } }).then(({ status, headers, data }) => {
+        const url = `https://api.github.com/repos/${repo}/issues/comments/${commentId}`
+        http.patch(url, { data: comment }).then(({ status, headers, data }) => {
           resolve(status === 200)
         }).catch(error => {
           reject(error)
         })
-      }) 
+      }),
+      get: () => new Promise((resolve, reject) => {
+        const url = `https://api.github.com/repos/${repo}/issues/comments/${commentId}`
+        http.get(url).then(({ status, headers, data }) => {
+          if (status === 200) {
+            resolve(data)
+          } else {
+            reject(new Error(data))
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }),
     timeline: () => {
       const url = `https://api.github.com/repos/${repo}/issues/${number}/timeline`
