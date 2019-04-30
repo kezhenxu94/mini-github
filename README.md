@@ -73,6 +73,7 @@
   - :new: 支持重新编辑 Issue(Title, Comment)
   - :new: 支持在项目详情页新建 Issue
   - :hammer: Markdown 渲染支持 tasklist
+  - :hammer: Markdown 渲染支持 GitHub Emoji :smile:
 - v2.8.0
   - :new: Issue/PR 详情页可编辑 label (如果有权限)
 - v2.6.0
