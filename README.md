@@ -65,11 +65,11 @@
 
 # Contributors
 
-[kezhenxu94](https://github.com/kezhenxu94)
+- [kezhenxu94](https://github.com/kezhenxu94)
 
-[ZengyiMa](https://github.com/ZengyiMa)
+- [ZengyiMa](https://github.com/ZengyiMa)
 
-[johnnychen94](https://github.com/johnnychen94)
+- [johnnychen94](https://github.com/johnnychen94)
 
 ## Change Logs
 
