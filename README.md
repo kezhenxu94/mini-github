@@ -32,14 +32,10 @@
 
 ## Notes
 
-由于个人小程序内无法跳转网页，因此无法通过 Oauth 方式登陆 GitHub，所以这里使用了账号密码的方式登陆，**账号密码只会通过代理服务器转发到 GitHub 服务器认证，不会被保存，不会被保存，不会被保存，请放心使用（有疑问的可检查源代码）**，~~后续会让用户填自己的 access token 等更安全的方式~~（已实现）。
+目前 mini-github 支持两种登陆方式：通过账号密码、通过 token。通过 Oauth 由于个人小程序内部无法跳转网页所以并不支持
 
-以下两种情况你必须使用 access token 进行登录：
-
-- 当你开启了两因素认证时(two-factor authentication)
-- 当你需要访问那些使用了单点登录(SSO)的组织(organization)如 Apache 的内容时
-
-关于如何创建 access token，请参考 [这里](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line#creating-a-token)，或点击 [这里](https://github.com/settings/tokens)
+* 账号密码登陆：**账号密码只会通过代理服务器转发到 GitHub 服务器认证，不会被保存，不会被保存，不会被保存，请放心使用（有疑问的可检查源代码）**
+* Token登陆：[参考Wiki](https://github.com/kezhenxu94/mini-github/wiki/%E5%88%A9%E7%94%A8Token%E7%99%BB%E9%99%86)
 
 ## TODO
 
