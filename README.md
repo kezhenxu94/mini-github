@@ -32,10 +32,10 @@
 
 ## Notes
 
-目前 mini-github 支持两种登陆方式：通过账号密码、通过 token。通过 Oauth 由于个人小程序内部无法跳转网页所以并不支持
+目前 mini-github 支持两种登陆方式：通过账号密码、通过 token。通过 OAuth 由于个人小程序内部无法跳转网页所以并不支持
 
 * 账号密码登陆：**账号密码只会通过代理服务器转发到 GitHub 服务器认证，不会被保存，不会被保存，不会被保存，请放心使用（有疑问的可检查源代码）**
-* Token登陆：[参考Wiki](https://github.com/kezhenxu94/mini-github/wiki/%E5%88%A9%E7%94%A8Token%E7%99%BB%E9%99%86)
+* Token 登陆：[参考Wiki](https://github.com/kezhenxu94/mini-github/wiki/%E5%88%A9%E7%94%A8Token%E7%99%BB%E9%99%86)
 
 ## TODO
 
