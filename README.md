@@ -67,6 +67,12 @@
 - :new: 新功能: 从上面 [TODO](#todo) 列表中选择未完成的功能进行实现, 然后发送 Pull Request
 - :moneybag: 捐献: 如果你觉得小程序方便了你或者源码让你学习有所收获, 可以在扫描 [二维码](#donation) 请作者喝一杯茶 :tea: 
 
+# Contributors
+
+[kezhenxu94](https://github.com/kezhenxu94)
+
+[ZengyiMa](https://github.com/ZengyiMa)
+
 ## Change Logs
 
 - v2.8.2
