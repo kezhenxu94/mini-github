@@ -27,7 +27,7 @@ const wrap = promise => new Promise((resolve, reject) => {
     if (status !== 200) {
       return reject(new Error('status !== 200'))
     }
-    const links = parseLinks(headers.link)
+    const links = parseLinks(headers.link || headers.Link)
     const nextUrl = links['rel="next"']
     if (nextUrl) {
       return resolve({
