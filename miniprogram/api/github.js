@@ -22,12 +22,9 @@ const getUrl = ({
   headers = {
     'Authorization': token()
   },
-  params
+  params = {}
 }) => new Promise((resolve, reject) => {
-  wx.cloud.callFunction({
-    name: 'proxy',
-    data: { url, headers, params }
-  }).then(({ result: { headers = {}, data } }) => {
+  http.get(url, { headers, params }).then(({ headers = {}, data }) => {
     console.log('headers = %o, data = %o', headers, data)
     resolve({ statusCode: 200, headers, body: data, data })
   }).catch(error => {
@@ -74,15 +71,7 @@ const trendings = (since, language) => new Promise((resolve, reject) => {
 })
 
 const getRepo = (url) => new Promise((resolve, reject) => {
-  wx.cloud.callFunction({
-    name: 'proxy',
-    data: {
-      url,
-      headers: {
-        'Authorization': token()
-      }
-    },
-  }).then(({ result: { status, data, headers } }) => {
+  http.get(url).then(({ result: { status, data, headers } }) => {
     const repo = data
     repo.created_at = utils.toReadableTime(repo.created_at)
     repo.updated_at = utils.toReadableTime(repo.updated_at)
@@ -99,15 +88,7 @@ const getRepo = (url) => new Promise((resolve, reject) => {
 
 const getComments = (url) => {
   return new Promise((resolve, reject) => {
-    wx.cloud.callFunction({
-      name: 'proxy',
-      data: {
-        url,
-        headers: {
-          'Authorization': token()
-        }
-      },
-    }).then(({ result: { status, data, headers } }) => {
+    http.get(url).then(({ result: { status, data, headers } }) => {
       const comments = data
       comments.forEach(comment => {
         comment.updated_at = utils.toReadableTime(comment.updated_at)

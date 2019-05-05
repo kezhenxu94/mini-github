@@ -2,11 +2,11 @@ const utils = require('../utils/util.js')
 
 const token = () => utils.getCurrentToken() || ''
 
-const get = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
+const get = (url, { params = {}, headers = {} } = {}) => new Promise((resolve, reject) => {
   wx.request({
     url: url,
     data: params,
-    header: { 'Authorization': token() },
+    header: Object.assign({ 'Authorization': token() }, headers),
     method: 'GET',
     dataType: 'json',
     responseType: 'text',
