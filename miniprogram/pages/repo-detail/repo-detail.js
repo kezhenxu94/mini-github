@@ -84,7 +84,6 @@ Component({
       wx.showNavigationBarLoading({})
       const repoFullName = this.data.repo.full_name
       github.repos(repoFullName).pulls().then(pulls => {
-        console.info(pulls)
         this.setData({
           pulls
         })
@@ -125,7 +124,6 @@ Component({
       wx.showNavigationBarLoading({})
       github.getRepo(baseUrl + this.data.repoName).then(res => {
         const { repo } = res
-        console.info({ repo })
         repo.owner.avatar_url = repo.owner.avatar_url + '&s=50'
         const showTabs = repo != undefined
         this.setData({

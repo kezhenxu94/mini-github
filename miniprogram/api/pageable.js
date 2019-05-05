@@ -23,13 +23,11 @@ const parseLinks = header => {
 
 const wrap = (promise, reqHeaders = {}) => new Promise((resolve, reject) => {
   promise.then(({ status, headers, data }) => {
-    console.info({ status, headers, data })
     if (status !== 200) {
       return reject(new Error('status !== 200'))
     }
     const links = parseLinks(headers.link)
     const nextUrl = links['rel="next"']
-    console.info(links)
     if (nextUrl) {
       return resolve({
         data,

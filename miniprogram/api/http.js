@@ -12,7 +12,6 @@ const get = (url, { params = {}, headers = {} } = {}) => new Promise((resolve, r
       params
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.info({ url, params, data })
     resolve({ status, headers, data })
   }).catch(error => {
     reject(error)
@@ -30,10 +29,8 @@ const put = (url, { params = {}, data = {} } = {}) => new Promise((resolve, reje
       data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.info({ url, params, data })
     resolve({ status, headers, data })
   }).catch(error => {
-    console.log('url = %o, error = %o', url, error)
     reject(error)
   })
 })
@@ -81,10 +78,8 @@ const patch = (url, { data = {}, headers = {} } = {}) => new Promise((resolve, r
       data
     }
   }).then(({ result: { status, headers = {}, data } }) => {
-    console.info({ status, url, data })
     resolve({ status, headers, data })
   }).catch(error => {
-    console.info({ url, data, error })
     reject(error)
   })
 })
