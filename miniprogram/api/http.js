@@ -38,7 +38,7 @@ const put = (url, { params = {}, data = {} } = {}) => new Promise((resolve, reje
       console.info({ res })
       reject(new Error(JSON.stringify(res)))
     },
-    complete: function(res) {},
+    complete: function(res) {}
   })
 })
 
@@ -98,7 +98,7 @@ const patch = (url, { params = {} } = {}) => new Promise((resolve, reject) => {
       console.info({ res })
       reject(new Error(JSON.stringify(res)))
     },
-    complete: function (res) { },
+    complete: function (res) { }
   })
 })
 

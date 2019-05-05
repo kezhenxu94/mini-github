@@ -8,12 +8,7 @@
       </view>
       <text class='time'>{{comment.created_at}}</text>
     </view>
-    <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/reply.png' catchtap='toReply'></image>
+    <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/kebab-vertical.png' catchtap='more'></image>
   </view>
-  <view class='body' wx:if='{{loaded}}'>
-    <md md='{{md}}'></md>
-  </view>
-  <modal hidden='{{!showInputDialog}}' title='Edit Comment' confirm-text='Reply' cancel-text='Cancel' bindcancel='hideInputDialog' bindconfirm="reply" catchtouchmove='{{false}}'>
-    <textarea placeholder="Type Content Here" value='{{replyContent}}' bindinput='updateContent' maxlength='65535'></textarea>
-  </modal>
+  <md md='{{md}}' wx:if='{{loaded}}'></md>
 </view>

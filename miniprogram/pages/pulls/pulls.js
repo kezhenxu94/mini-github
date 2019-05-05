@@ -9,22 +9,26 @@ const filters = [
   { value: 'review-requested', label: 'Review Requested' },
 ]
 
+let nextFunc = null
+let lastRefresh = moment().unix()
+let scrollTop = 0
+
 Page({
   data: {
     filters,
     filter: 'author',
     pulls: [],
-    scrollTop: 0,
-    lastRefresh: moment().unix(),
-    isSignedIn: utils.isSignedIn()
+    isSignedIn: utils.isSignedIn(),
+    loadingMore: false
   },
   
   onLoad: function () {
     this.setData({
-      isSignedIn: utils.isSignedIn()
+      isSignedIn: utils.isSignedIn(),
+      pulls: wx.getStorageSync('Pulls') || []
     })
-    var lastMoment = moment(this.data.lastRefresh)
-    if (this.data.scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
+    var lastMoment = moment(lastRefresh)
+    if (scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
       wx.startPullDownRefresh({})
     }
   },
@@ -44,16 +48,27 @@ Page({
     })
   },
 
+  onReachBottom: function () {
+    this.loadMore()
+  },
+
   reloadData: function () {
     const user = utils.getCurrentUser().login || ''
     const filter = this.data.filter
     const q = `is:open+is:pr+${filter}:${user}+archived:false`
-    github.search().issues({ q }).then(issues => {
+    github.search().issues({ q }).then(({ data, next }) => {
       wx.stopPullDownRefresh()
-      this.setData({
-        pulls: issues,
-        lastRefresh: moment()
+      nextFunc = next
+      lastRefresh = moment()
+      const pulls = data.items.map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        it.updated_at = utils.toReadableTime(it.updated_at)
+        return it
       })
+      this.setData({ pulls }, () => wx.setStorage({
+        key: 'Pulls',
+        data: pulls
+      }))
     }).catch(error => {
       wx.stopPullDownRefresh()
       wx.showToast({
@@ -63,9 +78,32 @@ Page({
     })
   },
 
+  loadMore: function () {
+    if (!nextFunc || this.data.loadingMore) {
+      return
+    }
+    this.setData({ loadingMore: true })
+    nextFunc().then(({ data, next }) => {
+      const pulls = data.items.map(it => {
+        it.created_at = utils.toReadableTime(it.created_at)
+        it.updated_at = utils.toReadableTime(it.updated_at)
+        return it
+      })
+      nextFunc = next
+      this.setData({
+        pulls: [...this.data.pulls, ...pulls],
+        loadingMore: false
+      })
+    }).catch(error => {
+      this.setData({
+        loadingMore: false
+      })
+    })
+  },
+
   changeFilter: function (event) {
     const filter = filters[event.detail.index].value
-    this.setData({ filter, pulls: [] })
+    this.setData({ filter, pulls: [], loadingMore: false })
     wx.startPullDownRefresh({})
   }
 })

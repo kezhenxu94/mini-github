@@ -6,6 +6,7 @@
       </navigator>
       <view class='empty' wx:elif='{{issues.length===0}}'>No {{item.label}} Issue</view>
       <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
+      <loading type='spinner' color="#fff" class='loading' wx:if='{{loadingMore}}' />
     </tab>
   </tabs>
 </view>

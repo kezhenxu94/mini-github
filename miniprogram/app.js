@@ -1,11 +1,17 @@
+const userUtils = require('utils/users.js')
+
 App({
   onLaunch: function () {
+    // const env = 'github-production'
+    const env = 'github-development'
+
     wx.cloud.init({
-      env: 'github-production',
+      env,
       traceUser: true
     })
   },
   globalData: {
-    userInfo: null
+    db: null,
+    openId: null
   }
 })

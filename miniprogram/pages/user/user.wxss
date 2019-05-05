@@ -11,5 +11,7 @@ page {
 }
 
 .loading {
+  height: 96rpx;
+  line-height: 96rpx;
   text-align: center;
 }

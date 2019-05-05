@@ -21,8 +21,8 @@ Component({
   data: {
     loaded: false,
     showInputDialog: false,
-    replyContent: '',
-    md: {}
+    md: {},
+    showMore: false
   },
 
   methods: {
@@ -38,13 +38,7 @@ Component({
         url: `/pages/user/user?username=${username}`
       })
     },
-
-    updateContent: function(e) {
-      this.setData({
-        replyContent: e.detail.value
-      })
-    },
-
+    
     toReply: function () {
       if (!utils.isSignedIn()) {
         return wx.showModal({
@@ -61,49 +55,64 @@ Component({
           }
         })
       }
-      const user = this.data.comment.user
-      this.setData({
-        showInputDialog: true,
-        replyContent: `@${user.login} `
-      })
-    },
-
-    reply: function() {
-      const {
-        comment,
-        replyContent
-      } = this.data
+      const comment = this.data.comment
+      const user = comment.user.login
       let issueNumber = comment.number
       const issueUrl = comment.issue_url
       if (issueUrl) { // is issue comment
-       issueNumber = utils.extractIssueNumber(issueUrl)
+        issueNumber = utils.extractIssueNumber(issueUrl)
       }
       const repoUrl = comment.repository_url || issueUrl
       const repoFullName = utils.extractRepoName(repoUrl)
-      wx.showLoading({
-        title: 'Posting'
+
+      wx.navigateTo({
+        url: `/pages/comment-edit/comment-edit?repo=${repoFullName}&number=${issueNumber}&mention=${user}`
       })
-      github.repos(repoFullName).issues(issueNumber).comments().post(replyContent).then(success => {
-        wx.hideLoading()
-        if (success) {
-          wx.showToast({
-            title: 'Posted'
-          })
-          this.setData({
-            showInputDialog: false
-          })
-        } else {
-          wx.showToast({
-            title: 'Failed',
-            icon: 'none'
-          })
+    },
+
+    toEdit: function () {
+      const comment = this.data.comment
+      const commentUrl = comment.url
+      const url = comment.issue_url || commentUrl
+      const regexp = /\/comments\/(\d+)/
+      const m = commentUrl.match(regexp)
+      let commentId = 0
+      if (m) {
+        commentId = m[1]
+      }
+
+      return wx.navigateTo({
+        url: `/pages/issue-edit/issue-edit?url=${url}&commentId=${commentId}`
+      })
+    },
+
+    more: function () {
+      wx.showActionSheet({
+        itemList: ['Reply', 'Edit'],
+        success: res => {
+          if (res.tapIndex === 0) {
+            this.toReply()
+          } else if (res.tapIndex === 1) {
+            if (!utils.isSignedIn()) {
+              return wx.showModal({
+                title: 'Sign In',
+                content: 'You need to sign in to comment',
+                confirmText: 'Sign In',
+                cancelText: 'Not Now',
+                success(res) {
+                  if (res.confirm) {
+                    wx.navigateTo({
+                      url: '/pages/login/login',
+                    })
+                  }
+                }
+              })
+            }
+            this.toEdit()
+          }
+        },
+        fail: res => {
         }
-      }).catch(error => {
-        wx.hideLoading()
-        wx.showToast({
-          title: 'FailedP',
-          icon: 'none'
-        })
       })
     }
   }

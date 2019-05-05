@@ -31,7 +31,7 @@ button.feedback {
   font-weight: bold;
 }
 
-.about, .feedback, .logout {
+.about, .feedback, .logout, .settings {
   display: flex;
   padding: 30rpx 40rpx;
   overflow: hidden;
@@ -39,14 +39,14 @@ button.feedback {
   font-weight: bold;
 }
 
-.about image, .feedback image, .logout image {
+.about image, .feedback image, .logout image, .settings image {
   width: 50rpx;
   height: 50rpx;
   min-width: 50rpx;
   min-height: 50rpx;
 }
 
-.about text, .feedback text, .logout text {
+.about text, .feedback text, .logout text, .settings text {
   margin-left: 20rpx;
   display: -webkit-flex;
   align-items: center;
@@ -54,5 +54,7 @@ button.feedback {
 }
 
 .loading {
+  height: 96rpx;
+  line-height: 96rpx;
   text-align: center;
 }

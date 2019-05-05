@@ -1,4 +1,5 @@
 const http = require('../http.js')
+const pageable = require('../../api/pageable.js')
 const util = require('../../utils/util.js')
 
 const token = () => util.getCurrentToken() || ''
@@ -15,31 +16,102 @@ const repos = repo => ({
           reject(error)
         })
       }),
-      patch: body => new Promise((resolve, reject) => {
+      patch: comment => new Promise((resolve, reject) => {
         if (!token()) reject(new Error('使用此功能, 请先登录'))
-        const url = `https://api.github.com/repos/${repo}/issues/${number}/comments${commentId}`
-        http.patch(url, { data: { body } }).then(({ status, headers, data }) => {
+        const url = `https://api.github.com/repos/${repo}/issues/comments/${commentId}`
+        http.patch(url, { data: comment }).then(({ status, headers, data }) => {
           resolve(status === 200)
         }).catch(error => {
           reject(error)
         })
-      }) 
-    }),
-    get: () => new Promise((resolve, reject) => {
-      const url = `https://api.github.com/repos/${repo}/issues`
-      http.get(url).then(({ status, headers, data }) => {
-        if (status !== 200) reject(new Error(data))
-        const issues = data.filter(it => {
-          return it.pull_request === undefined
-        }).map(it => {
-          it.created_at = util.toReadableTime(it.created_at)
-          return it
+      }),
+      get: () => new Promise((resolve, reject) => {
+        const url = `https://api.github.com/repos/${repo}/issues/comments/${commentId}`
+        http.get(url).then(({ status, headers, data }) => {
+          if (status === 200) {
+            resolve(data)
+          } else {
+            reject(new Error(data))
+          }
+        }).catch(error => {
+          reject(error)
         })
-        resolve(issues)
-      }).catch(error => {
-        reject(error)
       })
-    })
+    }),
+    timeline: () => {
+      const url = `https://api.github.com/repos/${repo}/issues/${number}/timeline`
+      const headers = {
+        'Accept': 'application/vnd.github.mockingbird-preview'
+      }
+      const promise = http.get(url, { headers })
+      return pageable.wrap(promise, headers)
+    },
+    get: () => new Promise((resolve, reject) => {
+      const isSingle = number && number > 0
+      if (isSingle) {
+        const url = `https://api.github.com/repos/${repo}/issues/${number}`
+        http.get(url).then(({ status, headers, data }) => {
+          data.created_at = util.toReadableTime(data.created_at)
+          resolve(data)
+        }).catch(error => {
+          reject(error)
+        })
+      } else {
+        const url = `https://api.github.com/repos/${repo}/issues`
+        http.get(url).then(({ status, headers, data }) => {
+          if (status !== 200) reject(new Error(data))
+          const issues = data.filter(it => {
+            return it.pull_request === undefined
+          }).map(it => {
+            it.created_at = util.toReadableTime(it.created_at)
+            return it
+          })
+          resolve(issues)
+        }).catch(error => {
+          reject(error)
+        })
+      }
+    }),
+    labels: () => ({
+      put: (labels) => new Promise((resolve, reject) => {
+        const url = `https://api.github.com/repos/${repo}/issues/${number}/labels`
+        http.put(url, { 
+          data: labels
+        }).then(({ status, data }) => {
+          resolve(status === 200)
+        }).catch(reject)
+      })
+    }),
+    patch: newIssue => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/repos/${repo}/issues/${number}`
+      http.patch(url, {
+        data: newIssue,
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.full+json, application/vnd.github.squirrel-girl-preview'
+        }
+      }).then(({ status, data }) => {
+        if (status === 200) {
+          resolve(true)
+        } else {
+          reject(new Error(data))
+        }
+      }).catch(reject)
+    }),
+    post: issue => new Promise((resolve, reject) => {
+      const url = `https://api.github.com/repos/${repo}/issues`
+      http.post(url, {
+        data: issue,
+        headers: {
+          'Accept': 'application/vnd.github.VERSION.full+json, application/vnd.github.squirrel-girl-preview'
+        }
+      }).then(({ status, data }) => {
+        if (status === 201) {
+          resolve(true)
+        } else {
+          reject(new Error(data))
+        }
+      }).catch(reject)
+    }),
   }),
   pulls: () => new Promise((resolve, reject) => {
     const url = `https://api.github.com/repos/${repo}/pulls`
@@ -116,7 +188,32 @@ const repos = repo => ({
         reject(error)
       })
     })
-  }
+  },
+
+  collaborators: (username) => ({
+    permission: () => new Promise((resolve, reject) => {
+      if (!username) {
+        return resolve('none')
+      }
+      const url = `https://api.github.com/repos/${repo}/collaborators/${username}/permission`
+      http.get(url).then(({ status, data }) => {
+        if (status !== 200) {
+          return resolve({ permission: 'none' })
+        }
+        return resolve({ permission: data.permission })
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }),
+
+  labels: () => ({
+    get: () => {
+      const url = `https://api.github.com/repos/${repo}/labels`
+      const promise = http.get(url)
+      return pageable.wrap(promise)
+    }
+  })
 })
 
 module.exports = repos

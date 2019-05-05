@@ -8,7 +8,7 @@
       <text class='time'>{{repo.pushed_at}}</text>
     </view>
   </view>
-  <view class='stats'>
+  <view class='stats {{ license ? "has-license" : "" }}'>
     <view class='watch' catchtap='toggleWatching'>
       <image mode='aspectFit' src='/octicons/eye.png'></image>
       <text>{{repo.subscribers_count}}</text>
@@ -21,28 +21,27 @@
       <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
       <text>{{repo.forks_count}}</text>
     </view>
+    <view class='license' wx:if='{{license}}'>
+      <image mode='aspectFit' src='/octicons/law.png'></image>
+      <text>{{license}}</text>
+    </view>
   </view>
-  <tabs bind:change='changeTab' wx:if='{{showTabs}}' sticky animated>
+  <tabs bind:change='changeTab' wx:if='{{showTabs}}' active='{{ tab }}' sticky animated>
     <tab title='Readme'>
       <view class='readme'>
         <md md='{{readme}}'></md>
-        <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+        <ad class='ad' wx:if='{{readme}}' unit-id="adunit-2953eab5250f3d65"></ad>
       </view>
     </tab>
     <tab title='Issues'>
-      <view wx:for='{{issues}}' wx:key='{{index}}'>
-        <issue issue='{{item}}'></issue>
-      </view>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
     </tab>
     <tab title='Pull Requests'>
-      <view wx:for='{{pulls}}' wx:key='{{index}}'>
-        <pull pull='{{item}}'></pull>
-      </view>
+      <pull wx:for='{{pulls}}' wx:key='{{index}}' pull='{{item}}'></pull>
     </tab>
     <tab title='Contributors'>
-      <view wx:for='{{contributors}}' wx:key='{{index}}'>
-        <contributor contributor='{{item}}' rank='{{index}}'></contributor>
-      </view>
+      <contributor wx:for='{{contributors}}' wx:key='{{index}}' contributor='{{item}}' rank='{{index}}'></contributor>
     </tab>
   </tabs>
+  <image wx:if='{{ true }}' class='new-issue' src='/octicons/plus-small.png' mode='aspectFit' catchtap='toCreateNewIssue'></image>
 </view>

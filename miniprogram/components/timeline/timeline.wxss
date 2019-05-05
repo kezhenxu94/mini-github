@@ -1,0 +1,32 @@
+@import '../../style/base.wxss';
+
+.timeline {
+  padding: 24rpx 24rpx 24rpx 48rpx;
+  display: flex;
+}
+
+image.type {
+  width: 48rpx;
+  height: 48rpx;
+  max-width: 48rpx;
+  max-height: 48rpx;
+  min-width: 48rpx;
+  min-height: 48rpx;
+}
+
+image.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  max-width: 64rpx;
+  max-height: 64rpx;
+  min-width: 64rpx;
+  min-height: 64rpx;
+  margin-left: 12rpx;
+  border-radius: 50%;
+}
+
+.desc {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  font-weight: bold;
+}

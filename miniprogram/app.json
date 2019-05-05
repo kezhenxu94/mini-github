@@ -5,15 +5,17 @@
     "pages/pulls/pulls",
     "pages/user/user",
     "pages/me/me",
-    "pages/issue-detail/issue-detail",
-    "pages/repo-detail/repo-detail",
     "pages/login/login",
     "pages/search/search",
     "pages/user-list/user-list",
-    "pages/about/about",
-    "pages/index/index",
     "pages/md/md",
-    "pages/news/news"
+    "pages/news/news",
+    "pages/issue-edit/issue-edit",
+    "pages/repo-detail/repo-detail",
+    "pages/issue-detail/issue-detail",
+    "pages/comment-edit/comment-edit",
+    "pages/settings/settings",
+    "pages/about/about"
   ],
   "window": {
     "backgroundColor": "#24292e",

@@ -1,3 +1,5 @@
 .*
 !.gitignore
 cloudfunctions/
+node_modules
+package-lock.json

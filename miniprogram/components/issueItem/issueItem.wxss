@@ -1,13 +1,12 @@
 @import '../../style/base.wxss';
 
 .issue {
-  padding: 24rpx;
+  padding: 20rpx 20rpx 20rpx 40rpx;
   color: #fff;
   border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
 .title {
-  padding: 0 16rpx;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -16,7 +15,6 @@
 
 .desc-comment {
   display: flex;
-  margin-top: 12rpx;
 }
 
 .desc-comment .comment {
@@ -35,12 +33,12 @@
 .desc {
   font-size: 24rpx;
   color: #b8b8b8;
-  padding: 0 16rpx;
   display: flex;
   flex: 1;
   flex-wrap: wrap;
+  margin-right: 8rpx;
 }
 
-tag:not(first-of-type) {
-  margin-left: 16rpx;
+tag {
+  margin-right: 16rpx;
 }

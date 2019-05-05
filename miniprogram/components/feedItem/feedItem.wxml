@@ -1,14 +1,11 @@
 <wxs module='filters' src='../../filter/feed.wxs'></wxs>
-<view class='feed' bindtap='toFeedDetail'>
-  <image mode='aspectFill'
-         class='avatar'
-         src='{{item.actor.avatar_url || "/octicons/octoface.png"}}'
-         catchtap='toUserPage'
-         hover-stop-propagation
-         lazy-load></image>
-  <view>
-    <text class='title summary'>{{filters.format(item)[0]}}</text>
-    <text class='detail'>{{filters.format(item)[1]}}</text>
-    <text class='time'>{{item.created_at}}</text>
-  </view>
+<view class='feed' hover-class='hover'>
+  <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "/octicons/octoface.png"}}' catchtap='toUserPage' hover-stop-propagation lazy-load></image>
+  <form bindsubmit='toFeedDetail' report-submit='{{true}}' class='id'>
+    <button form-type='submit' class='borderless'>
+      <text class='title summary'>{{filters.format(item)[0]}}</text>
+      <text class='detail'>{{filters.format(item)[1]}}</text>
+      <text class='time'>{{item.created_at}}</text>
+    </button>
+  </form>
 </view>

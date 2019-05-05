@@ -1,33 +1,29 @@
-<navigator class='repo'
-           url='/pages/repo-detail/repo-detail?repo={{repo.full_name}}'>
-  <text class='name title'>{{repo.full_name}}</text>
-  <text class='desc'>{{repo.description}}</text>
-  <view class='bottom'>
-    <view>
-      <image mode='aspectFit' src='/octicons/flame.png'></image>
-      <text>{{repo.currentPeriodStars || 0}}</text>
+<view class='repo' hover-class='hover'>
+  <form bindsubmit='formSubmit' report-submit='{{true}}' class='id'>
+    <button form-type='submit' class='borderless'>
+      <text class='name title'>{{repo.full_name}}</text>
+      <text class='desc'>{{repo.description}}</text>
+      <view class='bottom'>
+        <view>
+          <image mode='aspectFit' src='/octicons/flame.png'></image>
+          <text>{{repo.currentPeriodStars || 0}}</text>
+        </view>
+        <view>
+          <image mode='aspectFit' src='/md/unstar.png'></image>
+          <text>{{repo.stargazers_count}}</text>
+        </view>
+        <view>
+          <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+          <text>{{repo.forks}}</text>
+        </view>
+        <view>
+          <image mode='aspectFit' src='/md/language.png'></image>
+          <text>{{repo.language || 'Unknown'}}</text>
+        </view>
+      </view>
+    </button>
+    <view class='built-by'>
+      <image wx:for='{{repo.builtBy}}' wx:key='{{index}}' mode='aspectFit' src='{{item.avatar}}?s=40&v=4' class='avatar' data-username='{{item.username}}' catchtap='toUserPage' lazy-load='{{true}}' hover-stop-propagation></image>
     </view>
-    <view>
-      <image mode='aspectFit' src='/md/unstar.png'></image>
-      <text>{{repo.stargazers_count}}</text>
-    </view>
-    <view>
-      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
-      <text>{{repo.forks}}</text>
-    </view>
-    <view>
-      <image mode='aspectFit' src='/md/language.png'></image>
-      <text>{{repo.language || 'Unknown'}}</text>
-    </view>
-  </view>
-  <view class='built-by'>
-    <image wx:for='{{repo.builtBy}}'
-           wx:key='{{index}}'
-           mode='aspectFit'
-           src='{{item.avatar}}'
-           class='avatar'
-           data-username='{{item.username}}'
-           catchtap='toUserPage'
-           hover-stop-propagation></image>
-  </view>
-</navigator>
+  </form>
+</view>

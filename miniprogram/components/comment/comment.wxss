@@ -2,7 +2,7 @@
 @import '../../style/base.wxss';
 
 .comment {
-  padding: 20rpx 30rpx;
+  padding: 20rpx 24rpx;
   color: #fff;
   font-size: 12px;
 }
@@ -42,12 +42,14 @@
 .reply {
   width: 50rpx;
   height: 50rpx;
+  max-width: 50rpx;
+  max-height: 50rpx;
+  min-width: 50rpx;
+  min-height: 50rpx;
 }
 
-modal {
-  color: #000;
-}
 
-modal textarea {
-  width: 100%;
+action-sheet-item {
+  background-color: #24292e;
+  color: #FFF;
 }

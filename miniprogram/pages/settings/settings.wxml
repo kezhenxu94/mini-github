@@ -1,0 +1,34 @@
+<view class='settings'>
+  <cell-group title="Notifications">
+    <form class='id' bindsubmit="formSubmit" report-submit='{{true}}'>
+      <button class='notification borderless' form-type="submit">
+        <switch-cell title="Enable Notifications" checked="{{ enableNotification }}" bind:change="onChangeNotification" formType='submit' />
+      </button>
+    </form>
+  </cell-group>
+
+  <cell-group title="Others">
+    <form class='id' bindsubmit='about' report-submit='{{true}}'>
+      <button form-type='submit' class='about borderless'>
+        <image mode='aspectFit' src='/md/info.png'></image>
+        <text class='about-text'>About</text>
+      </button>
+    </form>
+
+    <form class='id' bindsubmit="feedback" report-submit='{{true}}'>
+      <button form-type='submit' class='feedback borderless'>
+        <image mode='aspectFit' src='/md/feedback.png'></image>
+        <text class='text'>Feedback</text>
+      </button>
+    </form>
+
+    <form class='id' bindsubmit="logout" report-submit='{{true}}'>
+      <button form-type="submit" class='logout borderless'>
+        <image mode='aspectFit' src='/octicons/sign-out.png'></image>
+        <text class='text'>Sign Out</text>
+      </button>
+    </form>
+  </cell-group>
+
+  <ad class='ad' unit-id="adunit-3296b41befb13f93"></ad>
+</view>

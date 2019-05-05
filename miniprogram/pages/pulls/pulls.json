@@ -3,6 +3,7 @@
   "usingComponents": {
     "tabs": "../../../components/tabs/index",
     "tab": "../../../components/tab/index",
+    "loading": "../../components/loading/index",
     "pull": "../../../components/pullItem/pullItem"
   },
   "navigationBarTitleText": "Pull Requests"

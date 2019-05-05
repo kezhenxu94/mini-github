@@ -1,8 +1,4 @@
-<view class='events'>
-  <view hover-class='hover' wx:for="{{events}}" wx:key="{{index}}">
-    <feed item="{{item}}"></feed>
-  </view>
-  <view class='loading' hidden='{{!loading}}'>
-    <loading type='spinner' color="#fff" />
-  </view>
-</view>
+<block>
+  <feed item="{{item}}" wx:for="{{events}}" wx:key="{{index}}"></feed>
+  <loading type='spinner' color="#fff" class='loading' hidden='{{!loading}}' />
+</block>

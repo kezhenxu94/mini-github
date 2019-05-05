@@ -2,7 +2,7 @@
 @import '../../style/base.wxss';
 
 .header {
-  padding: 20rpx 20rpx 20rpx 40rpx;
+  padding: 48rpx;
   display: flex;
   color: #fff;
 }
@@ -10,6 +10,7 @@
 .avatar {
   min-width: 88rpx;
   min-height: 88rpx;
+  background-color: #eee;
 }
 
 .name-time {
@@ -25,19 +26,22 @@
 }
 
 .stats {
-  font-size: 24rpx;
+  font-size: 20rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 10rpx 0;
-  padding: 20rpx;
+  padding: 24rpx;
 }
 
 .stats view {
-  width: 30%;
+  width: 33.33%;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.stats.has-license view {
+  width: 25%;
 }
 
 .stats view:not(:first-child) {
@@ -58,4 +62,20 @@
   margin: 48rpx;
   overflow: hidden;
   font-size: 12px;
+}
+
+.ad {
+  margin-top: 24rpx;
+}
+
+.new-issue {
+  width: 100rpx;
+  height: 100rpx;
+  max-width: 100rpx;
+  max-height: 100rpx;
+  border-radius: 50rpx;
+  position: fixed;
+  bottom: 48rpx;
+  right: 48rpx;
+  background-color: red;
 }

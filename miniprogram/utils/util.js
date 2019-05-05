@@ -10,7 +10,31 @@ const extractRepoName = (repo_url) => repo_url.replace(/^https:\/\/api.github.co
 
 const extractIssueNumber = issueUrl => issueUrl.replace(/^https:\/\/api.github.com\/repos\/.*\/issues\/(\d+)$/, '$1')
 
-const toReadableTime = (time) => {
+const parseGitHubUrl = url => {
+  let m = url.match(/https?:\/\/github\.com\/([^/]+)\/?([^/]+)?(\/(issues|pulls?)\/(\d+))?/)
+
+  if (m && m.length > 0) {
+    const owner = m[1]
+    const repo = m[2]
+    const issueNumber = m[5]
+    return {
+      owner, repo, issueNumber
+    }
+  }
+
+  m = url.match(/https?:\/\/api\.github\.com\/repos\/([^/]+)\/?([^/]+)?(\/(issues|pulls?)\/(\d+))?/)
+
+  if (m && m.length > 0) {
+    const owner = m[1]
+    const repo = m[2]
+    const issueNumber = m[5]
+    return {
+      owner, repo, issueNumber
+    }
+  }
+}
+
+const toReadableTime = time => {
   let then = moment(time)
   let now = moment()
   if (now.diff(then, 'days') <= 7) {
@@ -84,5 +108,6 @@ module.exports = {
   extractRepoName,
   extractIssueNumber,
   ensureSignedIn,
-  asEvent
+  asEvent,
+  parseGitHubUrl
 }

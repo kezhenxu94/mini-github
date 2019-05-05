@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .login-prompt {
   background-color: transparent;
   color: #eee;
@@ -6,11 +8,6 @@
   padding: 20rpx;
 }
 
-.loading {
-  text-align: center;
-}
-
-.hover {
-  background-color: rgba(0, 0, 0, 0.1);
-  opacity: 0.7;
+.van-loading {
+  width: 100% !important;
 }

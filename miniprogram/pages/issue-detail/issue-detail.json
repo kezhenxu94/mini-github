@@ -4,6 +4,9 @@
     "feed": "../../components/feedItem/feedItem",
     "comment": "../../components/comment/comment",
     "v-button": "../../components/button/index",
-    "tag": "../../components/tag/index"
+    "v-checkbox": "../../components/checkbox/index",
+    "tag": "../../components/tag/index",
+    "popup": "../../components/popup/index",
+    "timeline": "../../components/timeline/timeline"
   }
 }

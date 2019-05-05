@@ -13,3 +13,33 @@ image.icon {
   width: 32rpx;
   height: 32rpx;
 }
+
+form.id button {
+  background-color: transparent;
+  text-align: left;
+  line-height: 1.5;
+  border-radius: 0 !important;
+  color: inherit;
+  padding: 0;
+  border: none;
+}
+
+form.id button:hover {
+  background-color: transparent;
+}
+
+
+button.borderless::after {
+  border: none;
+}
+
+.hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
+}
+
+.loading {
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+}

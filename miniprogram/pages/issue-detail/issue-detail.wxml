@@ -1,19 +1,37 @@
 <wxs module='filters' src='../../filter/issue.wxs'/>
-<view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}' catchtap=''>
-  <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
+<view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}'>
+  <view class='top'>
+    <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
+    <image wx:if='{{ issue &&  (permission === "admin" || permission === "write" || issue.user.login === me.login) }}'
+           class='edit'
+           mode='aspectFit'
+           src='/octicons/kebab-vertical.png'
+           catchtap='more'></image>
+  </view>
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
     {{repoName}}<text class='iconfont icon-goto'></text>
   </text>
-  <tag wx:for='{{issue.labels}}' wx:key="index" color='#{{item.color}}' class='tag'>
-    {{item.name}}
-  </tag>
-  <view class='comment-wrapper' wx:if='{{issue}}'>
-    <comment comment='{{issue}}'></comment>
+  <view class='tags'>
+    <tag wx:for='{{labels}}' wx:key="index" color='#{{item.color}}' class='tag' size='medium'>
+      {{item.name}}
+    </tag>
+    <image wx:if='{{ issue && (permission === "admin" || permission === "write") }}'
+          class='edit-label'
+          mode='aspectFit'
+          src='/octicons/gear.png'
+          catchtap='editLabels'></image>
   </view>
-  <view class='comment-wrapper' wx:for='{{comments}}' wx:key='{{index}}' >
-    <comment comment='{{item}}'></comment>
+  <comment comment='{{issue}}' wx:if='{{issue}}'></comment>
+  <view class='comment-wrapper' wx:for='{{displayTimeline}}' wx:key='{{index}}' >
+    <comment wx:if='{{item.event === "commented"}}' comment='{{item}}'></comment>
+    <timeline wx:else timeline='{{item}}'></timeline>
   </view>
   <view class='loading' wx:if='{{issue}}'>
     <v-button plain round type='primary' size='small' loading='{{loadingMore}}' bind:click='loadMore' class='more-btn'>{{hasMore ? 'Load More' : 'No More Comments'}}</v-button>
   </view>
 </view>
+<popup show="{{ editLabels }}" position="bottom" bind:close="onClose" custom-class='labels-popup'>
+  <v-checkbox custom-class='v-checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#24292e' bind:change="onLabelChanged" data-tag='{{item}}'>
+    <tag color='#{{item.color}}' class='tag' size='large' text-color='{{ item.textColor }}'>{{ item.name }}</tag>
+  </v-checkbox>
+</popup>

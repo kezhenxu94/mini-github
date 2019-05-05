@@ -1,6 +1,6 @@
-const moment = require('../../lib/moment.js')
-const utils = require('../../utils/util.js')
-const github = require('../../api/github.js')
+const app = getApp()
+const userUtils = require('../../utils/users.js')
+const notifUtils = require('../../utils/notifications.js')
 Page({
   data: {
     mobile: '',
@@ -14,11 +14,9 @@ Page({
     wx.showLoading({
       title: '正在登陆',
     })
-    wx.setStorageSync('token', token)
 
-    github.user().get().then(user => {
+    userUtils.signIn(token).then(({ user, token }) => {
       wx.showToast({ title: '登录成功' })
-      wx.setStorageSync('user', user)
       wx.navigateBack({})
     }).catch(error => {
       wx.showToast({
@@ -29,6 +27,7 @@ Page({
     })
   },
   commitAccount (e) {
+    notifUtils.report({ formId: e.detail.formId })
     let values = e.detail.value
     let username = values.username || ''
     let password = values.password || ''
@@ -50,6 +49,7 @@ Page({
     this.login(token)
   },
   commitToken(e) {
+    notifUtils.report({ formId: e.detail.formId })
     let values = e.detail.value
     let token = values.token || ''
     if (!token.replace(/\s+/g, '')) {

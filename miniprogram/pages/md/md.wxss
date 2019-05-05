@@ -3,3 +3,7 @@
 .md {
   padding: 24rpx;
 }
+
+.ad {
+  margin-top: 12rpx;
+}

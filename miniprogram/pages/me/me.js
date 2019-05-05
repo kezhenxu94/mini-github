@@ -161,20 +161,5 @@ Page({
         this.loadUserStarredRepos()
         break
     }
-  },
-
-  logout: function () {
-    wx.showModal({
-      title: '确认退出',
-      content: '确认退出登陆状态吗? 退出后无法查看自己关注的事件, Issue, Pull Request; 也无法进行交互类型的操作(Star, Watch, Fork, Follow等)',
-      success: function (res) {
-        if (res.confirm) {
-          wx.clearStorageSync()
-          wx.reLaunch({
-            url: '/pages/me/me'
-          })
-        }
-      }
-    })
   }
 })

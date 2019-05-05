@@ -1,14 +1,18 @@
 <wxs module='filters' src='../../filter/pull.wxs'></wxs>
-<navigator class='pull' url='/pages/issue-detail/issue-detail?url={{pull.url}}'>
-  <view class='title'>{{pull.title}}</view>
-  <view class='desc-comment'>
-    <view class='desc'>{{filters.format(pull)}}</view>
-    <view class='comment' wx:if='{{pull.comments}}'>
-      <image class='icon' src='/octicons/comment.png'></image>
-      <text>{{pull.comments}}</text>
-    </view>
-  </view>
-  <tag wx:for='{{pull.labels}}' wx:key="index" color='#{{item.color}}'>
-    {{item.name}}
-  </tag>
-</navigator>
+<view class='pull' hover-class='hover'>
+  <form bindsubmit='toPullDetail' report-submit='{{true}}' class='id'>
+    <button form-type='submit' class='borderless'>
+      <view class='title'>{{pull.title}}</view>
+      <view class='desc-comment'>
+        <view class='desc'>{{filters.format(pull)}}</view>
+        <view class='comment' wx:if='{{pull.comments}}'>
+          <image class='icon' src='/octicons/comment.png'></image>
+          <text>{{pull.comments}}</text>
+        </view>
+      </view>
+      <tag wx:for='{{pull.labels}}' wx:key="index" color='#{{item.color}}'>
+        {{item.name}}
+      </tag>
+    </button>
+  </form>
+</view>

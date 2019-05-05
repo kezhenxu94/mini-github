@@ -1,0 +1,55 @@
+@import "../../lib/wxParse/wxParse.wxss";
+@import '../../style/base.wxss';
+
+.md-textarea {
+  padding: 24rpx;
+}
+
+.md-view {
+  overflow: hidden;
+  font-size: 24rpx;
+}
+
+.edit {
+  width: 100%;
+  border: 1px solid #dfe2e5;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.textarea {
+  height: 300px;
+  min-height: 300px;
+  width: calc(100% - 32rpx);
+  padding: 16rpx;
+}
+
+.md-supported {
+  width: calc(100% - 32rpx);
+  padding: 16rpx;
+  border-top: 1px dashed #dfe2e5;
+  font-size: 24rpx;
+  display: flex;
+  justify-items: center;
+}
+
+.md-icon {
+  height: 32rpx;
+  width: 32rpx;
+  max-height: 32rpx;
+  max-width: 32rpx;
+  margin-right: 12rpx;
+}
+
+.buttons {
+  margin-top: 24rpx;
+  text-align: right;
+}
+
+.submit {
+  margin-left: 12rpx;
+}
+
+.md-view {
+  margin-top: 24rpx;
+}

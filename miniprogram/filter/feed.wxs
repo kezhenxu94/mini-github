@@ -92,7 +92,7 @@ var format = function (item) {
       break
     }
     case 'ReleaseEvent': {
-      summary = actor.display_login + ' ' + payload.action + ' ' + payload.release.name + ' ' + repository.full_name
+      summary = actor.display_login + ' released ' + (payload.release.name || payload.release.tag_name) + ' at ' + repo.name
       break
     }
     case 'CommitCommentEvent': {

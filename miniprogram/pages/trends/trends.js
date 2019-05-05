@@ -1,6 +1,6 @@
+const app = getApp()
 const github = require('../../api/github.js')
 const moment = require('../../lib/moment.js')
-
 const timeRange = [
   { label: 'Daily', value: 'Daily'},
   { label: 'Weekly', value: 'Weekly'},
@@ -23,9 +23,6 @@ const languages = [
   'Vue'
 ].map(it => ({label: it, value: it}))
 
-let scrollTop = 0
-let lastRefresh = moment().unix()
-
 const sinceCacheKey = 'Trending:Since'
 const langCacheKey = 'Trending:Lang'
 const trendsCacheKey = 'Trending:Data'
@@ -39,11 +36,8 @@ Page({
     trends: wx.getStorageSync(trendsCacheKey) || []
   },
 
-  onShow: function () {
-    const lastMoment = moment(lastRefresh)
-    if (scrollTop === 0 && moment().diff(lastMoment, 'minutes') >= 5) {
-      wx.startPullDownRefresh({})
-    }
+  onLoad: function () {
+    wx.startPullDownRefresh({})
   },
 
   onShareAppMessage: function(options) {
@@ -79,7 +73,6 @@ Page({
           })
         }
       })
-      lastRefresh = moment()
     }).catch(error => wx.stopPullDownRefresh() )
   },
 
@@ -90,10 +83,6 @@ Page({
       scrollTop: 0
     })
     wx.startPullDownRefresh({})
-  },
-
-  onPageScroll (e) {
-    scrollTop = e.scrollTop
   },
 
   onSearch: function (e) {

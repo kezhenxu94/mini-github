@@ -5,20 +5,22 @@
   color: #fff;
 }
 
+.top {
+  padding: 24rpx 24rpx 0 24rpx;
+  display: flex;
+}
+
 .title {
   font-size: 16px;
-  padding: 16rpx 30rpx;
-  word-break: break-all;
   display: flex;
   flex: 1;
-  flex-wrap: wrap;
 }
 
 .repo {
   display: flex;
   font-size: 14px;
   color: #888;
-  padding: 0 0 30rpx 30rpx;
+  padding: 0 0 24rpx 24rpx;
   align-items: center;
   line-height: 14px;
 }
@@ -34,7 +36,7 @@
 
 .loading {
   text-align: center;
-  margin-bottom: 30rpx;
+  margin-bottom: 24rpx;
 }
 
 .more-btn button {
@@ -43,10 +45,51 @@
   border-color: #fff;
 }
 
-.tag:first-of-type {
-  margin-left: 30rpx;
+.tag {
+  margin-right: 12rpx;
 }
 
-.tag {
+.edit {
+  width: 50rpx;
+  height: 50rpx;
+  max-width: 50rpx;
+  max-height: 50rpx;
+  min-width: 50rpx;
+  min-height: 50rpx;
   margin-left: 12rpx;
+}
+
+.edit-label {
+  width: 32rpx;
+  height: 32rpx;
+  max-width: 32rpx;
+  max-height: 32rpx;
+  min-width: 32rpx;
+  min-height: 32rpx;
+  margin-top: 6rpx;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  word-break: break-all;
+  flex-wrap: wrap;
+  padding: 0 24rpx;
+}
+
+.van-checkbox__label {
+  font-size: 24rpx;
+}
+
+.labels-popup {
+  padding: 32rpx 24rpx;
+  max-height: 50% !important;
+  overflow: scroll;
+}
+
+.v-checkbox {
+  display: inline-block !important;
+  padding: 24rpx 0;
+  width: 100%;
 }

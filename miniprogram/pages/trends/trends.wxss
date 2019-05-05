@@ -1,16 +1,13 @@
-.repo:first-of-type {
-  margin-top: 100rpx;
-}
-
-.repo {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+.trends {
+  padding-top: 100rpx;
 }
 
 .lang-picker {
   position: fixed;
-  bottom: 48rpx;
+  bottom: 288rpx;
   right: 48rpx;
   height: 48rpx;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .van-search {
@@ -19,6 +16,7 @@
   position: fixed;
   padding: 20rpx !important;
   background-color: #24292e;
+  z-index: 100;
 }
 
 .van-search__field .field-index--van-field {
