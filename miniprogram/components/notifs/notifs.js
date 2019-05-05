@@ -12,7 +12,8 @@ Component({
       all: [],
       unread: [],
       participating: []
-    }
+    },
+    theme: wx.getStorageSync('theme')
   },
   methods: {
     onChange(event) {

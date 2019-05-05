@@ -9,6 +9,7 @@ Component({
   },
 
   data: {
+    theme: wx.getStorageSync('theme')
   },
 
   methods: {

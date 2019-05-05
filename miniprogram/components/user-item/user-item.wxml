@@ -1,4 +1,4 @@
 <navigator class='user' url='/pages/user/user?username={{user.login}}'>
-  <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}' lazy-load></image>
+  <image mode='aspectFill' class='avatar' src='{{user.avatar_url || "/octicons/octoface.svg"}}' lazy-load></image>
   <text class='username title'>{{user.login}}</text>
 </navigator>

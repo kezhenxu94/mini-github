@@ -6,7 +6,7 @@
   left: 50%;
   max-height: 100%;
   overflow-y: auto;
-  background-color: #24292e;
+  background-color: #000;
   box-sizing: border-box;
   -webkit-animation: ease both;
   animation: ease both;

@@ -8,7 +8,7 @@
       <view class='desc-comment'>
         <view class='desc'>{{filters.format(issue)}}</view>
         <view class='comment' wx:if='{{issue.comments}}'>
-          <image class='icon' src='/octicons/comment.png'></image>
+          <image class='icon' src='/octicons/comment.svg'></image>
           <text>{{issue.comments}}</text>
         </view>
       </view>

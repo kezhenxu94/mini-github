@@ -33,7 +33,8 @@ Page({
     lang: languages[0],
     selectorValues: [timeRange, languages],
     selectedIndices: [wx.getStorageSync(sinceCacheKey) || 0, wx.getStorageSync(langCacheKey) || 0],
-    trends: wx.getStorageSync(trendsCacheKey) || []
+    trends: wx.getStorageSync(trendsCacheKey) || [],
+    theme: wx.getStorageSync('theme') || 'light'
   },
 
   onLoad: function () {

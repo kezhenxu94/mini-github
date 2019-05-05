@@ -17,45 +17,45 @@ Component({
       switch (t.event) {
         case 'labeled':
         case 'unlabeled':
-          return '/octicons/tag.png'
+          return '/octicons/tag.svg'
         case 'assigned':
         case 'unassigned':
-          return '/octicons/person.png'
+          return '/octicons/person.svg'
         case 'milestoned':
         case 'demilestoned':
-          return '/octicons/milestone.png'
+          return '/octicons/milestone.svg'
         case 'closed':
-          return '/octicons/issue-closed.png'
+          return '/octicons/issue-closed.svg'
         case 'reopened':
-          return '/octicons/issue-reopened.png'
+          return '/octicons/issue-reopened.svg'
         case 'referenced':
         case 'cross-referenced':
-          return '/octicons/bookmark.png'
+          return '/octicons/bookmark.svg'
         case 'locked':
         case 'unlocked':
-          return '/octicons/lock.png'
+          return '/octicons/lock.svg'
         case 'pinned':
         case 'unpinned':
-          return '/octicons/pin.png'
+          return '/octicons/pin.svg'
         case 'renamed':
-          return '/octicons/pencil.png'
+          return '/octicons/pencil.svg'
         case 'review_requested':
         case 'reviewed':
         case 'ready_for_review':
-          return '/octicons/eye.png'
+          return '/octicons/eye.svg'
         case 'review_dismissed':
         case 'comment_deleted':
-          return '/octicons/x.png'
+          return '/octicons/x.svg'
         case 'merged':
-          return '/octicons/git-merge.png'
+          return '/octicons/git-merge.svg'
         case 'head_ref_deleted':
         case 'head_ref_restored':
-          return '/octicons/git-branch.png'
+          return '/octicons/git-branch.svg'
         case 'marked_as_duplicate':
-          return '/octicons/bookmark.png'
+          return '/octicons/bookmark.svg'
         case 'added_to_project':
         case 'removed_from_project':
-          return '/octicons/project.png'
+          return '/octicons/project.svg'
       }
     },
 

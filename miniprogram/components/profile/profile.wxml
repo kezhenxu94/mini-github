@@ -1,7 +1,7 @@
 <view>
   <view class='header' data-item='{{user}}' catchtap=''>
     <view class='user'>
-      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}' bindtap='onTapAvatar' lazy-load></image>
+      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.svg"}}' bindtap='onTapAvatar' lazy-load></image>
       <view>
         <view class='name title'>{{user.login || 'Octocat'}}</view>
         <view class='subname'>{{user.name}}</view>
@@ -24,7 +24,7 @@
     </navigator>
   </view>
   <view class='company' wx:if='{{user.company}}'>
-    <image mode='aspectFit' src='/octicons/organization.png' class='company-img'></image>
+    <image mode='aspectFit' src='/octicons/organization.svg' class='company-img'></image>
     <view class='company-text'>{{user.company}}</view>
   </view>
   <view class='loc' wx:if='{{user.location}}'>

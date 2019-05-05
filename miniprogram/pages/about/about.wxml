@@ -8,7 +8,7 @@
       <view class='title'>代码已开源</view>
       <view class='i' catchtap='toProjectPage' data-title='项目地址' data-content='{{projectAddress}}'>
         <view class='icon'>
-          <image src='/octicons/mark-github.png'></image>
+          <image src='/octicons/mark-github.svg'></image>
         </view>
         <view class='text'>
           <view>欢迎 Star 和参与贡献</view>
@@ -20,7 +20,7 @@
       <view class='title'>联系开发者</view>
       <view class='i' catchtap='toUserPage' data-title='GitHub 地址' data-content='{{github}}'>
         <view class='icon'>
-          <image src='/octicons/mark-github.png'></image>
+          <image src='/octicons/mark-github.svg'></image>
         </view>
         <view class='text'>
           <view>通过 GitHub</view>

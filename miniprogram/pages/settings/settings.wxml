@@ -24,7 +24,7 @@
 
     <form class='id' bindsubmit="logout" report-submit='{{true}}'>
       <button form-type="submit" class='logout borderless'>
-        <image mode='aspectFit' src='/octicons/sign-out.png'></image>
+        <image mode='aspectFit' src='/octicons/sign-out.svg'></image>
         <text class='text'>Sign Out</text>
       </button>
     </form>

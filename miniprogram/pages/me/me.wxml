@@ -17,11 +17,11 @@
     </tab>
   </tabs>
   <view class='login-prompt' wx:if='{{!user}}'>
-    <image mode='aspectFit' class='avatar' src='/octicons/octoface.png'></image>
+    <image mode='aspectFit' class='avatar' src='/octicons/octoface.svg'></image>
     <navigator url='/pages/login/login'>Sign In</navigator>
   </view>
   <navigator class='settings' url='/pages/settings/settings' wx:if='{{tab===0}}'>
-    <image mode='aspectFit' src='/octicons/gear.png'></image>
+    <image mode='aspectFit' src='/octicons/gear.svg'></image>
     <text class='settings-text'>Settings</text>
   </navigator>
 </view>

@@ -18,7 +18,8 @@ Component({
     isStarred: false,
     isWatching: false,
     readme: null,
-    tab: 0
+    tab: 0,
+    theme: wx.getStorageSync('theme')
   },
 
   computed: {

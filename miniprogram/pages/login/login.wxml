@@ -1,7 +1,7 @@
 <view class='wrapper'>
   <view class='main'>
     <view class='logo'>
-      <image src='/octicons/mark-github.png'></image>
+      <image src='/octicons/mark-github.svg'></image>
     </view>
     <tabs>
       <tab title='账号密码'>

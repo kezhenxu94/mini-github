@@ -1,0 +1,7 @@
+.primary--dark {
+  color: #000000;
+}
+
+.secondary--dark {
+  color: #b8b8b8;
+}

@@ -1,4 +1,4 @@
-<view class='news'>
+<view class='news {{theme}}'>
   <navigator class='login-prompt' wx:if='{{!isSignedIn}}' url='/pages/login/login'>
     Sign In to See My News >
   </navigator>

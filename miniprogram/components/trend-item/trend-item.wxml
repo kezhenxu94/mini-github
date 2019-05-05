@@ -1,23 +1,23 @@
-<view class='repo' hover-class='hover'>
+<view class='repo {{ theme }}' hover-class='hover'>
   <form bindsubmit='formSubmit' report-submit='{{true}}' class='id'>
     <button form-type='submit' class='borderless'>
       <text class='name title'>{{repo.full_name}}</text>
       <text class='desc'>{{repo.description}}</text>
       <view class='bottom'>
         <view>
-          <image mode='aspectFit' src='/octicons/flame.png'></image>
+          <image mode='aspectFit' src='/octicons/{{theme}}/flame.svg'></image>
           <text>{{repo.currentPeriodStars || 0}}</text>
         </view>
         <view>
-          <image mode='aspectFit' src='/md/unstar.png'></image>
+          <image mode='aspectFit' src='/octicons/{{theme}}/star.svg'></image>
           <text>{{repo.stargazers_count}}</text>
         </view>
         <view>
-          <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+          <image mode='aspectFit' src='/octicons/{{theme}}/repo-forked.svg'></image>
           <text>{{repo.forks}}</text>
         </view>
         <view>
-          <image mode='aspectFit' src='/md/language.png'></image>
+          <image mode='aspectFit' src='/octicons/{{theme}}/globe.svg'></image>
           <text>{{repo.language || 'Unknown'}}</text>
         </view>
       </view>

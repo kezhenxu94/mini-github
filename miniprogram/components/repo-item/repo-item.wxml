@@ -10,7 +10,7 @@
       <text>{{repo.stargazers_count}}</text>
     </view>
     <view class='forks'>
-      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <image mode='aspectFit' src='/octicons/repo-forked.svg'></image>
       <text>{{repo.forks}}</text>
     </view>
     <view class='lang' wx:if='{{repo.language}}'>

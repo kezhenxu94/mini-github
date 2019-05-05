@@ -1,6 +1,6 @@
 .van-search {
   padding: 20rpx !important;
-  background-color: #24292e;
+  background-color: #000;
 }
 
 .van-search__field .field-index--van-field {

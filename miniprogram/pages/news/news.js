@@ -12,7 +12,8 @@ Page({
   data: {
     events: wx.getStorageSync('Cache:News:Events') || [],
     isSignedIn: utils.isSignedIn(),
-    loadingMoreActivity: false
+    loadingMoreActivity: false,
+    theme: wx.getStorageSync('theme')
   },
 
   onLoad: function () {

@@ -50,6 +50,6 @@
 
 
 action-sheet-item {
-  background-color: #24292e;
+  background-color: #000;
   color: #FFF;
 }

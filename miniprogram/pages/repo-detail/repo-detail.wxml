@@ -10,19 +10,19 @@
   </view>
   <view class='stats {{ license ? "has-license" : "" }}'>
     <view class='watch' catchtap='toggleWatching'>
-      <image mode='aspectFit' src='/octicons/eye.png'></image>
+      <image mode='aspectFit' src='/octicons/{{theme}}/eye.svg'></image>
       <text>{{repo.subscribers_count}}</text>
     </view>
     <view class='star' catchtap='toggleStar'>
-      <image mode='aspectFit' src='{{isStarred ? "/md/starred.png" : "/md/unstar.png"}}'></image>
+      <image mode='aspectFit' src='/octicons/{{theme}}/star.svg'></image>
       <text>{{repo.stargazers_count}}</text>
     </view>
     <view class='fork' catchtap='forkRepo'>
-      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <image mode='aspectFit' src='/octicons/{{theme}}/repo-forked.svg'></image>
       <text>{{repo.forks_count}}</text>
     </view>
     <view class='license' wx:if='{{license}}'>
-      <image mode='aspectFit' src='/octicons/law.png'></image>
+      <image mode='aspectFit' src='/octicons/{{theme}}/law.svg'></image>
       <text>{{license}}</text>
     </view>
   </view>
@@ -43,5 +43,5 @@
       <contributor wx:for='{{contributors}}' wx:key='{{index}}' contributor='{{item}}' rank='{{index}}'></contributor>
     </tab>
   </tabs>
-  <image wx:if='{{ true }}' class='new-issue' src='/octicons/plus-small.png' mode='aspectFit' catchtap='toCreateNewIssue'></image>
+  <image wx:if='{{ true }}' class='new-issue' src='/octicons/{{theme}}/plus-small.svg' mode='aspectFit' catchtap='toCreateNewIssue'></image>
 </view>

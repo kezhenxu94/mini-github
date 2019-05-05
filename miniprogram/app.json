@@ -18,9 +18,9 @@
     "pages/about/about"
   ],
   "window": {
-    "backgroundColor": "#24292e",
+    "backgroundColor": "#000",
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#24292e",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "Mini GitHub",
     "navigationBarTextStyle": "white",
     "onReachBottomDistance": 100
@@ -29,7 +29,7 @@
     "color": "#eee",
     "selectedColor": "#fff",
     "borderStyle": "white",
-    "backgroundColor": "#24292e",
+    "backgroundColor": "#000",
     "list": [
       {
         "pagePath": "pages/news/news",
