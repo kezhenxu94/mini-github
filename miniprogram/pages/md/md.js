@@ -25,8 +25,6 @@ Page({
       return wx.stopPullDownRefresh()
     }
 
-    console.info({path, baseUrl})
-
     http.get(`${baseUrl}/${path}`).then(({ data, status }) => {
       wx.stopPullDownRefresh()
       if (status !== 200) {

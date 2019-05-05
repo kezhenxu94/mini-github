@@ -26,7 +26,7 @@ Page({
       })
     })
   },
-  commitAccount(e) {
+  commitAccount (e) {
     notifUtils.report({ formId: e.detail.formId })
     let values = e.detail.value
     let username = values.username || ''

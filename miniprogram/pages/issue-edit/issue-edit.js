@@ -107,7 +107,6 @@ Component({
         let promise
         if (commentId) {
           github.repos(`${owner}/${repo}`).issues(issueNumber).comments(commentId).get().then(comment => {
-            console.info({ comment })
             wx.hideLoading()
             this.setData({ comment })
             wx.setNavigationBarTitle({
