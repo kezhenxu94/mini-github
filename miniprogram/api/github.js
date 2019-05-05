@@ -71,7 +71,7 @@ const trendings = (since, language) => new Promise((resolve, reject) => {
 })
 
 const getRepo = (url) => new Promise((resolve, reject) => {
-  http.get(url).then(({ result: { status, data, headers } }) => {
+  http.get(url).then(({ status, data, headers }) => {
     const repo = data
     repo.created_at = utils.toReadableTime(repo.created_at)
     repo.updated_at = utils.toReadableTime(repo.updated_at)
@@ -88,7 +88,7 @@ const getRepo = (url) => new Promise((resolve, reject) => {
 
 const getComments = (url) => {
   return new Promise((resolve, reject) => {
-    http.get(url).then(({ result: { status, data, headers } }) => {
+    http.get(url).then(({ status, data, headers }) => {
       const comments = data
       comments.forEach(comment => {
         comment.updated_at = utils.toReadableTime(comment.updated_at)
