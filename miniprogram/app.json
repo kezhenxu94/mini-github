@@ -27,39 +27,39 @@
   },
   "tabBar": {
     "color": "#eee",
-    "selectedColor": "#fff",
+    "selectedColor": "#f44",
     "borderStyle": "white",
     "backgroundColor": "#24292e",
     "list": [
       {
         "pagePath": "pages/news/news",
         "text": "News",
-        "iconPath": "octicons/mark-github.png",
-        "selectedIconPath": "octicons/mark-github.png"
+        "iconPath": "octicons/tab-github.png",
+        "selectedIconPath": "octicons/tab-github-selected.png"
       },
       {
         "pagePath": "pages/issues/issues",
         "text": "Issue",
-        "iconPath": "octicons/issue-opened.png",
-        "selectedIconPath": "octicons/issue-opened.png"
+        "iconPath": "octicons/tab-issue.png",
+        "selectedIconPath": "octicons/tab-issue-selected.png"
       },
       {
         "pagePath": "pages/trends/trends",
         "text": "Trend",
-        "iconPath": "octicons/flame.png",
-        "selectedIconPath": "octicons/flame.png"
+        "iconPath": "octicons/tab-flame.png",
+        "selectedIconPath": "octicons/tab-flame-selected.png"
       },
       {
         "pagePath": "pages/pulls/pulls",
         "text": "PR",
-        "iconPath": "octicons/git-pull-request.png",
-        "selectedIconPath": "octicons/git-pull-request.png"
+        "iconPath": "octicons/tab-pr.png",
+        "selectedIconPath": "octicons/tab-pr-selected.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "Me",
-        "iconPath": "octicons/person.png",
-        "selectedIconPath": "octicons/person.png"
+        "iconPath": "octicons/tab-account.png",
+        "selectedIconPath": "octicons/tab-account-selected.png"
       }
     ]
   },
