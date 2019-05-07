@@ -71,6 +71,8 @@
 
 - [johnnychen94](https://github.com/johnnychen94)
 
+- [maoqxxmm](https://github.com/maoqxxmm)
+
 ## Change Logs
 
 - v2.8.2
