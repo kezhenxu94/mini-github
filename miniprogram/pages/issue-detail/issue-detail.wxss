@@ -26,7 +26,7 @@
 }
 
 .comment-wrapper:not(:first-of-type) {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .loading {

@@ -4,7 +4,7 @@
     <view wx:for='{{notifications.all || []}}' wx:key='{{index}}' class='notif'>
       <notif notification='{{item}}'></notif>
     </view>
-    <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "All"}}' />
+    <loading type='spinner' theme='{{ theme }}' class='loading' wx:if='{{loading === "All"}}' />
     <view class='empty' wx:if='{{loading !== "All" && (!notifications.all || notifications.all.length === 0)}}'>
       <image src='{{ theming.iconFolder(theme) }}/bell.svg' mode='aspectFit'></image>
       <text>No new notifications.</text>

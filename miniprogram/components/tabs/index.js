@@ -21,7 +21,7 @@ VantComponent({
     },
     props: {
         color: String,
-        theme: String,
+        customClass: String,
         sticky: Boolean,
         animated: Boolean,
         swipeable: Boolean,

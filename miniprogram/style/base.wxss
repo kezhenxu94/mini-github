@@ -1,3 +1,6 @@
+@import './dark.wxss';
+@import './light.wxss';
+
 .title {
   font-weight: bold;
   font-size: 14px;

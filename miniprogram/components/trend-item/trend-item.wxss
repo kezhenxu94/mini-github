@@ -4,16 +4,8 @@
   padding: 12px;
 }
 
-.repo.light {
-  border-top: 0.5px solid rgba(168, 168, 168, 0.9);
-}
-
-.repo.dark {
-  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
-}
-
-.repo.oled {
-  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
+.repo {
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .repo .name {

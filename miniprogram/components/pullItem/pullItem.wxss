@@ -2,7 +2,7 @@
 
 .pull {
   padding: 24rpx;
-  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .title {

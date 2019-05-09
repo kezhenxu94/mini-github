@@ -24,7 +24,7 @@
   bottom: 0;
   -webkit-transform: scaleY(0.5);
   transform: scaleY(0.5);
-  border-top: 0.5rpx solid rgba(65, 65, 65, 0.9);
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .van-cell--borderless::after {

@@ -16,14 +16,17 @@
 
 .oled .van-tabs__wrap {
   background-color: #000000;
+  box-shadow: 0 2rpx 2rpx 0 rgba(255, 255, 255, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .dark .van-tabs__wrap {
   background-color: #24292e;
+  box-shadow: 0 2rpx 2rpx 0 rgba(255, 255, 255, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .light .van-tabs__wrap {
   background-color: #ffffff;
+  box-shadow: 0 2rpx 2rpx 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 .van-tabs__wrap--page-top {
