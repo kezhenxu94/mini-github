@@ -1,11 +1,11 @@
-<view class='issues'>
-  <tabs bind:change='changeFilter' swipeable sticky>
+<view class='page issues {{ theme }}'>
+  <tabs bind:change='changeFilter' theme='{{ theme }}' swipeable sticky>
     <tab wx:for='{{filters}}' wx:key='{{index}}' title='{{item.label}}'>
       <navigator url='/pages/login/login' class='empty' wx:if='{{!isSignedIn}}'>
         Sign In to See {{item.label}} Issues
       </navigator>
       <view class='empty' wx:elif='{{issues.length===0}}'>No {{item.label}} Issue</view>
-      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}'></issue>
+      <issue wx:for='{{issues}}' wx:key='{{index}}' issue='{{item}}' theme='{{theme}}'></issue>
       <loading type='spinner' color="#fff" class='loading' wx:if='{{loadingMore}}' />
     </tab>
   </tabs>

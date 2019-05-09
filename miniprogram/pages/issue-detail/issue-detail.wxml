@@ -1,11 +1,12 @@
 <wxs module='filters' src='../../filter/issue.wxs'/>
-<view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}'>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='issue-detail page {{ theme }}' hover-class='hover-class' data-issue='{{issue}}'>
   <view class='top'>
     <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
     <image wx:if='{{ issue &&  (permission === "admin" || permission === "write" || issue.user.login === me.login) }}'
            class='edit'
            mode='aspectFit'
-           src='/octicons/kebab-vertical.png'
+           src='{{ theming.iconFolder(theme) }}/kebab-vertical.svg'
            catchtap='more'></image>
   </view>
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
@@ -18,7 +19,7 @@
     <image wx:if='{{ issue && (permission === "admin" || permission === "write") }}'
           class='edit-label'
           mode='aspectFit'
-          src='/octicons/gear.png'
+          src='{{ theming.iconFolder(theme) }}/gear.svg'
           catchtap='editLabels'></image>
   </view>
   <comment comment='{{issue}}' wx:if='{{issue}}'></comment>
@@ -31,7 +32,7 @@
   </view>
 </view>
 <popup show="{{ editLabels }}" position="bottom" bind:close="onClose" custom-class='labels-popup'>
-  <v-checkbox custom-class='v-checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#24292e' bind:change="onLabelChanged" data-tag='{{item}}'>
+  <v-checkbox custom-class='v-checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#000' bind:change="onLabelChanged" data-tag='{{item}}'>
     <tag color='#{{item.color}}' class='tag' size='large' text-color='{{ item.textColor }}'>{{ item.name }}</tag>
   </v-checkbox>
 </popup>

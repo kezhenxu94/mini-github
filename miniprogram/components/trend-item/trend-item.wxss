@@ -2,12 +2,21 @@
 
 .repo {
   padding: 12px;
-  color: #b8b8b8;
+}
+
+.repo.light {
+  border-top: 0.5px solid rgba(168, 168, 168, 0.9);
+}
+
+.repo.dark {
+  border-top: 0.5px solid rgba(65, 65, 65, 0.9);
+}
+
+.repo.oled {
   border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
 .repo .name {
-  color: #fff;
   word-break: break-all;
   display: flex;
   flex: 1;
@@ -48,7 +57,6 @@
 
 .bottom view text {
   margin-left: 2px;
-  color: #FFF;
   line-height: 16px;
   font-weight: bold;
 }

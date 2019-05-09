@@ -1,6 +1,6 @@
 <import src="../../lib/wxParse/wxParse.wxml"/>
-
-<view class='repo'>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='page repo {{ theme }}'>
   <view class='header'>
     <image mode='aspectFit' class='avatar' src='{{repo.owner.avatar_url}}' catchtap='toUserDetail'></image>
     <view class='name-time'>
@@ -10,19 +10,19 @@
   </view>
   <view class='stats {{ license ? "has-license" : "" }}'>
     <view class='watch' catchtap='toggleWatching'>
-      <image mode='aspectFit' src='/octicons/eye.png'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/eye.svg'></image>
       <text>{{repo.subscribers_count}}</text>
     </view>
     <view class='star' catchtap='toggleStar'>
-      <image mode='aspectFit' src='{{isStarred ? "/md/starred.png" : "/md/unstar.png"}}'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/star.svg'></image>
       <text>{{repo.stargazers_count}}</text>
     </view>
     <view class='fork' catchtap='forkRepo'>
-      <image mode='aspectFit' src='/octicons/repo-forked.png'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/repo-forked.svg'></image>
       <text>{{repo.forks_count}}</text>
     </view>
     <view class='license' wx:if='{{license}}'>
-      <image mode='aspectFit' src='/octicons/law.png'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/law.svg'></image>
       <text>{{license}}</text>
     </view>
   </view>
@@ -43,5 +43,5 @@
       <contributor wx:for='{{contributors}}' wx:key='{{index}}' contributor='{{item}}' rank='{{index}}'></contributor>
     </tab>
   </tabs>
-  <image wx:if='{{ true }}' class='new-issue' src='/octicons/plus-small.png' mode='aspectFit' catchtap='toCreateNewIssue'></image>
+  <image wx:if='{{ true }}' class='new-issue' src='{{ theming.iconFolder(theme) }}/plus-small.svg' mode='aspectFit' catchtap='toCreateNewIssue'></image>
 </view>

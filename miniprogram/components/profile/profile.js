@@ -1,7 +1,11 @@
 const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 
+const theming = require('../../behaviours/theming.js')
+
 Component({
+  behaviors: [theming],
+
   properties: {
     user: {
       type: Object,

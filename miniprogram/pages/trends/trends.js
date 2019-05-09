@@ -27,7 +27,11 @@ const sinceCacheKey = 'Trending:Since'
 const langCacheKey = 'Trending:Lang'
 const trendsCacheKey = 'Trending:Data'
 
-Page({
+const theming = require('../../behaviours/theming.js')
+
+Component({
+  behaviors: [theming],
+  
   data: {
     since: timeRange[0],
     lang: languages[0],
@@ -36,59 +40,62 @@ Page({
     trends: wx.getStorageSync(trendsCacheKey) || []
   },
 
-  onLoad: function () {
-    wx.startPullDownRefresh({})
-  },
+  methods: {
 
-  onShareAppMessage: function(options) {
-  },
+    onLoad: function () {
+      wx.startPullDownRefresh({})
+    },
 
-  onPullDownRefresh: function () {
-    this.reloadData()
-  },
+    onShareAppMessage: function(options) {
+    },
 
-  reloadData: function () {
-    const [timeIndex, langIndex] = this.data.selectedIndices
-    const lang = languages[langIndex] || languages[0]
-    const since = timeRange[timeIndex] || timeRange[0]
-    this.setData({lang, since}, () => {
-      wx.setStorage({
-        key: sinceCacheKey,
-        data: timeIndex,
+    onPullDownRefresh: function () {
+      this.reloadData()
+    },
+
+    reloadData: function () {
+      const [timeIndex, langIndex] = this.data.selectedIndices
+      const lang = languages[langIndex] || languages[0]
+      const since = timeRange[timeIndex] || timeRange[0]
+      this.setData({lang, since}, () => {
+        wx.setStorage({
+          key: sinceCacheKey,
+          data: timeIndex,
+        })
+        wx.setStorage({
+          key: langCacheKey,
+          data: langIndex,
+        })
       })
-      wx.setStorage({
-        key: langCacheKey,
-        data: langIndex,
-      })
-    })
-    github.trendings(since.value.toLowerCase(), lang.value.toLowerCase()).then(data => {
-      wx.stopPullDownRefresh()
-      this.setData({
-        trends: data,
-      }, () => {
-        if (data.length > 0) {
-          wx.setStorage({
-            key: trendsCacheKey,
-            data: data,
-          })
-        }
-      })
-    }).catch(error => wx.stopPullDownRefresh() )
-  },
+      github.trendings(since.value.toLowerCase(), lang.value.toLowerCase()).then(data => {
+        wx.stopPullDownRefresh()
+        this.setData({
+          trends: data,
+        }, () => {
+          if (data.length > 0) {
+            wx.setStorage({
+              key: trendsCacheKey,
+              data: data,
+            })
+          }
+        })
+      }).catch(error => wx.stopPullDownRefresh() )
+    },
 
-  changeFilter: function (event) {
-    const selectedIndices = event.detail.value
-    this.setData({ selectedIndices })
-    wx.pageScrollTo({
-      scrollTop: 0
-    })
-    wx.startPullDownRefresh({})
-  },
+    changeFilter: function (event) {
+      const selectedIndices = event.detail.value
+      this.setData({ selectedIndices })
+      wx.pageScrollTo({
+        scrollTop: 0
+      })
+      wx.startPullDownRefresh({})
+    },
 
-  onSearch: function (e) {
-    const q = e.detail
-    wx.navigateTo({
-      url: `/pages/search/search?q=${q}`
-    })
+    onSearch: function (e) {
+      const q = e.detail
+      wx.navigateTo({
+        url: `/pages/search/search?q=${q}`
+      })
+    }
   }
 })

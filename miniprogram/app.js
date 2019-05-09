@@ -5,6 +5,12 @@ App({
     // const env = 'github-production'
     const env = 'github-development'
 
+    let theme = wx.getStorageSync('theme')
+    if (!theme) {
+      theme = 'dark'
+    }
+    wx.setStorageSync('theme', theme)
+
     wx.cloud.init({
       env,
       traceUser: true

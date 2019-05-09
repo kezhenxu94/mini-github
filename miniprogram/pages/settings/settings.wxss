@@ -2,7 +2,6 @@
 
 .van-cell {
   background-color: transparent !important;
-  color: #FFF !important;
 }
 
 button.notification {
@@ -10,7 +9,7 @@ button.notification {
   padding-right: 0 !important;
 }
 
-.about, .feedback, .logout {
+.about, .feedback, .logout, .theme {
   display: flex;
   overflow: hidden;
   font-size: 14px;
@@ -19,20 +18,18 @@ button.notification {
   align-items: center;
   line-height: inherit;
   background-color: transparent;
-  color: #eee;
   font-weight: bold;
   padding: 0 24rpx !important;
 }
 
-.about image, .feedback image, .logout image {
+.about image, .feedback image, .logout image, .theme image {
   width: 50rpx;
   height: 50rpx;
   min-width: 50rpx;
   min-height: 50rpx;
 }
 
-.about text, .feedback text, .logout text {
-  color: #FFF;
+.about text, .feedback text, .logout text, .theme text {
   padding: 10px 15px;
   display: -webkit-flex;
   align-items: center;

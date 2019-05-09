@@ -1,5 +1,5 @@
 <navigator class='user' url='/pages/user/user?username={{contributor.login}}'>
-  <image mode='aspectFill' class='avatar' src='{{contributor.avatar_url || "/octicons/octoface.png"}}' lazy-load></image>
+  <image mode='aspectFill' class='avatar' src='{{contributor.avatar_url || "/octicons/octoface.svg"}}' lazy-load></image>
   <view class='content'>
     <text class='username title'>{{contributor.login}}</text>
     <text class='contributions'>{{contributor.contributions}} commit{{contributor.contributions > 1 ? 's' : ''}}</text>

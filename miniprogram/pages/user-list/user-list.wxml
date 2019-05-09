@@ -1,1 +1,3 @@
-<users users='{{users}}'></users>
+<view class='page {{ theme }}'>
+  <users users='{{users}}'></users>
+</view>

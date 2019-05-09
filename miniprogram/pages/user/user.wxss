@@ -1,5 +1,6 @@
+@import '../../style/base.wxss';
+
 page {
-  color: #fff;
   font-size: 30rpx;
 }
 

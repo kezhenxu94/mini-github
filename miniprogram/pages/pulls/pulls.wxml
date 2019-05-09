@@ -1,4 +1,4 @@
-<view class='pulls'>
+<view class='page pulls {{ theme }}'>
   <tabs bind:change='changeFilter' sticky swipeable>
     <block wx:for='{{filters}}' wx:key='{{index}}'>
       <tab title='{{item.label}}'>

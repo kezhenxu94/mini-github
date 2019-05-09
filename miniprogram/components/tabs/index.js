@@ -1,5 +1,6 @@
 import { VantComponent } from '../common/component';
 import { touch } from '../mixins/touch';
+
 VantComponent({
     mixins: [touch],
     classes: ['nav-class', 'tab-class', 'tab-active-class', 'line-class'],
@@ -20,6 +21,7 @@ VantComponent({
     },
     props: {
         color: String,
+        theme: String,
         sticky: Boolean,
         animated: Boolean,
         swipeable: Boolean,

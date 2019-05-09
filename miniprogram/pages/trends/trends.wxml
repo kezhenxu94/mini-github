@@ -1,4 +1,4 @@
-<view class='trends'>
+<view class='trends page {{theme}}'>
   <search placeholder="Search Users or Repositories" bind:search="onSearch"></search>
   <trend repo='{{item}}' wx:for="{{trends}}" wx:key="{{index}}"></trend>
   <ad wx:if='{{trends}}' unit-id="adunit-dff765999dd73930"></ad>
