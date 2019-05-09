@@ -1,3 +1,5 @@
+<wxs module='theming' src='../../filter/theming.wxs'/>
+
 <navigator class='repo'
            url='/pages/repo-detail/repo-detail?repo={{repo.full_name}}'>
   <text class='name title'>
@@ -6,15 +8,15 @@
   <text class='desc'>{{repo.description}}</text>
   <view class='bottom'>
     <view class='stars'>
-      <image mode='aspectFit' src='/md/unstar.png'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/star.svg'></image>
       <text>{{repo.stargazers_count}}</text>
     </view>
     <view class='forks'>
-      <image mode='aspectFit' src='/octicons/repo-forked.svg'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/repo-forked.svg'></image>
       <text>{{repo.forks}}</text>
     </view>
     <view class='lang' wx:if='{{repo.language}}'>
-      <image mode='aspectFit' src='/md/language.png'></image>
+      <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/globe.svg'></image>
       <text>{{repo.language}}</text>
     </view>
   </view>

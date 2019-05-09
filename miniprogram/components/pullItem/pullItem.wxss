@@ -2,7 +2,6 @@
 
 .pull {
   padding: 24rpx;
-  color: #fff;
   border-top: 0.5px solid rgba(65, 65, 65, 0.9);
 }
 
@@ -22,7 +21,6 @@
   font-size: 24rpx;
   display: flex;
   justify-items: center;
-  color: #FFF;
 }
 
 .desc-comment image.icon {
@@ -33,7 +31,6 @@
 
 .desc {
   font-size: 24rpx;
-  color: #b8b8b8;
   display: flex;
   flex: 1;
   flex-wrap: wrap;

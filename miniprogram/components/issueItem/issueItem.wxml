@@ -1,4 +1,5 @@
 <wxs module='filters' src='../../filter/issue.wxs'></wxs>
+<wxs module='theming' src='../../filter/theming.wxs'/>
 <view class='issue' hover-class='hover'>
   <form bindsubmit='toIssueDetail' report-submit='{{true}}' class='id'>
     <button form-type='submit' class='borderless'>
@@ -8,7 +9,7 @@
       <view class='desc-comment'>
         <view class='desc'>{{filters.format(issue)}}</view>
         <view class='comment' wx:if='{{issue.comments}}'>
-          <image class='icon' src='/octicons/comment.svg'></image>
+          <image class='icon' src='{{ theming.iconFolder(theme) }}/comment.svg'></image>
           <text>{{issue.comments}}</text>
         </view>
       </view>

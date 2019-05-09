@@ -1,6 +1,16 @@
+@import '../../style/base.wxss';
+
 .van-search {
   padding: 20rpx !important;
+}
+
+
+.oled .van-search {
   background-color: #000;
+}
+
+.light .van-search {
+  background-color: #FFF;
 }
 
 .van-search__field .field-index--van-field {

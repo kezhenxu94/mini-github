@@ -1,4 +1,5 @@
-<view>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='page {{ theme }}'>
   <view class='content'>
     <view class='item'>
       <view class='title'>声明</view>
@@ -8,7 +9,7 @@
       <view class='title'>代码已开源</view>
       <view class='i' catchtap='toProjectPage' data-title='项目地址' data-content='{{projectAddress}}'>
         <view class='icon'>
-          <image src='/octicons/mark-github.svg'></image>
+          <image src='{{ theming.iconFolder(theme) }}/mark-github.svg'></image>
         </view>
         <view class='text'>
           <view>欢迎 Star 和参与贡献</view>
@@ -20,7 +21,7 @@
       <view class='title'>联系开发者</view>
       <view class='i' catchtap='toUserPage' data-title='GitHub 地址' data-content='{{github}}'>
         <view class='icon'>
-          <image src='/octicons/mark-github.svg'></image>
+          <image src='{{ theming.iconFolder(theme) }}/mark-github.svg'></image>
         </view>
         <view class='text'>
           <view>通过 GitHub</view>
@@ -29,7 +30,7 @@
       </view>
       <view class='i' catchtap='copy' data-title='邮箱地址' data-content='{{email}}'>
         <view class='icon'>
-          <image src='/md/email.png'></image>
+          <image src='{{ theming.iconFolder(theme) }}/email.svg'></image>
         </view>
         <view class='text'>
           <view>通过 Email</view>
@@ -38,7 +39,7 @@
       </view>
       <view class='i' catchtap='copy' data-title='QQ 号码' data-content='{{qq}}'>
         <view class='icon'>
-          <image src='/img/qq.png'></image>
+          <image src='{{ theming.iconFolder(theme) }}/qq.svg'></image>
         </view>
         <view class='text'>
           <view>通过 QQ</view>
@@ -47,7 +48,7 @@
       </view>
       <view class='i' catchtap='copy' data-title='QQ 群号' data-content='{{qqGroup}}'>
         <view class='icon'>
-          <image src='/img/qqgroup.png'></image>
+          <image src='{{ theming.iconFolder(theme) }}/organization.svg'></image>
         </view>
         <view class='text'>
           <view>通过 QQ 群</view>

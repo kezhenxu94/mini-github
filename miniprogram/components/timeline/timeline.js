@@ -1,8 +1,9 @@
 const computedBehavior = require('../../lib/computed.js')
 const utils = require('../../utils/util.js')
+const theming = require('../../behaviours/theming.js')
 
 Component({
-  behaviors: [computedBehavior],
+  behaviors: [computedBehavior, theming],
 
   properties: {
     timeline: {
@@ -14,48 +15,49 @@ Component({
   computed: {
     icon() {
       const t = this.data.timeline
+      const theme = this.data.theme
       switch (t.event) {
         case 'labeled':
         case 'unlabeled':
-          return '/octicons/tag.svg'
+          return `${utils.iconFolder(theme)}/tag.svg`
         case 'assigned':
         case 'unassigned':
-          return '/octicons/person.svg'
+          return `${utils.iconFolder(theme)}/person.svg`
         case 'milestoned':
         case 'demilestoned':
-          return '/octicons/milestone.svg'
+          return `${utils.iconFolder(theme)}/milestone.svg`
         case 'closed':
-          return '/octicons/issue-closed.svg'
+          return `${utils.iconFolder(theme)}/issue-closed.svg`
         case 'reopened':
-          return '/octicons/issue-reopened.svg'
+          return `${utils.iconFolder(theme)}/issue-reopened.svg`
         case 'referenced':
         case 'cross-referenced':
-          return '/octicons/bookmark.svg'
+          return `${utils.iconFolder(theme)}/bookmark.svg`
         case 'locked':
         case 'unlocked':
-          return '/octicons/lock.svg'
+          return `${utils.iconFolder(theme)}/lock.svg`
         case 'pinned':
         case 'unpinned':
-          return '/octicons/pin.svg'
+          return `${utils.iconFolder(theme)}/pin.svg`
         case 'renamed':
-          return '/octicons/pencil.svg'
+          return `${utils.iconFolder(theme)}/pencil.svg`
         case 'review_requested':
         case 'reviewed':
         case 'ready_for_review':
-          return '/octicons/eye.svg'
+          return `${utils.iconFolder(theme)}/eye.svg`
         case 'review_dismissed':
         case 'comment_deleted':
-          return '/octicons/x.svg'
+          return `${utils.iconFolder(theme)}/x.svg`
         case 'merged':
-          return '/octicons/git-merge.svg'
+          return `${utils.iconFolder(theme)}/git-merge.svg`
         case 'head_ref_deleted':
         case 'head_ref_restored':
-          return '/octicons/git-branch.svg'
+          return `${utils.iconFolder(theme)}/git-branch.svg`
         case 'marked_as_duplicate':
-          return '/octicons/bookmark.svg'
+          return `${utils.iconFolder(theme)}/bookmark.svg`
         case 'added_to_project':
         case 'removed_from_project':
-          return '/octicons/project.svg'
+          return `${utils.iconFolder(theme)}/project.svg`
       }
     },
 
@@ -109,13 +111,5 @@ Component({
         return `${t.actor.login} deleted a comment ${t.created_at}`
       }
     }
-  },
-
-  data: {
-
-  },
-
-  methods: {
-
   }
 })

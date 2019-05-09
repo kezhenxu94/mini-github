@@ -1,11 +1,12 @@
 <wxs module='filters' src='../../filter/issue.wxs'/>
-<view class='issue-detail' hover-class='hover-class' data-issue='{{issue}}'>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='issue-detail page {{ theme }}' hover-class='hover-class' data-issue='{{issue}}'>
   <view class='top'>
     <text class='title' wx:if='{{issue.title}}'>{{issue.title}}</text>
     <image wx:if='{{ issue &&  (permission === "admin" || permission === "write" || issue.user.login === me.login) }}'
            class='edit'
            mode='aspectFit'
-           src='/octicons/kebab-vertical.svg'
+           src='{{ theming.iconFolder(theme) }}/kebab-vertical.svg'
            catchtap='more'></image>
   </view>
   <text class='repo' catchtap='toRepoDetail' wx:if='{{issue}}'>
@@ -18,7 +19,7 @@
     <image wx:if='{{ issue && (permission === "admin" || permission === "write") }}'
           class='edit-label'
           mode='aspectFit'
-          src='/octicons/gear.svg'
+          src='{{ theming.iconFolder(theme) }}/gear.svg'
           catchtap='editLabels'></image>
   </view>
   <comment comment='{{issue}}' wx:if='{{issue}}'></comment>

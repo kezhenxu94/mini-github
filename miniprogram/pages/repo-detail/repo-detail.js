@@ -5,8 +5,10 @@ const computedBehavior = require('../../lib/computed.js')
 const defaultRepoName = 'kezhenxu94/mini-github'
 const baseUrl = 'https://api.github.com/repos/'
 
+const theming = require('../../behaviours/theming.js')
+
 Component({
-  behaviors: [computedBehavior],
+  behaviors: [computedBehavior, theming],
 
   data: {
     repoName: undefined,
@@ -18,8 +20,7 @@ Component({
     isStarred: false,
     isWatching: false,
     readme: null,
-    tab: 0,
-    theme: wx.getStorageSync('theme')
+    tab: 0
   },
 
   computed: {

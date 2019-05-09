@@ -1,6 +1,10 @@
 const notifUtils = require('../../utils/notifications.js')
 
+const theming = require('../../behaviours/theming.js')
+
 Component({
+  behaviors: [theming],
+
   properties: {
     pull: {
       type: Object,

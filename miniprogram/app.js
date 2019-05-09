@@ -6,40 +6,10 @@ App({
     const env = 'github-development'
 
     let theme = wx.getStorageSync('theme')
-    theme = 'oled'
     if (!theme) {
       theme = 'dark'
     }
     wx.setStorageSync('theme', theme)
-
-    switch (theme) {
-      case 'oled': {
-        wx.setTabBarStyle({
-          backgroundColor: '#000',
-          color: '#FFF',
-          selectedColor: '#000',
-          borderStyle: 'black'
-        })
-        wx.setBackgroundColor({
-          backgroundColorTop: '#000',
-          backgroundColorBottom: '#000',
-        })
-        break
-      }
-      case 'light': {
-        wx.setTabBarStyle({
-          backgroundColor: '#FFF',
-          color: '#000',
-          selectedColor: '#000',
-          borderStyle: 'black'
-        })
-        wx.setBackgroundColor({
-          backgroundColorTop: '#000', // 顶部窗口的背景色为白色
-          backgroundColorBottom: '#000', // 底部窗口的背景色为白色
-        })
-        break
-      }
-    }
 
     wx.cloud.init({
       env,

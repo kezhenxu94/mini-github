@@ -1,6 +1,10 @@
 const WxParse = require('../../lib/wxParse/wxParse.js');
 
+const theming = require('../../behaviours/theming.js');
+
 Component({
+  behaviors: [theming],
+
   properties: {
     placebolder: {
       type: String,

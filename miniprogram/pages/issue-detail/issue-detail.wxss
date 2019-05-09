@@ -1,10 +1,6 @@
 @import '../../style/iconfont.wxss';
 @import '../../style/base.wxss';
 
-.issue-detail {
-  color: #fff;
-}
-
 .top {
   padding: 24rpx 24rpx 0 24rpx;
   display: flex;
@@ -19,7 +15,6 @@
 .repo {
   display: flex;
   font-size: 14px;
-  color: #888;
   padding: 0 0 24rpx 24rpx;
   align-items: center;
   line-height: 14px;
@@ -36,13 +31,11 @@
 
 .loading {
   text-align: center;
-  margin-bottom: 24rpx;
+  padding-bottom: 24rpx;
 }
 
 .more-btn button {
   background-color: transparent;
-  color: #fff !important;
-  border-color: #fff;
 }
 
 .tag {

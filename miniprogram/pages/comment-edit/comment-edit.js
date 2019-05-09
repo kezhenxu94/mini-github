@@ -2,8 +2,10 @@ const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 const computedBehavior = require('../../lib/computed.js')
 
+const theming = require('../../behaviours/theming.js');
+
 Component({
-  behaviors: [computedBehavior],
+  behaviors: [computedBehavior, theming],
 
   properties: {
     repo: {

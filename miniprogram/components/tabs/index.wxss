@@ -12,7 +12,18 @@
   left: 0;
   display: -webkit-flex;
   display: flex;
-  background-color: #000;
+}
+
+.oled .van-tabs__wrap {
+  background-color: #000000;
+}
+
+.dark .van-tabs__wrap {
+  background-color: #24292e;
+}
+
+.light .van-tabs__wrap {
+  background-color: #ffffff;
 }
 
 .van-tabs__wrap--page-top {

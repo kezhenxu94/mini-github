@@ -98,6 +98,16 @@ const asEvent = (object = {}) => {
   return object
 }
 
+const iconFolder = theme => {
+  switch (theme) {
+    case 'dark':
+    case 'oled':
+      return '/octicons/dark';
+    default:
+      return '/octicons/light';
+  }
+}
+
 
 module.exports = {
   getCurrentUser,
@@ -109,5 +119,6 @@ module.exports = {
   extractIssueNumber,
   ensureSignedIn,
   asEvent,
-  parseGitHubUrl
+  parseGitHubUrl,
+  iconFolder
 }

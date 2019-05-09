@@ -1,8 +1,12 @@
 @import '../../style/base.wxss';
 
+.page {
+  padding-top: 24rpx;
+}
+
 .title {
   border: 1px solid #dfe2e5;
   padding: 16rpx;
-  margin: 24rpx;
+  margin: 0 24rpx 24rpx 24rpx;
   border-radius: 8rpx;
 }

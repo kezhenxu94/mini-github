@@ -136,7 +136,7 @@ view{
     display: inline-flex;
     width: 5px;
     height: 5px;
-    background-color: #FFF;
+    background-color: #666666;
     margin-right: 5px;
 }
 
@@ -144,16 +144,16 @@ view{
     display: inline-flex;
     width: 10rpx;
     height: 10rpx;
-    background-color: #FFF;
+    background-color: #666666;
     margin-right: 5px;
 }
 .wxParse-li-ring{
     display: inline-flex;
     width: 10rpx;
     height: 10rpx;
-    border: 2rpx solid #333;
+    border: 2rpx solid #666666;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: #ffffff;
     margin-right: 5px;
 }
 

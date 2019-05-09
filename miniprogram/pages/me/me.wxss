@@ -1,5 +1,6 @@
+@import '../../style/base.wxss';
+
 page {
-  color: #fff;
   font-size: 30rpx;
 }
 
@@ -57,4 +58,8 @@ button.feedback {
   height: 96rpx;
   line-height: 96rpx;
   text-align: center;
+}
+
+.oled .van-tabs__wrap {
+  background-color: #000;
 }

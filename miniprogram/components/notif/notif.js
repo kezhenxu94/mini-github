@@ -1,4 +1,8 @@
+const theming = require('../../behaviours/theming.js')
+
 Component({
+  behaviors: [theming],
+
   properties: {
     notification: {
       type: Object,

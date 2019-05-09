@@ -1,9 +1,4 @@
-page {
-  color: #fff;
-}
-
 .wrapper {
-  min-height: 100vh;
   padding: 0 30rpx;
   display: flex;
   flex-direction: column;

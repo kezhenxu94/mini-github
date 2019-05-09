@@ -3,7 +3,6 @@
 
 .comment {
   padding: 20rpx 24rpx;
-  color: #fff;
   font-size: 12px;
 }
 
@@ -46,10 +45,4 @@
   max-height: 50rpx;
   min-width: 50rpx;
   min-height: 50rpx;
-}
-
-
-action-sheet-item {
-  background-color: #000;
-  color: #FFF;
 }
