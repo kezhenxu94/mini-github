@@ -1,6 +1,6 @@
 <wxs module='theming' src='../../filter/theming.wxs'/>
 <view class='page {{ theme }}'>
-  <tabs active='{{tab}}' bind:change='changeTab' sticky swipeable>
+  <tabs active='{{tab}}' bind:change='changeTab' theme='{{ theme }}' sticky swipeable>
     <tab title='Overview'>
       <profile user='{{user}}' wx:if='{{user}}'></profile>
     </tab>

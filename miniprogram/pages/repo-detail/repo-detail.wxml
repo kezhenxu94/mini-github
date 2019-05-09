@@ -26,7 +26,7 @@
       <text>{{license}}</text>
     </view>
   </view>
-  <tabs bind:change='changeTab' wx:if='{{showTabs}}' active='{{ tab }}' sticky animated>
+  <tabs bind:change='changeTab' wx:if='{{showTabs}}' active='{{ tab }}' theme='{{ theme }}' sticky animated>
     <tab title='Readme'>
       <view class='readme'>
         <md md='{{readme}}'></md>
