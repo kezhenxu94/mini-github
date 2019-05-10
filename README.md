@@ -2,7 +2,7 @@
 
 ## 扫码体验
 
-![QRCode](https://user-images.githubusercontent.com/15965696/47959988-d2864d80-e02c-11e8-8c39-dac879bad3d6.jpg)
+![QRCode](https://user-images.githubusercontent.com/15965696/57529191-de015b00-7366-11e9-91c3-9bbb517c7956.png)
 
 > 欢迎 Star 和任何形式的贡献
 
