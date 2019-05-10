@@ -1,5 +1,5 @@
 <view
-  class="van-search custom-class {{ showAction || useActionSlot ? 'van-search--show-action' : '' }}"
+  class="van-search {{ customClass }} {{ showAction || useActionSlot ? 'van-search--show-action' : '' }}"
 >
   <view class="van-search__field">
     <van-field

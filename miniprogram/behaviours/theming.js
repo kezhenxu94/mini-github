@@ -68,6 +68,27 @@ module.exports = Behavior({
           })
           break
         }
+        case 'dark': {
+          wx.setTabBarStyle({
+            backgroundColor: '#24292e',
+            color: '#ffffff',
+            selectedColor: '#ffffff',
+            borderStyle: 'white'
+          })
+          wx.setBackgroundColor({
+            backgroundColor: '#24292e',
+            backgroundColorTop: '#24292e',
+            backgroundColorBottom: '#24292e'
+          })
+          wx.setNavigationBarColor({
+            frontColor: '#ffffff',
+            backgroundColor: '#24292e'
+          })
+          wx.setBackgroundTextStyle({
+            textStyle: 'light'
+          })
+          break
+        }
       }
     }
   }

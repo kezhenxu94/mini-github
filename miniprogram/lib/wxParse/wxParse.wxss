@@ -62,6 +62,7 @@ view{
 .wxParse-pre,.wxParse-tt,.wxParse-code,.wxParse-kbd,.wxParse-samp{font-family:monospace}
 .wxParse-pre{
   white-space: pre;
+  padding: 12rpx;
   overflow: auto;
 }
 .wxParse-big{font-size:1.17em}
@@ -115,12 +116,20 @@ view{
     padding: 20rpx;
 }
 
+.light .wxParse-blockquote {
+  background-color: #eeeeee;
+}
+
 .wxParse-code,.wxParse-wxxxcode-style{
     display: inline;
 }
 
-.wxParse-pre {
+.dark .wxParse-pre, .oled .wxParse-pre {
     background-color:#272822;
+}
+
+.light .wxParse-pre {
+  background-color: #eeeeee;
 }
 
 .wxParse-li,.wxParse-li-inner{

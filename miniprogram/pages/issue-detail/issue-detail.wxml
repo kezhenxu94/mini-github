@@ -22,9 +22,9 @@
           src='{{ theming.iconFolder(theme) }}/gear.svg'
           catchtap='editLabels'></image>
   </view>
-  <comment comment='{{issue}}' wx:if='{{issue}}'></comment>
+  <comment custom-class='{{ theme }} elevation' comment='{{issue}}' wx:if='{{issue}}'></comment>
   <view class='comment-wrapper' wx:for='{{displayTimeline}}' wx:key='{{index}}' >
-    <comment wx:if='{{item.event === "commented"}}' comment='{{item}}'></comment>
+    <comment custom-class='{{ theme }}' wx:if='{{item.event === "commented"}}' comment='{{item}}'></comment>
     <timeline wx:else timeline='{{item}}'></timeline>
   </view>
   <view class='loading' wx:if='{{issue}}'>

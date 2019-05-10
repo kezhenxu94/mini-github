@@ -4,9 +4,12 @@
   padding: 20rpx !important;
 }
 
-
 .oled .van-search {
   background-color: #000;
+}
+
+.dark .van-search {
+  background-color: #24292e;
 }
 
 .light .van-search {

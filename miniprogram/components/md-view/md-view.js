@@ -17,7 +17,8 @@ Component({
           })
         }
       }
-    }
+    },
+    customClass: String
   },
   
   data: {
