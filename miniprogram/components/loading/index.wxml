@@ -4,7 +4,6 @@
 >
   <view
     class="van-loading__spinner van-loading__spinner--{{ type }}"
-    style="color: {{ color }};"
   >
     <view
       wx:if="{{ type === 'spinner' }}"

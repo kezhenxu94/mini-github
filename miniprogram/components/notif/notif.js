@@ -3,7 +3,8 @@ Component({
     notification: {
       type: Object,
       value: {}
-    }
+    },
+    theme: String
   },
 
   data: {

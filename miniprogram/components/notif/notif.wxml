@@ -1,5 +1,6 @@
+<wxs module='theming' src='../../filter/theming.wxs'/>
 <navigator class='container' url='/pages/issue-detail/issue-detail?url={{notification.subject.url}}&thread={{notification.id}}'>
-  <image src='{{notification.subject.type === "Issue" ? "/octicons/issue-opened.png" : "/octicons/git-pull-request.png"}}'
+  <image src='{{ theming.iconFolder(theme) + (notification.subject.type === "Issue" ? "/issue-opened.svg" : "/git-pull-request.svg") }}'
          class='icon'
          mode='aspectFit'></image>
   <view class='content'>
@@ -10,12 +11,12 @@
       <text class='repo'>{{notification.repository.full_name}}</text>
       <text class='time'>{{notification.updated_at}}</text>
       <image class='unsub icon'
-             src='/octicons/mute.png'
+             src='{{ theming.iconFolder(theme) }}/mute.svg'
              mode='aspectFit'
              catchtap='unsubscribe'
              hover-stop-propagation></image>
       <image class='mark icon'
-             src='/octicons/check.png'
+             src='{{ theming.iconFolder(theme) }}/check.svg'
              mode='aspectFit'
              catchtap='markAsRead'
              hover-stop-propagation></image>

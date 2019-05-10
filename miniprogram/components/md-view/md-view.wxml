@@ -1,4 +1,4 @@
 <import src='../../lib/wxParse/wxParse.wxml'/>
-<view class='md-view'>
+<view class='md-view {{ customClass }}'>
   <template wx:if='{{loaded}}' is="wxParse" data="{{wxParseData:article.nodes}}"/>
 </view>

@@ -1,0 +1,9 @@
+{
+  "triggers": [
+    {
+      "name": "notifier",
+      "type": "timer",
+      "config": "0 */30 * * * * *"
+    }
+  ]
+}

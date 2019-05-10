@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .md-textarea {
   margin: 24rpx;
 }

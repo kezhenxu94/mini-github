@@ -1,6 +1,7 @@
 <wxs module='filters' src='../../filter/feed.wxs'></wxs>
+<wxs module='theming' src='../../filter/theming.wxs'></wxs>
 <view class='feed' hover-class='hover'>
-  <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "/octicons/octoface.png"}}' catchtap='toUserPage' hover-stop-propagation lazy-load></image>
+  <image mode='aspectFill' class='avatar' src='{{item.actor.avatar_url || "{{ theming.iconFolder(theme) }}/octoface.svg"}}' catchtap='toUserPage' hover-stop-propagation lazy-load></image>
   <form bindsubmit='toFeedDetail' report-submit='{{true}}' class='id'>
     <button form-type='submit' class='borderless'>
       <text class='title summary'>{{filters.format(item)[0]}}</text>

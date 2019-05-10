@@ -5,10 +5,8 @@ Component({
     repo: {
       type: Object,
       value: {}
-    }
-  },
-
-  data: {
+    },
+    theme: String
   },
 
   methods: {

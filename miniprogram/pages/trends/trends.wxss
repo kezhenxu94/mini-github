@@ -1,3 +1,5 @@
+@import '../../style/base.wxss';
+
 .trends {
   padding-top: 100rpx;
 }
@@ -15,8 +17,20 @@
   top: 0;
   position: fixed;
   padding: 20rpx !important;
+  z-index: 100;
+}
+
+.oled .van-search {
+  background-color: #000;
+}
+
+.dark .van-search {
   background-color: #24292e;
   z-index: 100;
+}
+
+.light .van-search {
+  background-color: #FFF;
 }
 
 .van-search__field .field-index--van-field {

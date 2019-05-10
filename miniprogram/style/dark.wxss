@@ -1,0 +1,7 @@
+.oled .van-loading__spinner, .dark .van-loading__spinner {
+  color: #ffffff;
+}
+
+.oled .elevation, .dark .elevation {
+  box-shadow: 0 2rpx 2rpx 0 rgba(255, 255, 255, 0.16), 0 0 0 1px rgba(255, 255, 255, 0.08);
+}

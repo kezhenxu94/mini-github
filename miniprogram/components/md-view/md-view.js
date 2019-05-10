@@ -17,7 +17,16 @@ Component({
           })
         }
       }
-    }
+    },
+    customClass: String
+  },
+  
+  data: {
+    loaded: false
+  },
+
+  data: {
+    loaded: false
   },
   
   data: {

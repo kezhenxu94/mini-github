@@ -2,11 +2,9 @@
 
 .repo {
   padding: 24rpx 24rpx;
-  color: #b8b8b8;
 }
 
 .repo .name {
-  color: #fff;
   display: flex;
   word-break: break-all;
   flex: 1;
@@ -48,7 +46,6 @@
 
 .bottom view text {
   margin-left: 8rpx;
-  color: #FFF;
   line-height: 16px;
   font-weight: bold;
 }
@@ -62,11 +59,11 @@
 }
 
 .fork-mark {
-  background-color: #fff;
-  color: #000;
+  background-color: #666;
+  color: #ffffff;
 }
 
 .private-mark {
   background-color: #f00;
-  color: #fff;
+  color: #ffffff;
 }

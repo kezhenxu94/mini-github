@@ -17,7 +17,8 @@ Component({
         if (myself) return
         this.checkFollowingState()
       }
-    }
+    },
+    theme: String
   },
   data: {
     isFollowing: false,

@@ -1,8 +1,9 @@
 @import '../../style/iconfont.wxss';
 @import '../../style/base.wxss';
 
-.issue-detail {
-  color: #fff;
+.top {
+  padding: 24rpx 24rpx 0 24rpx;
+  display: flex;
 }
 
 .top {
@@ -19,7 +20,6 @@
 .repo {
   display: flex;
   font-size: 14px;
-  color: #888;
   padding: 0 0 24rpx 24rpx;
   align-items: center;
   line-height: 14px;
@@ -31,18 +31,16 @@
 }
 
 .comment-wrapper:not(:first-of-type) {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .loading {
   text-align: center;
-  margin-bottom: 24rpx;
+  padding-bottom: 24rpx;
 }
 
 .more-btn button {
   background-color: transparent;
-  color: #fff !important;
-  border-color: #fff;
 }
 
 .tag {

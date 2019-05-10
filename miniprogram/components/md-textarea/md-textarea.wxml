@@ -1,9 +1,10 @@
 <import src='../../lib/wxParse/wxParse.wxml' />
+<wxs module='theming' src='../../filter/theming.wxs'/>
 <view class='md-textarea'>
   <view class='edit'>
     <textarea value='{{ content }}' bindinput='updateContent' maxlength='65535' wx:if='{{!preview}}' class='textarea' placeholder='{{placebolder}}' auto-focus='{{ true }}'></textarea>
     <view class='md-supported'>
-      <image src='/octicons/markdown.png' mode='aspectFit' class='md-icon'></image> Styling with Markdown is supported
+      <image src='{{ theming.iconFolder(theme) }}/markdown.svg' mode='aspectFit' class='md-icon'></image> Styling with Markdown is supported
     </view>
   </view>
   <view class='buttons'>

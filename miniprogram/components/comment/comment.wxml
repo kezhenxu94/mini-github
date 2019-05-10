@@ -1,4 +1,5 @@
-<view class='comment'>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='comment {{ customClass }}'>
   <view class='header'>
     <image mode='aspectFill' class='avatar' src='{{comment.user.avatar_url}}' catchtap='toUserPage'></image>
     <view class='author-time'>
@@ -8,7 +9,7 @@
       </view>
       <text class='time'>{{comment.created_at}}</text>
     </view>
-    <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='/octicons/kebab-vertical.png' catchtap='more'></image>
+    <image wx:if='{{comment}}' class='reply' mode='aspectFit' src='{{ theming.iconFolder(theme) }}/kebab-vertical.svg' catchtap='more'></image>
   </view>
-  <md md='{{md}}' wx:if='{{loaded}}'></md>
+  <md md='{{md}}' custom-class='{{ customClass }}' wx:if='{{loaded}}'></md>
 </view>

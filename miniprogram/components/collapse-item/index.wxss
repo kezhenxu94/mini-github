@@ -35,8 +35,3 @@
   /* color: #999; */
   /* background-color: #fff; */
 }
-
-.van-cell {
-  background-color: transparent !important;
-  color: #FFF !important;
-}

@@ -2,7 +2,6 @@ const github = require('../../api/github.js')
 const utils = require('../../utils/util.js')
 
 Component({
-  properties: {},
   data: {
     activeNames: [],
     notifications: [],
@@ -12,7 +11,11 @@ Component({
       all: [],
       unread: [],
       participating: []
-    }
+    },
+    theme: wx.getStorageSync('theme')
+  },
+  properties: {
+    theme: String
   },
   methods: {
     onChange(event) {

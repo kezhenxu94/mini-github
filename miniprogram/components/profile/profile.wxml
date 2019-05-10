@@ -1,14 +1,15 @@
-<view>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='{{ theme }}'>
   <view class='header' data-item='{{user}}' catchtap=''>
     <view class='user'>
-      <image mode='aspectFit' class='avatar' src='{{user.avatar_url || "/octicons/octoface.png"}}' bindtap='onTapAvatar' lazy-load></image>
+      <image mode='aspectFit' class='avatar' src='{{user.avatar_url}}' bindtap='onTapAvatar' lazy-load></image>
       <view>
         <view class='name title'>{{user.login || 'Octocat'}}</view>
         <view class='subname'>{{user.name}}</view>
         <view class='bio'>{{user.bio}}</view>
       </view>
     </view>
-    <v-button type='primary' size='small' plain round loading='{{loading}}' bind:click='toggleFollow' class='follow-btn' wx:if='{{!isMyself}}'>
+    <v-button size='small' plain round loading='{{loading}}' bind:click='toggleFollow' class='follow-btn' wx:if='{{!isMyself}}'>
       <text class='iconfont icon-plus' wx:if='{{!isFollowing}}'></text>
       <text class='iconfont icon-cross' wx:if='{{isFollowing}}'></text>
       {{isFollowing ? 'Unfollow' : 'Follow'}}
@@ -20,27 +21,27 @@
   </view>
   <view class='orgs' wx:if='{{orgs && orgs.length > 0}}'>
     <navigator wx:for='{{orgs}}' wx:key='{{index}}' url='/pages/user/user?username={{item.login}}'>
-      <image src='{{item.avatar_url}}' class='avatar' mode='aspectFit'></image>
+      <image src='{{item.avatar_url}}' class='avatar {{ theme }}' mode='aspectFit'></image>
     </navigator>
   </view>
   <view class='company' wx:if='{{user.company}}'>
-    <image mode='aspectFit' src='/octicons/organization.png' class='company-img'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/organization.svg' class='company-img'></image>
     <view class='company-text'>{{user.company}}</view>
   </view>
   <view class='loc' wx:if='{{user.location}}'>
-    <image mode='aspectFit' src='/md/location.png' class='loc-img'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/location.svg' class='loc-img'></image>
     <view class='loc-text'>{{user.location}}</view>
   </view>
   <view class='email' bind:tap="onTapEmail" wx:if='{{user.email}}'>
-    <image mode='aspectFit' src='/md/email.png' class='email-img'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/email.svg' class='email-img'></image>
     <view class='email-text'>{{user.email}}</view>
   </view>
   <view class='blog' bind:tap="onTapBlog" wx:if='{{user.blog}}'>
-    <image mode='aspectFit' src='/md/link.png' class='blog-img'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/link.svg' class='blog-img'></image>
     <view class='blog-text'>{{user.blog}}</view>
   </view>
   <view class='create'>
-    <image mode='aspectFit' src='/md/clock.png' class='create-img'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/clock.svg' class='create-img'></image>
     <view class='create-text'>{{user.created_at}}</view>
   </view>
 </view>

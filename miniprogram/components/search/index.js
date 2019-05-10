@@ -8,6 +8,7 @@ VantComponent({
     disabled: Boolean,
     readonly: Boolean,
     inputAlign: String,
+    customClass: String,
     showAction: Boolean,
     useActionSlot: Boolean,
     placeholder: String,

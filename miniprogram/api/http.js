@@ -10,15 +10,15 @@ const get = (url, { params = {}, headers = {} } = {}) => new Promise((resolve, r
     method: 'GET',
     dataType: 'json',
     responseType: 'text',
-    success: function(res) {
+    success: function (res) {
       const { statusCode, header, data } = res
       resolve({ status: statusCode, headers: header, data })
     },
-    fail: function(res) {
+    fail: function (res) {
       console.info({ res })
       reject(new Error(JSON.stringify(res)))
     },
-    complete: function(res) {}
+    complete: function (res) { }
   })
 })
 
@@ -38,7 +38,7 @@ const put = (url, { params = {}, data = {} } = {}) => new Promise((resolve, reje
       console.info({ res })
       reject(new Error(JSON.stringify(res)))
     },
-    complete: function(res) {}
+    complete: function (res) { }
   })
 })
 

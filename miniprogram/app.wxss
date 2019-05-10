@@ -1,5 +1,22 @@
 page {
-  background-color: #24292e;
-  color: #eee;
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+.oled {
+  background-color: #000;
+  color: #fff;
+}
+
+.dark {
+  background-color: #24292e;
+  color: #fff;
+}
+
+.light {
+  background-color: #fff;
+  color: #333;
 }

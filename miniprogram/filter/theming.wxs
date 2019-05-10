@@ -1,0 +1,13 @@
+var iconFolder = function (theme) {
+  switch (theme) {
+    case 'dark':
+    case 'oled':
+      return '/octicons/dark';
+    default:
+      return '/octicons/light';
+  }
+};
+
+module.exports = {
+  iconFolder: iconFolder
+};

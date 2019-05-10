@@ -1,41 +1,42 @@
-<collapse value="{{ activeNames }}" bind:change="onChange" accordion>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<collapse value="{{ activeNames }}" bind:change="onChange" custom-class="{{ theme }}" accordion>
   <collapse-item title="All" name="All">
     <view wx:for='{{notifications.all || []}}' wx:key='{{index}}' class='notif'>
-      <notif notification='{{item}}'></notif>
+      <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
-    <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "All"}}' />
+    <loading type='spinner' theme='{{ theme }}' class='loading' wx:if='{{loading === "All"}}' />
     <view class='empty' wx:if='{{loading !== "All" && (!notifications.all || notifications.all.length === 0)}}'>
-      <image src='/octicons/bell.png' mode='aspectFit'></image>
+      <image src='{{ theming.iconFolder(theme) }}/bell.svg' mode='aspectFit'></image>
       <text>No new notifications.</text>
     </view>
   </collapse-item>
   <collapse-item title="Unread" name="Unread">
     <view wx:for='{{notifications.unread || []}}' wx:key='{{index}}' class='notif'>
-      <notif notification='{{item}}'></notif>
+      <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "Unread"}}' />
     <view class='empty' wx:if='{{loading !== "Unread" && (!notifications.unread || notifications.unread.length === 0)}}'>
-      <image src='/octicons/bell.png' mode='aspectFit'></image>
+      <image src='{{ theming.iconFolder(theme) }}/bell.svg' mode='aspectFit'></image>
       <text>No new notifications.</text>
     </view>
   </collapse-item>
   <collapse-item title="Participating" name="Participating">
     <view wx:for='{{notifications.participating || []}}' wx:key='{{index}}' class='notif'>
-      <notif notification='{{item}}'></notif>
+      <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "Participating"}}' />
     <view class='empty' wx:if='{{loading !== "Participating" && (!notifications.participating || notifications.participating.length === 0)}}'>
-      <image src='/octicons/bell.png' mode='aspectFit'></image>
+      <image src='{{ theming.iconFolder(theme) }}/bell.svg' mode='aspectFit'></image>
       <text>No new notifications.</text>
     </view>
   </collapse-item>
   <collapse-item wx:for='{{watchingRepos}}' wx:key='{{index}}' title="{{item.full_name}}" name="{{item.full_name}}">
     <view wx:for='{{notifications[item.full_name] || []}}' wx:key='{{index}}' class='notif'>
-      <notif notification='{{item}}'></notif>
+      <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === item.full_name}}' />
     <view class='empty' wx:if='{{loading !== item.full_name && (!notifications[item.full_name] || notifications[item.full_name].length === 0)}}'>
-      <image src='/octicons/bell.png' mode='aspectFit'></image>
+      <image src='{{ theming.iconFolder(theme) }}/bell.svg' mode='aspectFit'></image>
       <text>No new notifications.</text>
     </view>
   </collapse-item>

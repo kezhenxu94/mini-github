@@ -5,6 +5,10 @@ Component({
     issue: {
       type: Object,
       value: {}
+    },
+    theme: {
+      type: String,
+      value: ''
     }
   },
 

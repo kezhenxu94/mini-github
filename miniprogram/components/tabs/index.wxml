@@ -1,6 +1,6 @@
 <wxs src="../wxs/utils.wxs" module="utils" />
 
-<view class="custom-class {{ utils.bem('tabs', [type]) }}">
+<view class="{{ customClass }} {{ utils.bem('tabs', [type]) }}">
   <view style="z-index: {{ zIndex }}; {{ wrapStyle }}" class="{{ utils.bem('tabs__wrap', { scrollable }) }} {{ type === 'line' && border ? 'van-hairline--top-bottom' : '' }}">
     <slot name="nav-left" />
 

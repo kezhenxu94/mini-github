@@ -24,8 +24,11 @@ let links = {}
 let labelChanged = false
 let nextFunc = null
 
+const theming = require('../../behaviours/theming.js')
+
 Component({
-  behaviors: [computedBehavior],
+  behaviors: [computedBehavior, theming],
+
   properties: {
     url: {
       type: String,
@@ -289,6 +292,7 @@ Component({
         })
       })
     },
+
 
     more (e) {
       const itemList = ['Edit']

@@ -1,6 +1,19 @@
+@import '../../style/base.wxss';
+
 .van-search {
   padding: 20rpx !important;
+}
+
+.oled .van-search {
+  background-color: #000;
+}
+
+.dark .van-search {
   background-color: #24292e;
+}
+
+.light .van-search {
+  background-color: #FFF;
 }
 
 .van-search__field .field-index--van-field {
@@ -8,7 +21,7 @@
 }
 
 .user, .repo {
-  border-top: 1rpx solid rgba(65, 65, 65, 0.9);
+  border-top: thin solid rgba(128, 128, 128, 0.3);
 }
 
 .loading {

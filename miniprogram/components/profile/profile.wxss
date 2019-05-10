@@ -5,7 +5,6 @@
   display: flex;
   padding: 40rpx;
   overflow: hidden;
-  color: #eee;
   justify-content: space-between;
 }
 
@@ -23,8 +22,21 @@
 .follow-btn button {
   font-size: 24rpx !important;
   background-color: transparent;
-  color: #fff !important;
-  border-color: #fff;
+}
+
+.light .follow-btn button {
+  border-color: #000000;
+  color: #000000 !important;
+}
+
+.dark .follow-btn button {
+  border-color: #ffffff;
+  color: #ffffff !important;
+}
+
+.oled .follow-btn button {
+  border-color: #ffffff;
+  color: #ffffff !important;
 }
 
 .follow-btn .iconfont {
@@ -39,14 +51,12 @@
 .name {
   margin-left: 30rpx;
   font-size: 40rpx;
-  color: #FFF;
   font-weight: bolder;
 }
 
 .subname {
   margin-left: 30rpx;
   font-size: 32rpx;
-  color: #EEE;
   font-weight:  bold;
 }
 
@@ -117,4 +127,8 @@
   margin-right: 20rpx;
   padding: 6rpx;
   background-color: #FFF;
+}
+
+.orgs image.avatar.light {
+  background-color: #eee;
 }

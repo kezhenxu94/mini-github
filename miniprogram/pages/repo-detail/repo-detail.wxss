@@ -4,7 +4,6 @@
 .header {
   padding: 48rpx;
   display: flex;
-  color: #fff;
 }
 
 .avatar {
@@ -22,7 +21,6 @@
 
 .time {
   font-size: 28rpx;
-  color: #eee;
 }
 
 .stats {

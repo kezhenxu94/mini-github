@@ -1,7 +1,8 @@
-<view>
-  <tabs active='{{tab}}' bind:change='changeTab' sticky swipeable>
+<wxs module='theming' src='../../filter/theming.wxs'/>
+<view class='page {{ theme }}'>
+  <tabs active='{{tab}}' bind:change='changeTab' custom-class='{{ theme }}' sticky swipeable>
     <tab title='Overview'>
-      <profile user='{{user}}' wx:if='{{user}}'></profile>
+      <profile user='{{user}}' wx:if='{{user}}' theme='{{ theme }}'></profile>
     </tab>
     <tab title='Repositories'>
       <repos repos='{{repos}}'></repos>
@@ -17,11 +18,11 @@
     </tab>
   </tabs>
   <view class='login-prompt' wx:if='{{!user}}'>
-    <image mode='aspectFit' class='avatar' src='/octicons/octoface.png'></image>
+    <image mode='aspectFit' class='avatar' src='{{ theming.iconFolder(theme) }}/octoface.svg'></image>
     <navigator url='/pages/login/login'>Sign In</navigator>
   </view>
   <navigator class='settings' url='/pages/settings/settings' wx:if='{{tab===0}}'>
-    <image mode='aspectFit' src='/octicons/gear.png'></image>
+    <image mode='aspectFit' src='{{ theming.iconFolder(theme) }}/gear.svg'></image>
     <text class='settings-text'>Settings</text>
   </navigator>
 </view>
