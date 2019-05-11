@@ -1,6 +1,6 @@
 <wxs module='theming' src='../../filter/theming.wxs'/>
 <navigator class='container' url='/pages/issue-detail/issue-detail?url={{notification.subject.url}}&thread={{notification.id}}'>
-  <image src='{{ theming.iconFolder(theme) + (notification.subject.type === "Issue" ? "/issue-opened.svg" : "/git-pull-request.svg") }}'
+  <image src='{{iconUrl}}'
          class='icon'
          mode='aspectFit'></image>
   <view class='content'>

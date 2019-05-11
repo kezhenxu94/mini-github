@@ -1,7 +1,7 @@
 <wxs module='theming' src='../../filter/theming.wxs'/>
 <collapse value="{{ activeNames }}" bind:change="onChange" custom-class="{{ theme }}" accordion>
   <collapse-item title="All" name="All">
-    <view wx:for='{{notifications.all || []}}' wx:key='{{index}}' class='notif'>
+    <view wx:for='{{notifications.all || []}}' wx:key='id' class='notif {{ theme }}'>
       <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' theme='{{ theme }}' class='loading' wx:if='{{loading === "All"}}' />
@@ -11,7 +11,7 @@
     </view>
   </collapse-item>
   <collapse-item title="Unread" name="Unread">
-    <view wx:for='{{notifications.unread || []}}' wx:key='{{index}}' class='notif'>
+    <view wx:for='{{notifications.unread || []}}' wx:key='id' class='notif {{ theme }}'>
       <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "Unread"}}' />
@@ -21,7 +21,7 @@
     </view>
   </collapse-item>
   <collapse-item title="Participating" name="Participating">
-    <view wx:for='{{notifications.participating || []}}' wx:key='{{index}}' class='notif'>
+    <view wx:for='{{notifications.participating || []}}' wx:key='id' class='notif {{ theme }}'>
       <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === "Participating"}}' />
@@ -30,8 +30,8 @@
       <text>No new notifications.</text>
     </view>
   </collapse-item>
-  <collapse-item wx:for='{{watchingRepos}}' wx:key='{{index}}' title="{{item.full_name}}" name="{{item.full_name}}">
-    <view wx:for='{{notifications[item.full_name] || []}}' wx:key='{{index}}' class='notif'>
+  <collapse-item wx:for='{{watchingRepos}}' wx:key='id' title="{{item.full_name}}" name="{{item.full_name}}">
+    <view wx:for='{{notifications[item.full_name] || []}}' wx:key='id' class='notif {{ theme }}'>
       <notif theme='{{ theme }}'notification='{{item}}'></notif>
     </view>
     <loading type='spinner' color="#fff" class='loading' wx:if='{{loading === item.full_name}}' />

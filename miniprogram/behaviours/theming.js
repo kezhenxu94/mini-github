@@ -29,7 +29,6 @@ module.exports = Behavior({
           wx.setTabBarStyle({
             backgroundColor: '#000000',
             color: '#ffffff',
-            selectedColor: '#ffffff',
             borderStyle: 'white'
           })
           wx.setBackgroundColor({
@@ -44,13 +43,13 @@ module.exports = Behavior({
           wx.setBackgroundTextStyle({
             textStyle: 'light'
           })
+          setDarkTabBarItems()
           break
         }
         case 'light': {
           wx.setTabBarStyle({
             backgroundColor: '#ffffff',
             color: '#000000',
-            selectedColor: '#000000',
             borderStyle: 'black'
           })
           wx.setBackgroundColor({
@@ -65,13 +64,13 @@ module.exports = Behavior({
           wx.setBackgroundTextStyle({
             textStyle: 'dark'
           })
+          setLightTabBarItems()
           break
         }
         case 'dark': {
           wx.setTabBarStyle({
             backgroundColor: '#24292e',
             color: '#ffffff',
-            selectedColor: '#ffffff',
             borderStyle: 'white'
           })
           wx.setBackgroundColor({
@@ -86,9 +85,56 @@ module.exports = Behavior({
           wx.setBackgroundTextStyle({
             textStyle: 'light'
           })
+          setDarkTabBarItems()
           break
         }
       }
     }
   }
 });
+
+function setDarkTabBarItems() {
+  wx.setTabBarItem({
+    index: 0,
+    iconPath: 'octicons/tab/dark/github.png',
+  })
+  wx.setTabBarItem({
+    index: 1,
+    iconPath: 'octicons/tab/dark/issue.png',
+  })
+  wx.setTabBarItem({
+    index: 2,
+    iconPath: 'octicons/tab/dark/flame.png',
+  })
+  wx.setTabBarItem({
+    index: 3,
+    iconPath: 'octicons/tab/dark/pr.png',
+  })
+  wx.setTabBarItem({
+    index: 4,
+    iconPath: 'octicons/tab/dark/account.png',
+  })
+}
+
+function setLightTabBarItems() {
+  wx.setTabBarItem({
+    index: 0,
+    iconPath: 'octicons/tab/light/github.png',
+  })
+  wx.setTabBarItem({
+    index: 1,
+    iconPath: 'octicons/tab/light/issue.png',
+  })
+  wx.setTabBarItem({
+    index: 2,
+    iconPath: 'octicons/tab/light/flame.png',
+  })
+  wx.setTabBarItem({
+    index: 3,
+    iconPath: 'octicons/tab/light/pr.png',
+  })
+  wx.setTabBarItem({
+    index: 4,
+    iconPath: 'octicons/tab/light/account.png',
+  })
+}

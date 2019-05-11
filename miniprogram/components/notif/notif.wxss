@@ -25,9 +25,11 @@ image.icon {
 }
 
 .repo {
-  display: flex;
+  display: block;
   flex: 1;
-  flex-wrap: wrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .time, .unsub, .mark {

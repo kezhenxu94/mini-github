@@ -34,32 +34,32 @@
       {
         "pagePath": "pages/news/news",
         "text": "News",
-        "iconPath": "octicons/tab-github.png",
-        "selectedIconPath": "octicons/tab-github-selected.png"
+        "iconPath": "octicons/tab/dark/github.png",
+        "selectedIconPath": "octicons/tab/selected/github.png"
       },
       {
         "pagePath": "pages/issues/issues",
         "text": "Issue",
-        "iconPath": "octicons/tab-issue.png",
-        "selectedIconPath": "octicons/tab-issue-selected.png"
+        "iconPath": "octicons/tab/dark/issue.png",
+        "selectedIconPath": "octicons/tab/selected/issue.png"
       },
       {
         "pagePath": "pages/trends/trends",
         "text": "Trend",
-        "iconPath": "octicons/tab-flame.png",
-        "selectedIconPath": "octicons/tab-flame-selected.png"
+        "iconPath": "octicons/tab/dark/flame.png",
+        "selectedIconPath": "octicons/tab/selected/flame.png"
       },
       {
         "pagePath": "pages/pulls/pulls",
         "text": "PR",
-        "iconPath": "octicons/tab-pr.png",
-        "selectedIconPath": "octicons/tab-pr-selected.png"
+        "iconPath": "octicons/tab/dark/pr.png",
+        "selectedIconPath": "octicons/tab/selected/pr.png"
       },
       {
         "pagePath": "pages/me/me",
         "text": "Me",
-        "iconPath": "octicons/tab-account.png",
-        "selectedIconPath": "octicons/tab-account-selected.png"
+        "iconPath": "octicons/tab/dark/account.png",
+        "selectedIconPath": "octicons/tab/selected/account.png"
       }
     ]
   },
