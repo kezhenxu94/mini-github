@@ -55,6 +55,7 @@
 - [ ] Issue/PR 详情页可 assign 成员 (如果有权限)
 - [x] 支持重新编辑 Issue(Title, Comment)
 - [x] 支持在项目详情页新建 Issue
+- [x] 支持多主题样式: light, dark, oled(black)
 
 ## Contributions
 
@@ -77,6 +78,10 @@
 
 ## Change Logs
 
+- v2.9.0
+  - :new: 支持多主题样式: light, dark, oled(black)
+  - :hammer: 多种主题下, tab 栏图标均提供选中高亮样式
+  - :bug: 通知页面多种通知 icon 错误问题 (thanks to @maoqxxmm)
 - v2.8.2
   - :new: 支持重新编辑 Issue(Title, Comment)
   - :new: 支持在项目详情页新建 Issue
