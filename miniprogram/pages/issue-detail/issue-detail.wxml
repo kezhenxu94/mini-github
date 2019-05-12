@@ -33,6 +33,6 @@
 </view>
 <popup show="{{ editLabels }}" position="bottom" bind:close="onClose" custom-class='labels-popup'>
   <v-checkbox custom-class='v-checkbox' wx:for='{{allLabels}}' wx:key="index" value='{{ item.selected }}' checked-color='#000' bind:change="onLabelChanged" data-tag='{{item}}'>
-    <tag color='#{{item.color}}' class='tag' size='large' text-color='{{ item.textColor }}'>{{ item.name }}</tag>
+    <tag color='#{{item.color}}' class='tag' size='large'>{{ item.name }}</tag>
   </v-checkbox>
 </popup>

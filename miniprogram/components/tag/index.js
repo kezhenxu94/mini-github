@@ -32,8 +32,47 @@ VantComponent({
       var style = key + ": " + color;
       if (this.data.textColor) {
         style += "; color: " + this.data.textColor
+      } else {
+        // no text color case
+        var textColor = this.generateTextColor(this.data.color)
+        if (textColor !== null) {
+          style += "; color: " + textColor
+        }
       }
       return style;
+    }
+  },
+  // methods
+  methods: {
+    generateTextColor(color) {
+      if (color === null ||
+        color === undefined ||
+        color.indexOf("#") !== 0) {
+        return null
+      }
+      var r, g, b
+      if (color.length == 4) {
+        // eg:#fff
+        var rText = color.substr(1, 1)
+        var gText = color.substr(2, 1)
+        var bText = color.substr(3, 1)
+        r = parseInt(`${rText}${rText}`, 16)
+        g = parseInt(`${gText}${gText}`, 16)
+        b = parseInt(`${bText}${bText}`, 16)
+      } else if (color.length == 7) {
+        // eg: #ffffff
+        r = parseInt(`${color.substr(1, 2)}`, 16)
+        g = parseInt(`${color.substr(3, 2)}`, 16)
+        b = parseInt(`${color.substr(5, 2)}`, 16)
+      }
+      if (r !== undefined && g !== undefined && b !== undefined) {
+        if (r >= 153 && g >= 110 && b > 10) {
+          return '#000'
+        } else {
+          return '#fff'
+        }
+      }
+      return null
     }
   }
 });
