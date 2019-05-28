@@ -10,7 +10,7 @@
 
 | 微信群 | 个人微信 |
 | :---: | :----: |
-| ![GroupQRCode](https://user-images.githubusercontent.com/15965696/57529687-17869600-7368-11e9-9c04-14079b93776e.png) | ![PersonalQRCode](https://user-images.githubusercontent.com/15965696/57529474-929b7c80-7367-11e9-95a2-f1063bf22c7f.jpg) |
+| ![GroupQRCode](https://user-images.githubusercontent.com/15965696/58446451-5de33f80-8133-11e9-9f06-fc9ca6ba113c.png) | ![PersonalQRCode](https://user-images.githubusercontent.com/15965696/57529474-929b7c80-7367-11e9-95a2-f1063bf22c7f.jpg) |
 
 > 如果群二维码过期，请添加作者微信拉你入群
 
