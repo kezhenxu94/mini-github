@@ -53,6 +53,15 @@ const getIssue = (url) => new Promise((resolve, reject) => {
   })
 })
 
+const getRelease = url => new Promise((resolve, reject) => {
+  getUrl({url}).then(({data}) => {
+    resolve(data)
+  }).catch(error => {
+    errorHandler()
+    reject(error)
+  })
+})
+
 const trendings = (since, language) => new Promise((resolve, reject) => {
   const url = 'https://github-trending-api.now.sh/repositories'
   http.get(url, { params: { since, language } }).then(({ status, headers, data }) => {
@@ -109,6 +118,7 @@ const getComments = (url) => {
 
 module.exports = {
   getIssue,
+  getRelease,
   trendings,
   getRepo,
   getComments,

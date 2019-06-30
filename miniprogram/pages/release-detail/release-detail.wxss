@@ -1,0 +1,79 @@
+@import "../../lib/wxParse/wxParse.wxss";
+
+.release {
+  padding: 24rpx 24rpx 0;
+  font-size: 28rpx;
+}
+
+.release-title {
+  font-size: 48rpx;
+  line-height: 1.5;
+}
+
+.version {
+  display: flex;
+  align-items: center;
+  margin-top: 8rpx;
+}
+
+.version .icon-tag {
+  width: 28rpx;
+  height: 28rpx;
+}
+
+.version .version-number {
+  margin-left: 8rpx;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-top: 24rpx;
+}
+
+.author text {
+  margin-left: 16rpx;
+}
+
+.author .avatar {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 6rpx;
+}
+
+.author .name {
+  font-weight: bold;
+}
+
+.desc {
+  margin-top: 40rpx;
+  word-break: break-word;
+}
+
+.divider {
+  width: 100%;
+  height: 2rpx;
+  background-color: #e1e4e8;
+  margin: 40rpx 0;
+}
+
+.assets-title .title {
+  font-weight: bold;
+}
+
+.assets-title .count {
+  opacity: 0.54;
+  margin-left: 16rpx;
+}
+
+.assets-list li {
+  display: flex;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.assets-list .icon-package {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 8rpx;
+}

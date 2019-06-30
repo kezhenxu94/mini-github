@@ -1,5 +1,5 @@
 <wxs module='theming' src='../../filter/theming.wxs'/>
-<navigator class='container' url='/pages/issue-detail/issue-detail?url={{notification.subject.url}}&thread={{notification.id}}'>
+<navigator class='container' url='{{detailUrl}}?url={{notification.subject.url}}&thread={{notification.id}}'>
   <image src='{{iconUrl}}'
          class='icon'
          mode='aspectFit'></image>

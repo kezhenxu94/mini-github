@@ -13,6 +13,7 @@
     "pages/issue-edit/issue-edit",
     "pages/repo-detail/repo-detail",
     "pages/issue-detail/issue-detail",
+    "pages/release-detail/release-detail",
     "pages/comment-edit/comment-edit",
     "pages/settings/settings",
     "pages/about/about"

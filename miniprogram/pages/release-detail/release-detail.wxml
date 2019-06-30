@@ -1,0 +1,27 @@
+<wxs module='theming' src='../../filter/theming.wxs' />
+<view class="page release {{ theme }}">
+  <text class="release-title">{{release.name}}</text>
+  <view class="version">
+    <image class="icon-tag" src="{{ theming.iconFolder(theme) }}/tag.svg"></image>
+    <text class="version-number">{{release.tag_name}}</text>
+  </view>
+  <view class="author">
+    <image class="avatar" src="{{release.author.avatar_url}}"></image>
+    <text class="name">{{release.author.login}}</text>
+    <text class="date">发布于 {{releaseDate}}</text>
+  </view>
+  <view class="desc">
+    <md md="{{descMd}}" custom-class="{{ theme }} elevation"></md>
+  </view>
+  <view class="divider"></view>
+  <view class="assets-title">
+    <text class="title">Assets</text>
+    <text class="count">{{release.assets.length}}</text>
+  </view>
+  <ul class="assets-list" wx:for="{{release.assets}}" wx:key="{{id}}">
+    <li>
+      <image class="icon-package" src="{{ theming.iconFolder(theme) }}/package.svg"></image>
+      {{item.name}}
+    </li>
+  </ul>
+</view>

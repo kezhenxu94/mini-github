@@ -36,13 +36,25 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"currentL": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
-			"list": []
+			"current": 0,
+			"list": [
+				{
+					"id": -1,
+					"name": "release notification",
+					"pathName": "pages/release-detail/release-detail",
+					"query": "url=https://api.github.com/repos/kezhenxu94/mini-github/releases/18314143&thread=529261023",
+					"scene": null
+				}
+			]
 		}
 	}
 }
