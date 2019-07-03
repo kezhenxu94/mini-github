@@ -63,6 +63,10 @@ const getRelease = url => new Promise((resolve, reject) => {
 })
 
 const trendings = (since, language) => new Promise((resolve, reject) => {
+  // github-trending-api 改了接口，传 all 的话会返回空数组
+  if (language === "all") {
+    language = ""
+  }
   const url = 'https://github-trending-api.now.sh/repositories'
   http.get(url, { params: { since, language } }).then(({ status, headers, data }) => {
     if (status !== 200) {
