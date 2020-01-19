@@ -1,3 +1,5 @@
+> 由于 GitHub 已经推出官方移动端应用, 本小程序将停止开发, 仅作为开发小程序的参考例子.
+
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/kezhenxu94/mini-github.svg)](https://github.com/kezhenxu94/mini-github) [![GitHub stars](https://img.shields.io/github/stars/kezhenxu94/mini-github.svg)](https://github.com/kezhenxu94/mini-github) [![WeChat ID](https://img.shields.io/badge/WeChat-CynicalKid-%2344b549.svg)](https://github.com/kezhenxu94/mini-github) [![QQ](https://img.shields.io/badge/QQ-917423081-12b7f5.svg)](https://github.com/kezhenxu94/mini-github) [![QQ ID](https://img.shields.io/badge/QQ%20Group-948577975-12b7f5.svg)](https://github.com/kezhenxu94/mini-github)
 
 ## 扫码体验
